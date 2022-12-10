@@ -1,2 +1,2 @@
 # CC.ui
-Collaborative Code UI
+Collaborative Code UI.
