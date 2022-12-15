@@ -34,9 +34,9 @@ export const defaultTheme = createTheme({
             active: "rgba(255,255,255,0.3)",
             selected: "rgba(107,157,233,0.5)",
             selectedOpacity: 0.5,
-            activatedOpacity: 0.3,
+            activatedOpacity: 0.4,
             hover: "rgba(255, 255, 255, 0.05)",
-            hoverOpacity: 0.1,
+            hoverOpacity: 0.15,
         },
         text: {
             primary: "rgba(0, 0, 0, 0.9)",
@@ -68,7 +68,6 @@ export const defaultTheme = createTheme({
             fontWeight: 300,
             fontSize: '0.7rem'
         },
-
     },
     shape: {
         borderRadius: 20

@@ -22,11 +22,14 @@ export const HeaderStack: FC<WithChild> = ({children}) => {
                     mx: {xs: 0.5, md: 2},
                     minHeight: 25,
                     textTransform: "initial",
+                    borderRadius: "10px",
                     fontSize: "inherit",
+                    "&:hover": {
+                        opacity: 0.8
+                    }
                 },
                 "& .MuiTabs-root": {
                     minHeight: 25,
-
                 },
             }}
         >
