@@ -13,7 +13,7 @@ export const HeaderStatistic = () => {
         <Stack direction={"row"} spacing={5} margin={"auto 0 25px"}>
             {statistic.map(el => (
                 <Stack key={el.name}>
-                    <Typography sx={{typography: {sm: "h4"}}}>
+                    <Typography sx={{typography: {xs: "h5",sm: "h4"}}}>
                         {el.totalCount}
                     </Typography>
                     <Typography sx={{typography: {xs: "subtitle2", sm: "subtitle1"}, mt: -0.4}}>

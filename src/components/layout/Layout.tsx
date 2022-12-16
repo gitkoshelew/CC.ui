@@ -13,13 +13,15 @@ export const Layout: FC<LayoutPropsType> = ({children, header = "default"}) => {
         <Box sx={{
             display: "flex",
             flexDirection: "column",
-            typography: {xs: "subtitle1", sm: "fontSize"},
+            fontSize: {xs: "small", sm: "medium"},
+            minHeight: "100vh",
+            bgcolor: "background.default",
             gap: 3,
             p: 2
         }}>
             {header === "default"
                 ? <Header />
-                : <FullHeader/>
+                : <FullHeader />
             }
             {children}
         </Box>

@@ -38,7 +38,6 @@ export const HeaderContent = () => {
             <Tabs
                 value={"test list"}
                 scrollButtons="auto"
-                textColor={"inherit"}
                 variant="scrollable"
                 aria-label="secondary tabs example"
             >
