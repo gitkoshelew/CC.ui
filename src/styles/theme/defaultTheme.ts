@@ -11,10 +11,12 @@ export const defaultTheme = createTheme({
         secondary: {
             main: "#6B9DE9",
             contrastText: "#000",
+            dark: "#F0F0F0",
+            light: "#FFFFFF",
         },
         background: {
             paper: "#FFFFFF",
-            default: "#F2F2F2"
+            default: "rgba(255, 255, 255, 0.1)"
         },
         info: {
             main: "#FFFFFF",
@@ -32,9 +34,9 @@ export const defaultTheme = createTheme({
             active: "rgba(255,255,255,0.3)",
             selected: "rgba(107,157,233,0.5)",
             selectedOpacity: 0.5,
-            activatedOpacity: 0.4,
+            activatedOpacity: 0.3,
             hover: "rgba(255, 255, 255, 0.05)",
-            hoverOpacity: 0.15,
+            hoverOpacity: 0.1,
         },
         text: {
             primary: "rgba(0, 0, 0, 0.9)",
@@ -66,56 +68,9 @@ export const defaultTheme = createTheme({
             fontWeight: 300,
             fontSize: '0.7rem'
         },
+
     },
     shape: {
         borderRadius: 20
-    },
-
-    components: {
-        MuiButton: {
-            defaultProps: {
-                size: "small",
-                sx: {
-                    px: {xs: 2, md: 3},
-                    py: {xs: 0.4, md: 0.75},
-                    textTransform: "initial",
-                    fontSize: "inherit",
-                    "svg": {
-                        width: {xs: 12, md: 16},
-                        height: {xs: 12, md: 16}
-                    }
-                }
-            }
-        }, MuiIconButton: {
-            defaultProps: {
-                sx: {
-                    bgcolor: "rgba(255, 255, 255, 0.1)",
-                    p: 0.8
-                }
-            }
-        },
-        MuiTab: {
-            defaultProps: {
-                sx: {
-                    textTransform: "initial",
-                    borderRadius: "10px",
-                    px: {xs: 0.5, md: 1},
-                    fontSize: "inherit",
-                    "&:hover": {
-                        opacity: 0.8
-                    }
-                }
-            },
-        },
-        MuiTabs: {
-            defaultProps: {
-                textColor: "inherit",
-                sx: {
-                    "& .MuiTabs-indicator": {
-                        bgcolor: "secondary.main",
-                    }
-                }
-            }
-        }
     }
 })

@@ -8,10 +8,27 @@ export const HeaderStack: FC<WithChild> = ({children}) => {
             direction={"row"}
             justifyContent={"space-between"}
             alignItems={"center"}
+            width={1}
             spacing={1}
             px={3}
-            py={1}
-            sx={{"& .MuiTab-root": {mx: {xs: 0.5, md: 2}}}}
+            height={"60px"}
+            sx={{
+                "& .MuiIconButton-root": {
+                    bgcolor: "background.default",
+                    p: 0.8
+                },
+                "& .MuiTab-root": {
+                    px: {xs: 0.5, md: 1},
+                    mx: {xs: 0.5, md: 2},
+                    minHeight: 25,
+                    textTransform: "initial",
+                    fontSize: "inherit",
+                },
+                "& .MuiTabs-root": {
+                    minHeight: 25,
+
+                },
+            }}
         >
             {children}
         </Stack>
