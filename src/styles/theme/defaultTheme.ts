@@ -1,76 +1,66 @@
 import {createTheme} from "@mui/material";
+import commonDefaultTheme from "./commonDefaultTheme";
+
+const commonTheme = ({
+    palette: {...commonDefaultTheme.palette, mode: "light"},
+    typography: {...commonDefaultTheme.typography},
+    shape: {...commonDefaultTheme.shape},
+    breakpoints: {...commonDefaultTheme.breakpoints}
+} as const)
 
 export const defaultTheme = createTheme({
-    palette: {
-        mode: "light",
-        primary: {
-            main: "#2D3E6B",
-            contrastText: "#FFFFFF",
-            dark: "#243664",
-        },
-        secondary: {
-            main: "#6B9DE9",
-            contrastText: "#000",
-            dark: "#F0F0F0",
-            light: "#FFFFFF",
-        },
-        background: {
-            paper: "#FFFFFF",
-            default: "rgba(255, 255, 255, 0.1)"
-        },
-        info: {
-            main: "#FFFFFF",
-            contrastText: "#000",
-        },
-        error: {
-            main: "#E96B6B",
-            contrastText: "#FFFFFF",
-        },
-        success: {
-            main: "#6B9DE9",
-            contrastText: "#FFFFFF",
-        },
-        action: {
-            active: "rgba(255,255,255,0.3)",
-            selected: "rgba(107,157,233,0.5)",
-            selectedOpacity: 0.5,
-            activatedOpacity: 0.3,
-            hover: "rgba(255, 255, 255, 0.05)",
-            hoverOpacity: 0.1,
-        },
-        text: {
-            primary: "rgba(0, 0, 0, 0.9)",
-            secondary: "rgba(255, 255, 255, 0.9)",
-            disabled: "rgba(0, 0, 0, 0.38)",
-        },
-        divider: "rgba(255, 255, 255, 0.1)"
+    palette: commonTheme.palette,
+    typography: commonTheme.typography,
+    shape: commonTheme.shape,
+    breakpoints: {
+        values: commonTheme.breakpoints
     },
-    typography: {
-        fontFamily: '"Montserrat", sans-serif',
-        fontSize: 16,
-        h3: {
-            fontWeight: 500,
-            fontSize: '2.2rem'
-        },
-        h4: {
-            fontWeight: 500,
-            fontSize: '1.75rem'
-        },
-        h5: {
-            fontWeight: 500,
-            fontSize: '1.45rem'
-        },
-        subtitle1: {
-            fontWeight: 400,
-            fontSize: '0.9rem'
-        },
-        subtitle2: {
-            fontWeight: 300,
-            fontSize: '0.7rem'
-        },
 
-    },
-    shape: {
-        borderRadius: 20
+    components: {
+        MuiButton: {
+            defaultProps: {
+                size: "small",
+                sx: {
+                    px: {xs: 2, md: 3},
+                    py: {xs: 0.4, md: 0.75},
+                    textTransform: "initial",
+                    fontSize: "inherit",
+                    "svg": {
+                        width: {xs: 12, md: 16},
+                        height: {xs: 12, md: 16}
+                    }
+                }
+            }
+        }, MuiIconButton: {
+            defaultProps: {
+                sx: {
+                    bgcolor: "rgba(255, 255, 255, 0.1)",
+                    p: 0.8
+                }
+            }
+        },
+        MuiTab: {
+            defaultProps: {
+                sx: {
+                    textTransform: "initial",
+                    borderRadius: "10px",
+                    px: {xs: 0.5, md: 1},
+                    fontSize: "inherit",
+                    "&:hover": {
+                        opacity: 0.8
+                    }
+                }
+            },
+        },
+        MuiTabs: {
+            defaultProps: {
+                textColor: "inherit",
+                sx: {
+                    "& .MuiTabs-indicator": {
+                        bgcolor: "secondary.main",
+                    }
+                }
+            }
+        }
     }
 })

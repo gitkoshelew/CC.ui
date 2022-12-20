@@ -13,6 +13,7 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.0",
@@ -35,6 +36,7 @@
     "@storybook/addon-essentials": "^6.5.14",
     "@storybook/addon-interactions": "^6.5.14",
     "@storybook/addon-links": "^6.5.14",
+    "@storybook/addon-postcss": "^2.0.0",
     "@storybook/builder-webpack5": "^6.5.14",
     "@storybook/manager-webpack5": "^6.5.14",
     "@storybook/react": "^6.5.14",
