@@ -38,6 +38,7 @@ module.exports = {
             primary: "rgba(0, 0, 0, 0.9)",
             secondary: "rgba(255, 255, 255, 0.9)",
             disabled: "rgba(0, 0, 0, 0.38)",
+            primaryAlpha300: "rgba(0, 0, 0, 0.30)",
         },
         divider: "rgba(255, 255, 255, 0.1)"
     },

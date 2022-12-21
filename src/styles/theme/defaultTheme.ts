@@ -58,7 +58,17 @@ export const defaultTheme = createTheme({
                 sx: {
                     "& .MuiTabs-indicator": {
                         bgcolor: "secondary.main",
-                    }
+                    },
+                    '& .MuiTabs-flexContainer': {justifyContent: 'space-between'},
+                }
+            }
+        },
+        MuiPaper: {
+            defaultProps: {
+                elevation: 3,
+                sx: {
+                    bgcolor: "background.paper",
+                    borderRadius: "shape.borderRadius"
                 }
             }
         }
