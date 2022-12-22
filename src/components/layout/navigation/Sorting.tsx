@@ -1,12 +1,12 @@
-import * as React from "react";
 import MenuItem from '@mui/material/MenuItem';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
 import Box from "@mui/material/Box";
 import {Typography} from "@mui/material";
+import {FC, useState} from "react";
+import {SortingType} from "../../../Types/NavigationTypes";
 
-export const Sorting = () => {
-    const [value, setValue] = React.useState('1');
-    const sort = ['Verify', 'Date', 'Popularity', 'Something else']
+export const Sorting: FC<SortingType> = ({sort}) => {
+    const [value, setValue] = useState('1');
 
     const handleChange = (event: SelectChangeEvent) => {
         setValue(event.target.value);
@@ -29,14 +29,14 @@ export const Sorting = () => {
                 sx={{
                     minWidth: 120,
                     height: 26,
-                    bgcolor: 'primary.contrastText',
+                    bgcolor: 'background.paper',
                     borderRadius: '10px',
                     typography: 'subtitle1',
                     '& .MuiOutlinedInput-notchedOutline': {
                         border: 0
                     },
                     '& .MuiSvgIcon-root': {
-                        color: 'text.primary'
+                        color: 'text.primaryAlpha300'
                     },
                 }}
                 MenuProps={{

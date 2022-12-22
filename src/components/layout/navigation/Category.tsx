@@ -1,14 +1,13 @@
-import * as React from "react";
-import {useState} from "react";
+import {FC, SyntheticEvent, useState} from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import {Paper} from "@mui/material";
+import {CategoryType} from "../../../Types/NavigationTypes";
 
-export const Category = () => {
+export const Category: FC<CategoryType> = ({categories}) => {
     const [value, setValue] = useState(3)
-    const categories = ['All', 'Category 1', 'Category 2', 'Node.js', 'Category 4']
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (event: SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
