@@ -10,8 +10,7 @@ export const FullHeaderWrapper: FC<WithChild> = ({children}) => {
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            height: 360,
-            borderRadius: "25px",
+            height: {xs: 310, sm: 360},
             overflow: "hidden",
             color: "primary.contrastText",
         }}>

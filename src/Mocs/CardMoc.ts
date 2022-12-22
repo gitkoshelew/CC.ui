@@ -10,3 +10,8 @@ export const cards: CardsType = [
     {id: 7, title: 'General question about Node.js7', userName: 'Person_7', date: "070101", status: "done"},
     {id: 8, title: 'General question about Node.js8', userName: 'Person_8', date: "080101", status: "done"},
 ]
+
+export const userData = {
+    avatar: "https://i.imgur.com/XBQQHe9.png",
+    name: "Design"
+}

@@ -18,7 +18,7 @@ module.exports = {
             shape: defaultTheme.shape,
         },
       gridTemplateColumns: {
-        '4': 'repeat(auto-fill, minmax(300px, 1fr))',
+        '4': 'repeat(auto-fill, minmax(270px, 1fr))',
       }
     },
     plugins: [],

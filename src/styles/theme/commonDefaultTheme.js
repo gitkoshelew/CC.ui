@@ -8,8 +8,7 @@ module.exports = {
         },
         secondary: {
             main: "#6B9DE9",
-            contrastText: "#000",
-
+            contrastText: "#ffffff",
         },
         background: {
             default: "#F2F2F2",

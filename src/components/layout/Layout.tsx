@@ -7,7 +7,7 @@ type LayoutPropsType = {
     children: React.ReactNode;
     header?: "full" | "default"
 }
-const headersMap: any = {
+const headersMap = {
     default: Header,
     full: FullHeader
 }
@@ -19,12 +19,14 @@ export const Layout: FC<LayoutPropsType> = ({children, header = "default"}) => {
         <Box sx={{
             display: "flex",
             flexDirection: "column",
-            typography: {xs: "subtitle1", sm: "fontSize"},
+            fontSize: {xs: "small", sm: "medium"},
+            minHeight: "100vh",
+            bgcolor: "background.default",
             gap: 3,
             p: 2
-        }}>
-            <HeaderComponent/>
-
+        }}
+        >
+            <HeaderComponent />
             {children}
         </Box>
     );

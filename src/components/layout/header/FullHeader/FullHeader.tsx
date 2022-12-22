@@ -6,7 +6,6 @@ import {Button, Stack, Typography} from "@mui/material";
 import {ListIcon} from "../../../../assets/icons/ListIcon";
 import {ButtonNums} from "../ButtonNums";
 import {HeaderStatistic} from '../HeaderStatistic';
-import {HeaderButtons} from "../HeaderButtons";
 
 export const FullHeader = () => {
     return (
@@ -25,7 +24,11 @@ export const FullHeader = () => {
                         Some text
                     </Typography>
                     <HeaderStatistic />
-                    <HeaderButtons>
+                    <Stack
+                        spacing={{xs: 2, sm: 4}}
+                        direction={"row"}
+                        sx={{"& .MuiButton-contained": {px: {xs: 2, md: 5}}}}
+                    >
                         <Button
                             color={"info"}
                             variant={"contained"}
@@ -40,7 +43,7 @@ export const FullHeader = () => {
                         >
                             My tests
                         </Button>
-                    </HeaderButtons>
+                    </Stack>
                 </Stack>
             </Stack>
         </FullHeaderWrapper>

@@ -11,8 +11,8 @@ export const Cards: FC<PropsCardsType> = ({cards}) => {
 
 
     return (
-        <div className='grid grid-cols-4 gap-20 px-20'>
-            {cards.map(({id, title, userName, date, status}: OneCardType) =>
+        <div className='grid grid-cols-4 gap-7'>
+            {cards.map(({id, title, userName, date, status}:OneCardType) =>
                 <Card key={id} title={title} userName={userName} date={date} status={status}/>)}
         </div>
     );
