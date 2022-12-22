@@ -19,10 +19,11 @@ export const defaultTheme = createTheme({
     components: {
         MuiButton: {
             defaultProps: {
-                size: "small",
+                size: "large",
+                variant: "contained",
                 sx: {
-                    px: {xs: 2, md: 3},
-                    py: {xs: 0.4, md: 0.75},
+                    px: {xs: 2.3, md: 4},
+                    py: {xs: 0.4, md: 0.9},
                     textTransform: "initial",
                     fontSize: "inherit",
                     "svg": {
@@ -31,7 +32,8 @@ export const defaultTheme = createTheme({
                     }
                 }
             }
-        }, MuiIconButton: {
+        },
+        MuiIconButton: {
             defaultProps: {
                 sx: {
                     bgcolor: "rgba(255, 255, 255, 0.1)",
