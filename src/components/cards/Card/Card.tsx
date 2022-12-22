@@ -12,7 +12,7 @@ export const Card: FC<PropsCardType> = ({title, date, userName, status}) => {
 
     return (
         <div className='border rounded-2xl shadowCard px-10 py-10 relative'>
-            <div className='border rounded-xl shadow-md absoluteCard px-5 bg-sky-400 text-white'>{status && "verifyed"}</div>
+            {status && <div className='border rounded-xl shadow-md absoluteCard px-5 bg-sky-400 text-white'>verifyed</div>}
             <div className='grid justify-items-center'>
                 <h3>NodeJs</h3>
                 <p>{title}</p>

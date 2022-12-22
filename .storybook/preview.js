@@ -1,10 +1,6 @@
 import * as NextImage from "next/image";
 import 'tailwindcss/tailwind.css';
 import '../src/styles/globals.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import '@fontsource/material-icons';
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import {defaultTheme} from "../src/styles/theme/defaultTheme";

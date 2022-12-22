@@ -7,7 +7,13 @@ type LayoutPropsType = {
     children: React.ReactNode;
     header?: "full" | "default"
 }
+const headersMap: any = {
+    default: Header,
+    full: FullHeader
+}
+
 export const Layout: FC<LayoutPropsType> = ({children, header = "default"}) => {
+    const HeaderComponent = headersMap[header]
 
     return (
         <Box sx={{
@@ -17,10 +23,8 @@ export const Layout: FC<LayoutPropsType> = ({children, header = "default"}) => {
             gap: 3,
             p: 2
         }}>
-            {header === "default"
-                ? <Header />
-                : <FullHeader/>
-            }
+            <HeaderComponent/>
+
             {children}
         </Box>
     );
