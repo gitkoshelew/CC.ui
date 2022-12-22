@@ -9,10 +9,16 @@ module.exports = {
         secondary: {
             main: "#6B9DE9",
             contrastText: "#000",
+
         },
         background: {
+            default: "#F2F2F2",
+            defaultAccent1: "#DFDFDF",
             paper: "#FFFFFF",
-            default: "#F2F2F2"
+            paperAccent1: "#FAFAFA",
+            paperAccent2: "#F0F0F0",
+            border: "rgba(0, 0, 0, 0.2)",
+            shadow: "rgba(0, 0, 0, 0.2)"
         },
         info: {
             main: "#FFFFFF",
@@ -36,7 +42,10 @@ module.exports = {
         },
         text: {
             primary: "rgba(0, 0, 0, 0.9)",
+            primaryAlpha300: "rgba(0, 0, 0, 0.3)",
+            primaryAlpha800: "rgba(0, 0, 0, 0.8)",
             secondary: "rgba(255, 255, 255, 0.9)",
+            secondaryAlpha500: "rgba(255, 255, 255, 0.5)",
             disabled: "rgba(0, 0, 0, 0.38)",
             primaryAlpha300: "rgba(0, 0, 0, 0.30)",
         },
