@@ -1,1 +1,3 @@
-export const Navigation = () => <div>Navigation</div>;
+export function Navigation() {
+  return <div>Navigation</div>;
+}

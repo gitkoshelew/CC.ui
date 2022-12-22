@@ -1,1 +1,3 @@
-export const Cards = () => <div>Cards</div>;
+export function Cards() {
+  return <div>Cards</div>;
+}

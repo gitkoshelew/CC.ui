@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
+import { Box } from '@mui/material';
 import { Header } from './header/Header/Header';
 import { FullHeader } from './header/FullHeader/FullHeader';
-import { Box } from '@mui/material';
 
 type LayoutPropsType = {
   children: ReactNode;
@@ -10,21 +10,19 @@ type LayoutPropsType = {
 export const Layout: FC<LayoutPropsType> = ({
   children,
   header = 'default',
-}) => {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        fontSize: { xs: 'small', sm: 'medium' },
-        minHeight: '100vh',
-        bgcolor: 'background.default',
-        gap: 3,
-        p: 2,
-      }}
-    >
-      {header === 'default' ? <Header /> : <FullHeader />}
-      {children}
-    </Box>
-  );
-};
+}) => (
+  <Box
+    sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      fontSize: { xs: 'small', sm: 'medium' },
+      minHeight: '100vh',
+      bgcolor: 'background.default',
+      gap: 3,
+      p: 2,
+    }}
+  >
+    {header === 'default' ? <Header /> : <FullHeader />}
+    {children}
+  </Box>
+);

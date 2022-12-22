@@ -9,7 +9,7 @@ const userData = {
   name: 'Design',
 };
 
-export const HeaderContent = () => {
+export function HeaderContent() {
   const { avatar, name } = userData;
 
   return (
@@ -37,4 +37,4 @@ export const HeaderContent = () => {
       </Tabs>
     </HeaderStack>
   );
-};
+}

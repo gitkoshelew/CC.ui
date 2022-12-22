@@ -4,6 +4,7 @@ import { WithChild } from '../../common/types';
 
 export const HeaderName: FC<WithChild> = ({ children }) => (
   <Link
+    href='/home'
     underline='hover'
     sx={{
       color: 'primary.contrastText',

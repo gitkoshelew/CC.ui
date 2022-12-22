@@ -4,7 +4,7 @@ import { Cards } from '../components/cards/Cards';
 
 export default function Home() {
   return (
-    <Layout header={'full'}>
+    <Layout header='full'>
       <Navigation />
       <Cards />
     </Layout>
