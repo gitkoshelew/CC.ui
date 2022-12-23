@@ -60,6 +60,43 @@ export const defaultTheme = createTheme({
                 sx: {
                     "& .MuiTabs-indicator": {
                         bgcolor: "secondary.main",
+                    },
+                    '& .MuiTabs-flexContainer': {justifyContent: 'space-between'},
+                }
+            }
+        },
+        MuiPaper: {
+            defaultProps: {
+                elevation: 3,
+                sx: {
+                    bgcolor: "background.paper",
+                    borderRadius: "shape.borderRadius"
+                }
+            }
+        },
+        MuiSelect: {
+            defaultProps: {
+                MenuProps: {
+                    PaperProps: {
+                        sx: {
+                            p: 0,
+                            borderRadius: '10px',
+                            "& .MuiMenuItem-root.Mui-selected": {
+                                backgroundColor: "background.default"
+                            },
+                            "& .MuiMenuItem-root:hover": {
+                                backgroundColor: "background.default"
+                            },
+                            "& .MuiMenuItem-root.Mui-selected:hover": {
+                                backgroundColor: "background.default"
+                            },
+                            "& .MuiList-root": {
+                                p: 0
+                            },
+                            "& .MuiButtonBase-root": {
+                                p: '0 15px'
+                            },
+                        }
                     }
                 }
             }
