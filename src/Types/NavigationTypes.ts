@@ -1,6 +1,6 @@
 export type SortingType = {
-    sort: string[]
-}
+  sort: string[];
+};
 export type CategoryType = {
-    categories: string[]
-}
+  categories: string[];
+};
