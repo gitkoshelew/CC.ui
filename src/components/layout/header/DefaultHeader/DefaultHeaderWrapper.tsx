@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {WithChild} from "../../../common/types";
 import {Card} from "@mui/material";
 
-export const HeaderWrapper: FC<WithChild> = ({children}) => {
+export const DefaultHeaderWrapper: FC<WithChild> = ({children}) => {
     return (
         <Card sx={{
             display: "flex",

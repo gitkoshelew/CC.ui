@@ -6,7 +6,7 @@ import {categories, sort} from "../Mocs/NavigationMoc";
 
 export default function Home() {
     return (
-        <Layout header={"full"}>
+        <Layout headerType={"full"}>
             <Navigation sort={sort} categories={categories}/>
             <Cards cards={cards}/>
         </Layout>
