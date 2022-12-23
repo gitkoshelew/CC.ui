@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { Button, Typography } from '@mui/material';
-import s from './Card.module.css';
 
 type PropsCardType = {
   title: string;
@@ -13,7 +12,7 @@ export const Card: FC<PropsCardType> = ({ title, date, userName, status }) => (
   <div className='text-center bg-background-paper shadow border rounded-2xl px-5 pt-10 pb-2 relative'>
     {status && (
       <div
-        className={`${s.absoluteVerified} bg-secondary-main text-secondary-contrastText`}
+        className= 'absolute -top-3.5 right-5 py-1 px-7 rounded-2xl text-sm font-light bg-secondary-main text-secondary-contrastText'
       >
         verified
       </div>
