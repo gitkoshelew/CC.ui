@@ -39,29 +39,6 @@ export const Sorting: FC<SortingType> = ({sort}) => {
                         color: 'text.primaryAlpha300'
                     },
                 }}
-                MenuProps={{
-                    PaperProps: {
-                        sx: {
-                            p: 0,
-                            borderRadius: '10px',
-                            "& .MuiMenuItem-root.Mui-selected": {
-                                backgroundColor: "background.default"
-                            },
-                            "& .MuiMenuItem-root:hover": {
-                                backgroundColor: "background.default"
-                            },
-                            "& .MuiMenuItem-root.Mui-selected:hover": {
-                                backgroundColor: "background.default"
-                            },
-                            "& .MuiList-root": {
-                                p: 0
-                            },
-                            "& .MuiButtonBase-root": {
-                                p: '0 15px'
-                            },
-                        }
-                    }
-                }}
                 value={value}
                 onChange={handleChange}
             >
