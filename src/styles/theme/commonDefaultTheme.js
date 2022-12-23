@@ -79,4 +79,11 @@ module.exports = {
     breakpoints: {
         xs: 0, sm: 600, md: 1000, lg: 1200, xl: 1920
     },
+    shadows: [
+     'none',
+     '0px 0px 6px rgba(0, 0, 0, 0.12)',
+     '0px 0px 8px rgba(0, 0, 0, 0.25)',
+     '0px 6px 8px 0px rgba(0, 0, 0, 0.25)',
+        ...Array(21).fill('none')
+    ],
 };

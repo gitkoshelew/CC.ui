@@ -1,11 +1,12 @@
-import {createTheme} from "@mui/material";
+import {createTheme, Shadows} from "@mui/material";
 import commonDefaultTheme from "./commonDefaultTheme";
 
 const commonTheme = ({
     palette: {...commonDefaultTheme.palette, mode: "light"},
     typography: {...commonDefaultTheme.typography},
     shape: {...commonDefaultTheme.shape},
-    breakpoints: {...commonDefaultTheme.breakpoints}
+    breakpoints: {...commonDefaultTheme.breakpoints},
+    shadows: {...commonDefaultTheme.shadows}
 } as const)
 
 export const defaultTheme = createTheme({
@@ -15,6 +16,7 @@ export const defaultTheme = createTheme({
     breakpoints: {
         values: commonTheme.breakpoints
     },
+    shadows: commonTheme.shadows as Shadows,
 
     components: {
         MuiButton: {
@@ -67,7 +69,7 @@ export const defaultTheme = createTheme({
         },
         MuiPaper: {
             defaultProps: {
-                elevation: 3,
+                elevation: 1,
                 sx: {
                     bgcolor: "background.paper",
                     borderRadius: "shape.borderRadius"
