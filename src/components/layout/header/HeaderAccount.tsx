@@ -1,7 +1,8 @@
 import React from 'react';
 import {Avatar, Link} from "@mui/material";
 import {AvatarIcon} from "../../../assets/icons/AvatarIcon";
-import { userData } from '../../../Mocs/Moc';
+import {userData} from "../../../Mocs/HeaderMoc";
+
 
 export const HeaderAccount = () => {
     const {avatar, name} = userData
