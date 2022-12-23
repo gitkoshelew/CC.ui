@@ -17,9 +17,6 @@ module.exports = {
             typography: defaultTheme.typography,
             shape: defaultTheme.shape,
         },
-      gridTemplateColumns: {
-        '4': 'repeat(auto-fill, minmax(270px, 1fr))',
-      }
     },
     plugins: [],
 }
