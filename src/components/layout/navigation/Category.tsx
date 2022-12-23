@@ -15,7 +15,7 @@ export const Category: FC<CategoryType> = ({categories}) => {
         <Paper
             sx={{
                 borderRadius: '15px',
-                p: {xs: '0 20px', sm: '0 50px', md: '0 175px'},
+                p: {xs: '0 20px', sm: '0 50px', md: '0 20%'},
                 '& .MuiTab-root': {
                     p: '16px 4px'
                 }
