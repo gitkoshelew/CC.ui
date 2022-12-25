@@ -20,7 +20,7 @@ module.exports = {
       shadow: 'rgba(0, 0, 0, 0.2)',
     },
     info: {
-      main: '#FFFFFF',
+      main: '#F2F2F2',
       contrastText: '#000',
     },
     error: {
@@ -79,9 +79,9 @@ module.exports = {
   breakpoints: {
     xs: 0,
     sm: 600,
-    md: 1000,
-    lg: 1200,
-    xl: 1920,
+    md: 900,
+    lg: 1320,
+    xl: 1536,
   },
   shadows: [
     'none',

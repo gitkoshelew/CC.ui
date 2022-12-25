@@ -12,11 +12,11 @@ export const Layout: FC<LayoutPropsType> = ({ children, headerType }) => (
     sx={{
       display: 'flex',
       flexDirection: 'column',
-      fontSize: { xs: 'small', sm: 'medium' },
+      fontSize: { xs: 'small', md: 'medium' },
       minHeight: '100vh',
       bgcolor: 'background.default',
+      pb: 3,
       gap: 3,
-      p: 2,
     }}
   >
     <Header headerType={headerType} />
