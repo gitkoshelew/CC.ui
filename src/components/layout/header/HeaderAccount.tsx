@@ -13,6 +13,10 @@ export const HeaderAccount = () => {
         <AvatarIcon />
       )}
       <Link
+        textOverflow='ellipsis'
+        overflow='hidden'
+        whiteSpace='nowrap'
+        maxWidth={240}
         href='/home'
         underline='hover'
         display={{ xs: 'none', sm: 'initial' }}

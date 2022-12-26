@@ -12,6 +12,7 @@ export const DefaultHeaderWrapper: FC<WithChild> = ({ children }) => (
       backgroundSize: 'cover',
       bgcolor: 'primary.main',
       color: 'primary.contrastText',
+      borderRadius: 0,
     }}
   >
     {children}

@@ -62,6 +62,7 @@ export const defaultTheme = createTheme({
         sx: {
           '& .MuiTabs-indicator': {
             bgcolor: 'secondary.main',
+            height: '3px',
           },
           '& .MuiTabs-flexContainer': { justifyContent: 'space-between' },
         },
@@ -99,6 +100,27 @@ export const defaultTheme = createTheme({
                 p: '0 15px',
               },
             },
+          },
+        },
+      },
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '24px',
+          height: '100%',
+        },
+      },
+      defaultProps: {
+        sx: {
+          maxWidth: {
+            xs: 1,
+            sm: 1,
+            md: 1,
+            lg: 1,
+            xl: '1320px',
           },
         },
       },
