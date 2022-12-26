@@ -8,6 +8,8 @@ type PropsCardsType = {
 };
 
 export const Cards: FC<PropsCardsType> = ({ cards }) => (
+    (cards)
+    ?
   <div className={s.Cards}>
     {cards.map(({ id, title, userName, date, status }: OneCardType) => (
       <Card
@@ -19,4 +21,6 @@ export const Cards: FC<PropsCardsType> = ({ cards }) => (
       />
     ))}
   </div>
+        :
+        <div>Карточек нет</div>
 );
