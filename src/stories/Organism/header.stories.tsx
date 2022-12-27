@@ -1,5 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentStory } from '@storybook/react';
 import { Header } from '../../components/layout/header/Header';
 
