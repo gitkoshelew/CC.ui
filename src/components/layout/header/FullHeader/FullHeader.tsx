@@ -1,5 +1,6 @@
 import Box from '@mui/system/Box';
 import { Button, Stack, Typography } from '@mui/material';
+import Container from '@mui/material/Container';
 import { HeaderContent } from '../HeaderContent';
 import { FullHeaderWrapper } from './FullHeaderWrapper';
 import { ListIcon } from '../../../../assets/icons/ListIcon';
@@ -12,34 +13,37 @@ export const FullHeader = () => (
       <Box bgcolor='rgba(255, 255, 255, 0.05)'>
         <HeaderContent />
       </Box>
-      <Stack
-        p={4}
-        direction='column'
-        justifyContent='space-between'
-        flexGrow={1}
-      >
-        <Typography sx={{ typography: { xs: 'h5', sm: 'h4' } }}>
-          Some text
-        </Typography>
-        <HeaderStatistic />
+      <Container>
         <Stack
-          spacing={{ xs: 2, sm: 4 }}
-          direction='row'
-          sx={{ '& .MuiButton-contained': { px: { xs: 2, md: 5 } } }}
+          direction='column'
+          justifyContent='space-between'
+          flexGrow={1}
+          height={1}
+          py={4}
         >
-          <Button color='info' variant='contained'>
-            Create test
-          </Button>
-          <Button
-            color='info'
-            variant='contained'
-            startIcon={<ListIcon />}
-            endIcon={<ButtonNums value={99} />}
+          <Typography sx={{ typography: { xs: 'h5', sm: 'h4' } }}>
+            Some text
+          </Typography>
+          <HeaderStatistic />
+          <Stack
+            spacing={{ xs: 2, sm: 4 }}
+            direction='row'
+            sx={{ '& .MuiButton-contained': { px: { xs: 2, md: 5 } } }}
           >
-            My tests
-          </Button>
+            <Button color='info' variant='contained'>
+              Create test
+            </Button>
+            <Button
+              color='info'
+              variant='contained'
+              startIcon={<ListIcon />}
+              endIcon={<ButtonNums value={99} />}
+            >
+              My tests
+            </Button>
+          </Stack>
         </Stack>
-      </Stack>
+      </Container>
     </Stack>
   </FullHeaderWrapper>
 );
