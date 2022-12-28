@@ -45,6 +45,7 @@ export const Timer = () => {
       }, 1000);
       return () => clearInterval(intervalId);
     }
+    return undefined;
   }, [timer]);
 
   return (
