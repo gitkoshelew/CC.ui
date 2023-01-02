@@ -3,7 +3,10 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import { FC, useState } from 'react';
-import { SortingType } from '../../../Types/NavigationTypes';
+
+type SortingType = {
+    sort: string[];
+};
 
 export const Sorting: FC<SortingType> = ({ sort }) => {
   const [value, setValue] = useState('1');

@@ -1,6 +1,9 @@
 import {Paper, Stack, Typography} from "@mui/material";
-import {FC} from "react";
-import {WrapperNewTestType} from "../../Types/NewTestTypes";
+import {FC, ReactNode} from "react";
+
+type WrapperNewTestType = {
+    children: ReactNode
+}
 
 export const WrapperNewTest: FC<WrapperNewTestType> = ({children}) => {
     return <Stack direction={'row'} justifyContent={'center'}>
@@ -9,16 +12,12 @@ export const WrapperNewTest: FC<WrapperNewTestType> = ({children}) => {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 3,
-                height: '665px',
-                width: '853px',
+                maxWidth: '850px',
+                width: 1,
                 p: '40px 52px 30px'
             }}
         >
-            <Typography
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center'
-                }}>
+            <Typography align={'center'}>
                 Create test
             </Typography>
             {children}

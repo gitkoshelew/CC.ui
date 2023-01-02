@@ -1,13 +1,13 @@
 import {Layout} from "../../components/layout/Layout";
 import {SelectChangeEvent} from "@mui/material/Select";
-import {TitleBlock} from "../../components/new-test/TitleBlock";
 import {QuestionBlock} from "../../components/new-test/QuestionBlock";
-import {QuestionsBlock} from "../../components/new-test/QuestionsBlock";
 import {ButtonBackHome} from "../../components/common/ButtonBackHome";
 import {useState} from "react";
 import {ButtonSaveTest} from "../../components/new-test/ButtonSaveTest";
 import {WrapperNewTest} from "../../components/new-test/WrapperNewTest";
-import {questions, themes, types} from "../../Mocs/NewTestMoc";
+import {level, numberQuestions, themes, types} from "../../Mocs/NewTestMoc";
+import {Typography} from "@mui/material";
+import {SettingsBlock} from "../../components/new-test/SettingsBlock";
 
 export default function NewTest() {
     const [themeValue, setThemeValue] = useState('3');
@@ -24,9 +24,11 @@ export default function NewTest() {
         <Layout>
             <ButtonBackHome/>
             <WrapperNewTest>
-                <TitleBlock value={themeValue} handleThemeChange={handleThemeChange} items={themes}/>
+                <SettingsBlock value={themeValue} handleThemeChange={handleThemeChange} items={themes} level={level} numberQuestions={numberQuestions}/>
+                <Typography>
+                    question tabs component
+                </Typography>
                 <QuestionBlock value={typeValue} handleTypeChange={handleTypeChange} items={types}/>
-                <QuestionsBlock questions={questions}/>
                 <ButtonSaveTest/>
             </WrapperNewTest>
         </Layout>

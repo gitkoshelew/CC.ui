@@ -1,34 +1,20 @@
 import {MenuItem, Select, Stack, Typography} from "@mui/material";
-import {SuperSelectType} from "../../Types/NewTestTypes";
+import {SelectChangeEvent} from "@mui/material/Select";
+
+type SuperSelectType = {
+    title: string
+    value: string
+    items: string[]
+    handleChange: (event: SelectChangeEvent) => void
+}
 
 export const SuperSelect = ({title, value, items, handleChange}: SuperSelectType) => {
 
-    return <Stack direction={'column'} spacing={1}>
-        <Typography
-            sx={{
-                typography: 'subtitle1',
-                pl: '14px'
-            }}
-        >
+    return <Stack justifyContent={'space-between'} spacing={1}>
+        <Typography typography={'inputTitle'}>
             {title}
         </Typography>
-        <Select sx={{
-            width: 266,
-            height: 42,
-            bgcolor: 'primary.main',
-            color: 'primary.contrastText',
-            borderRadius: '15px',
-            typography: 'subtitle1',
-            '& .MuiOutlinedInput-notchedOutline': {
-                border: 0
-            },
-            '& .MuiSvgIcon-root': {
-                color: 'text.secondaryAlpha500'
-            },
-        }}
-                value={value}
-                onChange={handleChange}
-        >
+        <Select value={value} onChange={handleChange}>
             {items.map((item, index) => <MenuItem sx={{
                     typography: 'subtitle1',
                 }} key={index} value={index}>

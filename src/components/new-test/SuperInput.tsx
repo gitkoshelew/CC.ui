@@ -1,37 +1,30 @@
-import {Stack, TextField, Typography} from "@mui/material";
-import {SuperInputType} from "../../Types/NewTestTypes";
+import {Box, FormControlLabel, Radio, Stack, TextField, Typography} from "@mui/material";
 
-export const SuperInput = ({title, width = '216px', value, children}: SuperInputType) => {
+type SuperInputType = {
+    title?: string
+    value?: string
+    checkbox?: boolean
+}
+
+export const SuperInput = ({title, value, checkbox = false}: SuperInputType) => {
 
     return <Stack spacing={1}>
-        {title && <Stack direction={'row'} justifyContent={'start'} alignItems={'center'} spacing={2}>
-            <Typography
-                sx={{
-                    typography: 'subtitle1',
-                    pl: '14px'
-                }}
-            >
-                {title}
-            </Typography>
-            {children}
-        </Stack>
+        {title && <Typography typography={'inputTitle'}
+        >
+            {title}
+        </Typography>
         }
-        <TextField value={value}
-            sx={{
-                '& .MuiInputBase-input': {
-                    p: 0,
-                    pl: '14px',
-                    typography: 'subtitle1',
-                    height: '42px',
-                    width
-                }
-            }}
-            InputProps={{
-                sx: {
-                    borderRadius: '15px',
-                    bgcolor: 'background.paperAccent1'
-                }
-            }}
-        />
+        {checkbox
+            ? <Stack direction={'row'} alignItems={'center'} spacing={3}>
+                <Box sx={{flexGrow: 1}}>
+                    <SuperInput value={value}/>
+                </Box>
+                <FormControlLabel control={<Radio sx={{
+                    '&, &.Mui-checked': {
+                        color: 'secondary.main',
+                    },
+                }}/>} label=""/>
+            </Stack>
+            : <TextField value={value}/>}
     </Stack>
 }
