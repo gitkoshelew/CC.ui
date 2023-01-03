@@ -17,9 +17,3 @@ export const TimeWithoutMinutes = Template.bind({});
 TimeWithoutMinutes.args = {
   timeDefault: { minutes: '20', seconds: '00' },
 };
-
-// export const TimeTwentyMinutes = Template.bind({});
-//
-// TimeTwentyMinutes.args = {
-//   timeDefault: { minutes: '20', seconds: '00' },
-// };

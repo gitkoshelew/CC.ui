@@ -47,8 +47,11 @@ export const Timer: FC<PropsTimerType> = ({ timeDefault }) => {
       const intervalId = setInterval(() => {
         calculateTimeLeft();
       }, 1000);
+      calculateTimeLeft();
+
       return () => clearInterval(intervalId);
     }
+
     return undefined;
   }, [timer]);
 
