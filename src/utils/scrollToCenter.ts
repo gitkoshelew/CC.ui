@@ -1,8 +1,8 @@
-import { MutableRefObject } from 'react';
+import { RefObject } from 'react';
 
 export const scrollToCenter = (
   e: React.MouseEvent<HTMLDivElement>,
-  ref: MutableRefObject<undefined>
+  ref: RefObject<HTMLDivElement>
 ) => {
   const refElement = ref.current as unknown as HTMLDivElement;
   refElement.scrollTo({

@@ -1,5 +1,5 @@
 import { styled } from '@mui/material';
-import { DefaultThemeType } from '../../../styles/theme/types';
+import { DefaultThemeType } from '../../../../styles/theme/types';
 
 export type TabColorType = 'secondary' | 'error' | 'hidden';
 const tabColors = (
@@ -26,11 +26,11 @@ export const RectangleProgressTabsItem = styled(
   transition: '0.2s',
   ...(props.isActive && {
     opacity: 0.7,
-    transform: 'scale(1.1, 1.7)',
+    transform: 'scale(1, 1.7)',
     pointerEvents: 'none',
   }),
   '&:hover': {
-    transform: 'scale(1.1, 1.7)',
+    transform: 'scale(1, 1.7)',
   },
   '&:after': {
     content: '""',

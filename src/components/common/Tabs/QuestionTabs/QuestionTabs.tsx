@@ -1,8 +1,9 @@
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import { useRef, useState } from 'react';
 import { QuestionTabsItem } from './styled';
-import { QuestionDataType } from '../../../Mocs/QuestionTabsMoc';
-import { scrollToCenter } from '../../../utils/scrollToCenter';
+import { QuestionDataType } from '../../../../Mocs/QuestionTabsMoc';
+import { scrollToCenter } from '../../../../utils/scrollToCenter';
+import { Tabs } from '../commonStyles';
 
 type RectangleProgressBarPropsType = {
   activeQuestionId: string;
@@ -13,7 +14,7 @@ export const QuestionTabs = (props: RectangleProgressBarPropsType) => {
     props.activeQuestionId || props.questionsData[0].questionId
   );
 
-  const tabsRef = useRef();
+  const tabsRef = useRef<HTMLDivElement>(null);
 
   const onTabClickHandler = (
     e: React.MouseEvent<HTMLDivElement>,
@@ -25,19 +26,7 @@ export const QuestionTabs = (props: RectangleProgressBarPropsType) => {
 
   return (
     <Box>
-      <Stack
-        ref={tabsRef}
-        alignItems='center'
-        direction='row'
-        spacing={2}
-        justifyContent='space-between'
-        padding={1.2}
-        width={1}
-        overflow='auto'
-        sx={{
-          '::-webkit-scrollbar': { width: 0, height: 0 },
-        }}
-      >
+      <Tabs ref={tabsRef}>
         {props.questionsData.map((el, i) => (
           <QuestionTabsItem
             key={el.questionId}
@@ -48,7 +37,7 @@ export const QuestionTabs = (props: RectangleProgressBarPropsType) => {
             {i + 1}
           </QuestionTabsItem>
         ))}
-      </Stack>
+      </Tabs>
     </Box>
   );
 };

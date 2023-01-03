@@ -1,7 +1,6 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Paper } from '@mui/material';
-import { QuestionTabs } from '../../components/common/QuestionTabs/QuestionTabs';
+import { QuestionTabs } from '../../components/common/Tabs/QuestionTabs/QuestionTabs';
 import { questionsData } from '../../Mocs/QuestionTabsMoc';
 
 export default {
@@ -10,9 +9,7 @@ export default {
 } as ComponentMeta<typeof QuestionTabs>;
 
 const Template: ComponentStory<typeof QuestionTabs> = (args) => (
-  <Paper>
-    <QuestionTabs {...args} />
-  </Paper>
+  <QuestionTabs {...args} />
 );
 
 export const QuestionTabsComponent = Template.bind({});

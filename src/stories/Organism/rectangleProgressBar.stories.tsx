@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { RectangleProgressTabs } from '../../components/common/RectangleProgressTabs/RectangleProgressTabs';
+import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 import { tabsData } from '../../Mocs/RectangleProgressBarMoc';
 
 export default {
