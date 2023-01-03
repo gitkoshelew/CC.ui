@@ -20,6 +20,7 @@ export const FullHeader = () => (
           flexGrow={1}
           height={1}
           py={4}
+          role='article'
         >
           <Typography sx={{ typography: { xs: 'h5', sm: 'h4' } }}>
             Some text
@@ -29,6 +30,7 @@ export const FullHeader = () => (
             spacing={{ xs: 2, sm: 4 }}
             direction='row'
             sx={{ '& .MuiButton-contained': { px: { xs: 2, md: 5 } } }}
+            role='menubar'
           >
             <Button color='info' variant='contained'>
               Create test

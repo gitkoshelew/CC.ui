@@ -14,6 +14,7 @@ export const HeaderContent = () => (
       width={1}
       py={1}
       sx={{ '& .MuiTab-root': { mx: { xs: 0.5, md: 2 } } }}
+      role='banner'
     >
       <Stack direction='row' alignItems='center' spacing={2}>
         <HeaderAccount />

@@ -23,6 +23,7 @@ export const Category: FC<CategoryType> = ({ categories }) => {
           p: '16px 4px',
         },
       }}
+      role='slider'
     >
       <Tabs
         value={value}

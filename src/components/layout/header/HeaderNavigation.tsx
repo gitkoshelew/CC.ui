@@ -7,6 +7,7 @@ export const HeaderNavigation = () => (
     textColor='inherit'
     variant='scrollable'
     aria-label='secondary tabs example'
+    role='navigation'
   >
     <Tab label='Users' value='users' />
     <Tab label='Live coding' value='live coding' />
