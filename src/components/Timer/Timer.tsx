@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { FC, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
+import { TimerDefaultType } from '../../Mocs/TimerMock';
 
-const timeDefault = {
-  minutes: '20',
-  seconds: '00',
+type PropsTimerType = {
+  timeDefault: TimerDefaultType;
 };
 
-export const Timer = () => {
+export const Timer: FC<PropsTimerType> = ({ timeDefault }) => {
   const [time, setTime] = useState(timeDefault);
   const [timer, setTimer] = useState(false);
+  const [disabledButton, setDisableButton] = useState(false);
 
-  let endDate = dayjs().add(19, 'minute');
-  endDate = endDate.add(60, 'seconds');
+  const minutesForEndDate = +timeDefault.minutes;
+  const secondsForEndDate = +timeDefault.seconds;
+
+  let endDate = dayjs().add(minutesForEndDate, 'minute');
+  endDate = endDate.add(secondsForEndDate, 'seconds');
 
   const calculateTimeLeft = () => {
     const now = dayjs();
@@ -37,6 +40,7 @@ export const Timer = () => {
   };
   const startTimer = () => {
     setTimer(!timer);
+    setDisableButton(true);
   };
   useEffect(() => {
     if (timer) {
@@ -52,7 +56,7 @@ export const Timer = () => {
     <div className='text-center'>
       <span>{time.minutes}</span>:<span>{time.seconds}</span>
       <div>
-        <button type='button' onClick={startTimer}>
+        <button type='button' onClick={startTimer} disabled={disabledButton}>
           start
         </button>
       </div>
