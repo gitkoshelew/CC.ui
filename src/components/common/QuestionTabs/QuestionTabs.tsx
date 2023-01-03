@@ -1,17 +1,16 @@
 import { Box, Stack } from '@mui/material';
 import { useRef, useState } from 'react';
-import { TabsDataType } from '../../../Mocs/RectangleProgressBarMoc';
-import { RectangleProgressTabsItem } from './styled';
+import { QuestionTabsItem } from './styled';
+import { QuestionDataType } from '../../../Mocs/QuestionTabsMoc';
 import { scrollToCenter } from '../../../utils/scrollToCenter';
 
 type RectangleProgressBarPropsType = {
-  activeTabId: string;
-  tabsData: TabsDataType[];
-  isTabsStatusHidden: boolean;
+  activeQuestionId: string;
+  questionsData: QuestionDataType[];
 };
-export const RectangleProgressTabs = (props: RectangleProgressBarPropsType) => {
+export const QuestionTabs = (props: RectangleProgressBarPropsType) => {
   const [activeTabId, setActiveTabId] = useState(
-    props.activeTabId || props.tabsData[0].questionId
+    props.activeQuestionId || props.questionsData[0].questionId
   );
 
   const tabsRef = useRef();
@@ -39,14 +38,15 @@ export const RectangleProgressTabs = (props: RectangleProgressBarPropsType) => {
           '::-webkit-scrollbar': { width: 0, height: 0 },
         }}
       >
-        {props.tabsData.map((el) => (
-          <RectangleProgressTabsItem
+        {props.questionsData.map((el, i) => (
+          <QuestionTabsItem
             key={el.questionId}
             onClick={(e) => onTabClickHandler(e, el.questionId)}
             isActive={activeTabId === el.questionId}
-            color={props.isTabsStatusHidden ? 'hidden' : el.color}
-            sx={{ bgcolor: !el.color ? 'background.defaultAccent1' : '' }}
-          />
+            isCompleted={el.isCompleted}
+          >
+            {i + 1}
+          </QuestionTabsItem>
         ))}
       </Stack>
     </Box>
