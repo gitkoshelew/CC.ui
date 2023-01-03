@@ -20,7 +20,7 @@ export const QuestionTabsItem = styled('div')<QuestionTabsItemType>(
     cursor: 'pointer',
     transition: '0.2s',
     ...(isCompleted && {
-      borderColor: theme.palette.background.default,
+      borderColor: 'rgba(0, 0, 0, 0.1)',
       backgroundColor: theme.palette.background.default,
     }),
     ...(isActive && {
