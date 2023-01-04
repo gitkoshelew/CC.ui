@@ -1,7 +1,9 @@
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import { useRef, useState } from 'react';
-import { TabsDataType } from '../../../Mocs/RectangleProgressBarMoc';
+import { TabsDataType } from '../../../../Mocs/RectangleProgressBarMoc';
 import { RectangleProgressTabsItem } from './styled';
+import { scrollToCenter } from '../../../../utils/scrollToCenter';
+import { Tabs } from '../commonStyles';
 
 type RectangleProgressBarPropsType = {
   activeTabId: string;
@@ -13,39 +15,19 @@ export const RectangleProgressTabs = (props: RectangleProgressBarPropsType) => {
     props.activeTabId || props.tabsData[0].questionId
   );
 
-  const tabsRef = useRef();
-
-  const scrollToCenter = (e: React.MouseEvent<HTMLDivElement>) => {
-    const ref = tabsRef.current as unknown as HTMLDivElement;
-    ref.scrollTo({
-      left: Number(e.currentTarget?.offsetLeft) - ref.offsetWidth / 2,
-      behavior: 'smooth',
-    });
-  };
+  const tabsRef = useRef<HTMLDivElement>(null);
 
   const onTabClickHandler = (
     e: React.MouseEvent<HTMLDivElement>,
     id: string
   ) => {
     setActiveTabId(id);
-    scrollToCenter(e);
+    scrollToCenter(e, tabsRef);
   };
 
   return (
     <Box>
-      <Stack
-        ref={tabsRef}
-        alignItems='center'
-        direction='row'
-        spacing={2}
-        justifyContent='space-between'
-        padding={1.2}
-        width={1}
-        overflow='auto'
-        sx={{
-          '::-webkit-scrollbar': { width: 0, height: 0 },
-        }}
-      >
+      <Tabs ref={tabsRef} sx={{ py: 1.2 }}>
         {props.tabsData.map((el) => (
           <RectangleProgressTabsItem
             key={el.questionId}
@@ -55,7 +37,7 @@ export const RectangleProgressTabs = (props: RectangleProgressBarPropsType) => {
             sx={{ bgcolor: !el.color ? 'background.defaultAccent1' : '' }}
           />
         ))}
-      </Stack>
+      </Tabs>
     </Box>
   );
 };
