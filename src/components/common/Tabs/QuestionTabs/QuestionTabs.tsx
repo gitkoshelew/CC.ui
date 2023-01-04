@@ -1,9 +1,10 @@
 import { Box } from '@mui/material';
-import React, { useCallback, useRef, useState } from 'react';
-import { QuestionTabsItem } from './styled';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { StyledQuestionTabsItem } from './styled';
 import { QuestionDataType } from '../../../../Mocs/QuestionTabsMoc';
 import { scrollToCenter } from '../../../../utils/scrollToCenter';
 import { Tabs } from '../commonStyles';
+import { QuestionTabsItem } from './QuestionTabsItem';
 
 type RectangleProgressBarPropsType = {
   activeQuestionId: string;
@@ -16,32 +17,27 @@ export const QuestionTabs = (props: RectangleProgressBarPropsType) => {
 
   const tabsRef = useRef<HTMLDivElement>(null);
 
-  const onTabClickHandler = (
-    e: React.MouseEvent<HTMLDivElement>,
-    id: string
-  ) => {
-    setActiveTabId(id);
-    scrollToCenter(e, tabsRef);
-  };
-
-  const renderQuestionTabsItem = useCallback(
-    ({ questionId, isCompleted }: QuestionDataType, index: number) => (
-      <QuestionTabsItem
-        key={questionId}
-        onClick={(e) => onTabClickHandler(e, questionId)}
-        isActive={activeTabId === questionId}
-        isCompleted={isCompleted}
-      >
-        {index + 1}
-      </QuestionTabsItem>
-    ),
-    [activeTabId]
+  const onTabClickHandler = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>, id: string) => {
+      setActiveTabId(id);
+      scrollToCenter(e, tabsRef);
+    },
+    []
   );
 
   return (
     <Box>
       <Tabs ref={tabsRef}>
-        {props.questionsData.map(renderQuestionTabsItem)}
+        {props.questionsData.map(({ questionId, isCompleted }, index) => (
+          <QuestionTabsItem
+            key={questionId}
+            onClick={onTabClickHandler}
+            questionId={questionId}
+            isActive={activeTabId === questionId}
+            isCompleted={isCompleted}
+            index={index}
+          />
+        ))}
       </Tabs>
     </Box>
   );

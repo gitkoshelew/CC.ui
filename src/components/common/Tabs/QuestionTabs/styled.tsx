@@ -4,7 +4,7 @@ type QuestionTabsItemType = {
   isActive: boolean;
   isCompleted: boolean;
 };
-export const QuestionTabsItem = styled('div')<QuestionTabsItemType>(
+export const StyledQuestionTabsItem = styled('div')<QuestionTabsItemType>(
   ({ theme, isActive, isCompleted }) => ({
     display: 'flex',
     alignItems: 'center',
