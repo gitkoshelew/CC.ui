@@ -18,7 +18,7 @@ export const Card: FC<PropsCardType> = ({ title, date, userName, status }) => (
       </div>
     )}
       <Typography className='mb-8' fontWeight='600'>NodeJs</Typography>
-    <div className='grow grid content-center'>
+      <div className='grow grid content-center'>
       <p className='mb-1 mt-0'>{title}</p>
       <p className='mt-0 mb-7'>
         <span className='text-text-primaryAlpha300'>By </span>
