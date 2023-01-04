@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import { Paper } from '@mui/material';
 
 type CategoryType = {
-    categories: string[];
+  categories: string[];
 };
 
 export const Category: FC<CategoryType> = ({ categories }) => {
