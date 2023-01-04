@@ -80,14 +80,12 @@ export const defaultTheme = createTheme({
       defaultProps: {
         color: 'primary',
         sx: {
-          py: '10px',
-          pl: '14px',
           bgcolor: 'primary.main',
           color: 'primary.contrastText',
           borderRadius: 0.75,
           typography: 'inputTitle',
           '& .MuiSelect-select': {
-            p: 0,
+            p: '10px 0',
           },
           '& .MuiOutlinedInput-notchedOutline': {
             border: 0,
@@ -99,7 +97,7 @@ export const defaultTheme = createTheme({
         MenuProps: {
           PaperProps: {
             sx: {
-              mt: '20px',
+              mt: 1.25,
               borderRadius: 0.5,
               boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.25)',
               '& .MuiMenuItem-root.Mui-selected': {
