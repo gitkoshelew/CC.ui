@@ -1,8 +1,16 @@
-import { Timer } from '../../components/Timer/Timer';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-export const Default = () => <Timer />;
+import { Timer } from '../../components/Timer/Timer';
 
 export default {
   title: 'Organism/Timer',
-  component: Default,
+  component: Timer,
+} as ComponentMeta<typeof Timer>;
+
+const Template: ComponentStory<typeof Timer> = (args) => <Timer {...args} />;
+
+export const TimeWithMinutes = Template.bind({});
+
+TimeWithMinutes.args = {
+  timeDefault: { minutes: '20', seconds: '00' },
 };
