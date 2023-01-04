@@ -56,7 +56,7 @@ export const Timer: FC<PropsTimerType> = ({ timeDefault }) => {
   }, [timer]);
 
   return (
-    <div className='text-center'>
+    <div className='text-center text-4xl '>
       <span>{time.minutes}</span>:<span>{time.seconds}</span>
       <div>
         <button type='button' onClick={startTimer} disabled={disabledButton}>

@@ -1,19 +1,16 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Timer } from '../../components/Timer/Timer';
-import { timeDefault } from '../../Mocs/TimerMock';
-
-export const Default = () => <Timer timeDefault={timeDefault} />;
 
 export default {
   title: 'Organism/Timer',
-  component: Default,
-} as ComponentMeta<typeof Default>;
+  component: Timer,
+} as ComponentMeta<typeof Timer>;
 
 const Template: ComponentStory<typeof Timer> = (args) => <Timer {...args} />;
 
-export const TimeWithoutMinutes = Template.bind({});
+export const TimeWithMinutes = Template.bind({});
 
-TimeWithoutMinutes.args = {
+TimeWithMinutes.args = {
   timeDefault: { minutes: '20', seconds: '00' },
 };
