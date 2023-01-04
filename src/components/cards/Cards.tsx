@@ -10,7 +10,7 @@ type PropsCardsType = {
 export const Cards: FC<PropsCardsType> = ({ cards }) => (
     (cards)
     ?
-  <div className={s.Cards}>
+    <div className={s.Cards}>
     {cards.map(({ id, title, userName, date, status }: OneCardType) => (
       <Card
         key={id}
@@ -20,7 +20,7 @@ export const Cards: FC<PropsCardsType> = ({ cards }) => (
         status={status}
       />
     ))}
-  </div>
-        :
-        <div>Карточек нет</div>
+    </div>
+    :
+    <div>Карточек нет</div>
 );
