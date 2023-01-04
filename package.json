@@ -11,7 +11,7 @@
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",
     "lint": "next lint",
-    "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,css,md,json}"
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,css,md,json}'"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",

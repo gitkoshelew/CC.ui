@@ -1,11 +1,7 @@
-import {Button, Stack} from "@mui/material";
+import { Button, Stack } from '@mui/material';
 
-export const ButtonSaveTest = () => {
-
-    return <Stack alignItems={'center'}>
-        <Button>
-            Save test
-        </Button>
-    </Stack>
-
-}
+export const ButtonSaveTest = () => (
+  <Stack alignItems='center'>
+    <Button>Save test</Button>
+  </Stack>
+);

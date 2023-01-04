@@ -5,7 +5,7 @@ import { Typography } from '@mui/material';
 import { FC, useState } from 'react';
 
 type SortingType = {
-    sort: string[];
+  sort: string[];
 };
 
 export const Sorting: FC<SortingType> = ({ sort }) => {
@@ -33,14 +33,17 @@ export const Sorting: FC<SortingType> = ({ sort }) => {
         Sorting
       </Typography>
       <Select
+        color={'info'}
         sx={{
-          minWidth: 120,
-          height: 26,
+          minWidth: 142,
           bgcolor: 'background.paper',
-          borderRadius: '10px',
+          borderRadius: 0.5,
           typography: 'subtitle1',
           '& .MuiOutlinedInput-notchedOutline': {
             border: 0,
+          },
+          '& .MuiSelect-select': {
+            py: 0,
           },
           '& .MuiSvgIcon-root': {
             color: 'text.primaryAlpha300',
