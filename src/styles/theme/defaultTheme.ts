@@ -34,11 +34,6 @@ export const defaultTheme = createTheme({
           },
         },
       },
-      styleOverrides: {
-        containedSizeLarge: {
-          height: 42,
-        },
-      },
     },
     MuiIconButton: {
       defaultProps: {
