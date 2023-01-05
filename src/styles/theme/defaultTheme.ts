@@ -47,7 +47,7 @@ export const defaultTheme = createTheme({
       defaultProps: {
         sx: {
           textTransform: 'initial',
-          borderRadius: '10px',
+          borderRadius: 0.5,
           px: { xs: 0.5, md: 1 },
           fontSize: 'inherit',
           '&:hover': {
@@ -73,17 +73,33 @@ export const defaultTheme = createTheme({
         elevation: 1,
         sx: {
           bgcolor: 'background.paper',
-          borderRadius: 'shape.borderRadius',
         },
       },
     },
     MuiSelect: {
       defaultProps: {
+        color: 'primary',
+        sx: {
+          bgcolor: 'primary.main',
+          color: 'primary.contrastText',
+          borderRadius: 0.75,
+          typography: 'inputTitle',
+          '& .MuiSelect-select': {
+            p: '10px 0',
+          },
+          '& .MuiOutlinedInput-notchedOutline': {
+            border: 0,
+          },
+          '& .MuiSvgIcon-root': {
+            color: 'text.secondaryAlpha500',
+          },
+        },
         MenuProps: {
           PaperProps: {
             sx: {
-              p: 0,
-              borderRadius: '10px',
+              mt: 1.25,
+              borderRadius: 0.5,
+              boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.25)',
               '& .MuiMenuItem-root.Mui-selected': {
                 backgroundColor: 'background.default',
               },
@@ -97,7 +113,7 @@ export const defaultTheme = createTheme({
                 p: 0,
               },
               '& .MuiButtonBase-root': {
-                p: '0 15px',
+                p: '0 14px',
               },
             },
           },
@@ -121,6 +137,32 @@ export const defaultTheme = createTheme({
             md: 1,
             lg: 1,
             xl: '1320px',
+          },
+        },
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        InputProps: {
+          sx: {
+            borderRadius: 0.75,
+            bgcolor: 'background.paperAccent1',
+          },
+        },
+        sx: {
+          '& .MuiInputBase-input': {
+            typography: 'inputTitle',
+            py: '10px',
+          },
+        },
+      },
+    },
+    MuiFormControlLabel: {
+      defaultProps: {
+        sx: {
+          '& .MuiButtonBase-root': {
+            p: 0,
+            color: 'background.border',
           },
         },
       },

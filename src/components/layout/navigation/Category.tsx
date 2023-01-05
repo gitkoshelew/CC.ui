@@ -2,7 +2,10 @@ import { FC, SyntheticEvent, useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Paper } from '@mui/material';
-import { CategoryType } from '../../../Types/NavigationTypes';
+
+type CategoryType = {
+  categories: string[];
+};
 
 export const Category: FC<CategoryType> = ({ categories }) => {
   const [value, setValue] = useState(3);
@@ -20,6 +23,7 @@ export const Category: FC<CategoryType> = ({ categories }) => {
           p: '16px 4px',
         },
       }}
+      role='slider'
     >
       <Tabs
         value={value}

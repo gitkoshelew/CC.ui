@@ -72,6 +72,10 @@ module.exports = {
       fontWeight: 300,
       fontSize: '0.7rem',
     },
+    inputTitle: {
+      paddingLeft: '14px',
+      fontSize: '0.9rem',
+    },
   },
   shape: {
     borderRadius: 20,
