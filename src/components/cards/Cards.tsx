@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Card } from './Card/Card';
 import { CardsType, OneCardType } from '../../Types/CardTypes';
-import styles from './Cards.module.css';
 
 type PropsCardsType = {
   cards: CardsType;
@@ -9,7 +8,7 @@ type PropsCardsType = {
 
 export const Cards: FC<PropsCardsType> = ({ cards }) =>
   cards ? (
-    <div className={styles.Cards}>
+    <div className='grid gap-6 grid-cols-autofill'>
       {cards.map(({ id, title, userName, date, status }: OneCardType) => (
         <Card
           key={id}
