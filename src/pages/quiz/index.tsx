@@ -2,13 +2,13 @@ import Button from '@mui/material/Button';
 import { Box, Stack } from '@mui/material';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { Layout } from '../../components/layout/Layout';
-import { RectangleProgressTabs } from '../../components/common/RectangleProgressTabs/RectangleProgressTabs';
 import { tabsData } from '../../Mocs/RectangleProgressBarMoc';
 import { WrapperNewTest } from '../../components/new-test/WrapperNewTest';
 import { Timer } from '../../components/Timer/Timer';
 import { timeDefault } from '../../Mocs/TimerMock';
 import TestQuestions from './TestQuestions';
 import { testQuestions } from '../../Mocs/QuizMock';
+import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 
 const Quiz = () => (
   <Layout>

@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { StyledQuestionTabsItem } from './styled';
+import React, { useCallback, useRef, useState } from 'react';
 import { QuestionDataType } from '../../../../Mocs/QuestionTabsMoc';
 import { scrollToCenter } from '../../../../utils/scrollToCenter';
 import { Tabs } from '../commonStyles';
