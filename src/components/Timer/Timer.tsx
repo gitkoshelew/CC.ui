@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { TimerDefaultType } from '../../Mocs/TimerMock';
 
@@ -17,7 +17,7 @@ export const Timer: FC<PropsTimerType> = ({ timeDefault }) => {
   let endDate = dayjs().add(minutesForEndDate, 'minute');
   endDate = endDate.add(secondsForEndDate, 'seconds');
 
-  const calculateTimeLeft = () => {
+  const calculateTimeLeft = useCallback(() => {
     const now = dayjs();
     const seconds = endDate.diff(now, 'seconds') % 60;
     const minutes = endDate.diff(now, 'minutes') % 60;
@@ -37,7 +37,7 @@ export const Timer: FC<PropsTimerType> = ({ timeDefault }) => {
         minutes: numberWithZero(minutes),
       });
     }
-  };
+  }, [endDate, timer]);
   const startTimer = () => {
     setTimer(!timer);
     setDisableButton(true);
@@ -53,7 +53,7 @@ export const Timer: FC<PropsTimerType> = ({ timeDefault }) => {
     }
 
     return undefined;
-  }, [timer]);
+  }, [timer, calculateTimeLeft]);
 
   return (
     <div className='text-center text-4xl '>
