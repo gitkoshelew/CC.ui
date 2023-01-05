@@ -34,6 +34,11 @@ export const defaultTheme = createTheme({
           },
         },
       },
+      styleOverrides: {
+        containedSizeLarge: {
+          height: 42,
+        },
+      },
     },
     MuiIconButton: {
       defaultProps: {
@@ -165,6 +170,11 @@ export const defaultTheme = createTheme({
             color: 'background.border',
           },
         },
+      },
+    },
+    MuiCircularProgress: {
+      defaultProps: {
+        thickness: 6,
       },
     },
   },
