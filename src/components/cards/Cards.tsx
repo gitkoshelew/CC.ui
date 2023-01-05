@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Card } from './Card/Card';
 import { CardsType, OneCardType } from '../../Types/CardTypes';
-import s from './Cards.module.css';
+import styles from './Cards.module.css';
 
 type PropsCardsType = {
   cards: CardsType;
@@ -9,7 +9,7 @@ type PropsCardsType = {
 
 export const Cards: FC<PropsCardsType> = ({ cards }) =>
   cards ? (
-    <div className={s.Cards}>
+    <div className={styles.Cards}>
       {cards.map(({ id, title, userName, date, status }: OneCardType) => (
         <Card
           key={id}
