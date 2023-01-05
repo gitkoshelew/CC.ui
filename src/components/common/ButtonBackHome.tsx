@@ -6,12 +6,7 @@ export const ButtonBackHome = () => (
   <Link href='/'>
     <Stack direction='row' alignItems='center' spacing={2} paddingLeft={6}>
       <ArrowLeftIcon />
-      <Typography
-        sx={{
-          color: 'text.primaryAlpha300',
-          typography: 'subtitle1',
-        }}
-      >
+      <Typography color='text.primaryAlpha300' typography='subtitle1'>
         Back to tests
       </Typography>
     </Stack>
