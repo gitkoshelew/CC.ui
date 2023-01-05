@@ -11,7 +11,7 @@ type PropsCardType = {
 export const Card: FC<PropsCardType> = ({ title, date, userName, status }) => (
   <div className='flex flex-col text-center bg-background-paper shadow border rounded-2xl px-5 pt-10 pb-5 relative'>
     {status && (
-      <div className= 'absolute -top-3.5 right-5 py-1 px-7 rounded-2xl text-sm font-light bg-secondary-main text-secondary-contrastText'>
+      <div className='absolute -top-3.5 right-5 py-1 px-7 rounded-2xl text-sm font-light bg-secondary-main text-secondary-contrastText'>
         verified
       </div>
     )}
