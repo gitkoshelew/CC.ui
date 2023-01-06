@@ -167,5 +167,10 @@ export const defaultTheme = createTheme({
         },
       },
     },
+    MuiCircularProgress: {
+      defaultProps: {
+        thickness: 6,
+      },
+    },
   },
 });
