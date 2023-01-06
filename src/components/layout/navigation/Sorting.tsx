@@ -36,7 +36,6 @@ export const Sorting: FC<SortingType> = ({ sort }) => {
         color='info'
         sx={{
           minWidth: 142,
-          height: 26,
           bgcolor: 'background.paper',
           borderRadius: 0.5,
           typography: 'subtitle1',

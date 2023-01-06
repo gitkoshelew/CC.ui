@@ -6,6 +6,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { BasketIcon } from '../../assets/icons/BasketIcon';
 
 type SuperInputType = {
   title?: string;
@@ -37,6 +38,9 @@ export const SuperInput = ({
           }
           label=''
         />
+        <Stack>
+          <BasketIcon />
+        </Stack>
       </Stack>
     ) : (
       <TextField value={value} />
