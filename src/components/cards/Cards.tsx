@@ -8,7 +8,7 @@ type PropsCardsType = {
 
 export const Cards: FC<PropsCardsType> = ({ cards }) =>
   cards ? (
-    <div className='grid gap-6 grid-cols-autofill'>
+    <div className='grid gap-6 grid-cols-[repeat(auto-fill,minmax(270px,_1fr))]'>
       {cards.map(({ id, title, userName, date, status }: OneCardType) => (
         <Card
           key={id}
