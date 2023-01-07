@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { Layout } from '../../components/layout/Layout';
 import { tabsData } from '../../Mocs/RectangleProgressBarMoc';
-import { UiBox } from '../../components/common/UiBox/UiBox';
+import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Timer } from '../../components/Timer/Timer';
 import { timeDefault } from '../../Mocs/TimerMock';
 import TestQuestions from './TestQuestions';
@@ -43,7 +43,7 @@ const Quiz = () => {
             isTabsStatusHidden
           />
         </Stack>
-        <UiBox title='”Node.js” question'>
+        <StylizedPaper title='”Node.js” question'>
           <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>
             What is the correct JavaScript syntax to change the content of the
             HTML element below?
@@ -58,7 +58,7 @@ const Quiz = () => {
             <Button color='info'>Skip</Button>
             <Button onClick={nextQuestionHandler}>Next</Button>
           </Stack>
-        </UiBox>
+        </StylizedPaper>
       </Stack>
     </Layout>
   );

@@ -6,7 +6,7 @@ type WrapperNewTestType = {
   title: string;
 };
 
-export const UiBox: FC<WrapperNewTestType> = ({ children, title }) => (
+export const StylizedPaper: FC<WrapperNewTestType> = ({ children, title }) => (
   <Stack direction='row' justifyContent='center'>
     <Paper
       sx={{
