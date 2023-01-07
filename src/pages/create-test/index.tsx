@@ -24,7 +24,7 @@ export default function NewTest() {
   return (
     <Layout>
       <ButtonBackHome />
-      <WrapperNewTest title='Create Test'>
+      <WrapperNewTest>
         <SettingsBlock
           value={themeValue}
           handleThemeChange={handleThemeChange}

@@ -3,10 +3,9 @@ import { FC, ReactNode } from 'react';
 
 type WrapperNewTestType = {
   children: ReactNode;
-  title?: string;
 };
 
-export const WrapperNewTest: FC<WrapperNewTestType> = ({ children, title }) => (
+export const WrapperNewTest: FC<WrapperNewTestType> = ({ children }) => (
   <Stack direction='row' justifyContent='center'>
     <Paper
       sx={{
@@ -18,7 +17,7 @@ export const WrapperNewTest: FC<WrapperNewTestType> = ({ children, title }) => (
         p: '40px 52px 30px',
       }}
     >
-      {title && <Typography align='center'>{title}</Typography>}
+      <Typography align='center'>Create Test</Typography>
       {children}
     </Paper>
   </Stack>
