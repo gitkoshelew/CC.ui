@@ -37,8 +37,8 @@ export const RectangleProgressTabsItem = styled(
     position: 'absolute',
     top: -10,
     bottom: -10,
-    left: -5,
-    right: -5,
+    left: 0,
+    right: 0,
     cursor: 'pointer',
   },
   [theme.breakpoints.down('sm')]: {

@@ -27,7 +27,7 @@ export const RectangleProgressTabs = (props: RectangleProgressBarPropsType) => {
 
   return (
     <Box>
-      <Tabs ref={tabsRef} sx={{ py: 1.2 }}>
+      <Tabs ref={tabsRef} sx={{ py: 1.2, px: 2 }}>
         {props.tabsData.map((el) => (
           <RectangleProgressTabsItem
             key={el.questionId}
