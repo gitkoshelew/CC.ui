@@ -1,5 +1,4 @@
 import { SelectChangeEvent } from '@mui/material/Select';
-import { Typography } from '@mui/material';
 import { useState } from 'react';
 import { Layout } from '../../components/layout/Layout';
 import { QuestionBlock } from '../../components/new-test/QuestionBlock';
@@ -8,6 +7,8 @@ import { ButtonSaveTest } from '../../components/new-test/ButtonSaveTest';
 import { WrapperNewTest } from '../../components/new-test/WrapperNewTest';
 import { level, numberQuestions, themes, types } from '../../Mocs/NewTestMoc';
 import { SettingsBlock } from '../../components/new-test/SettingsBlock';
+import { QuestionTabs } from '../../components/common/Tabs/QuestionTabs/QuestionTabs';
+import { questionsData } from '../../Mocs/QuestionTabsMoc';
 
 export default function NewTest() {
   const [themeValue, setThemeValue] = useState('3');
@@ -31,7 +32,7 @@ export default function NewTest() {
           level={level}
           numberQuestions={numberQuestions}
         />
-        <Typography>question tabs component</Typography>
+        <QuestionTabs activeQuestionId='' questionsData={questionsData} />
         <QuestionBlock
           value={typeValue}
           handleTypeChange={handleTypeChange}

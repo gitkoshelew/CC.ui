@@ -17,7 +17,7 @@ export const WrapperNewTest: FC<WrapperNewTestType> = ({ children }) => (
         p: '40px 52px 30px',
       }}
     >
-      <Typography align='center'>Create test</Typography>
+      <Typography align='center'>Create Test</Typography>
       {children}
     </Paper>
   </Stack>
