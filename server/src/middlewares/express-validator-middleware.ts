@@ -28,3 +28,41 @@ export const quizValidation = [
   quizUserNameValidation,
   expressValidator,
 ];
+
+const questionTitleValidation = body('title')
+  .trim()
+  .isLength({ min: 1, max: 100 });
+const questionNameValidation = body('question')
+  .trim()
+  .isLength({ min: 1, max: 100 });
+const questionTypeValidation = body('type')
+  .trim()
+  .isLength({ min: 1, max: 100 });
+const questionDifficultyValidation = body('difficulty')
+  .trim()
+  .isLength({ min: 1, max: 100 });
+const questionDescriptionValidation = body('description')
+  .trim()
+  .isLength({ min: 1, max: 100 });
+const questionTopicValidation = body('topic')
+  .trim()
+  .isLength({ min: 1, max: 100 });
+const questionConfirmValidation = body('content').custom((value, { req }) => {
+  for (let i = 0; i < value.length; i++) {
+    if (!value[i].answer || !value[i].isCorrect) {
+      return false;
+    }
+  }
+  return true;
+});
+
+export const questionValidation = [
+  questionTitleValidation,
+  questionNameValidation,
+  questionTypeValidation,
+  questionDifficultyValidation,
+  questionDescriptionValidation,
+  questionTopicValidation,
+  questionConfirmValidation,
+  expressValidator,
+];

@@ -1,5 +1,5 @@
 import { QuizDto, QuizViewModel } from '../types/types';
-import { db } from '../repositories/quiz-repository';
+import { db } from '../repositories/db';
 
 export const quizService = {
   findAllQuizzes() {
@@ -37,3 +37,4 @@ export const quizService = {
     return true;
   },
 };
+

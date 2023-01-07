@@ -13,4 +13,30 @@ export type QuizViewModel = {
 
 export type DBModel = {
   quizzes: QuizViewModel[];
+  questions: QuestionViewModel[];
+};
+
+export type QuestionDto = {
+  title: string;
+  question: string;
+  content: AnswerOptions[];
+  type: string;
+  difficulty: string;
+  description: string;
+  topic: string;
+};
+
+export type QuestionViewModel = {
+  id: number;
+  title: string;
+  question: string;
+  content: AnswerOptions[];
+  type: string;
+  difficulty: string;
+  description: string;
+  topic: string;
+};
+export type AnswerOptions = {
+  answer: string;
+  isCorrect: boolean;
 };

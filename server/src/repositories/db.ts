@@ -59,4 +59,33 @@ export const db: DBModel = {
       status: 'done',
     },
   ],
+  questions: [
+    {
+      id: 1,
+      title: 'How do you write "Hello World" in an alert box?',
+      question: 'How do you write "Hello World" in an alert box?',
+      content: [
+        {
+          answer: 'alertBox("Hello World");',
+          isCorrect: false,
+        },
+        {
+          answer: 'alert("Hello World");',
+          isCorrect: true,
+        },
+        {
+          answer: 'msgBox("Hello World");',
+          isCorrect: false,
+        },
+        {
+          answer: 'msg("Hello World");',
+          isCorrect: false,
+        },
+      ],
+      type: 'One correct answer',
+      difficulty: 'Easy',
+      description: 'some',
+      topic: 'Theme 2',
+    },
+  ],
 };

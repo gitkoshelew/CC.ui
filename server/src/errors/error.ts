@@ -1,4 +1,9 @@
 export const quizError = {
-  field: 'card',
-  message: 'Not found card by id',
+  field: 'quiz',
+  message: 'Not found quiz by id',
+};
+
+export const questionError = {
+  field: 'question',
+  message: 'Not found question by id',
 };
