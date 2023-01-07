@@ -53,7 +53,7 @@ export const Timer: FC<PropsTimerType> = ({ timeDefault }) => {
     }
 
     return undefined;
-  }, [timer, calculateTimeLeft]);
+  }, [timer]);
 
   return (
     <div className='text-center text-4xl '>
