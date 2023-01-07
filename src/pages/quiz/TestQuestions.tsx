@@ -26,6 +26,7 @@ const TestQuestions: FC<PropsType> = ({ testQuestions }) => {
         >
           <FormControlLabel
             value={t.title}
+            className='Contained'
             label={t.title}
             control={<Radio size='small' />}
           />

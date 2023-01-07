@@ -161,16 +161,20 @@ export const defaultTheme = createTheme({
     MuiFormControlLabel: {
       defaultProps: {
         sx: {
-          width: '100%',
-          bgcolor: 'background.paperAccent1',
-          px: 3.5,
-          py: 2.5,
-          mb: 2.5,
-          border: '1px solid rgba(0, 0, 0, 0.2)',
-          borderRadius: 0.75,
+          '&.Contained': {
+            width: '100%',
+            bgcolor: 'background.paperAccent1',
+            px: 3.5,
+            py: 2.5,
+            mb: 2.5,
+            border: '1px solid rgba(0, 0, 0, 0.2)',
+            borderRadius: 0.75,
+            '& .MuiRadio-root': {
+              mr: 2,
+            },
+          },
           '& .MuiRadio-root': {
             p: 0,
-            mr: 2,
             color: 'background.border',
           },
           '& .MuiRadio-root.Mui-checked': {
