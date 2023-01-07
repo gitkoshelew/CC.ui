@@ -1,45 +1,67 @@
 import Button from '@mui/material/Button';
-import { Box, Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import { useCallback, useState } from 'react';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { Layout } from '../../components/layout/Layout';
 import { tabsData } from '../../Mocs/RectangleProgressBarMoc';
-import { WrapperNewTest } from '../../components/new-test/WrapperNewTest';
+import { UiBox } from '../../components/common/UiBox/UiBox';
 import { Timer } from '../../components/Timer/Timer';
 import { timeDefault } from '../../Mocs/TimerMock';
 import TestQuestions from './TestQuestions';
 import { testQuestions } from '../../Mocs/QuizMock';
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 
-const Quiz = () => (
-  <Layout>
-    <ButtonBackHome />
-    <Box sx={{ width: 1, maxWidth: '853px', mx: 'auto' }}>
-      <Timer timeDefault={timeDefault} />
-      <RectangleProgressTabs
-        activeTabId='1'
-        tabsData={tabsData}
-        isTabsStatusHidden={false}
-      />
-    </Box>
+const Quiz = () => {
+  const [currentTime, setCurrentTime] = useState(timeDefault);
+  const [isRunning, setIsRunning] = useState(false);
 
-    <WrapperNewTest>
-      <span className=' mx-auto text-base '>“Node.js” question</span>
-      <span className=' mx-auto text-base '>
-        What is the correct JavaScript syntax to change the content of the HTML
-        element below?
-      </span>
-      <TestQuestions testQuestions={testQuestions} />
-      <Stack
-        direction='row'
-        justifyContent='center'
-        alignItems='center'
-        spacing={2}
-      >
-        <Button color='info'>Skip</Button>
-        <Button>Next</Button>
+  const nextQuestionHandler = useCallback(() => {
+    setIsRunning(true);
+    setCurrentTime(timeDefault);
+    alert(`${currentTime.minutes}:${currentTime.seconds}`);
+  }, [currentTime]);
+
+  return (
+    <Layout>
+      <ButtonBackHome />
+      <Stack spacing={2} direction='column'>
+        <Stack
+          spacing={4}
+          direction='column'
+          sx={{ width: 1, maxWidth: '850px', mx: 'auto' }}
+        >
+          <Timer
+            timeDefault={timeDefault}
+            isRunning={isRunning}
+            setIsRunning={setIsRunning}
+            currentTime={currentTime}
+            setCurrentTime={setCurrentTime}
+          />
+          <RectangleProgressTabs
+            activeTabId='1'
+            tabsData={tabsData}
+            isTabsStatusHidden
+          />
+        </Stack>
+        <UiBox title='”Node.js” question'>
+          <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>
+            What is the correct JavaScript syntax to change the content of the
+            HTML element below?
+          </span>
+          <TestQuestions testQuestions={testQuestions} />
+          <Stack
+            direction='row'
+            justifyContent='center'
+            alignItems='center'
+            spacing={4}
+          >
+            <Button color='info'>Skip</Button>
+            <Button onClick={nextQuestionHandler}>Next</Button>
+          </Stack>
+        </UiBox>
       </Stack>
-    </WrapperNewTest>
-  </Layout>
-);
+    </Layout>
+  );
+};
 
 export default Quiz;

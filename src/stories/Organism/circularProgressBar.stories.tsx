@@ -16,5 +16,5 @@ export const CircularProgressBarComponent = Template.bind({});
 CircularProgressBarComponent.args = {
   value: 60,
   size: 166,
-  fontSize: 'medium',
+  fontSize: 'xx-large',
 };

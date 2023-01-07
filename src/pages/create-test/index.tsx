@@ -5,7 +5,7 @@ import { Layout } from '../../components/layout/Layout';
 import { QuestionBlock } from '../../components/new-test/QuestionBlock';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { ButtonSaveTest } from '../../components/new-test/ButtonSaveTest';
-import { WrapperNewTest } from '../../components/new-test/WrapperNewTest';
+import { UiBox } from '../../components/common/UiBox/UiBox';
 import { level, numberQuestions, themes, types } from '../../Mocs/NewTestMoc';
 import { SettingsBlock } from '../../components/new-test/SettingsBlock';
 
@@ -23,7 +23,7 @@ export default function NewTest() {
   return (
     <Layout>
       <ButtonBackHome />
-      <WrapperNewTest>
+      <UiBox title='Create test'>
         <SettingsBlock
           value={themeValue}
           handleThemeChange={handleThemeChange}
@@ -38,7 +38,7 @@ export default function NewTest() {
           items={types}
         />
         <ButtonSaveTest />
-      </WrapperNewTest>
+      </UiBox>
     </Layout>
   );
 }
