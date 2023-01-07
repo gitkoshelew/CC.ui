@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "server:build": "tsc --project server/tsconfig.json",
+    "server:start": "npm run server:build && node ./server/dist/index.js",
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "storybook": "start-storybook -p 6006 -s ./public",
