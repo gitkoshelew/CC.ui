@@ -105,3 +105,6 @@ dist
 
 # older
 .idea/*
+
+# Server dist
+server/dist
