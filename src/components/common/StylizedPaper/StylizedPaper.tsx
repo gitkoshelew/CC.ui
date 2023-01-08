@@ -3,9 +3,10 @@ import { FC, ReactNode } from 'react';
 
 type WrapperNewTestType = {
   children: ReactNode;
+  title: string;
 };
 
-export const WrapperNewTest: FC<WrapperNewTestType> = ({ children }) => (
+export const StylizedPaper: FC<WrapperNewTestType> = ({ children, title }) => (
   <Stack direction='row' justifyContent='center'>
     <Paper
       sx={{
@@ -14,10 +15,11 @@ export const WrapperNewTest: FC<WrapperNewTestType> = ({ children }) => (
         gap: 3,
         maxWidth: '850px',
         width: 1,
-        p: '40px 52px 30px',
+        mx: 2,
+        p: { xs: '20px 30px 20px', sm: '40px 50px 30px' },
       }}
     >
-      <Typography align='center'>Create Test</Typography>
+      <Typography align='center'>{title}</Typography>
       {children}
     </Paper>
   </Stack>

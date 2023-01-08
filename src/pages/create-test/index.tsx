@@ -4,7 +4,7 @@ import { Layout } from '../../components/layout/Layout';
 import { QuestionBlock } from '../../components/new-test/QuestionBlock';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { ButtonSaveTest } from '../../components/new-test/ButtonSaveTest';
-import { WrapperNewTest } from '../../components/new-test/WrapperNewTest';
+import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { level, numberQuestions, themes, types } from '../../Mocs/NewTestMoc';
 import { SettingsBlock } from '../../components/new-test/SettingsBlock';
 import { QuestionTabs } from '../../components/common/Tabs/QuestionTabs/QuestionTabs';
@@ -24,7 +24,7 @@ export default function NewTest() {
   return (
     <Layout>
       <ButtonBackHome />
-      <WrapperNewTest>
+      <StylizedPaper title='Create test'>
         <SettingsBlock
           value={themeValue}
           handleThemeChange={handleThemeChange}
@@ -39,7 +39,7 @@ export default function NewTest() {
           items={types}
         />
         <ButtonSaveTest />
-      </WrapperNewTest>
+      </StylizedPaper>
     </Layout>
   );
 }
