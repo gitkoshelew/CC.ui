@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { TimerDefaultType } from '../../Mocs/TimerMock';
+import { numberWithZero } from '../../utils/time';
 
 type PropsTimerType = {
   timeDefault: TimerDefaultType;
@@ -33,12 +34,6 @@ export const Timer = React.memo(
         setIsRunning(!isRunning);
         setCurrentTime({ seconds: '00', minutes: '00' });
       } else {
-        const numberWithZero = (number: number) => {
-          const numberString = number.toString();
-          if (numberString.length >= 2) return numberString;
-          return '0'.repeat(2 - numberString.length) + numberString;
-        };
-
         setCurrentTime({
           seconds: numberWithZero(seconds),
           minutes: numberWithZero(minutes),
