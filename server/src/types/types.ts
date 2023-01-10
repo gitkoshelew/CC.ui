@@ -19,7 +19,7 @@ export type DBModel = {
 export type QuestionDto = {
   title: string;
   question: string;
-  content: AnswerOptions[];
+  content: string[];
   type: string;
   difficulty: string;
   description: string;
@@ -37,6 +37,7 @@ export type QuestionViewModel = {
   correctAnswer: string;
   topic: string;
 };
+
 export type AnswerOptions = {
-  options: string[]
+  options: string[];
 };

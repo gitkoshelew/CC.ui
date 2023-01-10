@@ -11,14 +11,20 @@ export const questionsService = {
   },
 
   createNewQuestion(questionDto: QuestionDto) {
+    const answerArray = [];
+    for (const answer in questionDto.content) {
+      answerArray.push(questionDto.content[answer]);
+    }
     const newQuestion: QuestionViewModel = {
       id: Number(new Date()),
       title: questionDto.title,
-      question: questionDto.question,
-      content: questionDto.content,
+      content: {
+        options: answerArray,
+      },
       type: questionDto.type,
       difficulty: questionDto.difficulty,
       description: questionDto.description,
+      correctAnswer: questionDto.correctAnswer,
       topic: questionDto.topic,
     };
     db.questions.push(newQuestion);
