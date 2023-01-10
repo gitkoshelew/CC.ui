@@ -23,20 +23,20 @@ export type QuestionDto = {
   type: string;
   difficulty: string;
   description: string;
+  correctAnswer: string;
   topic: string;
 };
 
 export type QuestionViewModel = {
   id: number;
   title: string;
-  question: string;
-  content: AnswerOptions[];
+  content: AnswerOptions;
   type: string;
   difficulty: string;
   description: string;
+  correctAnswer: string;
   topic: string;
 };
 export type AnswerOptions = {
-  answer: string;
-  isCorrect: boolean;
+  options: string[]
 };
