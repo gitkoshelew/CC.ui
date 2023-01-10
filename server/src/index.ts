@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/quizzes', quizRouter);
-app.use('/question', questionRouter);
+app.use('/questions', questionRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.status(200).send('Server is working!');
@@ -20,3 +20,4 @@ const startApp = () => {
   app.listen(PORT, () => console.log(`Server started on ${PORT} port`));
 };
 startApp();
+
