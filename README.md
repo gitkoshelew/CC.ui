@@ -36,6 +36,10 @@ with the ability to create your own training modules.
 ### Start project
  
  Start local environment: `yarn dev` or make production build: `yarn build`
+ 
+### Start project with a mock server
+
+ Start local environment: `yarn dev-mock-server`
 
 ### Storybook 
 
