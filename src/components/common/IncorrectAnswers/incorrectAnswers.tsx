@@ -8,8 +8,4 @@ type IncorrectAnswerPropsType = {
 
 export const IncorrectAnswers: FC<IncorrectAnswerPropsType> = ({
   IncorrectAnswersList,
-}) => (
-  <div>
-    <BasicTable IncorrectAnswersList={IncorrectAnswersList} />
-  </div>
-);
+}) => <BasicTable IncorrectAnswersList={IncorrectAnswersList} />;

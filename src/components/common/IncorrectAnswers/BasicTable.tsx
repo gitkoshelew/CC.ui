@@ -28,13 +28,19 @@ export const BasicTable: FC<IncorrectAnswerPropsType> = ({
             bgcolor: 'primary.main',
             color: 'primary.contrastText',
             borderRadius: 2,
+            display: 'grid',
+            gridTemplateColumns: '7fr 15fr',
           }}
         >
-          <TableRow>
+          <TableRow
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: '6fr 10fr',
+            }}
+          >
             <TableCell
               sx={{
                 color: 'primary.contrastText',
-                width: '200px',
                 borderBottom: 'none',
               }}
             >
@@ -58,8 +64,9 @@ export const BasicTable: FC<IncorrectAnswerPropsType> = ({
           <TableRow
             key={row.id}
             sx={{
-              display: 'flex',
               marginBottom: '20px',
+              display: 'grid',
+              gridTemplateColumns: '1.5fr 10fr',
             }}
           >
             <div className='border-transparent rounded-3xl bg-background-paperAccent2 mr-24 ml-5'>
@@ -67,7 +74,6 @@ export const BasicTable: FC<IncorrectAnswerPropsType> = ({
                 component='th'
                 scope='row'
                 sx={{
-                  width: '100px',
                   borderBottom: 'none',
                 }}
               >
@@ -78,7 +84,6 @@ export const BasicTable: FC<IncorrectAnswerPropsType> = ({
               <TableCell
                 sx={{
                   borderBottom: 'none',
-                  width: '100%',
                 }}
               >
                 {row.incorrectAnswer}
