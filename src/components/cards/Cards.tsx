@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Card } from './Card/Card';
 import { OneCardType } from '../../Types/CardTypes';
-import { fetchQuizesAC } from '../../store/quizes-reducer';
-import { wrapper } from '../../store/store';
 import { quizesApi } from '../../api/quizesApi';
 
 export const Cards = () => {
@@ -30,20 +28,3 @@ export const Cards = () => {
     <div>Карточек нет</div>
   );
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) =>
-    async ({ params }) => {
-      const res = await quizesApi.getQuizes();
-      // we can set the initial state from here
-      // we are setting to false but you can run your custom logic here
-      store.dispatch(fetchQuizesAC(res.data));
-      // console.log('State on server', store.getState());
-      console.log('res', res);
-      return {
-        props: {
-          // quizes: res.data,
-        },
-      };
-    }
-);
