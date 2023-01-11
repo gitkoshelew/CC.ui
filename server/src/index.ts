@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import express, { Request, Response } from 'express';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import cors from 'cors';
 import { quizRouter } from './routers/quiz-router';
 import { questionRouter } from './routers/question-router';
