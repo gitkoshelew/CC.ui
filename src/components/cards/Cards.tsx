@@ -13,11 +13,11 @@ type PropsCardsType = {
 export const Cards: FC<PropsCardsType> = ({ cards }) => {
   const dispatch = useDispatch();
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  const selectAuthState = (state: AppState) => state.quizzes.quizes;
-  const carr = useSelector(selectAuthState);
+  const selectQuizzes = (state: AppState) => state.quizzes.quizes;
+  const card = useSelector(selectQuizzes);
 
   // console.log(makeStore().getState().quizzes.quizes);
-  console.log('carr', carr);
+  console.log('carr', card);
   return cards ? (
     <div className='grid gap-6 grid-cols-[repeat(auto-fill,minmax(270px,_1fr))]'>
       {cards.map(({ id, title, userName, date, status }: OneCardType) => (
