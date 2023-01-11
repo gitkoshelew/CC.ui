@@ -1,23 +1,19 @@
-import { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { Card } from './Card/Card';
-import { CardsType, OneCardType } from '../../Types/CardTypes';
+import { OneCardType } from '../../Types/CardTypes';
 import { fetchQuizesAC } from '../../store/quizes-reducer';
-import { AppState, wrapper } from '../../store/store';
+import { wrapper } from '../../store/store';
 import { quizesApi } from '../../api/quizesApi';
 
-type PropsCardsType = {
-  cards: CardsType;
-};
+export const Cards = () => {
+  const [cards, setCards] = useState<any>([]);
 
-export const Cards: FC<PropsCardsType> = ({ cards }) => {
-  const dispatch = useDispatch();
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  const selectAuthState = (state: AppState) => state.quizzes.quizes;
-  const carr = useSelector(selectAuthState);
+  useEffect(() => {
+    quizesApi.getQuizes().then((res) => {
+      setCards(res);
+    });
+  }, []);
 
-  // console.log(makeStore().getState().quizzes.quizes);
-  console.log('carr', carr);
   return cards ? (
     <div className='grid gap-6 grid-cols-[repeat(auto-fill,minmax(270px,_1fr))]'>
       {cards.map(({ id, title, userName, date, status }: OneCardType) => (
