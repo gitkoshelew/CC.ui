@@ -1,5 +1,7 @@
+import { instance } from './Instance/instance';
+
 export const quizesApi = {
   getQuizes() {
-    return instance.get(`quizzes`);
+    return instance.get<any>(`quizzes`);
   },
 };

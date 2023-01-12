@@ -24,6 +24,7 @@
     "@fontsource/roboto": "^4.5.8",
     "@mui/material": "^5.11.0",
     "@mui/system": "^5.11.1",
+    "@nuxtjs/axios": "^5.13.6",
     "@reduxjs/toolkit": "^1.9.1",
     "@storybook/react": "^6.5.14",
     "@testing-library/react": "^13.4.0",
