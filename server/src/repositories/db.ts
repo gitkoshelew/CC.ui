@@ -62,29 +62,122 @@ export const db: DBModel = {
   questions: [
     {
       id: 1,
-      title: 'How do you write "Hello World" in an alert box?',
-      question: 'How do you write "Hello World" in an alert box?',
-      content: [
-        {
-          answer: 'alertBox("Hello World");',
-          isCorrect: false,
-        },
-        {
-          answer: 'alert("Hello World");',
-          isCorrect: true,
-        },
-        {
-          answer: 'msgBox("Hello World");',
-          isCorrect: false,
-        },
-        {
-          answer: 'msg("Hello World");',
-          isCorrect: false,
-        },
-      ],
+      title: 'Question 1 JavaScript',
+      content:{
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      },
       type: 'One correct answer',
       difficulty: 'Easy',
-      description: 'some',
+      description: 'How do you write "Hello World" in an alert box?',
+      correctAnswer: 'Answer1',
+      topic: 'Theme 2',
+    },
+    {
+      id: 2,
+      title: 'Question 2 JavaScript',
+      content:{
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      },
+      type: 'One correct answer',
+      difficulty: 'Medium',
+      description: 'What is a prototype chain?',
+      correctAnswer: 'Answer2',
+      topic: 'Theme 2',
+    },
+    {
+      id: 3,
+      title: 'Question 3 JavaScript',
+      content:{
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      },
+      type: 'One correct answer',
+      difficulty: 'Easy',
+      description: 'What are the possible ways to create objects in JavaScript?',
+      correctAnswer: 'Answer1',
+      topic: 'Theme 2',
+    },
+    {
+      id: 4,
+      title: 'Question 4 JavaScript',
+      content:{
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      },
+      type: 'One correct answer',
+      difficulty: 'Hard',
+      description: 'What is a unary function?',
+      correctAnswer: 'Answer1',
+      topic: 'Theme 2',
+    },
+    {
+      id: 5,
+      title: 'Question 5 JavaScript',
+      content:{
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      },
+      type: 'One correct answer',
+      difficulty: 'Hard',
+      description: 'What is the Temporal Dead Zone?',
+      correctAnswer: 'Answer4',
+      topic: 'Theme 2',
+    },
+    {
+      id: 6,
+      title: 'Question 6 JavaScript',
+      content:{
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      },
+      type: 'One correct answer',
+      difficulty: 'Medium',
+      description: 'How do you redeclare variables in switch block without an error?',
+      correctAnswer: 'Answer3',
+      topic: 'Theme 2',
+    },
+    {
+      id: 7,
+      title: 'Question 7 JavaScript',
+      content:{
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      },
+      type: 'One correct answer',
+      difficulty: 'Easy',
+      description: 'What is the reason to choose the name let as a keyword?',
+      correctAnswer: 'Answer2',
+      topic: 'Theme 2',
+    },
+    {
+      id: 8,
+      title: 'Question 8 JavaScript',
+      content:{
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      },
+      type: 'One correct answer',
+      difficulty: 'Easy',
+      description: 'What is the purpose of the let keyword?',
+      correctAnswer: 'Answer2',
+      topic: 'Theme 2',
+    },
+    {
+      id: 9,
+      title: 'Question 9 JavaScript',
+      content:{
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      },
+      type: 'One correct answer',
+      difficulty: 'Easy',
+      description: 'What is a pure function?',
+      correctAnswer: 'Answer1',
+      topic: 'Theme 2',
+    },
+    {
+      id: 10,
+      title: 'Question 10 JavaScript',
+      content:{
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      },
+      type: 'One correct answer',
+      difficulty: 'Easy',
+      description: 'What is the currying function?',
+      correctAnswer: 'Answer3',
       topic: 'Theme 2',
     },
   ],
