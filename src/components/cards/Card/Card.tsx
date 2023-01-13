@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { Button, Typography } from '@mui/material';
 
 type PropsCardType = {
@@ -8,7 +7,7 @@ type PropsCardType = {
   status: string | null;
 };
 
-export const Card: FC<PropsCardType> = ({ title, date, userName, status }) => (
+export const Card = ({ title, date, userName, status }: PropsCardType) => (
   <div className='flex flex-col  text-center bg-background-paper shadow border rounded-2xl px-5 pt-11 pb-7 relative text-sm'>
     {status && (
       <div className='absolute -top-2 right-7 py-0.5 px-4 rounded-2xl text-xs font-light bg-secondary-main text-secondary-contrastText'>
@@ -27,7 +26,7 @@ export const Card: FC<PropsCardType> = ({ title, date, userName, status }) => (
         </p>
       </div>
       <div className='flex flex-col text-center items-center gap-4'>
-        <Button href='/quiz'>Start</Button>
+        <Button href='/testPage'>Start</Button>
         <div>
           <span className='text-text-primaryAlpha300'>Created: </span>
           {date}

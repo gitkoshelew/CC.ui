@@ -1,15 +1,14 @@
-import { FC } from 'react';
 import { Card } from './Card/Card';
-import { CardsType, OneCardType } from '../../Types/CardTypes';
+import { QuizesType } from '../common/types';
 
 type PropsCardsType = {
-  cards: CardsType;
+  quizes: QuizesType[];
 };
 
-export const Cards: FC<PropsCardsType> = ({ cards }) =>
-  cards ? (
+export const CardsWithQuizes = ({ quizes }: PropsCardsType) =>
+  quizes ? (
     <div className='grid gap-6 grid-cols-[repeat(auto-fill,minmax(270px,_1fr))]'>
-      {cards.map(({ id, title, userName, date, status }: OneCardType) => (
+      {quizes.map(({ id, title, userName, date, status }: QuizesType) => (
         <Card
           key={id}
           title={title}

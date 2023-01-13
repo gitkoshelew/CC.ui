@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
@@ -9,7 +9,7 @@ type PropsType = {
   testQuestions: TestQuestionsType[];
 };
 
-const TestQuestions: FC<PropsType> = ({ testQuestions }) => {
+const TestQuestions = ({ testQuestions }: PropsType) => {
   const [value, setValue] = useState('');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

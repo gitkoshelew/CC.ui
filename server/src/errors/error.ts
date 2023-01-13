@@ -1,6 +1,6 @@
 export const quizError = {
-  field: 'quiz',
-  message: 'Not found quiz by id',
+  field: 'testPage',
+  message: 'Not found testPage by id',
 };
 
 export const questionError = {
