@@ -5,4 +5,4 @@ export default {
   component: TestPage,
 };
 
-export const HomePage = () => <TestPage />;
+export const TestPageComponent = () => <TestPage />;
