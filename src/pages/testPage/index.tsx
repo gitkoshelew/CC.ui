@@ -11,7 +11,7 @@ import TestQuestions from './TestQuestions';
 import { testQuestions } from '../../Mocs/QuizMock';
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 
-const Quiz = () => {
+const TestPage = () => {
   const [currentTime, setCurrentTime] = useState(timeDefault);
   const [isRunning, setIsRunning] = useState(false);
 
@@ -64,4 +64,4 @@ const Quiz = () => {
   );
 };
 
-export default Quiz;
+export default TestPage;

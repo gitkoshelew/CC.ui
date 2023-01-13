@@ -1,4 +1,4 @@
-// date for Cards
+// date for CardsQuizes
 import { CardsType } from '../Types/CardTypes';
 
 export const cards: CardsType = [

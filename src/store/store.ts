@@ -1,10 +1,7 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
-// eslint-disable-next-line import/extensions
 import { createWrapper } from 'next-redux-wrapper';
-import { quizzesReducer } from './quizes-reducer';
+import { quizzesReducer } from './reducers/quizes-reducer';
 
 const reducers = {
   quizzes: quizzesReducer,

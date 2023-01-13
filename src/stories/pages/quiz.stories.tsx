@@ -1,8 +1,8 @@
-import Quiz from '../../pages/quiz';
+import TestPage from '../../pages/testPage';
 
 export default {
   title: 'Pages/Quiz',
-  component: Quiz,
+  component: TestPage,
 };
 
-export const HomePage = () => <Quiz />;
+export const HomePage = () => <TestPage />;

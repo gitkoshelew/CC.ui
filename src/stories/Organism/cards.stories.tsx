@@ -1,9 +1,9 @@
-import { Cards } from '../../components/cards/Cards';
+import { CardsWithQuizes } from '../../components/cards/CardsWithQuizes';
 import { cards } from '../../Mocs/CardMoc';
 
-export const Default = () => <Cards cards={cards} />;
+export const Default = () => <CardsWithQuizes quizes={cards} />;
 
 export default {
-  title: 'Organism/Cards',
+  title: 'Organism/CardsQuizes',
   component: Default,
 };
