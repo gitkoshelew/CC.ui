@@ -58,13 +58,20 @@ export const db: DBModel = {
       date: '080101',
       status: 'done',
     },
+    {
+      id: 9,
+      title: 'it works',
+      userName: 'Person_9',
+      date: '080101',
+      status: 'done',
+    },
   ],
   questions: [
     {
       id: 1,
       title: 'Question 1 JavaScript',
-      content:{
-        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      content: {
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
       },
       type: 'One correct answer',
       difficulty: 'Easy',
@@ -75,8 +82,8 @@ export const db: DBModel = {
     {
       id: 2,
       title: 'Question 2 JavaScript',
-      content:{
-        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      content: {
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
       },
       type: 'One correct answer',
       difficulty: 'Medium',
@@ -87,20 +94,21 @@ export const db: DBModel = {
     {
       id: 3,
       title: 'Question 3 JavaScript',
-      content:{
-        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      content: {
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
       },
       type: 'One correct answer',
       difficulty: 'Easy',
-      description: 'What are the possible ways to create objects in JavaScript?',
+      description:
+        'What are the possible ways to create objects in JavaScript?',
       correctAnswer: 'Answer1',
       topic: 'Theme 2',
     },
     {
       id: 4,
       title: 'Question 4 JavaScript',
-      content:{
-        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      content: {
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
       },
       type: 'One correct answer',
       difficulty: 'Hard',
@@ -111,8 +119,8 @@ export const db: DBModel = {
     {
       id: 5,
       title: 'Question 5 JavaScript',
-      content:{
-        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      content: {
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
       },
       type: 'One correct answer',
       difficulty: 'Hard',
@@ -123,20 +131,21 @@ export const db: DBModel = {
     {
       id: 6,
       title: 'Question 6 JavaScript',
-      content:{
-        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      content: {
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
       },
       type: 'One correct answer',
       difficulty: 'Medium',
-      description: 'How do you redeclare variables in switch block without an error?',
+      description:
+        'How do you redeclare variables in switch block without an error?',
       correctAnswer: 'Answer3',
       topic: 'Theme 2',
     },
     {
       id: 7,
       title: 'Question 7 JavaScript',
-      content:{
-        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      content: {
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
       },
       type: 'One correct answer',
       difficulty: 'Easy',
@@ -147,8 +156,8 @@ export const db: DBModel = {
     {
       id: 8,
       title: 'Question 8 JavaScript',
-      content:{
-        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      content: {
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
       },
       type: 'One correct answer',
       difficulty: 'Easy',
@@ -159,8 +168,8 @@ export const db: DBModel = {
     {
       id: 9,
       title: 'Question 9 JavaScript',
-      content:{
-        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      content: {
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
       },
       type: 'One correct answer',
       difficulty: 'Easy',
@@ -171,8 +180,8 @@ export const db: DBModel = {
     {
       id: 10,
       title: 'Question 10 JavaScript',
-      content:{
-        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4']
+      content: {
+        options: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
       },
       type: 'One correct answer',
       difficulty: 'Easy',
