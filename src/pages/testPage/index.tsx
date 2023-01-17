@@ -21,12 +21,21 @@ export default function TestPage({
 }) {
   const [currentTime, setCurrentTime] = useState(timeDefault);
   const [isRunning, setIsRunning] = useState(false);
+  const [numberOfQuestion, setQuestion] = useState(0);
+  const [disabled, setDisabled] = useState(false);
 
   const nextQuestionHandler = useCallback(() => {
-    setIsRunning(true);
-    setCurrentTime(timeDefault);
-    alert(`${currentTime.minutes}:${currentTime.seconds}`);
-  }, [currentTime]);
+    // setIsRunning(true);
+    // setCurrentTime(timeDefault);
+    // alert(`${currentTime.minutes}:${currentTime.seconds}`);
+
+    if (numberOfQuestion === questions.length - 1) {
+      alert('The end');
+      setDisabled(true);
+    } else {
+      setQuestion(numberOfQuestion + 1);
+    }
+  }, [numberOfQuestion, questions.length]);
 
   return (
     <Layout>
@@ -52,9 +61,11 @@ export default function TestPage({
         </Stack>
         <StylizedPaper title='”Node.js” question'>
           <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>
-            {questions[0].description}
+            {questions[numberOfQuestion].description}
           </span>
-          <TestQuestions answers={questions[0].content.options} />
+          <TestQuestions
+            answers={questions[numberOfQuestion].content.options}
+          />
           <Stack
             direction='row'
             justifyContent='center'
@@ -62,7 +73,9 @@ export default function TestPage({
             spacing={4}
           >
             <Button color='info'>Skip</Button>
-            <Button onClick={nextQuestionHandler}>Next</Button>
+            <Button disabled={disabled} onClick={nextQuestionHandler}>
+              Next
+            </Button>
           </Stack>
         </StylizedPaper>
       </Stack>
