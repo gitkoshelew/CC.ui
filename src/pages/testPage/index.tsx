@@ -8,10 +8,17 @@ import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPap
 import { Timer } from '../../components/Timer/Timer';
 import { timeDefault } from '../../Mocs/TimerMock';
 import TestQuestions from './TestQuestions';
-import { testQuestions } from '../../Mocs/QuizMock';
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
+import { wrapper } from '../../store/store';
+import { questionsApi } from '../../api/questionsApi';
+import { fetchQuestionsAC } from '../../store/reducers/questions-reducer';
+import { TestQuestionsType } from '../../Types/TestQuestionsType';
 
-const TestPage = () => {
+export default function TestPage({
+  questions,
+}: {
+  questions: TestQuestionsType[];
+}) {
   const [currentTime, setCurrentTime] = useState(timeDefault);
   const [isRunning, setIsRunning] = useState(false);
 
@@ -45,10 +52,9 @@ const TestPage = () => {
         </Stack>
         <StylizedPaper title='”Node.js” question'>
           <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>
-            What is the correct JavaScript syntax to change the content of the
-            HTML element below?
+            {questions[0].description}
           </span>
-          <TestQuestions testQuestions={testQuestions} />
+          <TestQuestions answers={questions[0].content.options} />
           <Stack
             direction='row'
             justifyContent='center'
@@ -62,6 +68,17 @@ const TestPage = () => {
       </Stack>
     </Layout>
   );
-};
+}
 
-export default TestPage;
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async () => {
+    const res = await questionsApi.getQuestions();
+    store.dispatch(fetchQuestionsAC(res.data));
+
+    return {
+      props: {
+        questions: res.data,
+      },
+    };
+  }
+);
