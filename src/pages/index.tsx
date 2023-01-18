@@ -5,10 +5,23 @@ import { CardsWithQuizes } from '../components/cards/CardsWithQuizes';
 import { categories, sort } from '../Mocs/NavigationMoc';
 import { wrapper } from '../store/store';
 import { quizesApi } from '../api/quizesApi';
-import { fetchQuizesAC } from '../store/reducers/quizes-reducer';
+import { fetchQuizesAC, postQuizesAc } from '../store/reducers/quizes-reducer';
 import { QuizesType } from '../components/common/types';
+import {useEffect} from "react";
 
 export default function Home({ quizes }: { quizes: QuizesType[] }) {
+    useEffect(() => {
+        const sendData = async () => {
+            const postRes = await quizesApi.postQuizes();
+              console.log(postRes.data)
+            };
+        sendData()
+    },[])
+  // const sendData = async () => {
+  //   const postRes = await quizesApi.postQuizes();
+  //   return postRes;
+  // };
+  // sendData();
   return (
     <Layout headerType='full'>
       <Container>

@@ -1,51 +1,62 @@
 import Box from '@mui/system/Box';
 import { Button, Stack, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { HeaderContent } from '../HeaderContent';
 import { FullHeaderWrapper } from './FullHeaderWrapper';
 import { ListIcon } from '../../../../assets/icons/ListIcon';
 import { ButtonNums } from '../ButtonNums';
 import { HeaderStatistic } from '../HeaderStatistic';
+import { quizesApi } from '../../../../api/quizesApi';
+import { postQuizesAc } from '../../../../store/reducers/quizes-reducer';
 
-export const FullHeader = () => (
-  <FullHeaderWrapper>
-    <Stack height={1} bgcolor='rgba(0, 0, 0, 0.5)'>
-      <Box bgcolor='rgba(255, 255, 255, 0.05)'>
-        <HeaderContent />
-      </Box>
-      <Container>
-        <Stack
-          direction='column'
-          justifyContent='space-between'
-          flexGrow={1}
-          height={1}
-          py={4}
-          role='article'
-        >
-          <Typography sx={{ typography: { xs: 'h5', sm: 'h4' } }}>
-            Some text
-          </Typography>
-          <HeaderStatistic />
+export const FullHeader = () => {
+  const dispatch = useDispatch();
+  const sendData = async () => {
+    const postRes = await quizesApi.postQuizes();
+    dispatch(postQuizesAc(postRes.data));
+  };
+  return (
+    <FullHeaderWrapper>
+      <Stack height={1} bgcolor='rgba(0, 0, 0, 0.5)'>
+        <Box bgcolor='rgba(255, 255, 255, 0.05)'>
+          <HeaderContent />
+        </Box>
+        <Container>
           <Stack
-            spacing={{ xs: 2, sm: 4 }}
-            direction='row'
-            sx={{ '& .MuiButton-contained': { px: { xs: 2, md: 5 } } }}
-            role='menubar'
+            direction='column'
+            justifyContent='space-between'
+            flexGrow={1}
+            height={1}
+            py={4}
+            role='article'
           >
-            <Button color='info' variant='contained'>
-              Create test
-            </Button>
-            <Button
-              color='info'
-              variant='contained'
-              startIcon={<ListIcon />}
-              endIcon={<ButtonNums value={99} />}
+            <Typography sx={{ typography: { xs: 'h5', sm: 'h4' } }}>
+              Some text
+            </Typography>
+            <HeaderStatistic />
+            <Stack
+              spacing={{ xs: 2, sm: 4 }}
+              direction='row'
+              sx={{ '& .MuiButton-contained': { px: { xs: 2, md: 5 } } }}
+              role='menubar'
             >
-              My tests
-            </Button>
+              <Button onClick={sendData} color='info' variant='contained'>
+                Create test
+              </Button>
+              <Button
+                color='info'
+                variant='contained'
+                startIcon={<ListIcon />}
+                endIcon={<ButtonNums value={99} />}
+              >
+                My tests
+              </Button>
+            </Stack>
           </Stack>
-        </Stack>
-      </Container>
-    </Stack>
-  </FullHeaderWrapper>
-);
+        </Container>
+      </Stack>
+    </FullHeaderWrapper>
+  );
+};

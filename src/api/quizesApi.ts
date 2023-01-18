@@ -5,4 +5,10 @@ export const quizesApi = {
   getQuizes() {
     return instance.get<QuizesType[]>(`quizzes`);
   },
+  postQuizes() {
+    return instance.post<QuizesType[]>('quizzes', {
+      title: 'Pavel',
+      userName: 'Pavel'
+    })
+  }
 };

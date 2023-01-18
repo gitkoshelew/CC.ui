@@ -11,6 +11,9 @@ export const slice = createSlice({
     fetchQuizesAC(state, action: PayloadAction<QuizesType[]>) {
       state.quizes = action.payload;
     },
+    postQuizesAc(state, action: PayloadAction<QuizesType[]>) {
+      state.quizes = action.payload
+    }
   },
   extraReducers: {
     [HYDRATE]: (state, action) => ({
@@ -21,4 +24,4 @@ export const slice = createSlice({
 });
 
 export const quizzesReducer = slice.reducer;
-export const { fetchQuizesAC } = slice.actions;
+export const { fetchQuizesAC, postQuizesAc } = slice.actions;
