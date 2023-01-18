@@ -1,24 +1,32 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
+
 import { TestQuestionsType } from '../../Types/TestQuestionsType';
+import { questionsApi } from '../../api/questionsApi';
+
+export const getQuestions = createAsyncThunk(
+  'questions/getQuestions',
+  async () => {
+    const response = await questionsApi.getQuestions();
+    return response.data;
+  }
+);
 
 export const slice = createSlice({
   name: 'questions',
   initialState: {
     questions: [] as TestQuestionsType[],
   },
-  reducers: {
-    fetchQuestionsAC(state, action: PayloadAction<TestQuestionsType[]>) {
-      state.questions = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: {
     [HYDRATE]: (state, action) => ({
       ...state,
       ...action.payload.questions,
     }),
+    [getQuestions.fulfilled.type]: (state, action) => {
+      state.questions = action.payload;
+    },
   },
 });
 
 export const questionsReducer = slice.reducer;
-export const { fetchQuestionsAC } = slice.actions;

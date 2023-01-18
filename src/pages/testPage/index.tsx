@@ -10,8 +10,7 @@ import { timeDefault } from '../../Mocs/TimerMock';
 import TestQuestions from './TestQuestions';
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 import { wrapper } from '../../store/store';
-import { questionsApi } from '../../api/questionsApi';
-import { fetchQuestionsAC } from '../../store/reducers/questions-reducer';
+import { getQuestions } from '../../store/reducers/questions-reducer';
 import { TestQuestionsType } from '../../Types/TestQuestionsType';
 
 export default function TestPage({
@@ -30,7 +29,6 @@ export default function TestPage({
     // alert(`${currentTime.minutes}:${currentTime.seconds}`);
 
     if (numberOfQuestion === questions.length - 1) {
-      alert('The end');
       setDisabled(true);
     } else {
       setQuestion(numberOfQuestion + 1);
@@ -85,12 +83,12 @@ export default function TestPage({
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
-    const res = await questionsApi.getQuestions();
-    store.dispatch(fetchQuestionsAC(res.data));
+    await store.dispatch(getQuestions());
+    const { questions } = store.getState().questions;
 
     return {
       props: {
-        questions: res.data,
+        questions,
       },
     };
   }
