@@ -29,10 +29,11 @@ export default function TestPage({
     // alert(`${currentTime.minutes}:${currentTime.seconds}`);
 
     if (numberOfQuestion === questions.length - 1) {
+      alert('The end');
       setDisabled(true);
-    } else {
-      setQuestion(numberOfQuestion + 1);
+      return;
     }
+    setQuestion(numberOfQuestion + 1);
   }, [numberOfQuestion, questions.length]);
 
   return (
