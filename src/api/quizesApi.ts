@@ -7,8 +7,8 @@ export const quizesApi = {
   },
   postQuizes() {
     return instance.post<QuizesType[]>('quizzes', {
-      title: 'Pavel',
-      userName: 'Pavel'
-    })
-  }
+      title: 'Test about Node.Js',
+      userName: 'Nikita',
+    });
+  },
 };

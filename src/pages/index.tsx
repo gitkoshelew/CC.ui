@@ -1,4 +1,5 @@
 import Container from '@mui/material/Container';
+import { useEffect } from 'react';
 import { Layout } from '../components/layout/Layout';
 import { Navigation } from '../components/layout/navigation/Navigation';
 import { CardsWithQuizes } from '../components/cards/CardsWithQuizes';
@@ -7,21 +8,8 @@ import { wrapper } from '../store/store';
 import { quizesApi } from '../api/quizesApi';
 import { fetchQuizesAC, postQuizesAc } from '../store/reducers/quizes-reducer';
 import { QuizesType } from '../components/common/types';
-import {useEffect} from "react";
 
 export default function Home({ quizes }: { quizes: QuizesType[] }) {
-    useEffect(() => {
-        const sendData = async () => {
-            const postRes = await quizesApi.postQuizes();
-              console.log(postRes.data)
-            };
-        sendData()
-    },[])
-  // const sendData = async () => {
-  //   const postRes = await quizesApi.postQuizes();
-  //   return postRes;
-  // };
-  // sendData();
   return (
     <Layout headerType='full'>
       <Container>
