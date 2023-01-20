@@ -32,7 +32,7 @@ export const FullHeader = () => (
             sx={{ '& .MuiButton-contained': { px: { xs: 2, md: 5 } } }}
             role='menubar'
           >
-            <Button color='info' variant='contained'>
+            <Button href='create-test/' color='info' variant='contained'>
               Create test
             </Button>
             <Button
