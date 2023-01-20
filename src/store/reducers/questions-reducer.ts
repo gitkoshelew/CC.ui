@@ -16,6 +16,7 @@ export const slice = createSlice({
   name: 'questions',
   initialState: {
     questions: [] as TestQuestionsType[],
+    isEmptyQuestions: false,
   },
   reducers: {},
   extraReducers: {
@@ -25,6 +26,9 @@ export const slice = createSlice({
     }),
     [getQuestions.fulfilled.type]: (state, action) => {
       state.questions = action.payload;
+    },
+    [getQuestions.rejected.type]: (state) => {
+      state.isEmptyQuestions = true;
     },
   },
 });

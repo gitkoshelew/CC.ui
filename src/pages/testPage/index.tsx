@@ -15,8 +15,10 @@ import { TestQuestionsType } from '../../Types/TestQuestionsType';
 
 export default function TestPage({
   questions,
+  isEmptyQuestions,
 }: {
   questions: TestQuestionsType[];
+  isEmptyQuestions: boolean;
 }) {
   const [currentTime, setCurrentTime] = useState(timeDefault);
   const [isRunning, setIsRunning] = useState(false);
@@ -39,45 +41,49 @@ export default function TestPage({
   return (
     <Layout>
       <ButtonBackHome />
-      <Stack spacing={2} direction='column'>
-        <Stack
-          spacing={4}
-          direction='column'
-          sx={{ width: 1, maxWidth: '850px', mx: 'auto' }}
-        >
-          <Timer
-            timeDefault={timeDefault}
-            isRunning={isRunning}
-            setIsRunning={setIsRunning}
-            currentTime={currentTime}
-            setCurrentTime={setCurrentTime}
-          />
-          <RectangleProgressTabs
-            activeTabId='1'
-            tabsData={tabsData}
-            isTabsStatusHidden
-          />
-        </Stack>
-        <StylizedPaper title='”Node.js” question'>
-          <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>
-            {questions[numberOfQuestion].description}
-          </span>
-          <TestQuestions
-            answers={questions[numberOfQuestion].content.options}
-          />
+      {isEmptyQuestions ? (
+        <div className='text-center'>There are not any questions</div>
+      ) : (
+        <Stack spacing={2} direction='column'>
           <Stack
-            direction='row'
-            justifyContent='center'
-            alignItems='center'
             spacing={4}
+            direction='column'
+            sx={{ width: 1, maxWidth: '850px', mx: 'auto' }}
           >
-            <Button color='info'>Skip</Button>
-            <Button disabled={disabled} onClick={nextQuestionHandler}>
-              Next
-            </Button>
+            <Timer
+              timeDefault={timeDefault}
+              isRunning={isRunning}
+              setIsRunning={setIsRunning}
+              currentTime={currentTime}
+              setCurrentTime={setCurrentTime}
+            />
+            <RectangleProgressTabs
+              activeTabId='1'
+              tabsData={tabsData}
+              isTabsStatusHidden
+            />
           </Stack>
-        </StylizedPaper>
-      </Stack>
+          <StylizedPaper title='”Node.js” question'>
+            <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>
+              {questions[numberOfQuestion].description}
+            </span>
+            <TestQuestions
+              answers={questions[numberOfQuestion].content.options}
+            />
+            <Stack
+              direction='row'
+              justifyContent='center'
+              alignItems='center'
+              spacing={4}
+            >
+              <Button color='info'>Skip</Button>
+              <Button disabled={disabled} onClick={nextQuestionHandler}>
+                Next
+              </Button>
+            </Stack>
+          </StylizedPaper>
+        </Stack>
+      )}
     </Layout>
   );
 }
@@ -86,10 +92,12 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
     await store.dispatch(getQuestions());
     const { questions } = store.getState().questions;
+    const { isEmptyQuestions } = store.getState().questions;
 
     return {
       props: {
         questions,
+        isEmptyQuestions,
       },
     };
   }
