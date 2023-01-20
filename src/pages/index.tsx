@@ -1,11 +1,12 @@
 import Container from '@mui/material/Container';
+import { useEffect } from 'react';
 import { Layout } from '../components/layout/Layout';
 import { Navigation } from '../components/layout/navigation/Navigation';
 import { CardsWithQuizes } from '../components/cards/CardsWithQuizes';
 import { categories, sort } from '../Mocs/NavigationMoc';
 import { wrapper } from '../store/store';
 import { quizesApi } from '../api/quizesApi';
-import { fetchQuizesAC } from '../store/reducers/quizes-reducer';
+import { fetchQuizesAC, postQuizesAc } from '../store/reducers/quizes-reducer';
 import { QuizesType } from '../components/common/types';
 
 export default function Home({ quizes }: { quizes: QuizesType[] }) {
