@@ -26,6 +26,7 @@ export const slice = createSlice({
     }),
     [getQuestions.fulfilled.type]: (state, action) => {
       state.questions = action.payload;
+      state.isEmptyQuestions = false;
     },
     [getQuestions.rejected.type]: (state) => {
       state.isEmptyQuestions = true;
