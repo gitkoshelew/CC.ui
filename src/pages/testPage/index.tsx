@@ -26,10 +26,6 @@ export default function TestPage({
   const [disabled, setDisabled] = useState(false);
 
   const nextQuestionHandler = useCallback(() => {
-    // setIsRunning(true);
-    // setCurrentTime(timeDefault);
-    // alert(`${currentTime.minutes}:${currentTime.seconds}`);
-
     if (numberOfQuestion === questions.length - 1) {
       alert('The end');
       setDisabled(true);
