@@ -8,7 +8,7 @@ type PropsType = {
   answers: string[];
 };
 
-const TestQuestions = ({ answers }: PropsType) => {
+export const TestQuestions = ({ answers }: PropsType) => {
   const [value, setValue] = useState('');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -34,5 +34,3 @@ const TestQuestions = ({ answers }: PropsType) => {
     </Stack>
   );
 };
-
-export default TestQuestions;

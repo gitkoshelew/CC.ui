@@ -7,11 +7,12 @@ import { tabsData } from '../../Mocs/RectangleProgressBarMoc';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Timer } from '../../components/Timer/Timer';
 import { timeDefault } from '../../Mocs/TimerMock';
-import TestQuestions from './TestQuestions';
+
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 import { wrapper } from '../../store/store';
 import { getQuestions } from '../../store/reducers/questions-reducer';
 import { TestQuestionsType } from '../../Types/TestQuestionsType';
+import { TestQuestions } from './TestQuestions';
 
 export default function TestPage({
   questions,
