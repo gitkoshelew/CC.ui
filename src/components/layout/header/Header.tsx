@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { FullHeader } from './FullHeader/FullHeader';
 import { DefaultHeader } from './DefaultHeader/DefaultHeader';
 
@@ -13,5 +12,5 @@ const headersMap = {
   full: <FullHeader />,
 };
 
-export const Header: FC<HeaderPropsType> = ({ headerType = 'default' }) =>
+export const Header = ({ headerType = 'default' }: HeaderPropsType) =>
   headersMap[headerType];

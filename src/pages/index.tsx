@@ -1,11 +1,12 @@
 import Container from '@mui/material/Container';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Layout } from '../components/layout/Layout';
 import { Navigation } from '../components/layout/navigation/Navigation';
 import { CardsWithQuizes } from '../components/cards/CardsWithQuizes';
 import { categories, sort } from '../Mocs/NavigationMoc';
 import { wrapper } from '../store/store';
-import { quizesApi } from '../api/quizesApi';
 import { fetchQuizesAC } from '../store/reducers/quizes-reducer';
+import { quizesApi } from '../api/quizesApi';
 import { QuizesType } from '../components/common/types';
 
 export default function Home({ quizes }: { quizes: QuizesType[] }) {
@@ -20,14 +21,16 @@ export default function Home({ quizes }: { quizes: QuizesType[] }) {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    const res = await quizesApi.getQuizes();
-    store.dispatch(fetchQuizesAC(res.data));
+  (store) =>
+    async ({ locale }) => {
+      const res = await quizesApi.getQuizes();
+      store.dispatch(fetchQuizesAC(res.data));
 
-    return {
-      props: {
-        quizes: res.data,
-      },
-    };
-  }
+      return {
+        props: {
+          quizes: res.data,
+          ...(await serverSideTranslations(locale as string, ['home'])),
+        },
+      };
+    }
 );

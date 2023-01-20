@@ -2,14 +2,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
-import { FC, useState } from 'react';
+import { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 
 type SortingType = {
   sort: string[];
 };
-
-export const Sorting: FC<SortingType> = ({ sort }) => {
+export const Sorting = ({ sort }: SortingType) => {
   const [value, setValue] = useState('1');
+  const { t } = useTranslation('home');
 
   const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value);
@@ -52,7 +53,9 @@ export const Sorting: FC<SortingType> = ({ sort }) => {
         value={value}
         onChange={handleChange}
       >
-        {sort.map((item, index) => (
+        {t<string, string[]>('sortNavigation', {
+          returnObjects: true,
+        }).map((item, index) => (
           <MenuItem
             sx={{
               typography: 'subtitle1',

@@ -52,6 +52,7 @@
       }
     ],
     "react/react-in-jsx-scope": 0,
+    "react/button-has-type": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

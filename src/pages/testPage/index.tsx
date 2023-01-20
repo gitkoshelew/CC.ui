@@ -1,6 +1,7 @@
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { Layout } from '../../components/layout/Layout';
 import { tabsData } from '../../Mocs/RectangleProgressBarMoc';
@@ -14,6 +15,7 @@ import { RectangleProgressTabs } from '../../components/common/Tabs/RectanglePro
 const TestPage = () => {
   const [currentTime, setCurrentTime] = useState(timeDefault);
   const [isRunning, setIsRunning] = useState(false);
+  const { t } = useTranslation('home');
 
   const nextQuestionHandler = useCallback(() => {
     setIsRunning(true);
@@ -55,7 +57,7 @@ const TestPage = () => {
             alignItems='center'
             spacing={4}
           >
-            <Button color='info'>Skip</Button>
+            <Button color='info'>{t('skip')}</Button>
             <Button onClick={nextQuestionHandler}>Next</Button>
           </Stack>
         </StylizedPaper>

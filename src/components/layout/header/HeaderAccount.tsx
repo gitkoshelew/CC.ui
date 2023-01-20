@@ -4,7 +4,6 @@ import { userData } from '../../../Mocs/HeaderMoc';
 
 export const HeaderAccount = () => {
   const { avatar, name } = userData;
-
   return (
     <>
       {avatar ? (
@@ -17,7 +16,7 @@ export const HeaderAccount = () => {
         overflow='hidden'
         whiteSpace='nowrap'
         maxWidth={240}
-        href='/home'
+        href='/'
         underline='hover'
         display={{ xs: 'none', sm: 'initial' }}
         color='primary.contrastText'

@@ -1,0 +1,12 @@
+{
+  "liveCodding": "Live Codding",
+  "myTests": "My tests",
+  "title": "Some text",
+  "users": "Users",
+  "testList": "Test list",
+  "createTest": "Create test",
+  "sortNavigation": ["Verify", "Date", "Popularity", "Something else"],
+  "categories": ["All", "Category 1", "Category 2", "Node.js", "Category 4"],
+  "start": "Start",
+  "skip": "Skip"
+}
