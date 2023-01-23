@@ -1,5 +1,5 @@
 import { createTheme, Shadows } from '@mui/material';
-import commonDefaultTheme from './commonDefaultTheme.js';
+import commonDefaultTheme from './commonDefaultTheme';
 
 const commonTheme = {
   palette: { ...commonDefaultTheme.palette, mode: 'light' },

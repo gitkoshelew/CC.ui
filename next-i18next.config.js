@@ -4,21 +4,16 @@ module.exports = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'ru'],
+    localeDetection: false,
     localePath: path.resolve('./public/locales'),
+    // async rewrites() {
+    //   return [
+    //     {
+    //       source: '/ru/страницаТеста',
+    //       destination: '/en/testPage',
+    //       locale: false,
+    //     },
+    //   ];
+    // },
   },
 };
-// i18n
-//   .use(Backend)
-//   .use(LanguageDetector)
-//   .use(initReactI18next)
-//   .init({
-//     fallbackLng: 'ru',
-//     debug: true,
-//     detection: {
-//       order: ['queryString', 'cookie'],
-//       cache: ['cookie'],
-//     },
-//     interpolation: {
-//       escapeValue: false,
-//     },
-//   });

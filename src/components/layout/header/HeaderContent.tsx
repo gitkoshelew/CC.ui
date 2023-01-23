@@ -8,7 +8,6 @@ import { HeaderAccount } from './HeaderAccount';
 
 export const HeaderContent = () => {
   const { locale } = useRouter();
-  // const { locale, locales, push } = useRouter();
   return (
     <Container>
       <Stack
@@ -26,7 +25,7 @@ export const HeaderContent = () => {
           <IconButton>
             <MoonIcon />
           </IconButton>
-          <Link href='/' locale={locale === 'en' ? 'ru' : 'en'}>
+          <Link href=' ' locale={locale === 'en' ? 'ru' : 'en'}>
             {locale}
           </Link>
         </Stack>

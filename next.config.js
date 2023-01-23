@@ -1,5 +1,3 @@
-/** @type {import('next').NextConfig} */
-// eslint-disable-next-line import/extensions
 const { i18n } = require('./next-i18next.config');
 
 const nextConfig = {
