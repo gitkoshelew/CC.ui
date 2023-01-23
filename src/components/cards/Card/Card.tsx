@@ -1,4 +1,5 @@
 import { Button, Typography } from '@mui/material';
+import Link from 'next/link';
 
 type PropsCardType = {
   title: string;
@@ -26,7 +27,9 @@ export const Card = ({ title, date, userName, status }: PropsCardType) => (
         </p>
       </div>
       <div className='flex flex-col text-center items-center gap-4'>
-        <Button href='/testPage'>Start</Button>
+        <Link href='/testPage'>
+          <Button>Start</Button>
+        </Link>
         <div>
           <span className='text-text-primaryAlpha300'>Created: </span>
           {date}
