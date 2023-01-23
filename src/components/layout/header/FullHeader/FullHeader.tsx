@@ -2,6 +2,7 @@ import Box from '@mui/system/Box';
 import { Button, Stack, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
 import { HeaderContent } from '../HeaderContent';
 import { FullHeaderWrapper } from './FullHeaderWrapper';
 import { ListIcon } from '../../../../assets/icons/ListIcon';
@@ -10,7 +11,6 @@ import { HeaderStatistic } from '../HeaderStatistic';
 
 export const FullHeader = () => {
   const { t } = useTranslation('home');
-
   return (
     <FullHeaderWrapper>
       <Stack height={1} bgcolor='rgba(0, 0, 0, 0.5)'>
@@ -36,9 +36,11 @@ export const FullHeader = () => {
               sx={{ '& .MuiButton-contained': { px: { xs: 2, md: 5 } } }}
               role='menubar'
             >
-              <Button color='info' variant='contained'>
-                {t('createTest')}
-              </Button>
+              <Link href='/create-test'>
+                <Button color='info' variant='contained'>
+                  {t('createTest')}
+                </Button>
+              </Link>
               <Button
                 color='info'
                 variant='contained'

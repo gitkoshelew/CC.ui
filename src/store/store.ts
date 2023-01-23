@@ -2,9 +2,11 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
 import { quizzesReducer } from './reducers/quizes-reducer';
+import { questionsReducer } from './reducers/questions-reducer';
 
 const reducers = {
   quizzes: quizzesReducer,
+  questions: questionsReducer,
 };
 
 const reducer = combineReducers(reducers);
