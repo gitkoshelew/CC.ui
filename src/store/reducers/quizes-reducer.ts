@@ -1,6 +1,15 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { QuizesType } from '../../components/common/types';
+import { quizesApi } from '../../api/quizesApi';
+
+export const fetchQuizes = createAsyncThunk(
+  'quizes/getQuizesThunk',
+  async () => {
+    const response = await quizesApi.getQuizes();
+    return response.data;
+  }
+);
 
 export const slice = createSlice({
   name: 'quizes',
@@ -20,6 +29,9 @@ export const slice = createSlice({
       ...state,
       ...action.payload.quizes,
     }),
+    [fetchQuizes.fulfilled.type]: (state, action) => {
+      state.quizes = action.payload;
+    },
   },
 });
 

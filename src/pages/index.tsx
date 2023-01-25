@@ -6,9 +6,8 @@ import { Navigation } from '../components/layout/navigation/Navigation';
 import { CardsWithQuizes } from '../components/cards/CardsWithQuizes';
 import { categories, sort } from '../Mocs/NavigationMoc';
 import { wrapper } from '../store/store';
-import { fetchQuizesAC } from '../store/reducers/quizes-reducer';
-import { quizesApi } from '../api/quizesApi';
 import { QuizesType } from '../components/common/types';
+import { fetchQuizes } from '../store/reducers/quizes-reducer';
 
 export default function Home({ quizes }: { quizes: QuizesType[] }) {
   return (
@@ -23,12 +22,12 @@ export default function Home({ quizes }: { quizes: QuizesType[] }) {
 
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ locale }) => {
-    const res = await quizesApi.getQuizes();
-    store.dispatch(fetchQuizesAC(res.data));
+    await store.dispatch(fetchQuizes());
+    const { quizes } = store.getState().quizzes;
 
     return {
       props: {
-        quizes: res.data,
+        quizes,
         ...(await serverSideTranslations(locale as string, [
           'home',
           'testPage',

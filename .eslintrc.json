@@ -52,7 +52,7 @@
       }
     ],
     "react/react-in-jsx-scope": 0,
-//    "import/extensions""off",
+    "import/named":"off",
     "react/button-has-type": "off",
     "import/extensions": [
       "error",
