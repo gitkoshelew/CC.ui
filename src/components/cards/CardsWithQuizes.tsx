@@ -2,7 +2,7 @@ import { Card } from './Card/Card';
 import { QuizesType } from '../common/types';
 
 type PropsCardsType = {
-  quizes: QuizesType[];
+  quizes?: QuizesType[];
 };
 
 export const CardsWithQuizes = ({ quizes }: PropsCardsType) =>

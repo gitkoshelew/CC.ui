@@ -1,13 +1,15 @@
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { GetServerSideProps } from 'next';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { Layout } from '../../components/layout/Layout';
 import { tabsData } from '../../Mocs/RectangleProgressBarMoc';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Timer } from '../../components/Timer/Timer';
 import { timeDefault } from '../../Mocs/TimerMock';
-
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 import { wrapper } from '../../store/store';
 import { getQuestions } from '../../store/reducers/questions-reducer';
@@ -23,6 +25,7 @@ export default function TestPage({
 }) {
   const [currentTime, setCurrentTime] = useState(timeDefault);
   const [isRunning, setIsRunning] = useState(false);
+  const { t } = useTranslation('testPage');
   const [numberOfQuestion, setQuestion] = useState(0);
   const [disabled, setDisabled] = useState(false);
 
@@ -73,9 +76,9 @@ export default function TestPage({
               alignItems='center'
               spacing={4}
             >
-              <Button color='info'>Skip</Button>
+              <Button color='info'>{t('skip')}</Button>
               <Button disabled={disabled} onClick={nextQuestionHandler}>
-                Next
+                {t('next')}
               </Button>
             </Stack>
           </StylizedPaper>
@@ -85,8 +88,8 @@ export default function TestPage({
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps((store) => async ({ locale }) => {
     await store.dispatch(getQuestions());
     const { questions } = store.getState().questions;
     const { isEmptyQuestions } = store.getState().questions;
@@ -95,7 +98,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
       props: {
         questions,
         isEmptyQuestions,
+        ...(await serverSideTranslations(locale as string, [
+          'home',
+          'testPage',
+        ])),
       },
     };
-  }
-);
+  });

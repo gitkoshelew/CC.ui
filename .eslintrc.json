@@ -52,12 +52,15 @@
       }
     ],
     "react/react-in-jsx-scope": 0,
+    "import/named":"off",
+    "react/button-has-type": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
       {
         "ts": "never",
-        "tsx": "never"
+        "tsx": "never",
+        "js": "never"
       }
     ],
     "no-shadow": "off",
