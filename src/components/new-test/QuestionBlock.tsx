@@ -5,15 +5,22 @@ import { SuperSelect } from './SuperSelect';
 import { SuperInput } from './SuperInput';
 import { Timer } from './Timer';
 
+
 type QuestionBlockType = {
   value: string;
+  difficultyValue: string;
   handleTypeChange: (event: SelectChangeEvent) => void;
+  handleDifficultyChange: (event: SelectChangeEvent) => void;
   items: string[];
+  difficultyItems: string[];
 };
 
 export const QuestionBlock = ({
   value,
+  difficultyValue,
   handleTypeChange,
+  difficultyItems,
+  handleDifficultyChange,
   items,
 }: QuestionBlockType) => (
   <Stack spacing={2}>
@@ -24,12 +31,22 @@ export const QuestionBlock = ({
           value='Which core module in Node can you use for testing?'
         />
       </Box>
-      <Box sx={{ flexGrow: 1 }}>
+    </Stack>
+    <Stack direction='row' flexWrap='wrap' spacing={3}>
+      <Box sx={{ flexGrow: 0.5 }}>
         <SuperSelect
           title='Questions type:'
           value={value}
           items={items}
           handleChange={handleTypeChange}
+        />
+      </Box>
+      <Box sx={{ flexGrow: 0.5 }}>
+        <SuperSelect
+            title='Difficulty:'
+            value={difficultyValue}
+            items={difficultyItems}
+            handleChange={handleDifficultyChange}
         />
       </Box>
       <Box sx={{ maxWidth: '114px' }}>

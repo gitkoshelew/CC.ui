@@ -5,14 +5,15 @@ import { QuestionBlock } from '../../components/new-test/QuestionBlock';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { ButtonSaveTest } from '../../components/new-test/ButtonSaveTest';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
-import { level, numberQuestions, themes, types } from '../../Mocs/NewTestMoc';
+import { level, numberQuestions, themes, types, difficulties} from '../../Mocs/NewTestMoc';
 import { SettingsBlock } from '../../components/new-test/SettingsBlock';
 import { QuestionTabs } from '../../components/common/Tabs/QuestionTabs/QuestionTabs';
 import { questionsData } from '../../Mocs/QuestionTabsMoc';
 
 export default function NewTest() {
   const [themeValue, setThemeValue] = useState('3');
-  const [typeValue, setTypeValue] = useState('0');
+  const [typeValue, setTypeValue] = useState('1');
+  const [difficultyValue, setDifficultyValue] = useState('1')
 
   const handleThemeChange = (event: SelectChangeEvent) => {
     setThemeValue(event.target.value);
@@ -20,6 +21,9 @@ export default function NewTest() {
   const handleTypeChange = (event: SelectChangeEvent) => {
     setTypeValue(event.target.value);
   };
+  const handleDifficultyChange = (event: SelectChangeEvent) => {
+    setDifficultyValue(event.target.value)
+  }
 
   return (
     <Layout>
@@ -35,8 +39,11 @@ export default function NewTest() {
         <QuestionTabs activeQuestionId='' questionsData={questionsData} />
         <QuestionBlock
           value={typeValue}
+          difficultyValue={difficultyValue}
           handleTypeChange={handleTypeChange}
+          handleDifficultyChange={handleDifficultyChange}
           items={types}
+          difficultyItems={difficulties}
         />
         <ButtonSaveTest />
       </StylizedPaper>
