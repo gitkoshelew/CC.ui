@@ -23,4 +23,4 @@ export type AppStore = ReturnType<typeof makeStore>;
 
 export const wrapper = createWrapper<AppStore>(makeStore);
 
-export const useAppSelector: TypedUseSelectorHook<AppStore> = useSelector;
+export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
