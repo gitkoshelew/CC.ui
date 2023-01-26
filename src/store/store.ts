@@ -3,10 +3,12 @@ import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
 import { quizzesReducer } from './reducers/quizes-reducer';
 import { questionsReducer } from './reducers/questions-reducer';
+import { errorHandlerReducer } from './reducers/errorHandler-reducer';
 
 const reducers = {
   quizzes: quizzesReducer,
   questions: questionsReducer,
+  error: errorHandlerReducer,
 };
 
 const reducer = combineReducers(reducers);
