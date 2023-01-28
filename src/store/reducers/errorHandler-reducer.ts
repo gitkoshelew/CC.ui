@@ -1,19 +1,9 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { HYDRATE } from 'next-redux-wrapper';
-
-// export const getQuestions = createAsyncThunk(
-//   'questions/getQuestions',
-//   async () => {
-//     const response = await questionsApi.getQuestions();
-//     return response.data;
-//   }
-// );
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getQuestions } from './questions-reducer';
 
 export const slice = createSlice({
-  // 1:34:00 не забыть удалить эту строку потом
   name: 'error',
   initialState: {
-    // questions: [] as TestQuestionsType[],
     error: null as null | string,
   },
   reducers: {
@@ -25,8 +15,13 @@ export const slice = createSlice({
   extraReducers: {
     // [HYDRATE]: (state, action) => ({
     //   ...state,
-    //   ...action.payload.questions,
+    //   ...action.error,
     // }),
+    [getQuestions.rejected.type]: (state, action) => {
+      state.error = action.payload;
+      console.log(' error-reducer-action', action.payload);
+      console.log(' error-reducer-state', state.error);
+    },
   },
 });
 
