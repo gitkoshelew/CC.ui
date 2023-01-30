@@ -12,8 +12,8 @@ import { questionsData } from '../../Mocs/QuestionTabsMoc';
 
 export default function NewTest() {
   const [themeValue, setThemeValue] = useState('3');
-  const [typeValue, setTypeValue] = useState('1');
-  const [difficultyValue, setDifficultyValue] = useState('1')
+  const [typeValue, setTypeValue] = useState('0');
+  const [difficulty, setDifficultyValue] = useState('0')
 
   const handleThemeChange = (event: SelectChangeEvent) => {
     setThemeValue(event.target.value);
@@ -39,11 +39,10 @@ export default function NewTest() {
         <QuestionTabs activeQuestionId='' questionsData={questionsData} />
         <QuestionBlock
           value={typeValue}
-          difficultyValue={difficultyValue}
+          difficulty={difficulty}
           handleTypeChange={handleTypeChange}
-          handleDifficultyChange={handleDifficultyChange}
+          onDifficultyChange={handleDifficultyChange}
           items={types}
-          difficultyItems={difficulties}
         />
         <ButtonSaveTest />
       </StylizedPaper>

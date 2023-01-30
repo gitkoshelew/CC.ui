@@ -4,25 +4,28 @@ import { PlusIcon } from '../../assets/icons/PlusIcon';
 import { SuperSelect } from './SuperSelect';
 import { SuperInput } from './SuperInput';
 import { Timer } from './Timer';
+import {useAppSelector} from "../../store/store";
+import {difficultySelector} from "../../store/reducers/difficulty-reducer";
 
 
 type QuestionBlockType = {
   value: string;
-  difficultyValue: string;
+  difficulty: string;
   handleTypeChange: (event: SelectChangeEvent) => void;
-  handleDifficultyChange: (event: SelectChangeEvent) => void;
+  onDifficultyChange: (event: SelectChangeEvent) => void;
   items: string[];
-  difficultyItems: string[];
+
 };
 
 export const QuestionBlock = ({
   value,
-  difficultyValue,
+  difficulty,
   handleTypeChange,
-  difficultyItems,
-  handleDifficultyChange,
+  onDifficultyChange,
   items,
-}: QuestionBlockType) => (
+}: QuestionBlockType) => {
+    const difficultyItems = useAppSelector(difficultySelector.difficultyItems)
+    return (
   <Stack spacing={2}>
     <Stack direction='row' flexWrap='wrap' spacing={3}>
       <Box sx={{ flexGrow: 1 }}>
@@ -44,9 +47,9 @@ export const QuestionBlock = ({
       <Box sx={{ flexGrow: 0.5 }}>
         <SuperSelect
             title='Difficulty:'
-            value={difficultyValue}
+            value={difficulty}
             items={difficultyItems}
-            handleChange={handleDifficultyChange}
+            handleChange={onDifficultyChange}
         />
       </Box>
       <Box sx={{ maxWidth: '114px' }}>
@@ -62,4 +65,4 @@ export const QuestionBlock = ({
       </Stack>
     </Stack>
   </Stack>
-);
+)};
