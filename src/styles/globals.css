@@ -40,10 +40,10 @@ body {
     height: 8px;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+/*a {*/
+/*    color: inherit;*/
+/*    text-decoration: none;*/
+/*}*/
 
 * {
     box-sizing: border-box;

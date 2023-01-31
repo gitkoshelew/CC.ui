@@ -25,7 +25,11 @@ export const HeaderContent = () => {
           <IconButton>
             <MoonIcon />
           </IconButton>
-          <Link href=' ' locale={locale === 'en' ? 'ru' : 'en'}>
+          <Link
+            href=' '
+            locale={locale === 'en' ? 'ru' : 'en'}
+            className='no-underline text-inherit'
+          >
             {locale}
           </Link>
         </Stack>

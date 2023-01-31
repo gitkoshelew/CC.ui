@@ -154,6 +154,7 @@ export const defaultTheme = createTheme({
           '& .MuiInputBase-input': {
             typography: 'inputTitle',
             py: '10px',
+            color: 'info',
           },
         },
       },
