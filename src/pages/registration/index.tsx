@@ -1,5 +1,5 @@
 import Stack from '@mui/material/Stack';
-import { Checkbox, FormGroup, TextField } from '@mui/material';
+import { FormGroup, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
@@ -9,7 +9,7 @@ import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPap
 import { Layout } from '../../components/layout/Layout';
 import { wrapper } from '../../store/store';
 
-const LoginPage = () => {
+const SignUpPage = () => {
   const { t } = useTranslation('home');
   return (
     <Layout>
@@ -23,30 +23,24 @@ const LoginPage = () => {
           my: 'auto',
         }}
       >
-        <StylizedPaper title='Log in'>
+        <StylizedPaper title='Sign Up'>
           <FormGroup className='text-sm'>
             <span>Email</span>
             <TextField type='email' className='mb-4' />
             <span>Password</span>
             <TextField type='password' className='mb-4' />
-            <div className='flex justify-between items-center'>
-              <Checkbox
-                size='small'
-                sx={{ color: '#2D3E6B', padding: '0px' }}
-              />
-              <span>Remember me</span>
-              <a href=' '>Forgotten password?</a>
-            </div>
+            <span>Confirm Password</span>
+            <TextField type='password' />
           </FormGroup>
           <div className='flex justify-center'>
-            <Button>Login</Button>
+            <Button>Sign Up</Button>
           </div>
           <hr className='h-px w-80 bg-neutral-300' />
-          <span className='flex justify-center text-slate-500'>
-            Dont you have an account?
+          <span className=' flex justify-center text-slate-500'>
+            Already registered?
           </span>
-          <Link href='/registration' className='flex justify-center'>
-            Create new account?
+          <Link href='/login' className='flex justify-center'>
+            Login
           </Link>
         </StylizedPaper>
       </Stack>
@@ -54,7 +48,7 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;
 
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(() => async ({ locale }) => ({
