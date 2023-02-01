@@ -1,26 +1,37 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
+import { AlertColor } from '@mui/material/Alert/Alert';
 import { getQuestions } from './questions-reducer';
+import { fetchQuizes } from './quizes-reducer';
 
+type ErrorInitialState = {
+  noticeText: null | string;
+  noticeStatus: AlertColor;
+};
+
+const initialState: ErrorInitialState = {
+  noticeText: null,
+  noticeStatus: 'error',
+};
 export const slice = createSlice({
   name: 'error',
-  initialState: {
-    error: null as null | string,
-  },
+  initialState,
   reducers: {
     changeError(state, action: PayloadAction<null | string>) {
-      state.error = action.payload;
+      state.noticeText = action.payload;
     },
   },
 
   extraReducers: {
-    // [HYDRATE]: (state, action) => ({
-    //   ...state,
-    //   ...action.error,
-    // }),
+    [HYDRATE]: (state, action) => ({
+      ...state,
+      ...action.payload.error,
+    }),
     [getQuestions.rejected.type]: (state, action) => {
-      state.error = action.payload;
-      console.log(' error-reducer-action', action.payload);
-      console.log(' error-reducer-state', state.error);
+      state.noticeText = action.payload;
+    },
+    [fetchQuizes.rejected.type]: (state, action) => {
+      state.noticeText = action.payload;
     },
   },
 });

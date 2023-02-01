@@ -13,7 +13,6 @@ export const getQuestions = createAsyncThunk(
       return response.data;
     } catch (e) {
       const err = e as AxiosError;
-      console.log('reducer-Question', err.message);
       return rejectWithValue(err.message);
     }
   }

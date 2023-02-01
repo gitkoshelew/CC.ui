@@ -1,9 +1,9 @@
 import React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
-import { useDispatch, useSelector } from 'react-redux';
-import { yellow } from '@colors/colors';
-import { AppState, AppStore, useAppSelector } from '../../store/store';
+import { useDispatch } from 'react-redux';
+
+import { useAppSelector } from '../../store/store';
 import { changeError } from '../../store/reducers/errorHandler-reducer';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
@@ -11,11 +11,8 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
 ));
 
 export function ErrorSnackbar() {
-  // const error = useSelector<AppState, string | null>(
-  //   (state) => state.error.error
-  // );
-  const error = useAppSelector((state) => state.error.error);
-  console.log('error-Handler', error);
+  const noticeText = useAppSelector((state) => state.error.noticeText);
+  const noticeStatus = useAppSelector((state) => state.error.noticeStatus);
 
   const dispatch = useDispatch();
   const handleClose = (
@@ -30,13 +27,17 @@ export function ErrorSnackbar() {
 
   return (
     <Snackbar
-      open={!!error}
-      autoHideDuration={6000}
+      open={!!noticeText}
+      autoHideDuration={3000}
       onClose={handleClose}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
     >
-      <Alert onClose={handleClose} severity='error' sx={{ width: '100%' }}>
-        {error}
+      <Alert
+        onClose={handleClose}
+        severity={noticeStatus}
+        sx={{ width: '100%' }}
+      >
+        {noticeText}
       </Alert>
     </Snackbar>
   );
