@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
+import { AxiosError } from 'axios';
 import { QuizesType } from '../../components/common/types';
 import { quizesApi } from '../../api/quizesApi';
-import { AxiosError } from 'axios';
 
 export const fetchQuizes = createAsyncThunk(
   'quizes/getQuizesThunk',

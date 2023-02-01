@@ -10,7 +10,7 @@ import { level, numberQuestions, themes, types } from '../../Mocs/NewTestMoc';
 import { SettingsBlock } from '../../components/new-test/SettingsBlock';
 import { QuestionTabs } from '../../components/common/Tabs/QuestionTabs/QuestionTabs';
 import { questionsData } from '../../Mocs/QuestionTabsMoc';
-import { postQuizes, postQuizesAC } from '../../store/reducers/quizes-reducer';
+import { postQuizes } from '../../store/reducers/quizes-reducer';
 
 export default function NewTest() {
   const [themeValue, setThemeValue] = useState('3');
@@ -22,8 +22,8 @@ export default function NewTest() {
   const handleTypeChange = (event: SelectChangeEvent) => {
     setTypeValue(event.target.value);
   };
-  const sendData = (event: SelectChangeEvent) => {
-    dispatch(postQuizesAC)
+  const sendData = () => {
+    dispatch(postQuizes as any)
   };
 
 
