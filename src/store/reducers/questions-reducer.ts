@@ -1,14 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
+import { AxiosError } from 'axios';
 import { TestQuestionsType } from '../../Types/TestQuestionsType';
 import { questionsApi } from '../../api/questionsApi';
 
 export const getQuestions = createAsyncThunk(
   'questions/getQuestions',
-  async () => {
-    const response = await questionsApi.getQuestions();
-    return response.data;
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await questionsApi.getQuestions();
+      return response.data;
+    } catch (e) {
+      const err = e as AxiosError;
+      return rejectWithValue(err.message);
+    }
   }
 );
 

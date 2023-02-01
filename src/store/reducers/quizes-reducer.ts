@@ -1,13 +1,19 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
+import { AxiosError } from 'axios';
 import { QuizesType } from '../../components/common/types';
 import { quizesApi } from '../../api/quizesApi';
 
 export const fetchQuizes = createAsyncThunk(
   'quizes/getQuizesThunk',
-  async () => {
-    const response = await quizesApi.getQuizes();
-    return response.data;
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await quizesApi.getQuizes();
+      return response.data;
+    } catch (e) {
+      const err = e as AxiosError;
+      return rejectWithValue(err.message);
+    }
   }
 );
 
