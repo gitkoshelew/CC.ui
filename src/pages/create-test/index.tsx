@@ -1,5 +1,6 @@
 import { SelectChangeEvent } from '@mui/material/Select';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Layout } from '../../components/layout/Layout';
 import { QuestionBlock } from '../../components/new-test/QuestionBlock';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
@@ -9,17 +10,22 @@ import { level, numberQuestions, themes, types } from '../../Mocs/NewTestMoc';
 import { SettingsBlock } from '../../components/new-test/SettingsBlock';
 import { QuestionTabs } from '../../components/common/Tabs/QuestionTabs/QuestionTabs';
 import { questionsData } from '../../Mocs/QuestionTabsMoc';
+import { postQuizes, postQuizesAC } from '../../store/reducers/quizes-reducer';
 
 export default function NewTest() {
   const [themeValue, setThemeValue] = useState('3');
   const [typeValue, setTypeValue] = useState('0');
-
+  const dispatch = useDispatch();
   const handleThemeChange = (event: SelectChangeEvent) => {
     setThemeValue(event.target.value);
   };
   const handleTypeChange = (event: SelectChangeEvent) => {
     setTypeValue(event.target.value);
   };
+  const sendData = (event: SelectChangeEvent) => {
+    dispatch(postQuizesAC)
+  };
+
 
   return (
     <Layout>
@@ -38,7 +44,7 @@ export default function NewTest() {
           handleTypeChange={handleTypeChange}
           items={types}
         />
-        <ButtonSaveTest />
+        <ButtonSaveTest sendData={sendData}/>
       </StylizedPaper>
     </Layout>
   );
