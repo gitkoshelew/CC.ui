@@ -3,12 +3,12 @@ import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
 import { quizzesReducer } from './reducers/quizes-reducer';
 import { questionsReducer } from './reducers/questions-reducer';
-import { appReducer } from './reducers/app-reducer';
+import {appReducer} from "./reducers/app-reducer";
 
 const reducers = {
   quizzes: quizzesReducer,
   questions: questionsReducer,
-  app: appReducer,
+  app: appReducer
 };
 
 const reducer = combineReducers(reducers);
@@ -23,4 +23,4 @@ export type AppStore = ReturnType<typeof makeStore>;
 
 export const wrapper = createWrapper<AppStore>(makeStore);
 
-export const useAppSelector: TypedUseSelectorHook<AppStore> = useSelector;
+export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;

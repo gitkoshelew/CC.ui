@@ -10,12 +10,11 @@ import { useAppSelector, wrapper } from '../store/store';
 import { QuizesType } from '../components/common/types';
 import { fetchQuizes } from '../store/reducers/quizes-reducer';
 
-export default function Home({ quizes }: { quizes: QuizesType[] }) {
-  const status = useAppSelector((state) => state.app.status);
+export default function Home({ quizes , status }: { quizes: QuizesType[] , status: string}) {
+  // const status = useAppSelector((state) => state.app.status);
   return (
     <Layout headerType='full'>
       <Container>
-        {status === 'loading' && <LinearProgress />}
         <Navigation sort={sort} categories={categories} />
         <CardsWithQuizes quizes={quizes} />
       </Container>
@@ -27,10 +26,11 @@ export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ locale }) => {
     await store.dispatch(fetchQuizes());
     const { quizes } = store.getState().quizzes;
-
+    const { status } = store.getState().app;
     return {
       props: {
         quizes,
+          status,
         ...(await serverSideTranslations(locale as string, [
           'home',
           'testPage',
