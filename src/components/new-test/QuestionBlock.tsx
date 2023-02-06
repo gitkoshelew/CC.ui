@@ -6,9 +6,15 @@ import { SuperInput } from './SuperInput';
 import { Timer } from './Timer';
 import { useAppSelector } from '../../store/store';
 
+enum Difficulty {
+  Easy = '0',
+  Medium = '1',
+  Hard = '2'
+}
+
 type QuestionBlockType = {
   value: string;
-  difficulty: string;
+  difficulty: Difficulty;
   handleTypeChange: (event: SelectChangeEvent) => void;
   onDifficultyChange: (event: SelectChangeEvent) => void;
   items: string[];
