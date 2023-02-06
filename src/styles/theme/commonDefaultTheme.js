@@ -11,10 +11,10 @@ module.exports = {
       contrastText: '#ffffff',
     },
     background: {
-      default: '#F2F2F2',
+      default: '#F0F0F0',
       defaultAccent1: '#DFDFDF',
       paper: '#FFFFFF',
-      paperAccent1: '#FAFAFA',
+      paperAccent1: '#F0F0F0',
       paperAccent2: '#F0F0F0',
       border: 'rgba(0, 0, 0, 0.2)',
       shadow: 'rgba(0, 0, 0, 0.2)',

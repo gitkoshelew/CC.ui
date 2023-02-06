@@ -3,13 +3,19 @@ import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
 import { quizzesReducer } from './reducers/quizes-reducer';
 import { questionsReducer } from './reducers/questions-reducer';
+<<<<<<< HEAD
 import { difficultyReducer } from './reducers/difficulty-reducer';
+=======
+>>>>>>> fbb8cd68355f1892ca709871086f3f398800e676
 import { errorHandlerReducer } from './reducers/errorHandler-reducer';
 
 const reducers = {
   quizzes: quizzesReducer,
   questions: questionsReducer,
+<<<<<<< HEAD
   difficulty: difficultyReducer,
+=======
+>>>>>>> fbb8cd68355f1892ca709871086f3f398800e676
   error: errorHandlerReducer,
 };
 
