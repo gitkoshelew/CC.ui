@@ -10,15 +10,25 @@ import { SettingsBlock } from '../../components/new-test/SettingsBlock';
 import { QuestionTabs } from '../../components/common/Tabs/QuestionTabs/QuestionTabs';
 import { questionsData } from '../../Mocs/QuestionTabsMoc';
 
+enum Difficulty {
+  Easy = '0',
+  Medium = '1',
+  Hard = '2',
+}
+
 export default function NewTest() {
   const [themeValue, setThemeValue] = useState('3');
   const [typeValue, setTypeValue] = useState('0');
+  const [difficulty, setDifficultyValue] = useState(Difficulty.Easy);
 
   const handleThemeChange = (event: SelectChangeEvent) => {
     setThemeValue(event.target.value);
   };
   const handleTypeChange = (event: SelectChangeEvent) => {
     setTypeValue(event.target.value);
+  };
+  const handleDifficultyChange = (event: SelectChangeEvent) => {
+    setDifficultyValue(event.target.value as Difficulty);
   };
 
   return (
@@ -35,7 +45,9 @@ export default function NewTest() {
         <QuestionTabs activeQuestionId='' questionsData={questionsData} />
         <QuestionBlock
           value={typeValue}
+          difficulty={difficulty}
           handleTypeChange={handleTypeChange}
+          onDifficultyChange={handleDifficultyChange}
           items={types}
         />
         <ButtonSaveTest />
