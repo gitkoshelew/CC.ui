@@ -4,11 +4,13 @@ import { createWrapper } from 'next-redux-wrapper';
 import { quizzesReducer } from './reducers/quizes-reducer';
 import { questionsReducer } from './reducers/questions-reducer';
 import { difficultyReducer } from './reducers/difficulty-reducer';
+import { errorHandlerReducer } from './reducers/errorHandler-reducer';
 
 const reducers = {
   quizzes: quizzesReducer,
   questions: questionsReducer,
   difficulty: difficultyReducer,
+  error: errorHandlerReducer,
 };
 
 const reducer = combineReducers(reducers);

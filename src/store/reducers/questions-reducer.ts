@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
+import { AxiosError } from 'axios';
 import { TestQuestionsType } from '../../Types/TestQuestionsType';
 import { questionsApi } from '../../api/questionsApi';
 
