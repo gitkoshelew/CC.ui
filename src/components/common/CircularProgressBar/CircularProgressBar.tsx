@@ -14,7 +14,7 @@ export const CircularProgressBar = ({
   size = 166,
   ...props
 }: CircularProgressProps & CircularProgressBar) => (
-  <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+  <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
     <CircularProgress
       variant='determinate'
       value={100}
