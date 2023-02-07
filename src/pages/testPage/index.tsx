@@ -13,7 +13,7 @@ import { timeDefault } from '../../Mocs/TimerMock';
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 import { wrapper } from '../../store/store';
 import { getQuestions } from '../../store/reducers/questions-reducer';
-import { TestQuestionsType } from '../../Types/TestQuestionsType';
+import { TestQuestionsType } from '../../types/TestQuestionsType';
 import { TestQuestions } from './TestQuestions';
 
 export default function TestPage({

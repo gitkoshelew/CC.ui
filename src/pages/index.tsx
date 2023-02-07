@@ -3,18 +3,18 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
 import { Layout } from '../components/layout/Layout';
 import { Navigation } from '../components/layout/navigation/Navigation';
-import { CardsWithQuizes } from '../components/cards/CardsWithQuizes';
+import { CardsWithQuizzes } from '../components/cards/CardsWithQuizzes';
 import { categories, sort } from '../Mocs/NavigationMoc';
 import { wrapper } from '../store/store';
-import { QuizesType } from '../components/common/types';
+import { QuizType } from '../components/common/types';
 import { fetchQuizes } from '../store/reducers/quizes-reducer';
 
-export default function Home({ quizes }: { quizes: QuizesType[] }) {
+export default function Home({ quizes }: { quizes: QuizType[] }) {
   return (
     <Layout headerType='full'>
       <Container>
         <Navigation sort={sort} categories={categories} />
-        <CardsWithQuizes quizes={quizes} />
+        <CardsWithQuizzes quizzes={quizes} />
       </Container>
     </Layout>
   );

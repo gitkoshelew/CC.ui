@@ -4,6 +4,8 @@ type QuestionTabsItemType = {
   isActive: boolean;
   isCompleted: boolean;
 };
+
+// put one enter after each type, function declaration, block and etc.
 export const StyledQuestionTabsItem = styled('div')<QuestionTabsItemType>(
   ({ theme, isActive, isCompleted }) => ({
     display: 'flex',

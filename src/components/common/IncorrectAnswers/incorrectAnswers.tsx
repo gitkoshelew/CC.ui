@@ -6,6 +6,10 @@ type IncorrectAnswerPropsType = {
   IncorrectAnswersList: ResultTableDataType[];
 };
 
+// Name of the component is Inconsistent. Use Capitalized name
+
+// What does this extra functional component do?
+// Only passes the same props to BasicTable. Why not use BasicTable directly?
 export const IncorrectAnswers: FC<IncorrectAnswerPropsType> = ({
   IncorrectAnswersList,
 }) => <BasicTable IncorrectAnswersList={IncorrectAnswersList} />;

@@ -22,6 +22,10 @@ export function Preloader() {
       router.events.off('routeChangeComplete', handleComplete);
       router.events.off('routeChangeError', handleComplete);
     };
+
+    // if I am not mistaken, then it should be
+    // Router.events in dependency array
+    // of useEffect hook
   });
 
   return loading ? <LinearProgress /> : null;

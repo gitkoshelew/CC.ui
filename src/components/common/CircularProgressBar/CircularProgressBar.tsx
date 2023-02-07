@@ -9,6 +9,8 @@ type CircularProgressBar = {
   value: number;
   fontSize: 'xx-large' | 'x-large' | 'large';
 };
+
+// try to use export default style for components with single functional component
 export const CircularProgressBar = ({
   fontSize = 'xx-large',
   size = 166,

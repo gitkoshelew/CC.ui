@@ -9,10 +9,24 @@ type RectangleProgressBarPropsType = {
   activeQuestionId: string;
   questionsData: QuestionDataType[];
 };
-export const QuestionTabs = (props: RectangleProgressBarPropsType) => {
+
+// try to always destructure the props
+// export const QuestionTabs = (props: RectangleProgressBarPropsType) => {
+export const QuestionTabs = ({
+  questionsData,
+  activeQuestionId,
+}: RectangleProgressBarPropsType) => {
+  const defaultActiveTabId = activeQuestionId || questionsData[0].questionId;
+
+  const [activeTabId, setActiveTabId] = useState(defaultActiveTabId);
+
+  /*
+  Not so readable. It is better to always use one variable inside useState parenthesis
+
   const [activeTabId, setActiveTabId] = useState(
     props.activeQuestionId || props.questionsData[0].questionId
-  );
+  ); 
+  */
 
   const tabsRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +41,7 @@ export const QuestionTabs = (props: RectangleProgressBarPropsType) => {
   return (
     <Box>
       <Tabs ref={tabsRef}>
-        {props.questionsData.map(({ questionId, isCompleted }, index) => (
+        {questionsData.map(({ questionId, isCompleted }, index) => (
           <QuestionTabsItem
             key={questionId}
             onClick={onTabClickHandler}

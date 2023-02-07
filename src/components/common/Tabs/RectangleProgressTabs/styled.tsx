@@ -1,14 +1,18 @@
-import { styled } from '@mui/material';
-import { DefaultThemeType } from '../../../../styles/theme/types';
+import { styled, Theme } from '@mui/material';
 
 export type TabColorType = 'secondary' | 'error' | 'hidden';
-const tabColors = (
-  theme: DefaultThemeType
-): { [key in TabColorType]: string } => ({
-  secondary: theme.palette.secondary.main,
-  error: theme.palette.error.main,
-  hidden: theme.palette.primary.main,
-});
+
+// use the function for getting values, without extra brackets and etc.
+// just return the result
+const tabColors = (theme: Theme, colorKey: TabColorType = 'secondary'): string => {
+  const colors = {
+    secondary: theme.palette.secondary.main,
+    error: theme.palette.error.main,
+    hidden: theme.palette.primary.main,
+  };
+
+  return colors[colorKey];
+};
 
 type RectangleProgressBarItemPropsType = {
   color?: TabColorType;
@@ -17,7 +21,7 @@ type RectangleProgressBarItemPropsType = {
 export const RectangleProgressTabsItem = styled(
   'div'
 )<RectangleProgressBarItemPropsType>(({ theme, ...props }) => ({
-  backgroundColor: tabColors(theme)[props.color as TabColorType],
+  backgroundColor: tabColors(theme, props.color),
   height: 6,
   flexGrow: 1,
   borderRadius: 5,

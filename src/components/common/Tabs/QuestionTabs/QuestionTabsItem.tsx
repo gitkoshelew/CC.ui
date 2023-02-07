@@ -8,19 +8,30 @@ type QuestionTabsItemPropsType = {
   questionId: string;
   index: number;
 };
+
+// Try to destructure, even if there are many props. That makes code more
+// clean and readable, as you don't reuse "props" object
 export const QuestionTabsItem = React.memo(
   (props: QuestionTabsItemPropsType) => {
+    const {
+      questionId,
+      isCompleted,
+      index,
+      onClick,
+      isActive
+    } = props;
+
     const onClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-      props.onClick(e, props.questionId);
+      onClick(e, questionId);
     };
 
     return (
       <StyledQuestionTabsItem
         onClick={onClickHandler}
-        isActive={props.isActive}
-        isCompleted={props.isCompleted}
+        isActive={isActive}
+        isCompleted={isCompleted}
       >
-        {props.index + 1}
+        {index + 1}
       </StyledQuestionTabsItem>
     );
   }

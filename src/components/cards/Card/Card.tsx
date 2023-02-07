@@ -9,6 +9,18 @@ type PropsCardType = {
   status: string | null;
 };
 
+// Try to use @mui/material <Box /> component instead of div, as it provides the majority of use cases
+// For instance, <Box display="flex" justifyContent="space-between" alignItems="center" .../>
+// Or use sx prop
+// <Box
+//  sx={{
+//    display: 'flex',
+//    justifyContent: 'space-between',
+//    alignItems="center"
+//  }}
+// />
+
+// This approach allows you to use Mui techniques and easily migrate, when new version is introduced
 export const Card = ({ title, date, userName, status }: PropsCardType) => {
   const { t } = useTranslation('home');
   return (

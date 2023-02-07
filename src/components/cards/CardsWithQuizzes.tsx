@@ -1,14 +1,16 @@
 import { Card } from './Card/Card';
-import { QuizesType } from '../common/types';
+import { QuizType } from '../common/types';
 
 type PropsCardsType = {
-  quizes?: QuizesType[];
+  // try not make any typos,
+  // as it can be crucial for other developers
+  quizzes?: QuizType[];
 };
 
-export const CardsWithQuizes = ({ quizes }: PropsCardsType) =>
-  quizes ? (
+export const CardsWithQuizzes = ({ quizzes }: PropsCardsType) =>
+  quizzes ? (
     <div className='grid gap-6 grid-cols-[repeat(auto-fill,minmax(270px,_1fr))]'>
-      {quizes.map(({ id, title, userName, date, status }: QuizesType) => (
+      {quizzes.map(({ id, title, userName, date, status }: QuizType) => (
         <Card
           key={id}
           title={title}

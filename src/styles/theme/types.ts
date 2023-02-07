@@ -1,3 +1,4 @@
+import { Theme } from '@mui/material';
 import { defaultTheme } from './defaultTheme';
 import { darkTheme } from './darkTheme';
 
@@ -7,7 +8,7 @@ export enum ThemeKey {
 }
 
 export type ThemesType = {
-  [key in ThemeKey]: DefaultThemeType;
+  [key in ThemeKey]: Theme;
 };
 
 export const GlobalThemes: ThemesType = {
@@ -15,4 +16,9 @@ export const GlobalThemes: ThemesType = {
   [ThemeKey.DARK]: darkTheme,
 };
 
-export type DefaultThemeType = typeof defaultTheme;
+// Why use typeof, if the @mui/material already provides type of Theme?
+// Rule of thumb: use library's types.
+// Naming was ambiguous as DefaultThemeType means the type for default theme
+// If you use dark theme for example, that becomes not default
+
+// export type DefaultThemeType = typeof defaultTheme;

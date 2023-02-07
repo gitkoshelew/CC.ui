@@ -5,15 +5,24 @@ import { RectangleProgressTabsItem } from './styled';
 import { scrollToCenter } from '../../../../utils/scrollToCenter';
 import { Tabs } from '../commonStyles';
 
-type RectangleProgressBarPropsType = {
+// use Props without "type"
+type RectangleProgressBarProps = {
   activeTabId: string;
   tabsData: TabsDataType[];
   isTabsStatusHidden: boolean;
 };
-export const RectangleProgressTabs = (props: RectangleProgressBarPropsType) => {
-  const [activeTabId, setActiveTabId] = useState(
-    props.activeTabId || props.tabsData[0].questionId
-  );
+
+// need more space between types and name of the component
+// destructure the props
+export const RectangleProgressTabs = ({
+  tabsData,
+  activeTabId,
+  isTabsStatusHidden,
+}: RectangleProgressBarProps) => {
+  const defaultActiveTabId = activeTabId || tabsData[0].questionId;
+
+  // TODO should be observed
+  const [activeTabId, setActiveTabId] = useState(defaultActiveTabId);
 
   const tabsRef = useRef<HTMLDivElement>(null);
 
@@ -28,12 +37,12 @@ export const RectangleProgressTabs = (props: RectangleProgressBarPropsType) => {
   return (
     <Box>
       <Tabs ref={tabsRef} sx={{ py: 1.2, px: 2 }}>
-        {props.tabsData.map((el) => (
+        {tabsData.map((el) => (
           <RectangleProgressTabsItem
             key={el.questionId}
             onClick={(e) => onTabClickHandler(e, el.questionId)}
             isActive={activeTabId === el.questionId}
-            color={props.isTabsStatusHidden ? 'hidden' : el.color}
+            color={isTabsStatusHidden ? 'hidden' : el.color}
             sx={{ bgcolor: !el.color ? 'background.defaultAccent1' : '' }}
           />
         ))}

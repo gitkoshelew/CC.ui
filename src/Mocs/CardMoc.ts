@@ -1,5 +1,5 @@
 // date for CardsQuizes
-import { CardsType } from '../Types/CardTypes';
+import { CardsType } from '../types/CardTypes';
 
 export const cards: CardsType = [
   {
