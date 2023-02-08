@@ -36,13 +36,22 @@ const LoginPage = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup className='text-sm'>
               <span>Email</span>
-              <TextField {...register('login')} type='email' className='mb-4' />
+              <div className='mb-4'>
+                <TextField
+                  {...register('login')}
+                  type='email'
+                  className='w-full'
+                />
+                <span>sadfsdsdaf</span>
+              </div>
               <span>Password</span>
-              <TextField
-                {...register('password')}
-                type='password'
-                className='mb-4'
-              />
+              <div className='mb-4'>
+                <TextField
+                  {...register('password')}
+                  type='password'
+                  className='w-full'
+                />
+              </div>
               <div className='flex justify-between items-center'>
                 <Checkbox
                   sx={{
