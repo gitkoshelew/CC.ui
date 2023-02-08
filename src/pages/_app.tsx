@@ -5,12 +5,16 @@ import { Suspense } from 'react';
 import { appWithTranslation } from 'next-i18next';
 import { GlobalThemes } from '../styles/theme/types';
 import { wrapper } from '../store/store';
+import { ErrorSnackbar } from '../components/ErrorHandler/ErrorHandler';
+import { Preloader } from '../components/common/Preloader/Preloader';
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <ThemeProvider theme={GlobalThemes.LIGHT}>
+        <Preloader />
         <Component {...pageProps} />
+        <ErrorSnackbar />
       </ThemeProvider>
     </Suspense>
   );
