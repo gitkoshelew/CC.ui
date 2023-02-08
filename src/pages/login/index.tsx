@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { bgcolor } from '@mui/system';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Layout } from '../../components/layout/Layout';
 import { wrapper } from '../../store/store';
@@ -43,7 +44,13 @@ const LoginPage = () => {
                 className='mb-4'
               />
               <div className='flex justify-between items-center'>
-                <Checkbox {...register('rememberMe')} size='small' />
+                <Checkbox
+                  sx={{
+                    bgcolor: 'background.paperAccent1',
+                  }}
+                  {...register('rememberMe')}
+                  size='small'
+                />
                 <span>Remember me</span>
                 <a href=' '>Forgotten password?</a>
               </div>
