@@ -30,10 +30,7 @@ const LoginPage = () => {
             <span>Password</span>
             <TextField type='password' className='mb-4' />
             <div className='flex justify-between items-center'>
-              <Checkbox
-                size='small'
-                sx={{ color: '#2D3E6B', padding: '0px' }}
-              />
+              <Checkbox size='small' />
               <span>Remember me</span>
               <a href=' '>Forgotten password?</a>
             </div>
