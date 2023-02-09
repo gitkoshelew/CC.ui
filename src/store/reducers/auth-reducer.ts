@@ -1,21 +1,18 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  Dispatch,
-  PayloadAction,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
-import { QuizesType } from '../../components/common/types';
-import { quizesApi } from '../../api/quizesApi';
+import { AxiosError } from 'axios';
 import { authApi, RegistrationType } from '../../api/authApi';
 
-export const registerTC = createAsyncThunk(
+export const registration = createAsyncThunk(
   'registration/register',
-  async (data: RegistrationType) => {
-    const response = await authApi.registration(data);
-    console.log(response.data);
-    return response.data;
-    // return registerAC(response.data))
+  async (data: RegistrationType, { rejectWithValue }) => {
+    try {
+      const response = await authApi.registration(data);
+      return response.data;
+    } catch (e) {
+      const err = e as AxiosError;
+      return rejectWithValue(err.message);
+    }
   }
 );
 
@@ -34,7 +31,7 @@ export const slice = createSlice({
       ...state,
       ...action.payload.data,
     }),
-    [registerTC.fulfilled.type]: (state, action) => {
+    [registration.fulfilled.type]: (state, action) => {
       state.data = action.payload;
     },
   },
