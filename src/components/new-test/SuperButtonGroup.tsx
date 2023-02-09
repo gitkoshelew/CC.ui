@@ -11,6 +11,10 @@ export const SuperButtonGroup = ({ items, title }: SuperButtonType) => (
     <Typography typography='inputTitle'>{title}</Typography>
     <ButtonGroup
       variant='outlined'
+      // <Remark>
+      // use sx for minor things, like color, display and etc
+      // if there are more stuff, like nested classes, conditions, many lines of css
+      // then in the majority of types, use styled-components
       sx={{
         maxWidth: '260px',
         '& .MuiButtonGroup-grouped': {

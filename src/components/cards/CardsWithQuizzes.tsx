@@ -2,6 +2,7 @@ import { Card } from './Card/Card';
 import { QuizType } from '../common/types';
 
 type PropsCardsType = {
+  // <Remark>
   // try not make any typos,
   // as it can be crucial for other developers
   quizzes?: QuizType[];

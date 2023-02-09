@@ -4,7 +4,7 @@ import { cards } from '../../Mocs/CardMoc';
 
 describe('Home', () => {
   it('renders a heading', () => {
-    const { container } = render(<Home quizes={cards} />);
+    const { container } = render(<Home quizzes={cards} />);
 
     const heading = screen.getByRole('heading', {
       name: /welcome to next\.js!/i,

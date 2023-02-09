@@ -4,6 +4,7 @@ export type WithChild = {
   children?: ReactNode;
 };
 
+// <Remark>
 // Naming should be consistent.
 // if type is singular, then use QuizType
 // if plural(array), then QuizTypes

@@ -1,5 +1,5 @@
 import Stack from '@mui/material/Stack';
-import { FormGroup, TextField } from '@mui/material';
+import { Box, FormGroup, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
@@ -25,8 +25,15 @@ const SignUpPage = () => {
       >
         <StylizedPaper title='Sign Up'>
           <FormGroup className='text-sm'>
-            <span>Email</span>
-            <TextField type='email' className='mb-4' />
+            {/* <Remark> */}
+            {/* Always use grouping for such cases. This is the rule of markup */}
+            {/* For example, Box */}
+            {/* If this kind of style will be used a lot, create component with following components */}
+            {/* And use the props accordingly */}
+            <Box>
+              <span>Email</span>
+              <TextField type='email' className='mb-4' />
+            </Box>
             <span>Password</span>
             <TextField type='password' className='mb-4' />
             <span>Confirm Password</span>

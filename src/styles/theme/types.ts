@@ -16,6 +16,7 @@ export const GlobalThemes: ThemesType = {
   [ThemeKey.DARK]: darkTheme,
 };
 
+// <Remark>
 // Why use typeof, if the @mui/material already provides type of Theme?
 // Rule of thumb: use library's types.
 // Naming was ambiguous as DefaultThemeType means the type for default theme

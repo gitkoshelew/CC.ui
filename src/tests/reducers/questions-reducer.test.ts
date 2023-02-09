@@ -1,7 +1,7 @@
 import { TestQuestionsType } from '../../types/TestQuestionsType';
 import {
   getQuestions,
-  questionsReducer,
+  questionsReducer
 } from '../../store/reducers/questions-reducer';
 
 test('correct date adding to the initialState ', () => {

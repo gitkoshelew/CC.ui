@@ -6,4 +6,4 @@ export default {
   component: Home,
 };
 
-export const HomePage = () => <Home quizes={cards} />;
+export const HomePage = () => <Home quizzes={cards} />;

@@ -16,6 +16,6 @@ export const RectangleProgressTabsComponent = Template.bind({});
 
 RectangleProgressTabsComponent.args = {
   isTabsStatusHidden: false,
-  activeTabId: '1',
+  initialActiveTabId: '1',
   tabsData,
 };

@@ -5,4 +5,7 @@ export default {
   component: TestPage,
 };
 
+
+// <Remark>
+// It is unusable code
 export const TestPageComponent = () => <TestPage />;

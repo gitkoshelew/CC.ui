@@ -5,6 +5,7 @@ type QuestionTabsItemType = {
   isCompleted: boolean;
 };
 
+// <Remark>
 // put one enter after each type, function declaration, block and etc.
 export const StyledQuestionTabsItem = styled('div')<QuestionTabsItemType>(
   ({ theme, isActive, isCompleted }) => ({

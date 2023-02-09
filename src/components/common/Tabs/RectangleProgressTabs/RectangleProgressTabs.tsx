@@ -5,23 +5,30 @@ import { RectangleProgressTabsItem } from './styled';
 import { scrollToCenter } from '../../../../utils/scrollToCenter';
 import { Tabs } from '../commonStyles';
 
+// <Remark>
 // use Props without "type"
 type RectangleProgressBarProps = {
-  activeTabId: string;
+  initialActiveTabId: string;
   tabsData: TabsDataType[];
   isTabsStatusHidden: boolean;
 };
 
+// <Remark>
 // need more space between types and name of the component
 // destructure the props
+
+// <Remark>
+// also, confusing when props and local variables have the same name
+// for instance, "activeTabId" prop. Renamed
 export const RectangleProgressTabs = ({
   tabsData,
-  activeTabId,
+  initialActiveTabId,
   isTabsStatusHidden,
 }: RectangleProgressBarProps) => {
-  const defaultActiveTabId = activeTabId || tabsData[0].questionId;
+  const defaultActiveTabId = initialActiveTabId || tabsData[0].questionId;
 
-  // TODO should be observed
+  // <Remark>
+  // naming
   const [activeTabId, setActiveTabId] = useState(defaultActiveTabId);
 
   const tabsRef = useRef<HTMLDivElement>(null);

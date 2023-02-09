@@ -2,13 +2,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { AxiosError } from 'axios';
 import { QuizType } from '../../components/common/types';
-import { quizesApi } from '../../api/quizesApi';
+import { quizzesApi } from '../../api/quizzesApi';
 
 export const fetchQuizes = createAsyncThunk(
-  'quizes/getQuizesThunk',
+  'quizzes/getQuizesThunk',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await quizesApi.getQuizes();
+      const response = await quizzesApi.getQuizzes();
       return response.data;
     } catch (e) {
       const err = e as AxiosError;
@@ -18,25 +18,28 @@ export const fetchQuizes = createAsyncThunk(
 );
 
 export const slice = createSlice({
-  name: 'quizes',
+  name: 'quizzes',
   initialState: {
-    quizes: [] as QuizType[],
+    quizzes: [] as QuizType[],
   },
   reducers: {
+    // <Remark>
+    // naming is inconsistent. AC or Ac?
+    // What does it mean?
     fetchQuizesAC(state, action: PayloadAction<QuizType[]>) {
-      state.quizes = action.payload;
+      state.quizzes = action.payload;
     },
     postQuizesAc(state, action: PayloadAction<QuizType[]>) {
-      state.quizes = action.payload;
+      state.quizzes = action.payload;
     },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => ({
       ...state,
-      ...action.payload.quizes,
+      ...action.payload.quizzes,
     }),
     [fetchQuizes.fulfilled.type]: (state, action) => {
-      state.quizes = action.payload;
+      state.quizzes = action.payload;
     },
   },
 });

@@ -6,6 +6,11 @@ import { SuperInput } from './SuperInput';
 import { Timer } from './Timer';
 import { useAppSelector } from '../../store/store';
 
+// <Remark>
+// Try to avoid using enums.
+// It is not javascript native feature.
+// It is prior to typescript
+// for extended explanation: https://www.youtube.com/watch?v=jjMbPt_H3RQ&ab_channel=MattPocock
 enum Difficulty {
   Easy = '0',
   Medium = '1',
@@ -28,6 +33,7 @@ export const QuestionBlock = ({
   items,
 }: QuestionBlockType) => {
   const difficultyItems = useAppSelector((state) => state.difficulty);
+
   return (
     <Stack spacing={2}>
       <Stack direction='row' flexWrap='wrap' spacing={3}>

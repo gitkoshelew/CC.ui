@@ -26,17 +26,30 @@ export default function TestPage({
   const [currentTime, setCurrentTime] = useState(timeDefault);
   const [isRunning, setIsRunning] = useState(false);
   const { t } = useTranslation('testPage');
-  const [numberOfQuestion, setQuestion] = useState(0);
+
+  // <Remark>
+  // "NumberOfQuestion" is not suitable name here. It confuses with the amount of questions
+  // Should be "questionNumber" and "setQuestionNumber"
+  // const [numberOfQuestion, setQuestion] = useState(0);
+  const [questionNumber, setQuestionNumber] = useState(0);
   const [disabled, setDisabled] = useState(false);
 
+  // use
+  const numberOfQuestions = questions.length;
+
   const nextQuestionHandler = useCallback(() => {
-    if (numberOfQuestion === questions.length - 1) {
+    if (questionNumber === numberOfQuestions - 1) {
       alert('The end');
       setDisabled(true);
       return;
     }
-    setQuestion(numberOfQuestion + 1);
-  }, [numberOfQuestion, questions.length]);
+
+    setQuestionNumber(questionNumber + 1);
+  }, [questionNumber, numberOfQuestions]);
+
+  const toggleIsRunning = () => {
+    setIsRunning((prevIsRunning) => !prevIsRunning);
+  };
 
   return (
     <Layout>
@@ -50,25 +63,28 @@ export default function TestPage({
             direction='column'
             sx={{ width: 1, maxWidth: '850px', mx: 'auto' }}
           >
+            {/* <Remark> */}
+            {/* Never pass the function for state mutation directly */}
+            {/* Wrap it into another function for abstraction */}
             <Timer
               timeDefault={timeDefault}
               isRunning={isRunning}
-              setIsRunning={setIsRunning}
+              toggleIsRunning={toggleIsRunning}
               currentTime={currentTime}
               setCurrentTime={setCurrentTime}
             />
             <RectangleProgressTabs
-              activeTabId='1'
+              initialActiveTabId='1'
               tabsData={tabsData}
               isTabsStatusHidden
             />
           </Stack>
           <StylizedPaper title='”Node.js” question'>
             <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>
-              {questions[numberOfQuestion].description}
+              {questions[questionNumber].description}
             </span>
             <TestQuestions
-              answers={questions[numberOfQuestion].content.options}
+              answers={questions[questionNumber].content.options}
             />
             <Stack
               direction='row'

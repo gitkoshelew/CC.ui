@@ -9,6 +9,7 @@ type PropsCardType = {
   status: string | null;
 };
 
+// <Remark>
 // Try to use @mui/material <Box /> component instead of div, as it provides the majority of use cases
 // For instance, <Box display="flex" justifyContent="space-between" alignItems="center" .../>
 // Or use sx prop

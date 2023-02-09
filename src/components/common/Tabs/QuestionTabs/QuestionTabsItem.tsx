@@ -9,6 +9,7 @@ type QuestionTabsItemPropsType = {
   index: number;
 };
 
+// <Remark>
 // Try to destructure, even if there are many props. That makes code more
 // clean and readable, as you don't reuse "props" object
 export const QuestionTabsItem = React.memo(

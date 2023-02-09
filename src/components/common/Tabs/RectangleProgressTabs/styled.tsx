@@ -2,6 +2,7 @@ import { styled, Theme } from '@mui/material';
 
 export type TabColorType = 'secondary' | 'error' | 'hidden';
 
+// <Remark>
 // use the function for getting values, without extra brackets and etc.
 // just return the result
 const tabColors = (theme: Theme, colorKey: TabColorType = 'secondary'): string => {

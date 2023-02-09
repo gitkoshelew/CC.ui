@@ -9,12 +9,12 @@ import { wrapper } from '../store/store';
 import { QuizType } from '../components/common/types';
 import { fetchQuizes } from '../store/reducers/quizes-reducer';
 
-export default function Home({ quizes }: { quizes: QuizType[] }) {
+export default function Home({ quizzes }: { quizzes: QuizType[] }) {
   return (
     <Layout headerType='full'>
       <Container>
         <Navigation sort={sort} categories={categories} />
-        <CardsWithQuizzes quizzes={quizes} />
+        <CardsWithQuizzes quizzes={quizzes} />
       </Container>
     </Layout>
   );
@@ -23,11 +23,13 @@ export default function Home({ quizes }: { quizes: QuizType[] }) {
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ locale }) => {
     await store.dispatch(fetchQuizes());
-    const { quizes } = store.getState().quizzes;
+    // <Remark>
+    // Naming again. Check spelling
+    const { quizzes } = store.getState().quizzes;
 
     return {
       props: {
-        quizes,
+        quizzes,
         ...(await serverSideTranslations(locale as string, [
           'home',
           'testPage',

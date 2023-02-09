@@ -12,7 +12,10 @@ export const TestQuestions = ({ answers }: PropsType) => {
   const [value, setValue] = useState('');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
+    // <Remark>
+    // why duplicate typing
+    // setValue((event.target as HTMLInputElement).value);
+    setValue(event.target.value);
   };
   return (
     <Stack direction='column' spacing={0.4}>

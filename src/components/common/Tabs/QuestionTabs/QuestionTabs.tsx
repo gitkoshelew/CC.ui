@@ -10,6 +10,7 @@ type RectangleProgressBarPropsType = {
   questionsData: QuestionDataType[];
 };
 
+// <Remark>
 // try to always destructure the props
 // export const QuestionTabs = (props: RectangleProgressBarPropsType) => {
 export const QuestionTabs = ({
