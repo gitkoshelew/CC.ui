@@ -10,6 +10,7 @@ export const StylizedPaper: FC<WrapperNewTestType> = ({ children, title }) => (
   <Stack direction='row' justifyContent='center'>
     <Paper
       sx={{
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         gap: 3,
