@@ -7,6 +7,7 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { bgcolor } from '@mui/system';
+import { pattern } from '@redux-saga/is';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Layout } from '../../components/layout/Layout';
 import { wrapper } from '../../store/store';
@@ -18,7 +19,11 @@ export type LoginFormType = {
 };
 const LoginPage = () => {
   const { t } = useTranslation('home');
-  const { register, handleSubmit } = useForm<LoginFormType>();
+  const {
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+  } = useForm<LoginFormType>({ mode: 'onBlur' });
   const onSubmit: SubmitHandler<LoginFormType> = (data) => console.log(data);
   return (
     <Layout>
@@ -38,19 +43,37 @@ const LoginPage = () => {
               <span>Email</span>
               <div className='mb-4'>
                 <TextField
-                  {...register('login')}
+                  {...register('login', {
+                    required: 'Login is required',
+                    pattern: {
+                      value:
+                        /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+                      message: 'Invalid email',
+                    },
+                  })}
                   type='email'
                   className='w-full'
                 />
-                <span>sadfsdsdaf</span>
+                {errors?.login && (
+                  <span className='text-error-main'>
+                    {errors?.login?.message}
+                  </span>
+                )}
               </div>
               <span>Password</span>
               <div className='mb-4'>
                 <TextField
-                  {...register('password')}
+                  {...register('password', {
+                    required: 'Password is required',
+                  })}
                   type='password'
                   className='w-full'
                 />
+                {errors?.login && (
+                  <span className='text-error-main'>
+                    {errors?.password?.message}
+                  </span>
+                )}
               </div>
               <div className='flex justify-between items-center'>
                 <Checkbox
@@ -65,7 +88,9 @@ const LoginPage = () => {
               </div>
             </FormGroup>
             <div className='flex justify-center'>
-              <Button type='submit'>Login</Button>
+              <Button disabled={!isValid} type='submit'>
+                Login
+              </Button>
             </div>
             <hr className='h-px w-80 bg-neutral-300' />
             <span className='flex justify-center text-slate-500'>
