@@ -1,15 +1,19 @@
 import React from 'react';
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import Alert, { AlertProps } from '@mui/material/Alert';
 import { useDispatch } from 'react-redux';
 
 import { SnackbarCloseReason } from '@mui/material/Snackbar/Snackbar';
 import { useAppSelector } from '../../store/store';
 import { changeError } from '../../store/reducers/errorHandler-reducer';
 
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-  <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />
-));
+// <Remark>
+// Why create extra component with some changes, if you could use it directly
+// It is not complicated component, neither reusable component, as there is no "export const"
+
+// const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
+//   <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />
+// ));
 
 export function ErrorSnackbar() {
   const noticeText = useAppSelector((state) => state.error.noticeText);
@@ -34,6 +38,8 @@ export function ErrorSnackbar() {
       anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
     >
       <Alert
+        elevation={6}
+        variant='filled'
         onClose={handleClose}
         severity={noticeStatus}
         sx={{ width: '100%' }}

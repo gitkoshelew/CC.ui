@@ -33,6 +33,12 @@ export const Sorting = ({ sort }: SortingType) => {
       >
         Sorting
       </Typography>
+
+      {/* <Remark>
+        use separate component, as this Select becomes very complicated.
+        Take it out to another component, for instance "SortingSelectField"
+        There, use styled components instead of sx prop
+      */}
       <Select
         color='info'
         sx={{
@@ -53,6 +59,10 @@ export const Sorting = ({ sort }: SortingType) => {
         value={value}
         onChange={handleChange}
       >
+        {/*
+          <Remark>
+          use custom component of MenuItem with translation
+        */}
         {t<string, string[]>('sortNavigation', {
           returnObjects: true,
         }).map((item, index) => (

@@ -34,11 +34,25 @@ export const Category = ({ categories }: CategoryType) => {
         scrollButtons='auto'
         aria-label='scrollable auto tabs example'
       >
-        {t<string, string[]>('categories', {
-          returnObjects: true,
-        }).map((categoryName, index) => (
+        {/* <Remark>
+           Use categories props.
+           You can create your own component Tab, where there always will be t(label)
+           This will make it easier to use components with translation.
+           Also, do not use index as key
+        */}
+        {categories.map((category) => (
+          <Tab label={t(category)} key={category} />
+        ))}
+
+        {/*
+        <Remark>
+        Do not use this syntax.
+        {t<string, string[]>('categories',
+         returnObjects: true,
+        ).map((categoryName, index) => (
           <Tab label={categoryName} key={index} />
         ))}
+         */}
       </Tabs>
     </Paper>
   );

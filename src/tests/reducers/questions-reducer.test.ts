@@ -1,7 +1,7 @@
 import { TestQuestionsType } from '../../types/TestQuestionsType';
 import {
   getQuestions,
-  questionsReducer
+  questionsReducer,
 } from '../../store/reducers/questions-reducer';
 
 test('correct date adding to the initialState ', () => {
@@ -36,6 +36,9 @@ test('correct date adding to the initialState ', () => {
     ],
     ''
   );
+
+  // <Remark>
+  // reducer argument is not correct
   const endState = questionsReducer(startState, action);
 
   expect(endState.questions.length).toBe(2);

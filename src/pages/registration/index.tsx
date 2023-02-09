@@ -25,11 +25,12 @@ const SignUpPage = () => {
       >
         <StylizedPaper title='Sign Up'>
           <FormGroup className='text-sm'>
-            {/* <Remark> */}
-            {/* Always use grouping for such cases. This is the rule of markup */}
-            {/* For example, Box */}
-            {/* If this kind of style will be used a lot, create component with following components */}
-            {/* And use the props accordingly */}
+            {/* <Remark>
+            Always use grouping for such cases. This is the rule of markup
+            For example, Box
+            If this kind of style will be used a lot, create component with following components
+            And use the props accordingly
+            */}
             <Box>
               <span>Email</span>
               <TextField type='email' className='mb-4' />

@@ -5,7 +5,6 @@ export default {
   component: TestPage,
 };
 
-
 // <Remark>
-// It is unusable code
+// Props are missing
 export const TestPageComponent = () => <TestPage />;
