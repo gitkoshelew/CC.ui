@@ -9,7 +9,7 @@ import { useAppSelector } from '../../store/store';
 enum Difficulty {
   Easy = '0',
   Medium = '1',
-  Hard = '2'
+  Hard = '2',
 }
 
 type QuestionBlockType = {
