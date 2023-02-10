@@ -27,15 +27,15 @@ const setToken = (accessToken: string) => {
 };
 
 instance.interceptors.request.use(
-  async (config) => {
-    await getToken(config);
+  (config) => {
+    getToken(config);
     return config;
   },
   (err) => Promise.reject(err)
 );
 
 instance.interceptors.response.use(
-  async (response) => {
+  (response) => {
     setToken(response.data.accessToken);
     return response;
   },
