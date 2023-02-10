@@ -4,6 +4,7 @@ import { AlertColor } from '@mui/material/Alert/Alert';
 import { getQuestions } from './questions-reducer';
 import { fetchQuizes } from './quizes-reducer';
 import { registration } from './auth-reducer';
+import { logIn } from './login-reducer';
 
 type ErrorInitialState = {
   noticeText: null | string;
@@ -36,6 +37,17 @@ export const slice = createSlice({
     },
     [registration.rejected.type]: (state, action) => {
       state.noticeText = action.payload;
+    },
+    [registration.fulfilled.type]: (state, action) => {
+      state.noticeText = 'Привет, Виталик';
+      state.noticeStatus = 'success';
+    },
+    [logIn.rejected.type]: (state, action) => {
+      state.noticeText = action.payload;
+    },
+    [logIn.fulfilled.type]: (state, action) => {
+      state.noticeText = 'Ураааааа';
+      state.noticeStatus = 'success';
     },
   },
 });

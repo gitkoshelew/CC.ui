@@ -1,30 +1,37 @@
 import Stack from '@mui/material/Stack';
-import { Checkbox, FormGroup, TextField } from '@mui/material';
+import { FormGroup, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { bgcolor } from '@mui/system';
-import { pattern } from '@redux-saga/is';
+import { useRouter } from 'next/router';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Layout } from '../../components/layout/Layout';
-import { wrapper } from '../../store/store';
+import { useAppDispatch, useAppSelector, wrapper } from '../../store/store';
+import { logIn } from '../../store/reducers/login-reducer';
 
 export type LoginFormType = {
-  login: string;
+  email: string;
   password: string;
-  rememberMe: boolean;
+  // rememberMe: boolean;
 };
 const LoginPage = () => {
+  // const token = useAppSelector((state) => state.login.data.da);
+  // console.log(token);
   const { t } = useTranslation('home');
+  const router = useRouter();
+  const dispatch = useAppDispatch();
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
   } = useForm<LoginFormType>({ mode: 'onBlur' });
-  const onSubmit: SubmitHandler<LoginFormType> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
+    await dispatch(logIn(data));
+    // router.push('/Profile')
+  };
   return (
     <Layout>
       <Stack
@@ -43,7 +50,7 @@ const LoginPage = () => {
               <span>Email</span>
               <div className='mb-4'>
                 <TextField
-                  {...register('login', {
+                  {...register('email', {
                     required: 'Login is required',
                     pattern: {
                       value:
@@ -54,9 +61,9 @@ const LoginPage = () => {
                   type='email'
                   className='w-full'
                 />
-                {errors?.login && (
+                {errors?.email && (
                   <span className='text-error-main'>
-                    {errors?.login?.message}
+                    {errors?.email?.message}
                   </span>
                 )}
               </div>
@@ -69,22 +76,26 @@ const LoginPage = () => {
                   type='password'
                   className='w-full'
                 />
-                {errors?.login && (
+                {errors?.password && (
                   <span className='text-error-main'>
                     {errors?.password?.message}
                   </span>
                 )}
               </div>
-              <div className='flex justify-between items-center'>
-                <Checkbox
-                  sx={{
-                    bgcolor: 'background.paperAccent1',
-                  }}
-                  {...register('rememberMe')}
-                  size='small'
-                />
-                <span>Remember me</span>
-                <a href=' '>Forgotten password?</a>
+              <div
+              // className='flex justify-between items-center'
+              >
+                {/* <Checkbox */}
+                {/*  sx={{ */}
+                {/*    bgcolor: 'background.paperAccent1', */}
+                {/*  }} */}
+                {/*  {...register('rememberMe')} */}
+                {/*  size='small' */}
+                {/* /> */}
+                {/* <span>Remember me</span> */}
+                <div className='text-center'>
+                  <a href=' '>Forgotten password?</a>
+                </div>
               </div>
             </FormGroup>
             <div className='flex justify-center'>

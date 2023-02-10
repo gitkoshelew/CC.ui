@@ -4,6 +4,9 @@ export const authApi = {
   registration(data: RegistrationType) {
     return instance.post<RegistrationType>('/auth/registration', data);
   },
+  logIn(data: LogInType) {
+    return instance.post('/auth/login', data);
+  },
 };
 
 export type RegistrationType = {
@@ -11,4 +14,9 @@ export type RegistrationType = {
   email: string;
   password: string;
   nickname: string;
+};
+
+export type LogInType = {
+  email: string;
+  password: string;
 };

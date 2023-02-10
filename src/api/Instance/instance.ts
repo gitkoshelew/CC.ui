@@ -7,6 +7,7 @@ export const instance = axios.create({
 
 const getToken = async (config: AxiosRequestConfig) => {
   try {
+    console.log(123);
     const token = await localStorage.getItem('token');
     if (config.headers) {
       (config.headers as AxiosHeaders).set('Authorization', `Bearer ${token}`);
