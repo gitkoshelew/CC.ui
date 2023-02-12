@@ -5,10 +5,9 @@ export const instance = axios.create({
   // withCredentials: true,
 });
 
-const getToken = async (config: AxiosRequestConfig) => {
+const getToken = (config: AxiosRequestConfig) => {
   try {
-    console.log(123);
-    const token = await localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (config.headers) {
       (config.headers as AxiosHeaders).set('Authorization', `Bearer ${token}`);
     }
@@ -17,10 +16,10 @@ const getToken = async (config: AxiosRequestConfig) => {
   }
 };
 
-const setToken = (accessToken: string) => {
+const setToken = async (accessToken: string) => {
   try {
     if (accessToken) {
-      localStorage.setItem('token', accessToken);
+      await localStorage.setItem('token', accessToken);
     }
   } catch (e) {
     console.log('setToken => catch => ', e);
