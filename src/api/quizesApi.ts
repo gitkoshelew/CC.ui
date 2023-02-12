@@ -3,7 +3,7 @@ import { QuizesType } from '../components/common/types';
 
 export const quizesApi = {
   getQuizes() {
-    return instance.get<QuizesType[]>(`quizzes/`);
+    return instance.get(`quiz/`);
   },
   postQuizes() {
     return instance.post<QuizesType[]>('quizzes', {
