@@ -2,7 +2,7 @@ import { instance } from './Instance/instance';
 
 export const authApi = {
   registration(data: RegistrationType) {
-    return instance.post<RegistrationType>('/auth/registration', data);
+    return instance.post('/auth/registration', data);
   },
 };
 

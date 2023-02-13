@@ -4,7 +4,7 @@ export type WithChild = {
   children?: ReactNode;
 };
 
-export type QuizesType = {
+type QuizesType = {
   id: number;
   title: string;
   userName: string;

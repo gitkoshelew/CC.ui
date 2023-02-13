@@ -1,5 +1,5 @@
 import { instance } from './Instance/instance';
-import { QuizesType } from '../components/common/types';
+import { QuizesType } from '../Types/CardTypes';
 
 export const quizesApi = {
   getQuizes() {
