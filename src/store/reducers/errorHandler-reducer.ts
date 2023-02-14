@@ -3,8 +3,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { AlertColor } from '@mui/material/Alert/Alert';
 import { getQuestions } from './questions-reducer';
 import { fetchQuizes } from './quizes-reducer';
-import { registration } from './auth-reducer';
-import { logIn } from './login-reducer';
+import { logIn, registration } from './auth-reducer';
 
 type ErrorInitialState = {
   noticeText: null | string;

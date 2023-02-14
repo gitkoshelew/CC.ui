@@ -16,10 +16,10 @@ const getToken = (config: AxiosRequestConfig) => {
   }
 };
 
-const setToken = async (accessToken: string) => {
+const setToken = (accessToken: string) => {
   try {
     if (accessToken) {
-      await localStorage.setItem('token', accessToken);
+      localStorage.setItem('token', accessToken);
     }
   } catch (e) {
     console.log('setToken => catch => ', e);
@@ -39,5 +39,14 @@ instance.interceptors.response.use(
     setToken(response.data.accessToken);
     return response;
   },
-  (err) => Promise.reject(err)
+
+  async (err) => {
+    if (err.response.status === 401) {
+      const originalRequest = err.config;
+      const response = await axios.get('/auth/refresh-token');
+      localStorage.setItem('token', response.data.accessToken);
+      return instance.request(originalRequest);
+    }
+    return undefined;
+  }
 );
