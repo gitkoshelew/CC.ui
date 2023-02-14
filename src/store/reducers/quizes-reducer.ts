@@ -42,4 +42,4 @@ export const slice = createSlice({
 });
 
 export const quizzesReducer = slice.reducer;
-export const { fetchQuizesAC, postQuizesAc } = slice.actions;
+export const { postQuizesAc } = slice.actions;

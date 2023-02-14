@@ -24,7 +24,6 @@ export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ locale }) => {
     await store.dispatch(fetchQuizes());
     const { quizes } = store.getState().quizzes;
-
     return {
       props: {
         quizes,

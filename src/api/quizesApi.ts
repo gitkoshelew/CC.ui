@@ -1,9 +1,9 @@
 import { instance } from './Instance/instance';
-import { QuizesType } from '../Types/CardTypes';
+import { CardsType, QuizesType } from '../Types/CardTypes';
 
 export const quizesApi = {
   getQuizes() {
-    return instance.get<QuizesType[]>(`quizzes/`);
+    return instance.get<CardsType[]>(`quiz`);
   },
   postQuizes() {
     return instance.post<QuizesType[]>('quizzes', {
