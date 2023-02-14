@@ -1,8 +1,3 @@
-export type QuizesType = {
-  id: number;
-  title: string;
-  authorId: number;
-};
 export type CardsType = {
   id: number;
   title: string;
@@ -10,6 +5,7 @@ export type CardsType = {
   author: AuthorType;
   question: [];
 };
+
 export type AuthorType = {
   id: number;
   name: string;

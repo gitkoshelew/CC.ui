@@ -1,15 +1,15 @@
 import { Card } from './Card/Card';
-import { QuizesType } from '../../Types/CardTypes';
+import { CardsType } from '../../Types/CardTypes';
 
 type PropsCardsType = {
-  quizes: QuizesType[];
+  quizes: CardsType[];
 };
 
 export const CardsWithQuizes = ({ quizes }: PropsCardsType) =>
   quizes ? (
     <div className='grid gap-6 grid-cols-[repeat(auto-fill,minmax(270px,_1fr))]'>
-      {quizes.map(({ id, title, authorId }: QuizesType) => (
-        <Card id={id} key={id} title={title} authorId={authorId} />
+      {quizes.map(({ id, title, author }: CardsType) => (
+        <Card key={id} title={title} author={author} />
       ))}
     </div>
   ) : (

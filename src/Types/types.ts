@@ -3,11 +3,9 @@ import { ReactNode } from 'react';
 export type WithChild = {
   children?: ReactNode;
 };
-
-type QuizesType = {
-  id: number;
-  title: string;
-  userName: string;
-  date: string;
-  status: string | null;
+export type RegistrationType = {
+  name: string;
+  email: string;
+  password: string;
+  nickname: string;
 };

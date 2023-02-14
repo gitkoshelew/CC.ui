@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { AxiosError } from 'axios';
-import { authApi, RegistrationType } from '../../api/authApi';
+import { authApi } from '../../api/authApi';
+import { RegistrationType } from '../../Types/types';
 
 export const registration = createAsyncThunk(
   'registration/register',
