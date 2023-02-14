@@ -11,7 +11,7 @@ import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPap
 import { Layout } from '../../components/layout/Layout';
 import { useAppDispatch, wrapper } from '../../store/store';
 import { registration } from '../../store/reducers/auth-reducer';
-import { RegistrationType } from '../../api/authApi';
+import { RegistrationType } from '../../Types/types';
 
 const SignUpPage = () => {
   const { t } = useTranslation('home');
