@@ -9,7 +9,6 @@ export const registration = createAsyncThunk(
   async (data: RegistrationFormType, { rejectWithValue }) => {
     try {
       const response = await authApi.registration(data);
-      // localStorage.setItem('token', response.data.accessToken);
       return response.data;
     } catch (e) {
       const err = e as AxiosError;
@@ -22,7 +21,7 @@ export const logIn = createAsyncThunk(
   async (data: LoginFormType, { rejectWithValue }) => {
     try {
       const response = await authApi.logIn(data);
-      // localStorage.setItem('token', response.data.accessToken);
+      console.log(123);
       return response.data;
     } catch (e) {
       const err = e as AxiosError;
@@ -34,27 +33,27 @@ export const logIn = createAsyncThunk(
 export const slice = createSlice({
   name: 'register',
   initialState: {
-    data: false,
+    isAuth: false,
   },
   reducers: {
     registerAC(state, action) {
-      state.data = action.payload;
+      state.isAuth = action.payload;
     },
     loginAC(state, action) {
-      state.data = action.payload;
+      state.isAuth = action.payload;
     },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => ({
       ...state,
-      ...action.payload.data,
+      ...action.payload,
     }),
-    // [registration.fulfilled.type]: (state, action) => {
-    //   state.data = action.payload;
-    // },
-    // [logIn.fulfilled.type]: (state, action) => {
-    //   state.data = action.payload;
-    // },
+    [registration.fulfilled.type]: (state, action) => {
+      state.isAuth = true;
+    },
+    [logIn.fulfilled.type]: (state, action) => {
+      state.isAuth = true;
+    },
   },
 });
 

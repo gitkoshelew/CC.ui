@@ -13,13 +13,11 @@ import { Layout } from '../../components/layout/Layout';
 import { useAppDispatch, useAppSelector, wrapper } from '../../store/store';
 import { LoginFormType } from '../../Types/AuthTypes';
 import { logIn } from '../../store/reducers/auth-reducer';
-import { useIsAuth } from '../../utils/useIsAuth';
-import { ErrorSnackbar } from '../../components/ErrorHandler/ErrorHandler';
 
 const LoginPage = () => {
   const { t } = useTranslation('home');
   const router = useRouter();
-  // const token = useIsAuth();
+  const isAuth = useAppSelector((state) => state.regis.isAuth);
   const dispatch = useAppDispatch();
   const {
     register,
@@ -27,12 +25,9 @@ const LoginPage = () => {
     handleSubmit,
   } = useForm<LoginFormType>({ mode: 'onBlur' });
 
-  // useEffect(() => {
-  //   console.log(token);
-  //   if (token) {
-  //     router.push('/registration');
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    if (isAuth) router.push('profilePage');
+  }, [isAuth]);
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     await dispatch(logIn(data));
     // router.push('/Profile')
@@ -64,10 +59,10 @@ const LoginPage = () => {
                     },
                   })}
                   type='email'
-                  className='w-full'
+                  className='w-full relative'
                 />
                 {errors?.email && (
-                  <span className='text-error-main'>
+                  <span className='text-error-main absolute'>
                     {errors?.email?.message}
                   </span>
                 )}
