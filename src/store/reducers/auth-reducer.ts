@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { AxiosError } from 'axios';
 import { authApi } from '../../api/authApi';
@@ -59,4 +59,3 @@ export const slice = createSlice({
 
 export const authReducer = slice.reducer;
 export const { registerAC } = slice.actions;
-export const { loginAC } = slice.actions;

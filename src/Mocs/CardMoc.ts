@@ -1,7 +1,6 @@
 // date for CardsQuizes
-import { CardsType } from '../Types/CardTypes';
 
-export const cards: CardsType = [
+export const cards = [
   {
     id: 1,
     title: 'General question about Node.js1',
