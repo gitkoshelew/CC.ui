@@ -6,14 +6,19 @@ import { AuthorType } from '../../../Types/CardTypes';
 type PropsCardType = {
   title: string;
   author: AuthorType;
+  date?: number;
 };
 
-export const Card = ({ title, author }: PropsCardType) => {
+export const Card = ({
+  title,
+  author: { name, status },
+  date,
+}: PropsCardType) => {
   const { t } = useTranslation('home');
   return (
     <div className='flex flex-col text-center bg-background-paper shadow border rounded-2xl px-5 pt-11 pb-7 relative text-sm'>
       <div className='absolute -top-2 right-7 py-0.5 px-4 rounded-2xl text-xs font-light bg-secondary-main text-secondary-contrastText'>
-        verified{author.status}
+        verified{status}
       </div>
       <div className='flex flex-col justify-between items-center h-full'>
         <Typography fontWeight={600} mb={3}>
@@ -23,13 +28,19 @@ export const Card = ({ title, author }: PropsCardType) => {
           <p className='m-0'>{title}</p>
           <p className='m-0'>
             <span className='text-text-primaryAlpha300'>By </span>
-            {author.name}
+            {name}
           </p>
         </div>
         <div className='flex flex-col text-center items-center gap-4'>
           <Link href='/testPage'>
             <Button>{t('start')}</Button>
           </Link>
+          {date && (
+            <div>
+              <span className='text-text-primaryAlpha300'>Created: </span>
+              {date}
+            </div>
+          )}
         </div>
       </div>
     </div>
