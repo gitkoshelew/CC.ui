@@ -5,9 +5,9 @@ export const instance = axios.create({
   // withCredentials: true,
 });
 
-const getToken = async (config: AxiosRequestConfig) => {
+const getToken = (config: AxiosRequestConfig) => {
   try {
-    const token = await localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (config.headers) {
       (config.headers as AxiosHeaders).set('Authorization', `Bearer ${token}`);
     }

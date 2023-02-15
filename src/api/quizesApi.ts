@@ -1,12 +1,12 @@
 import { instance } from './Instance/instance';
-import { QuizesType } from '../components/common/types';
+import { CardsType } from '../Types/CardTypes';
 
 export const quizesApi = {
   getQuizes() {
-    return instance.get<QuizesType[]>(`quizzes/`);
+    return instance.get<CardsType[]>(`quiz`);
   },
   postQuizes() {
-    return instance.post<QuizesType[]>('quizzes', {
+    return instance.post<CardsType[]>('quiz', {
       title: 'Test about Node.Js',
       userName: 'Nikita',
     });
