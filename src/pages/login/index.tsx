@@ -17,7 +17,7 @@ import { logIn } from '../../store/reducers/auth-reducer';
 const LoginPage = () => {
   const { t } = useTranslation('login');
   const router = useRouter();
-  const isAuth = useAppSelector((state) => state.regis.token);
+  const isAuth = useAppSelector((state) => state.regis.auth);
   const dispatch = useAppDispatch();
   const {
     register,
