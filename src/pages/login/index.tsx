@@ -48,7 +48,7 @@ const LoginPage = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup className='text-sm'>
               <span>{t('email')}</span>
-              <div className='mb-4'>
+              <div className='mb-6 relative'>
                 <TextField
                   {...register('email', {
                     required: 'Login is required',
@@ -61,14 +61,17 @@ const LoginPage = () => {
                   type='email'
                   className='w-full'
                 />
-                {errors?.email && (
-                  <span className='text-error-main'>
-                    {errors?.email?.message}
-                  </span>
-                )}
+
+                <div className='absolute left-2.5'>
+                  {errors?.email && (
+                    <span className='text-error-main'>
+                      {errors?.email?.message}
+                    </span>
+                  )}
+                </div>
               </div>
               <span>{t('password')}</span>
-              <div className='mb-4'>
+              <div className='mb-6 relative'>
                 <TextField
                   {...register('password', {
                     required: 'Password is required',
@@ -80,11 +83,14 @@ const LoginPage = () => {
                   type='password'
                   className='w-full'
                 />
-                {errors?.password && (
-                  <span className='text-error-main'>
-                    {errors?.password?.message}
-                  </span>
-                )}
+                <div className='absolute left-2.5'>
+                  {' '}
+                  {errors?.password && (
+                    <span className='text-error-main'>
+                      {errors?.password?.message}
+                    </span>
+                  )}
+                </div>
               </div>
               <div
               // className='flex justify-between items-center'
