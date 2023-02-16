@@ -1,34 +1,26 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import { FormGroup, TextField, Typography } from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
+type InputFieldType = {
+  name: string;
+  placeholderInput: string;
+}
 
-
-export function InputField() {
+export function InputField({ name, placeholderInput }: InputFieldType) {
   const {
     register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({
-    defaultValues: {
-      example: "",
-      exampleRequired: ""
-    }
-  });
+    formState: { errors },
+  } = useForm();
 
   return (
-    <form
-      onSubmit={handleSubmit((data) => {
-        console.log(data);
-      })}
-    >
-      <span>Example</span>
-      <input {...register("example")} defaultValue="test" />
-      <span>ExampleRequired</span>
-      <input
-        {...register("exampleRequired", { required: true, maxLength: 10 })}
+    <FormGroup>
+      <Typography typography='inputTitle'>{name}</Typography>
+      <TextField
+        {...register('inputField', { required: true })}
+        placeholder={placeholderInput}
       />
-      {errors.exampleRequired && <p>This field is required</p>}
-      <input type="submit" />
-    </form>
+      {errors.exampleRequired && <p>Обязательное поле</p>}
+    </FormGroup>
   );
 }

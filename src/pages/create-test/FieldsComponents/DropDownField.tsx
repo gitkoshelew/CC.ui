@@ -1,34 +1,52 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import {
+  FormGroup,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography,
+} from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
+type DropDownFieldType = {
+  name: string;
+  value: string;
+  items: string[];
+  handleChange: (event: SelectChangeEvent) => void;
+};
 
-
-export function DropDownField() {
+export function DropDownField({
+  name,
+  value,
+  items,
+  handleChange,
+}: DropDownFieldType) {
   const {
     register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({
-    defaultValues: {
-      example: "",
-      exampleRequired: ""
-    }
-  });
+    formState: { errors },
+  } = useForm();
 
   return (
-    <form
-      onSubmit={handleSubmit((data) => {
-        console.log(data);
-      })}
-    >
-      <span>Example</span>
-      <input {...register("example")} defaultValue="test" />
-      <span>ExampleRequired</span>
-      <input
-        {...register("exampleRequired", { required: true, maxLength: 10 })}
-      />
-      {errors.exampleRequired && <p>This field is required</p>}
-      <input type="submit" />
-    </form>
+    <FormGroup>
+      <Typography typography='inputTitle'>{name}</Typography>
+      <Select
+        value={value}
+        {...register('dropDownField')}
+        onChange={handleChange}
+      >
+        {items.map((item, index) => (
+          <MenuItem
+            sx={{
+              typography: 'subtitle1',
+            }}
+            key={index}
+            value={index}
+          >
+            {item}
+          </MenuItem>
+        ))}
+      </Select>
+      {errors.exampleRequired && <p>Обязательное поле</p>}
+    </FormGroup>
   );
 }

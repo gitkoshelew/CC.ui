@@ -1,29 +1,18 @@
-import { FormGroup } from "@mui/material";
-import React from "react";
-import { useForm } from "react-hook-form";
-
-
+import { FormGroup } from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
 export function CheckBoxField(name: string) {
   const {
     register,
-    formState: { errors }
-  } = useForm({
-    defaultValues: {
-      example: "",
-      exampleRequired: "",
-    }
-  });
+    formState: { errors },
+  } = useForm();
 
   return (
     <FormGroup>
       <label>{name}</label>
-      <input {...register("example")} defaultValue="test" />
-      <input
-        {...register("exampleRequired", { required: true, maxLength: 10 })}
-      />
+      <input {...register('example', { required: true })} defaultValue='test' />
       {errors.exampleRequired && <p>Обязательное поле</p>}
-      <input type="submit" />
-      </FormGroup>
+    </FormGroup>
   );
 }
