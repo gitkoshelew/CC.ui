@@ -5,5 +5,10 @@
   "forgottenPassword": "Forgotten password?",
   "buttonLogin": "Login",
   "dontHaveAcc": "Dont you have an account?",
-  "registration": "Create a new account"
+  "registration": "Create a new account",
+  "loginRequired": "Login is required",
+  "loginMessage": "Invalid email",
+  "passwordRequired": "Password is required",
+  "passwordMessage": "Minimum 8 characters"
+
 }

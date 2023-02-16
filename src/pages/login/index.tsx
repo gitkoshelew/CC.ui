@@ -51,11 +51,11 @@ const LoginPage = () => {
               <div className='mb-6 relative'>
                 <TextField
                   {...register('email', {
-                    required: 'Login is required',
+                    required: `${t('loginRequired')}`,
                     pattern: {
                       value:
                         /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
-                      message: 'Invalid email',
+                      message: `${t('loginMessage')}`,
                     },
                   })}
                   type='email'
@@ -74,10 +74,10 @@ const LoginPage = () => {
               <div className='mb-6 relative'>
                 <TextField
                   {...register('password', {
-                    required: 'Password is required',
+                    required: `${t('passwordRequired')}`,
                     minLength: {
                       value: 8,
-                      message: 'minimum 8 characters',
+                      message: `${t('passwordMessage')}`,
                     },
                   })}
                   type='password'
