@@ -37,15 +37,11 @@ export const slice = createSlice({
     [registration.rejected.type]: (state, action) => {
       state.noticeText = action.payload;
     },
-    [registration.fulfilled.type]: (state, action) => {
-      state.noticeText = 'Привет, Виталик';
-      state.noticeStatus = 'success';
-    },
     [logIn.rejected.type]: (state, action) => {
       state.noticeText = action.payload;
     },
-    [logIn.fulfilled.type]: (state, action) => {
-      state.noticeText = 'Ураааааа';
+    [logIn.fulfilled.type]: (state) => {
+      state.noticeText = 'You are authorized';
       state.noticeStatus = 'success';
     },
   },

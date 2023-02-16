@@ -1,0 +1,9 @@
+{
+  "title": "Log in",
+  "email": "Email",
+  "password": "Password",
+  "forgottenPassword": "Forgotten password?",
+  "buttonLogin": "Login",
+  "dontHaveAcc": "Dont you have an account?",
+  "registration": "Create a new account"
+}

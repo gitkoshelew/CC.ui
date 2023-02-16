@@ -15,7 +15,7 @@ import { LoginFormType } from '../../Types/AuthTypes';
 import { logIn } from '../../store/reducers/auth-reducer';
 
 const LoginPage = () => {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation('login');
   const router = useRouter();
   const isAuth = useAppSelector((state) => state.regis.isAuth);
   const dispatch = useAppDispatch();
@@ -30,8 +30,8 @@ const LoginPage = () => {
   }, [isAuth]);
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     await dispatch(logIn(data));
-    // router.push('/Profile')
   };
+
   return (
     <Layout>
       <Stack
@@ -44,10 +44,10 @@ const LoginPage = () => {
           my: 'auto',
         }}
       >
-        <StylizedPaper title='Log in'>
+        <StylizedPaper title={t('title')}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup className='text-sm'>
-              <span>Email</span>
+              <span>{t('email')}</span>
               <div className='mb-4'>
                 <TextField
                   {...register('email', {
@@ -59,19 +59,23 @@ const LoginPage = () => {
                     },
                   })}
                   type='email'
-                  className='w-full relative'
+                  className='w-full'
                 />
                 {errors?.email && (
-                  <span className='text-error-main absolute'>
+                  <span className='text-error-main'>
                     {errors?.email?.message}
                   </span>
                 )}
               </div>
-              <span>Password</span>
+              <span>{t('password')}</span>
               <div className='mb-4'>
                 <TextField
                   {...register('password', {
                     required: 'Password is required',
+                    minLength: {
+                      value: 8,
+                      message: 'minimum 8 characters',
+                    },
                   })}
                   type='password'
                   className='w-full'
@@ -94,21 +98,21 @@ const LoginPage = () => {
                 {/* /> */}
                 {/* <span>Remember me</span> */}
                 <div className='text-center'>
-                  <a href=' '>Forgotten password?</a>
+                  <a href=' '>{t('forgottenPassword')}</a>
                 </div>
               </div>
             </FormGroup>
             <div className='flex justify-center'>
               <Button disabled={!isValid} type='submit'>
-                Login
+                {t('buttonLogin')}
               </Button>
             </div>
             <hr className='h-px w-80 bg-neutral-300' />
             <span className='flex justify-center text-slate-500'>
-              Dont you have an account?
+              {t('dontHaveAcc')}
             </span>
             <Link href='/registration' className='flex justify-center'>
-              Create new account?
+              {t('registration')}
             </Link>
           </form>
         </StylizedPaper>
@@ -122,6 +126,10 @@ export default LoginPage;
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(() => async ({ locale }) => ({
     props: {
-      ...(await serverSideTranslations(locale as string, ['home', 'testPage'])),
+      ...(await serverSideTranslations(locale as string, [
+        'home',
+        'testPage',
+        'login',
+      ])),
     },
   }));

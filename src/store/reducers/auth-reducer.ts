@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { AxiosError } from 'axios';
 import { authApi } from '../../api/authApi';
@@ -48,10 +48,10 @@ export const slice = createSlice({
       ...state,
       ...action.payload,
     }),
-    [registration.fulfilled.type]: (state, action) => {
+    [registration.fulfilled.type]: (state) => {
       state.isAuth = true;
     },
-    [logIn.fulfilled.type]: (state, action) => {
+    [logIn.fulfilled.type]: (state) => {
       state.isAuth = true;
     },
   },
