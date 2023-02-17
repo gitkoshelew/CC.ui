@@ -20,6 +20,7 @@ import { PlusIcon } from '../../assets/icons/PlusIcon';
 import { SuperInput } from '../../components/new-test/SuperInput';
 import { Timer } from '../../components/new-test/Timer';
 import { useAppSelector } from '../../store/store';
+import { CheckBoxField } from './FieldsComponents/CheckBoxField';
 
 enum Difficulty {
   Easy = '0',
@@ -132,12 +133,6 @@ export default function NewTest() {
                   handleChange={handleTypeChange}
                   items={types}
                 />
-                {/* <SuperSelect
-                  title='Questions type:'
-                  value={value}
-                  items={items}
-                  handleChange={handleTypeChange}
-                /> */}
               </Box>
               <Box sx={{ flexGrow: 0.5 }}>
                 <DropDownField
@@ -151,16 +146,32 @@ export default function NewTest() {
                 <Stack>
                   <Typography typography='inputTitle'>Timer</Typography>
                   <Stack direction='row' spacing={1} alignItems='center'>
-                    <InputField {...register("min", {  maxLength: 2 })} name='' placeholderInput='00'/>
+                    <InputField
+                      {...register('min', { maxLength: 2 })}
+                      name=''
+                      placeholderInput='00'
+                    />
                     <Typography>:</Typography>
-                    <InputField {...register("sec", {  maxLength: 2 })} name='' placeholderInput='00' />
+                    <InputField
+                      {...register('sec', { maxLength: 2 })}
+                      name=''
+                      placeholderInput='00'
+                    />
                   </Stack>
                 </Stack>
               </Box>
             </Stack>
-            <Stack spacing={2}>
-              <SuperInput title='Answer choice' value='jest' checkbox />
-              <SuperInput value='assert' checkbox />
+            <Stack spacing={1}>
+              <Typography typography='inputTitle'>Answer choice</Typography>
+              <Stack direction='row' spacing={3} alignItems='center'>
+                <Box sx={{ flexGrow: 1 }}>
+                <InputField
+                  name=''
+                  placeholderInput='Answer variant'
+                />
+                </Box>
+                <CheckBoxField />
+              </Stack>
               <Stack direction='row' alignItems='center' paddingLeft={3}>
                 <PlusIcon />
                 <Typography typography='inputTitle'>Add answer</Typography>
