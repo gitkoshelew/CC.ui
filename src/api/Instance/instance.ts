@@ -1,7 +1,8 @@
 import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
 
+export const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const instance = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: API_URL,
   // withCredentials: true,
 });
 
@@ -39,5 +40,14 @@ instance.interceptors.response.use(
     setToken(response.data.accessToken);
     return response;
   },
-  (err) => Promise.reject(err)
+
+  async (err) => {
+    if (err.response.status === 401) {
+      const originalRequest = err.config;
+      const response = await axios.post('/auth/refresh-token');
+      localStorage.setItem('token', response.data.accessToken);
+      return instance.request(originalRequest);
+    }
+    return Promise.reject(err);
+  }
 );

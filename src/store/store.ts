@@ -12,6 +12,7 @@ import { errorHandlerReducer } from './reducers/errorHandler-reducer';
 import { difficultyReducer } from './reducers/difficulty-reducer';
 import { authReducer } from './reducers/auth-reducer';
 
+
 const reducers = {
   quizes: quizesReducer,
   questions: questionsReducer,

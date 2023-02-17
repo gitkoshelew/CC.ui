@@ -1,0 +1,13 @@
+{
+  "title": "Вход",
+  "email": "Электронная почта",
+  "password": "Пароль",
+  "forgottenPassword": "Забыли пароль?",
+  "buttonLogin": "Войти",
+  "dontHaveAcc": "Еще нет аккаунта?",
+  "registration": "Создать новый аккаунт",
+  "loginRequired": "Поле обязательно",
+  "loginMessage": "Некорретный адрес электронной почты",
+  "passwordRequired": "Поле обязательно",
+  "passwordMessage": "Минимальная длина 8 символов"
+}
