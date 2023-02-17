@@ -8,21 +8,18 @@ import { GlobalThemes } from '../styles/theme/types';
 import { useAppDispatch, wrapper } from '../store/store';
 import { ErrorSnackbar } from '../components/ErrorHandler/ErrorHandler';
 import { Preloader } from '../components/common/Preloader/Preloader';
-import { checkAuthAC } from '../store/reducers/auth-reducer';
 import { getFromLocalStorage } from '../utils/getFromLocalStorage';
 
 function App({ Component, pageProps }: AppProps) {
-  const dispatch = useAppDispatch();
   const router = useRouter();
 
   useEffect(() => {
     const storedData = getFromLocalStorage('token');
-    if (storedData) {
-      dispatch(checkAuthAC());
-      router.push('profilePage');
-    } else {
-      router.push('login');
-    }
+    const checkUrl =
+      router.pathname.includes('/login') ||
+      router.pathname.includes('/registration');
+
+    if (!storedData && !checkUrl) router.push('login');
   }, []);
 
   return (

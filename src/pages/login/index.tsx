@@ -7,17 +7,15 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Layout } from '../../components/layout/Layout';
-import { useAppDispatch, useAppSelector, wrapper } from '../../store/store';
+import { useAppDispatch, wrapper } from '../../store/store';
 import { LoginFormType } from '../../Types/AuthTypes';
 import { logIn } from '../../store/reducers/auth-reducer';
 
 const LoginPage = () => {
   const { t } = useTranslation('login');
   const router = useRouter();
-  const isAuth = useAppSelector((state) => state.regis.auth);
   const dispatch = useAppDispatch();
   const {
     register,
@@ -25,11 +23,9 @@ const LoginPage = () => {
     handleSubmit,
   } = useForm<LoginFormType>({ mode: 'onBlur' });
 
-  useEffect(() => {
-    if (isAuth) router.push('profilePage');
-  }, [isAuth]);
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
-    await dispatch(logIn(data));
+    const response = await dispatch(logIn(data));
+    if (response.payload) await router.push('profilePage');
   };
 
   return (
