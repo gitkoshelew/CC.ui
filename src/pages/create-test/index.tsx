@@ -21,6 +21,12 @@ import { SuperInput } from '../../components/new-test/SuperInput';
 import { Timer } from '../../components/new-test/Timer';
 import { useAppSelector } from '../../store/store';
 
+enum Difficulty {
+  Easy = '0',
+  Medium = '1',
+  Hard = '2',
+}
+
 export default function NewTest() {
   const [themeValue, setThemeValue] = useState('3');
   const [typeValue, setTypeValue] = useState('0');
