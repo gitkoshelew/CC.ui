@@ -32,12 +32,12 @@ export function RadioButtonField({
 }: RadioButtonType) {
   return (
     <FormGroup>
-      <Stack spacing={1}>
+      <Stack >
         <Typography typography='inputTitle'>{name}</Typography>
         <select
           value={active}
           {...register('radioButtonField')}
-          style={{visibility:"hidden"}}
+          style={{display:"none"}}
         >
           {items.map((item, index) => (
             <option value={index}>{item}</option>
@@ -54,6 +54,7 @@ export function RadioButtonField({
               textTransform: 'none',
               borderColor: 'background.border',
             },
+            mt: '0px'
           }}
         >
           {items.map((item, index) => (

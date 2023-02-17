@@ -25,7 +25,7 @@ export const QuestionTabs = (props: RectangleProgressBarPropsType) => {
   );
 
   return (
-    <Box>
+    <Box className='my-5'>
       <Tabs ref={tabsRef}>
         {props.questionsData.map(({ questionId, isCompleted }, index) => (
           <QuestionTabsItem
