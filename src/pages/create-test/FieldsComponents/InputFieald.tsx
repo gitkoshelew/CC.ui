@@ -1,27 +1,24 @@
 import { FormGroup, TextField, Typography } from '@mui/material';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm, UseFormRegister } from 'react-hook-form';
+import { QuestionFormType } from '../../../Types/QuestionFormType';
 
 type InputFieldType = {
+  
   name: string;
   placeholderInput: string;
-  inputFieldReg:string
+  register: string;
 }
 
-export function InputField({ name, placeholderInput,inputFieldReg }: InputFieldType) {
-  const {
-    register,
-    formState: { errors },
-  } = useForm();
-
+export function InputField({ name, placeholderInput, register }: InputFieldType) {
   return (
     <FormGroup>
       <Typography typography='inputTitle'>{name}</Typography>
       <TextField
-        {...register(inputFieldReg, { required: true })}
+        {...register(register, { required: true })}
         placeholder={placeholderInput}
       />
-      {errors.exampleRequired && <p>Обязательное поле</p>}
+      
     </FormGroup>
   );
 }

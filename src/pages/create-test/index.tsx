@@ -21,12 +21,15 @@ import { SuperInput } from '../../components/new-test/SuperInput';
 import { Timer } from '../../components/new-test/Timer';
 import { useAppSelector } from '../../store/store';
 import { CheckBoxField } from './FieldsComponents/CheckBoxField';
+import { QuestionFormType } from '../../Types/QuestionFormType';
 
 enum Difficulty {
   Easy = '0',
   Medium = '1',
   Hard = '2',
 }
+
+
 
 export default function NewTest() {
   const [themeValue, setThemeValue] = useState('3');
@@ -52,10 +55,14 @@ export default function NewTest() {
   };
   const { register, handleSubmit } = useForm();
   const difficultyItems = useAppSelector((state) => state.difficulty);
-  const onSubmit: SubmitHandler<FieldValues> = data => {
+  const onSubmit: SubmitHandler<QuestionFormType> = data => {
     console.log(data);
     quizesApi.postQuizes(data);
   };
+  function UseFromRegister<TFieldName extends 'title' | 'difficulty' | 'content' | 'type' | 'description' | 'topicId' | 'timer' | 'content.options' | 'content.correctAnswer' | `content.options.${number}` | `content.correctAnswer.${number}` = 'title' | 'difficulty' | 'content' | 'type' | 'description' | 'topicId' | 'timer' | 'content.options' | 'content.correctAnswer' | `content.options.${number}` | `content.correctAnswer.${number}`>(name: TFieldName, options?: Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; maxLength: ValidationRule<number>; minLength: ValidationRule<number>; pattern: ValidationRule<RegExp>; validate: Validate<TFieldName extends `${infer K}.${infer R}` ? K extends keyof QuestionFormType ? R extends Path<QuestionFormType[K]> ? PathValue<QuestionFormType[K], R> : never : K extends `${number}` ? never : never : TFieldName extends keyof QuestionFormType ? QuestionFormType[TFieldName] : TFieldName extends `${number}` ? never : never, QuestionFormType> | Record<string, Validate<TFieldName extends `${infer K}.${infer R}` ? K extends keyof QuestionFormType ? R extends Path<QuestionFormType[K]> ? PathValue<QuestionFormType[K], R> : never : K extends `${number}` ? never : never : TFieldName extends keyof QuestionFormType ? QuestionFormType[TFieldName] : TFieldName extends `${number}` ? never : never, QuestionFormType>>; valueAsNumber: boolean; valueAsDate: boolean; value: TFieldName extends `${infer K}.${infer R}` ? K extends keyof QuestionFormType ? R extends Path<QuestionFormType[K]> ? PathValue<QuestionFormType[K], R> : never : K extends `${number}` ? never : never : TFieldName extends keyof QuestionFormType ? QuestionFormType[TFieldName] : TFieldName extends `${number}` ? never : never; setValueAs: (value: any) => any; shouldUnregister?: boolean | undefined; onChange?: ((event: any) => void) | undefined; onBlur?: ((event: any) => void) | undefined; disabled: boolean; deps: string | string[]; }> | undefined): UseFormRegisterReturn<TFieldName> {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <Layout>
       <ButtonBackHome />
@@ -72,14 +79,14 @@ export default function NewTest() {
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
               <Box sx={{ flexGrow: 1 }}>
                 <InputField
-                  inputFieldReg='inputField'
+                  register="title"
                   name='Test title'
                   placeholderInput='Add test title'
                 />
               </Box>
               <Box sx={{ flexGrow: 2 }}>
                 <InputField
-                inputFieldReg='inputField'
+                  register="description"
                   name='Test description'
                   placeholderInput='Add test description'
                 />
@@ -124,7 +131,7 @@ export default function NewTest() {
           <Stack spacing={2}>
             <Stack direction='row' flexWrap='wrap' spacing={3}>
               <Box sx={{ flexGrow: 1 }}>
-                <InputField name='Question' placeholderInput='Add a question' inputFieldReg='inputField' />
+                <InputField name='Question' placeholderInput='Add a question' register={register} />
               </Box>
             </Stack>
             <Stack direction='row' flexWrap='wrap' spacing={3}>
@@ -166,7 +173,7 @@ export default function NewTest() {
               <Stack direction='row' spacing={3} alignItems='center'>
                 <Box sx={{ flexGrow: 1 }}>
                 <InputField
-                  inputFieldReg='inputField'
+                  register={register}
                   name=''
                   placeholderInput='Answer variant'
                 />
