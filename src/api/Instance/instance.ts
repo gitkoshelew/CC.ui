@@ -1,13 +1,15 @@
 import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
 
+export const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 export const instance = axios.create({
-  baseURL: 'http://localhost:5005',
+  baseURL: API_URL,
   // withCredentials: true,
 });
 
-const getToken = async (config: AxiosRequestConfig) => {
+const getToken = (config: AxiosRequestConfig) => {
   try {
-    const token = await localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (config.headers) {
       (config.headers as AxiosHeaders).set('Authorization', `Bearer ${token}`);
     }
