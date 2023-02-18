@@ -1,6 +1,6 @@
 import { SelectChangeEvent } from '@mui/material/Select';
 import { MouseEventHandler, useState } from 'react';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { Layout } from '../../components/layout/Layout';
 import { QuestionBlock } from '../../components/new-test/QuestionBlock';
@@ -52,7 +52,7 @@ export default function NewTest() {
   };
   const { register, handleSubmit } = useForm();
   const difficultyItems = useAppSelector((state) => state.difficulty);
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = data => {
     console.log(data);
     quizesApi.postQuizes(data);
   };
@@ -72,12 +72,14 @@ export default function NewTest() {
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
               <Box sx={{ flexGrow: 1 }}>
                 <InputField
+                  inputFieldReg='inputField'
                   name='Test title'
                   placeholderInput='Add test title'
                 />
               </Box>
               <Box sx={{ flexGrow: 2 }}>
                 <InputField
+                inputFieldReg='inputField'
                   name='Test description'
                   placeholderInput='Add test description'
                 />
@@ -122,7 +124,7 @@ export default function NewTest() {
           <Stack spacing={2}>
             <Stack direction='row' flexWrap='wrap' spacing={3}>
               <Box sx={{ flexGrow: 1 }}>
-                <InputField name='Question' placeholderInput='Add a question' />
+                <InputField name='Question' placeholderInput='Add a question' inputFieldReg='inputField' />
               </Box>
             </Stack>
             <Stack direction='row' flexWrap='wrap' spacing={3}>
@@ -146,16 +148,14 @@ export default function NewTest() {
                 <Stack>
                   <Typography typography='inputTitle'>Timer</Typography>
                   <Stack direction='row' spacing={1} alignItems='center'>
-                    <InputField
-                      {...register('min', { maxLength: 2 })}
-                      name=''
-                      placeholderInput='00'
+                    <TextField
+
+                      {...register('min')}
+                      
                     />
                     <Typography>:</Typography>
-                    <InputField
-                      {...register('sec', { maxLength: 2 })}
-                      name=''
-                      placeholderInput='00'
+                    <TextField
+                      {...register('sec')}
                     />
                   </Stack>
                 </Stack>
@@ -166,6 +166,7 @@ export default function NewTest() {
               <Stack direction='row' spacing={3} alignItems='center'>
                 <Box sx={{ flexGrow: 1 }}>
                 <InputField
+                  inputFieldReg='inputField'
                   name=''
                   placeholderInput='Answer variant'
                 />

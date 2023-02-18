@@ -5,9 +5,10 @@ import { useForm } from 'react-hook-form';
 type InputFieldType = {
   name: string;
   placeholderInput: string;
+  inputFieldReg:string
 }
 
-export function InputField({ name, placeholderInput }: InputFieldType) {
+export function InputField({ name, placeholderInput,inputFieldReg }: InputFieldType) {
   const {
     register,
     formState: { errors },
@@ -17,7 +18,7 @@ export function InputField({ name, placeholderInput }: InputFieldType) {
     <FormGroup>
       <Typography typography='inputTitle'>{name}</Typography>
       <TextField
-        {...register('inputField', { required: true })}
+        {...register(inputFieldReg, { required: true })}
         placeholder={placeholderInput}
       />
       {errors.exampleRequired && <p>Обязательное поле</p>}
