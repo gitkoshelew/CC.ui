@@ -15,6 +15,7 @@ import { quizesApi } from '../../api/quizesApi';
 import { PlusIcon } from '../../assets/icons/PlusIcon';
 import { useAppSelector } from '../../store/store';
 import { CheckBoxField } from './FieldsComponents/CheckBoxField';
+import { QuestionFormType } from '../../Types/QuestionFormType';
 
 enum Difficulty {
   Easy = '0',
@@ -46,7 +47,7 @@ export default function NewTest() {
   const handleNumOfQuestionChange = (difficultyNumQuestion: string) => {
     setNumQuestionValue(difficultyNumQuestion);
   };
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<FieldValues>();
   const difficultyItems = useAppSelector((state) => state.difficulty);
   const onSubmit: SubmitHandler<FieldValues> = data => {
     console.log(data);
@@ -69,6 +70,7 @@ export default function NewTest() {
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
               <Box sx={{ flexGrow: 1 }}>
                 <InputField
+                  registerName="title"
                   register={register}
                   name='Test title'
                   placeholderInput='Add test title'
@@ -76,6 +78,7 @@ export default function NewTest() {
               </Box>
               <Box sx={{ flexGrow: 2 }}>
                 <InputField
+                  registerName="description"
                   register={register}
                   name='Test description'
                   placeholderInput='Add test description'
@@ -89,6 +92,8 @@ export default function NewTest() {
             >
               <Box flexGrow={1}>
                 <DropDownField
+                register={register}
+                registerName = "theme"
                   name='Theme'
                   value={themeValue}
                   handleChange={handleThemeChange}
@@ -98,6 +103,7 @@ export default function NewTest() {
               <Box flexGrow={1}>
                 <RadioButtonField
                   name='Test level'
+                  registerName="level"
                   items={level}
                   value={levelValue}
                   onChange={handleLevelChange}
@@ -107,6 +113,7 @@ export default function NewTest() {
               </Box>
               <Box flexGrow={1}>
                 <RadioButtonField
+                  registerName="numberOfQuestion"
                   name='Number of questions'
                   items={numberQuestions}
                   value={numQuestionValue}
@@ -121,12 +128,14 @@ export default function NewTest() {
           <Stack spacing={2}>
             <Stack direction='row' flexWrap='wrap' spacing={3}>
               <Box sx={{ flexGrow: 1 }}>
-                <InputField name='Question' placeholderInput='Add a question' register={register} />
+                <InputField name='Question' placeholderInput='Add a question' register={register} registerName="options" />
               </Box>
             </Stack>
             <Stack direction='row' flexWrap='wrap' spacing={3}>
               <Box sx={{ flexGrow: 0.5 }}>
                 <DropDownField
+                register={register}
+                registerName = "type"
                   name='Questions type:'
                   value={typeValue}
                   handleChange={handleTypeChange}
@@ -135,6 +144,8 @@ export default function NewTest() {
               </Box>
               <Box sx={{ flexGrow: 0.5 }}>
                 <DropDownField
+                register={register}
+                registerName = "difficulty"
                   name='Difficulty:'
                   value={difficulty}
                   items={difficultyItems}
@@ -147,12 +158,12 @@ export default function NewTest() {
                   <Stack direction='row' spacing={1} alignItems='center'>
                     <TextField
 
-                      {...register('min')}
+                      {...register('timer')}
                       
                     />
                     <Typography>:</Typography>
                     <TextField
-                      {...register('sec')}
+                      {...register('timer')}
                     />
                   </Stack>
                 </Stack>
@@ -163,6 +174,7 @@ export default function NewTest() {
               <Stack direction='row' spacing={3} alignItems='center'>
                 <Box sx={{ flexGrow: 1 }}>
                 <InputField
+                registerName="correctAnswer"
                   register={register}
                   name=''
                   placeholderInput='Answer variant'

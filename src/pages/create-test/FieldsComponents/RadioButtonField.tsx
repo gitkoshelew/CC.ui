@@ -11,9 +11,10 @@ import React from 'react';
 import { UseFormRegister , FieldValues } from 'react-hook-form';
 
 import { ArrowSuccessIcon } from '../../../assets/icons/ArrowSuccessIcon';
+import { QuestionFormType } from '../../../Types/QuestionFormType';
 
 type RadioButtonType = {
-
+  registerName: string
   register: UseFormRegister<FieldValues>;
   name: string;
   active: string;
@@ -28,7 +29,8 @@ export function RadioButtonField({
   value,
   active,
   onChange,
-  register
+  register,
+  registerName
 }: RadioButtonType) {
   return (
     <FormGroup>
@@ -36,7 +38,7 @@ export function RadioButtonField({
         <Typography typography='inputTitle'>{name}</Typography>
         <select
           value={active}
-          {...register('radioButtonField')}
+          {...register(registerName)}
           style={{display:"none"}}
         >
           {items.map((item, index) => (
