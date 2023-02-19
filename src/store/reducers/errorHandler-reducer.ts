@@ -8,7 +8,7 @@ import { NotificationType } from '../../Types/NotificationType';
 
 export const slice = createSlice({
   name: 'error',
-  initialState: [],
+  initialState: [] as NotificationType[],
   reducers: {
     changeError(state, action: PayloadAction<null | string>) {
       state.noticeText = action.payload;
