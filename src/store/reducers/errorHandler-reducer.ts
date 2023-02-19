@@ -4,19 +4,11 @@ import { AlertColor } from '@mui/material/Alert/Alert';
 import { getQuestions } from './questions-reducer';
 import { fetchQuizes } from './quizes-reducer';
 import { logIn, registration } from './auth-reducer';
+import { NotificationType } from '../../Types/NotificationType';
 
-type ErrorInitialState = {
-  noticeText: null | string;
-  noticeStatus: AlertColor;
-};
-
-const initialState: ErrorInitialState = {
-  noticeText: null,
-  noticeStatus: 'error',
-};
 export const slice = createSlice({
   name: 'error',
-  initialState,
+  initialState: [],
   reducers: {
     changeError(state, action: PayloadAction<null | string>) {
       state.noticeText = action.payload;
