@@ -7,6 +7,6 @@ export const quizesApi = {
     return instance.get<CardsType[]>(`quiz`);
   },
   postQuizes(data:FieldValues) {
-    return instance.post<FieldValues>('quizzes', data);
+    return instance.post<FieldValues>('quiz', data);
   },
 };

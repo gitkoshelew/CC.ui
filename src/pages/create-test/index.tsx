@@ -1,11 +1,9 @@
 import { SelectChangeEvent } from '@mui/material/Select';
-import { MouseEventHandler, useState } from 'react';
+import { useState } from 'react';
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { Layout } from '../../components/layout/Layout';
-import { QuestionBlock } from '../../components/new-test/QuestionBlock';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
-import { ButtonSaveTest } from '../../components/new-test/ButtonSaveTest';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { level, numberQuestions, themes, types } from '../../Mocs/NewTestMoc';
 import { QuestionTabs } from '../../components/common/Tabs/QuestionTabs/QuestionTabs';
@@ -13,15 +11,10 @@ import { questionsData } from '../../Mocs/QuestionTabsMoc';
 import { InputField } from './FieldsComponents/InputFieald';
 import { DropDownField } from './FieldsComponents/DropDownField';
 import { RadioButtonField } from './FieldsComponents/RadioButtonField';
-import { SuperButtonGroup } from '../../components/new-test/SuperButtonGroup';
 import { quizesApi } from '../../api/quizesApi';
-import { QuizesType } from '../../components/common/types';
 import { PlusIcon } from '../../assets/icons/PlusIcon';
-import { SuperInput } from '../../components/new-test/SuperInput';
-import { Timer } from '../../components/new-test/Timer';
 import { useAppSelector } from '../../store/store';
 import { CheckBoxField } from './FieldsComponents/CheckBoxField';
-import { QuestionFormType } from '../../Types/QuestionFormType';
 
 enum Difficulty {
   Easy = '0',
@@ -55,7 +48,7 @@ export default function NewTest() {
   };
   const { register, handleSubmit } = useForm();
   const difficultyItems = useAppSelector((state) => state.difficulty);
-  const onSubmit: SubmitHandler<QuestionFormType> = data => {
+  const onSubmit: SubmitHandler<FieldValues> = data => {
     console.log(data);
     quizesApi.postQuizes(data);
   };
@@ -76,14 +69,14 @@ export default function NewTest() {
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
               <Box sx={{ flexGrow: 1 }}>
                 <InputField
-                  register="title"
+                  register={register}
                   name='Test title'
                   placeholderInput='Add test title'
                 />
               </Box>
               <Box sx={{ flexGrow: 2 }}>
                 <InputField
-                  register="description"
+                  register={register}
                   name='Test description'
                   placeholderInput='Add test description'
                 />

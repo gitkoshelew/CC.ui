@@ -4,10 +4,9 @@ import { FieldValues, useForm, UseFormRegister } from 'react-hook-form';
 import { QuestionFormType } from '../../../Types/QuestionFormType';
 
 type InputFieldType = {
-  
+  register: UseFormRegister<FieldValues>
   name: string;
   placeholderInput: string;
-  register: string;
 }
 
 export function InputField({ name, placeholderInput, register }: InputFieldType) {
@@ -15,7 +14,7 @@ export function InputField({ name, placeholderInput, register }: InputFieldType)
     <FormGroup>
       <Typography typography='inputTitle'>{name}</Typography>
       <TextField
-        {...register(register, { required: true })}
+        {...register("title", { required: true })}
         placeholder={placeholderInput}
       />
       
