@@ -11,13 +11,7 @@ import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPap
 import { Layout } from '../../components/layout/Layout';
 import { useAppDispatch, wrapper } from '../../store/store';
 import { registration } from '../../store/reducers/auth-reducer';
-
-type Inputs = {
-  name: string;
-  nickname: string;
-  email: string;
-  password: string;
-};
+import { RegistrationFormType } from '../../Types/AuthTypes';
 
 const SignUpPage = () => {
   const { t } = useTranslation('home');
@@ -28,7 +22,7 @@ const SignUpPage = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<Inputs>({
+  } = useForm<RegistrationFormType>({
     mode: 'onBlur',
     defaultValues: {
       name: '',
@@ -38,7 +32,7 @@ const SignUpPage = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<RegistrationFormType> = async (data) => {
     await dispatch(registration(data));
     router.push('/');
   };

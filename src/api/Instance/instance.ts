@@ -41,5 +41,14 @@ instance.interceptors.response.use(
     setToken(response.data.accessToken);
     return response;
   },
-  (err) => Promise.reject(err)
+
+  async (err) => {
+    if (err.response.status === 401) {
+      const originalRequest = err.config;
+      const response = await axios.post('/auth/refresh-token');
+      localStorage.setItem('token', response.data.accessToken);
+      return instance.request(originalRequest);
+    }
+    return Promise.reject(err);
+  }
 );
