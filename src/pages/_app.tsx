@@ -26,8 +26,9 @@ function App({ Component, pageProps }: AppProps) {
     <Suspense fallback={<div>Loading...</div>}>
       <ThemeProvider theme={GlobalThemes.LIGHT}>
         <Preloader />
-        <Component {...pageProps} />
         <ErrorSnackbar />
+        <Component {...pageProps} />
+        {/* <ErrorSnackbar /> */}
       </ThemeProvider>
     </Suspense>
   );
