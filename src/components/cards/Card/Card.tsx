@@ -7,10 +7,12 @@ type PropsCardType = {
   title: string;
   author: AuthorType;
   date?: number;
+  description: string;
 };
 
 export const Card = ({
   title,
+  description,
   author: { name, status },
   date,
 }: PropsCardType) => {
@@ -22,10 +24,10 @@ export const Card = ({
       </div>
       <div className='flex flex-col justify-between items-center h-full'>
         <Typography fontWeight={600} mb={3}>
-          NodeJs
+          {title}
         </Typography>
         <div className='flex flex-col gap-1.5 justify-center mb-7'>
-          <p className='m-0'>{title}</p>
+          <p className='m-0'>{description}</p>
           <p className='m-0'>
             <span className='text-text-primaryAlpha300'>By </span>
             {name}
