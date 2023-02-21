@@ -1,9 +1,11 @@
+import { NewQuestionType } from './TestQuestionsType';
+
 export type CardsType = {
   id: number;
   title: string;
   authorId: number;
   author: AuthorType;
-  question: [];
+  question: NewQuestionType[];
 };
 
 export type AuthorType = {

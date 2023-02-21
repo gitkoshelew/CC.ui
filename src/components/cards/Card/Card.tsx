@@ -2,6 +2,9 @@ import { Button, Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { AuthorType } from '../../../Types/CardTypes';
+import { getOneCardTC } from '../../../store/reducers/questions-reducer';
+import { useAppDispatch } from '../../../store/store';
+import { getOneQuizesTC } from '../../../store/reducers/quizes-reducer';
 
 type PropsCardType = {
   title: string;
@@ -18,9 +21,11 @@ export const Card = ({
 }: PropsCardType) => {
   const { t } = useTranslation('home');
   const { push } = useRouter();
+  const dispatch = useAppDispatch();
 
   const onClickHandler = () => {
-    push(`/testPage/${id}`);
+    dispatch(getOneQuizesTC(+id));
+    push(`/${id}`);
   };
 
   return (

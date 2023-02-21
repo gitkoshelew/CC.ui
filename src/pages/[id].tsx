@@ -3,32 +3,33 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { ButtonBackHome } from '../../components/common/ButtonBackHome';
-import { Timer } from '../../components/Timer/Timer';
-import { timeDefault } from '../../Mocs/TimerMock';
-import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
-import { tabsData } from '../../Mocs/RectangleProgressBarMoc';
-import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
-import { TestQuestionsType } from '../../Types/TestQuestionsType';
-import { Layout } from '../../components/layout/Layout';
-import { getOneCardTC } from '../../store/reducers/questions-reducer';
-import { useAppDispatch, useAppSelector } from '../../store/store';
-import { TestQuestions } from './TestQuestions';
-import { getOneQuizesTC } from '../../store/reducers/quizes-reducer';
+import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useAppDispatch, useAppSelector, wrapper } from '../store/store';
+import { timeDefault } from '../Mocs/TimerMock';
+import { Layout } from '../components/layout/Layout';
+import { RectangleProgressTabs } from '../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
+import { StylizedPaper } from '../components/common/StylizedPaper/StylizedPaper';
+import { ButtonBackHome } from '../components/common/ButtonBackHome';
+import { fetchQuizes, getOneQuizesTC } from '../store/reducers/quizes-reducer';
+import { tabsData } from '../Mocs/RectangleProgressBarMoc';
+import { TestQuestionsType } from '../Types/TestQuestionsType';
+import { Timer } from '../components/Timer/Timer';
+import { CardsType } from '../Types/CardTypes';
+import { TestQuestions } from './testPage/TestQuestions';
+import { getQuestions } from '../store/reducers/questions-reducer';
 
 const Id = ({
-  questions,
+  oneQuizes,
   isEmptyQuestions,
 }: // quizes,
 {
-  questions: TestQuestionsType[];
   isEmptyQuestions: boolean;
-  // quizes: CardsType[];
+  oneQuizes: CardsType;
 }) => {
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useAppDispatch();
-
   const [currentTime, setCurrentTime] = useState(timeDefault);
   const [isRunning, setIsRunning] = useState(false);
   const { t } = useTranslation('testPage');
@@ -71,12 +72,12 @@ const Id = ({
               isTabsStatusHidden
             />
           </Stack>
-
           <StylizedPaper title={cardWithQuestion.title}>
             <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>
-              {/* {cardWithQuestion.question.map((m) => m.title)} */}
+              {cardWithQuestion &&
+                cardWithQuestion?.question?.map((m) => m.title)}
             </span>
-            {/* <TestQuestions answers={cardWithQuestion.content.options} /> */}
+            <TestQuestions answers={cardWithQuestion.question} />
             <Stack
               direction='row'
               justifyContent='center'
@@ -99,3 +100,17 @@ const Id = ({
 };
 
 export default Id;
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps((store) => async ({ locale }) => {
+    await store.dispatch(getQuestions());
+    const { questions } = store.getState().questions;
+    return {
+      props: {
+        questions,
+        ...(await serverSideTranslations(locale as string, [
+          'home',
+          'testPage',
+        ])),
+      },
+    };
+  });

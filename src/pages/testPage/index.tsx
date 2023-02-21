@@ -4,6 +4,8 @@ import { GetServerSideProps } from 'next';
 import { Layout } from '../../components/layout/Layout';
 import { wrapper } from '../../store/store';
 import { TestQuestionsType } from '../../Types/TestQuestionsType';
+import { fetchQuizes } from '../../store/reducers/quizes-reducer';
+import { getQuestions } from '../../store/reducers/questions-reducer';
 
 export default function TestPage({
   questions,
@@ -22,8 +24,16 @@ export default function TestPage({
   );
 }
 export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps(() => async ({ locale }) => ({
-    props: {
-      ...(await serverSideTranslations(locale as string, ['home', 'testPage'])),
-    },
-  }));
+  wrapper.getServerSideProps((store) => async ({ locale }) => {
+    await store.dispatch(getQuestions());
+    const { questions } = store.getState().questions;
+    return {
+      props: {
+        questions,
+        ...(await serverSideTranslations(locale as string, [
+          'home',
+          'testPage',
+        ])),
+      },
+    };
+  });
