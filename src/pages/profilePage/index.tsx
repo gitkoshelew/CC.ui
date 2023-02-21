@@ -6,7 +6,6 @@ import { addNot } from '../../store/reducers/errorHandler-reducer';
 const ProfilePage = memo(() => {
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(111);
     dispatch(addNot({ noticeText: 'hello', noticeStatus: 'error' }));
   }, []);
 

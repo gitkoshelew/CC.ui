@@ -12,7 +12,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
 
 export function ErrorSnackbar() {
   const dispatch = useDispatch();
-  const notices = useAppSelector((state) => state.error.notices[0]);
+  const notices = useAppSelector((state) => state.error.notices);
   // const allNotices = useAppSelector((state) => state.error.notices);
   // console.log(allNotices);
 
@@ -40,22 +40,24 @@ export function ErrorSnackbar() {
 
   return (
     <div>
-      {notices && (
-        <Snackbar
-          open
-          autoHideDuration={3000}
-          onClose={handleClose}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-        >
-          <Alert
+      {notices.length &&
+        notices.map((notice) => (
+          <Snackbar
+            key={notice.id}
+            open
+            autoHideDuration={3000}
             onClose={handleClose}
-            severity={notices.noticeStatus}
-            sx={{ width: '100%' }}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           >
-            {notices.noticeText}
-          </Alert>
-        </Snackbar>
-      )}
+            <Alert
+              onClose={handleClose}
+              severity={notice.noticeStatus}
+              sx={{ width: '100%' }}
+            >
+              {notice.noticeText}
+            </Alert>
+          </Snackbar>
+        ))}
     </div>
   );
 }
