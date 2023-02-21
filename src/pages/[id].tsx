@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useTranslation } from 'next-i18next';
@@ -11,22 +11,13 @@ import { Layout } from '../components/layout/Layout';
 import { RectangleProgressTabs } from '../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 import { StylizedPaper } from '../components/common/StylizedPaper/StylizedPaper';
 import { ButtonBackHome } from '../components/common/ButtonBackHome';
-import { fetchQuizes, getOneQuizesTC } from '../store/reducers/quizes-reducer';
+import { getOneQuizesTC } from '../store/reducers/quizes-reducer';
 import { tabsData } from '../Mocs/RectangleProgressBarMoc';
-import { TestQuestionsType } from '../Types/TestQuestionsType';
 import { Timer } from '../components/Timer/Timer';
-import { CardsType } from '../Types/CardTypes';
 import { TestQuestions } from './testPage/TestQuestions';
 import { getQuestions } from '../store/reducers/questions-reducer';
 
-const Id = ({
-  oneQuizes,
-  isEmptyQuestions,
-}: // quizes,
-{
-  isEmptyQuestions: boolean;
-  oneQuizes: CardsType;
-}) => {
+const Id = ({ isEmptyQuestions }: { isEmptyQuestions: boolean }) => {
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useAppDispatch();
@@ -37,16 +28,36 @@ const Id = ({
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
-    // (async () => {
-    //   await dispatch(getOneQuizesTC(+id));
-    // })();
     if (id) {
       dispatch(getOneQuizesTC(+id));
     }
   }, [id]);
   const cardWithQuestion = useAppSelector((state) => state.quizes.oneQuizes);
-  console.log(cardWithQuestion, 'card');
-  console.log('questions', cardWithQuestion.question);
+
+  const nextQuestionHandler = useCallback(() => {
+    if (
+      numberOfQuestion ===
+      (cardWithQuestion?.question &&
+        cardWithQuestion.question[numberOfQuestion].content.options.length - 1)
+    ) {
+      alert('The end');
+      // setDisabled(true);
+      return;
+    }
+    // setDisabled(false);
+    setQuestion(numberOfQuestion + 1);
+  }, [
+    numberOfQuestion,
+    // cardWithQuestion.length
+  ]);
+  const skipHandler = () => {
+    if (numberOfQuestion === 0) {
+      alert('The end');
+      // setDisabled(true);
+      return;
+    }
+    setQuestion(numberOfQuestion - 1);
+  };
   return (
     <Layout>
       <ButtonBackHome />
@@ -74,21 +85,26 @@ const Id = ({
           </Stack>
           <StylizedPaper title={cardWithQuestion.title}>
             <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>
-              {cardWithQuestion &&
-                cardWithQuestion?.question?.map((m) => m.title)}
+              {cardWithQuestion?.question &&
+                cardWithQuestion?.question[numberOfQuestion]?.description}
             </span>
-            <TestQuestions answers={cardWithQuestion.question} />
+            {cardWithQuestion?.question && (
+              <TestQuestions
+                answers={
+                  cardWithQuestion?.question[numberOfQuestion]?.content?.options
+                }
+              />
+            )}
             <Stack
               direction='row'
               justifyContent='center'
               alignItems='center'
               spacing={4}
             >
-              <Button color='info'>{t('skip')}</Button>
-              <Button
-                disabled={disabled}
-                // onClick={nextQuestionHandler}
-              >
+              <Button color='info' onClick={skipHandler}>
+                {t('skip')}
+              </Button>
+              <Button disabled={disabled} onClick={nextQuestionHandler}>
                 {t('next')}
               </Button>
             </Stack>
@@ -98,8 +114,8 @@ const Id = ({
     </Layout>
   );
 };
-
 export default Id;
+
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ locale }) => {
     await store.dispatch(getQuestions());

@@ -10,7 +10,7 @@ import {
 import { useAppSelector } from '../../store/store';
 
 type PropsType = {
-  answers: NewQuestionType[];
+  answers: string[];
 };
 
 export const TestQuestions = ({ answers }: PropsType) => {
@@ -35,7 +35,7 @@ export const TestQuestions = ({ answers }: PropsType) => {
             <FormControlLabel
               value={t}
               className='Contained'
-              label={t.content.options}
+              label={t}
               control={<Radio size='small' />}
             />
           </RadioGroup>
