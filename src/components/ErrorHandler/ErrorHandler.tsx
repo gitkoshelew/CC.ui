@@ -2,7 +2,7 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { useDispatch } from 'react-redux';
 import { SnackbarCloseReason } from '@mui/material/Snackbar/Snackbar';
-import { forwardRef, SyntheticEvent, useEffect } from 'react';
+import { forwardRef, SyntheticEvent } from 'react';
 import { useAppSelector } from '../../store/store';
 import { removeNotice } from '../../store/reducers/errorHandler-reducer';
 
@@ -13,8 +13,6 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
 export function ErrorSnackbar() {
   const dispatch = useDispatch();
   const notices = useAppSelector((state) => state.error.notices);
-  // const allNotices = useAppSelector((state) => state.error.notices);
-  // console.log(allNotices);
 
   const handleClose = (
     event?: SyntheticEvent | Event,
@@ -25,29 +23,17 @@ export function ErrorSnackbar() {
     }
     dispatch(removeNotice());
   };
-  // useEffect(() => {
-  //   if (notices) {
-  //     const { id } = notices;
-  //     const timerId = setTimeout(() => {
-  //       if (notices.id === id) handleClose();
-  //     }, 3100);
-  //     return () => {
-  //       window.clearTimeout(timerId);
-  //     };
-  //   }
-  //   return undefined;
-  // }, []);
 
   return (
     <div>
-      {notices.length &&
+      {notices.length !== 0 &&
         notices.map((notice) => (
           <Snackbar
             key={notice.id}
             open
             autoHideDuration={3000}
             onClose={handleClose}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           >
             <Alert
               onClose={handleClose}

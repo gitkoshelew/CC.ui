@@ -17,10 +17,7 @@ export const slice = createSlice({
   name: 'error',
   initialState: { notices: [] as NotificationType[] },
   reducers: {
-    removeNotice(
-      state
-      // action: PayloadAction<{ noticeText: string; noticeStatus: AlertColor }>
-    ) {
+    removeNotice(state) {
       state.notices.shift();
     },
     addNot(

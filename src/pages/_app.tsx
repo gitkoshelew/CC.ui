@@ -5,7 +5,7 @@ import { Suspense, useEffect } from 'react';
 import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { GlobalThemes } from '../styles/theme/types';
-import { useAppDispatch, wrapper } from '../store/store';
+import { wrapper } from '../store/store';
 import { ErrorSnackbar } from '../components/ErrorHandler/ErrorHandler';
 import { Preloader } from '../components/common/Preloader/Preloader';
 import { getFromLocalStorage } from '../utils/getFromLocalStorage';
@@ -28,7 +28,6 @@ function App({ Component, pageProps }: AppProps) {
         <Preloader />
         <ErrorSnackbar />
         <Component {...pageProps} />
-        {/* <ErrorSnackbar /> */}
       </ThemeProvider>
     </Suspense>
   );

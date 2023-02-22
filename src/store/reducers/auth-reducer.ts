@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { authApi } from '../../api/authApi';
 import { LoginFormType, RegistrationFormType } from '../../Types/AuthTypes';
-import { API_URL } from '../../api/Instance/instance';
 
 export const registration = createAsyncThunk(
   'registration/register',
