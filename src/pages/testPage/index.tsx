@@ -37,6 +37,7 @@ export default function TestPage({
     }
     setQuestion(numberOfQuestion + 1);
   }, [numberOfQuestion, questions.length]);
+
   const toggleIsRunning = () => {
     setIsRunning((prevIsRunning) => !prevIsRunning);
   };
