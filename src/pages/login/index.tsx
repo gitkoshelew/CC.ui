@@ -25,7 +25,7 @@ const LoginPage = () => {
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const response = await dispatch(logIn(data));
-    if (response.payload) await router.push('profilePage');
+    if (response.payload) router.push('/profilePage');
   };
 
   return (
