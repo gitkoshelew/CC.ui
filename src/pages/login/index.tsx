@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Layout } from '../../components/layout/Layout';
 import { useAppDispatch, wrapper } from '../../store/store';
-import { LoginFormType } from '../../Types/AuthTypes';
+import { LoginFormType } from '../../types/AuthTypes';
 import { logIn } from '../../store/reducers/auth-reducer';
 
 const LoginPage = () => {
@@ -25,7 +25,9 @@ const LoginPage = () => {
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const response = await dispatch(logIn(data));
-    if (response.payload) router.push('/profilePage');
+    if (response.payload) {
+      router.push('/profilePage');
+    }
   };
 
   return (

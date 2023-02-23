@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Card } from '@mui/material';
-import { WithChild } from '../../../../Types/types';
+import { WithChild } from '../../../../types/types';
 
 export const FullHeaderWrapper: FC<WithChild> = ({ children }) => (
   <Card

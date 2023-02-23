@@ -1,5 +1,5 @@
 import { Card } from '@mui/material';
-import { WithChild } from '../../../../Types/types';
+import { WithChild } from '../../../../types/types';
 
 export const DefaultHeaderWrapper = ({ children }: WithChild) => (
   <Card

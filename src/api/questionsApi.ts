@@ -1,5 +1,5 @@
 import { instance } from './Instance/instance';
-import { TestQuestionsType } from '../Types/TestQuestionsType';
+import { TestQuestionsType } from '../types/TestQuestionsType';
 
 export const questionsApi = {
   getQuestions() {

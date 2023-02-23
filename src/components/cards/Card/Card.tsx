@@ -1,7 +1,7 @@
 import { Button, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
-import { AuthorType } from '../../../Types/CardTypes';
+import { AuthorType } from '../../../types/CardTypes';
 
 type PropsCardType = {
   title: string;
