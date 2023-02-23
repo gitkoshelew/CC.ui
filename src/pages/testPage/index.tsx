@@ -13,7 +13,7 @@ import { timeDefault } from '../../Mocs/TimerMock';
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 import { wrapper } from '../../store/store';
 import { getQuestions } from '../../store/reducers/questions-reducer';
-import { TestQuestionsType } from '../../Types/TestQuestionsType';
+import { TestQuestionsType } from '../../types/TestQuestionsType';
 import { TestQuestions } from './TestQuestions';
 
 export default function TestPage({
@@ -38,6 +38,10 @@ export default function TestPage({
     setQuestion(numberOfQuestion + 1);
   }, [numberOfQuestion, questions.length]);
 
+  const toggleIsRunning = () => {
+    setIsRunning((prevIsRunning) => !prevIsRunning);
+  };
+
   return (
     <Layout>
       <ButtonBackHome />
@@ -53,7 +57,7 @@ export default function TestPage({
             <Timer
               timeDefault={timeDefault}
               isRunning={isRunning}
-              setIsRunning={setIsRunning}
+              toggleIsRunning={toggleIsRunning}
               currentTime={currentTime}
               setCurrentTime={setCurrentTime}
             />

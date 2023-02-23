@@ -8,13 +8,13 @@ import { GlobalThemes } from '../styles/theme/types';
 import { wrapper } from '../store/store';
 import { ErrorSnackbar } from '../components/ErrorHandler/ErrorHandler';
 import { Preloader } from '../components/common/Preloader/Preloader';
-import { getFromLocalStorage } from '../utils/getFromLocalStorage';
+import { getTokenFromStorage } from '../utils/token';
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    const storedData = getFromLocalStorage('token');
+    const storedData = getTokenFromStorage();
     const checkUrl =
       router.pathname.includes('/login') ||
       router.pathname.includes('/registration');

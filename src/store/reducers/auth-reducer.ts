@@ -2,13 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { AxiosError } from 'axios';
 import { authApi } from '../../api/authApi';
-import { LoginFormType, RegistrationFormType } from '../../Types/AuthTypes';
+import { LoginFormType, RegistrationFormType } from '../../types/AuthTypes';
 
 export const registration = createAsyncThunk(
   'registration/register',
   async (data: RegistrationFormType, { rejectWithValue }) => {
     try {
       const response = await authApi.registration(data);
+      localStorage.setItem('token', response.data.accessToken);
       return response.data.accessToken;
     } catch (e) {
       const err = e as AxiosError;
@@ -21,6 +22,7 @@ export const logIn = createAsyncThunk(
   async (data: LoginFormType, { rejectWithValue }) => {
     try {
       const response = await authApi.logIn(data);
+      localStorage.setItem('token', response.data.accessToken);
       return response.data.accessToken;
     } catch (e) {
       const err = e as AxiosError;

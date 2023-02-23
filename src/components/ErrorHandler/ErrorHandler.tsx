@@ -1,14 +1,10 @@
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import Alert from '@mui/material/Alert';
 import { useDispatch } from 'react-redux';
 import { SnackbarCloseReason } from '@mui/material/Snackbar/Snackbar';
-import { forwardRef, SyntheticEvent } from 'react';
+import { SyntheticEvent } from 'react';
 import { useAppSelector } from '../../store/store';
 import { removeNotice } from '../../store/reducers/errorHandler-reducer';
-
-const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-  <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />
-));
 
 export function ErrorSnackbar() {
   const dispatch = useDispatch();
@@ -36,6 +32,8 @@ export function ErrorSnackbar() {
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           >
             <Alert
+              elevation={6}
+              variant='filled'
               onClose={handleClose}
               severity={notice.noticeStatus}
               sx={{ width: '100%' }}

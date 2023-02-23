@@ -7,8 +7,7 @@ import { CardsWithQuizes } from '../components/cards/CardsWithQuizes';
 import { categories, sort } from '../Mocs/NavigationMoc';
 import { wrapper } from '../store/store';
 import { fetchQuizes } from '../store/reducers/quizes-reducer';
-import { CardsType } from '../Types/CardTypes';
-import { ErrorSnackbar } from '../components/ErrorHandler/ErrorHandler';
+import { CardsType } from '../types/CardTypes';
 
 export default function Home({ quizes }: { quizes: CardsType[] }) {
   return (

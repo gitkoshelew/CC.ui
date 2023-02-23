@@ -1,4 +1,4 @@
-import { TestQuestionsType } from '../../Types/TestQuestionsType';
+import { TestQuestionsType } from '../../types/TestQuestionsType';
 import {
   getQuestions,
   questionsReducer,

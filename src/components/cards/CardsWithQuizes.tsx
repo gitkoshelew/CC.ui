@@ -1,5 +1,5 @@
 import { Card } from './Card/Card';
-import { CardsType } from '../../Types/CardTypes';
+import { CardsType } from '../../types/CardTypes';
 
 type PropsCardsType = {
   quizes: CardsType[];

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { AxiosError } from 'axios';
 import { quizesApi } from '../../api/quizesApi';
-import { CardsType } from '../../Types/CardTypes';
+import { CardsType } from '../../types/CardTypes';
 
 export const fetchQuizes = createAsyncThunk(
   'quizes/getQuizesThunk',

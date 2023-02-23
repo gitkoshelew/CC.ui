@@ -1,4 +1,5 @@
 import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
+import { getTokenFromStorage } from '../../utils/token';
 
 export const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const instance = axios.create({
@@ -8,7 +9,7 @@ export const instance = axios.create({
 
 const getToken = (config: AxiosRequestConfig) => {
   try {
-    const token = localStorage.getItem('token');
+    const token = getTokenFromStorage();
     if (config.headers) {
       (config.headers as AxiosHeaders).set('Authorization', `Bearer ${token}`);
     }
@@ -17,15 +18,15 @@ const getToken = (config: AxiosRequestConfig) => {
   }
 };
 
-const setToken = (accessToken: string) => {
-  try {
-    if (accessToken) {
-      localStorage.setItem('token', accessToken);
-    }
-  } catch (e) {
-    console.log('setToken => catch => ', e);
-  }
-};
+// const setToken = (accessToken: string) => {
+//   try {
+//     if (accessToken) {
+//       localStorage.setItem('token', accessToken);
+//     }
+//   } catch (e) {
+//     console.log('setToken => catch => ', e);
+//   }
+// };
 
 instance.interceptors.request.use(
   (config) => {
@@ -36,11 +37,9 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(
-  (response) => {
-    setToken(response.data.accessToken);
-    return response;
-  },
-
+  (response) =>
+    // setToken(response.data.accessToken);
+    response,
   async (err) => {
     if (err.response.status === 401) {
       const originalRequest = err.config;

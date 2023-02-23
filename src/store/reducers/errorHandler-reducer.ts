@@ -5,7 +5,7 @@ import { v1 } from 'uuid';
 import { getQuestions } from './questions-reducer';
 import { fetchQuizes } from './quizes-reducer';
 import { logIn, registration } from './auth-reducer';
-import { NotificationType } from '../../Types/NotificationType';
+import { NotificationType } from '../../types/NotificationType';
 
 const returnNotice = (message: string, typeOfMessage: AlertColor) => ({
   id: v1(),

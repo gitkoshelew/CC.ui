@@ -3,9 +3,9 @@ import dayjs from 'dayjs';
 import { TimerDefaultType } from '../../Mocs/TimerMock';
 import { numberWithZero } from '../../utils/time';
 
-type PropsTimerType = {
+type TimerProps = {
   timeDefault: TimerDefaultType;
-  setIsRunning: (isRunning: boolean) => void;
+  toggleIsRunning: () => void;
   isRunning: boolean;
   currentTime: TimerDefaultType;
   setCurrentTime: (time: TimerDefaultType) => void;
@@ -14,11 +14,11 @@ type PropsTimerType = {
 export const Timer = React.memo(
   ({
     timeDefault,
-    setIsRunning,
+    toggleIsRunning,
     isRunning,
     currentTime,
     setCurrentTime,
-  }: PropsTimerType) => {
+  }: TimerProps) => {
     const minutesForEndDate = +timeDefault.minutes;
     const secondsForEndDate = +timeDefault.seconds;
 
@@ -31,7 +31,7 @@ export const Timer = React.memo(
       const minutes = endDate.diff(now, 'minutes') % 60;
 
       if (seconds <= 0 && minutes <= 0) {
-        setIsRunning(!isRunning);
+        toggleIsRunning();
         setCurrentTime({ seconds: '00', minutes: '00' });
       } else {
         setCurrentTime({
