@@ -7,11 +7,13 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Layout } from '../../components/layout/Layout';
 import { useAppDispatch, wrapper } from '../../store/store';
 import { LoginFormType } from '../../types/AuthTypes';
 import { logIn } from '../../store/reducers/auth-reducer';
+import { getTokenFromStorage } from '../../utils/token';
 
 const LoginPage = () => {
   const { t } = useTranslation('login');
@@ -22,6 +24,13 @@ const LoginPage = () => {
     formState: { errors, isValid },
     handleSubmit,
   } = useForm<LoginFormType>({ mode: 'onBlur' });
+
+  useEffect(() => {
+    const storedData = getTokenFromStorage();
+    if (storedData) {
+      router.push('/');
+    }
+  }, []);
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const response = await dispatch(logIn(data));
