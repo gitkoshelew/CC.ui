@@ -107,7 +107,12 @@ export default function NewTest() {
                 />
               </Box>
             </Stack>
+            <Stack alignItems='center' marginTop='20px'>
+              <Button type='submit'>Save quiz</Button>
+            </Stack>
           </Stack>
+          </form>
+        <form>
           <QuestionTabs activeQuestionId='' questionsData={questionsData} />
           <Stack spacing={2}>
             <Stack direction='row' flexWrap='wrap' spacing={3}>
