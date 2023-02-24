@@ -7,11 +7,13 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Layout } from '../../components/layout/Layout';
 import { useAppDispatch, wrapper } from '../../store/store';
 import { registration } from '../../store/reducers/auth-reducer';
 import { RegistrationFormType } from '../../types/AuthTypes';
+import { getTokenFromStorage } from '../../utils/token';
 
 const SignUpPage = () => {
   const { t } = useTranslation('home');
@@ -31,6 +33,12 @@ const SignUpPage = () => {
       password: '',
     },
   });
+  useEffect(() => {
+    const storedData = getTokenFromStorage();
+    if (storedData) {
+      router.push('/');
+    }
+  }, []);
 
   const onSubmit: SubmitHandler<RegistrationFormType> = async (data) => {
     await dispatch(registration(data));
