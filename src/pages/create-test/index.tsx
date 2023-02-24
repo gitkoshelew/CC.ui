@@ -10,11 +10,12 @@ import { QuestionTabs } from '../../components/common/Tabs/QuestionTabs/Question
 import { questionsData } from '../../Mocs/QuestionTabsMoc';
 import { InputField } from './FieldsComponents/InputFieald';
 import { DropDownField } from './FieldsComponents/DropDownField';
-import { RadioButtonField } from './FieldsComponents/RadioButtonField';
+import { SelectorField } from './FieldsComponents/SelectorField/SelectorField';
 import { quizesApi } from '../../api/quizesApi';
 import { PlusIcon } from '../../assets/icons/PlusIcon';
 import { useAppSelector } from '../../store/store';
 import { CheckBoxField } from './FieldsComponents/CheckBoxField';
+import { TypeSwitchSelect } from '../../Types/SelectorType';
 
 enum Difficulty {
   Easy = '0',
@@ -44,7 +45,7 @@ export default function NewTest() {
   const handleNumOfQuestionChange = (difficultyNumQuestion: string) => {
     setNumQuestionValue(difficultyNumQuestion);
   };
-  const { register, handleSubmit } = useForm<FieldValues>();
+  const { register, handleSubmit, control } = useForm<FieldValues>();
   const difficultyItems = useAppSelector((state) => state.difficulty);
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
@@ -98,25 +99,11 @@ export default function NewTest() {
                 />
               </Box>
               <Box flexGrow={1}>
-                <RadioButtonField
-                  name='Test level'
-                  registerName='level'
-                  items={level}
-                  value={levelValue}
-                  onChange={handleLevelChange}
-                  active={levelValue}
-                  register={register}
-                />
-              </Box>
-              <Box flexGrow={1}>
-                <RadioButtonField
-                  registerName='numberOfQuestion'
-                  name='Number of questions'
-                  items={numberQuestions}
-                  value={numQuestionValue}
-                  onChange={handleNumOfQuestionChange}
-                  active={numQuestionValue}
-                  register={register}
+                <SelectorField
+                  label='Number of questions'
+                  name='numberOfQuestions'
+                  control={control}
+                  type={TypeSwitchSelect.NUMBER}
                 />
               </Box>
             </Stack>
