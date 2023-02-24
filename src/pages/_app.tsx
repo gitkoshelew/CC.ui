@@ -19,7 +19,9 @@ function App({ Component, pageProps }: AppProps) {
       router.pathname.includes('/login') ||
       router.pathname.includes('/registration');
 
-    if (!storedData && !checkUrl) router.push('login');
+    if (!storedData && !checkUrl) {
+      router.push('login');
+    }
   }, []);
 
   return (

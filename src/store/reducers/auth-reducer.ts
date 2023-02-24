@@ -3,13 +3,14 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { AxiosError } from 'axios';
 import { authApi } from '../../api/authApi';
 import { LoginFormType, RegistrationFormType } from '../../types/AuthTypes';
+import { saveTokenToStorage } from '../../utils/token';
 
 export const registration = createAsyncThunk(
   'registration/register',
   async (data: RegistrationFormType, { rejectWithValue }) => {
     try {
       const response = await authApi.registration(data);
-      localStorage.setItem('token', response.data.accessToken);
+      saveTokenToStorage(response.data.accessToken);
       return response.data.accessToken;
     } catch (e) {
       const err = e as AxiosError;
@@ -62,6 +63,10 @@ export const slice = createSlice({
     checkAuthAC(state) {
       state.auth = true;
     },
+    logOutAC(state) {
+      state.token = '';
+      state.auth = false;
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => ({
@@ -83,4 +88,4 @@ export const slice = createSlice({
 });
 
 export const authReducer = slice.reducer;
-export const { registerAC, checkAuthAC } = slice.actions;
+export const { registerAC, checkAuthAC, logOutAC } = slice.actions;
