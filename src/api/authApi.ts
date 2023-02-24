@@ -8,4 +8,7 @@ export const authApi = {
   logIn(data: LoginFormType) {
     return instance.post('/auth/login', data);
   },
+  me() {
+    return instance.get('/auth/me');
+  },
 };

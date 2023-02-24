@@ -1,29 +1,38 @@
 import { Avatar, Link } from '@mui/material';
 import { AvatarIcon } from '../../../assets/icons/AvatarIcon';
-import { userData } from '../../../Mocs/HeaderMoc';
+import { useAppSelector } from '../../../store/store';
 
 export const HeaderAccount = () => {
-  const { avatar, name } = userData;
+  const profileData = useAppSelector((state) => state.profile.profileData);
+
   return (
     <>
-      {avatar ? (
-        <Avatar sx={{ width: 38, height: 37 }} src={avatar} alt='Avatar' />
+      {profileData.name ? (
+        <Avatar
+          sx={{ width: 38, height: 37 }}
+          src='https://i.imgur.com/XBQQHe9.png'
+          alt='Avatar'
+        />
       ) : (
         <AvatarIcon />
       )}
-      <Link
-        textOverflow='ellipsis'
-        overflow='hidden'
-        whiteSpace='nowrap'
-        maxWidth={240}
-        href='/'
-        underline='hover'
-        display={{ xs: 'none', sm: 'initial' }}
-        color='primary.contrastText'
-        sx={{ cursor: 'pointer' }}
-      >
-        {name}
-      </Link>
+      {profileData.nickname ? (
+        <Link
+          textOverflow='ellipsis'
+          overflow='hidden'
+          whiteSpace='nowrap'
+          maxWidth={240}
+          href='/profilePage'
+          underline='hover'
+          display={{ xs: 'none', sm: 'initial' }}
+          color='primary.contrastText'
+          sx={{ cursor: 'pointer' }}
+        >
+          {profileData.nickname}
+        </Link>
+      ) : (
+        ''
+      )}
     </>
   );
 };
