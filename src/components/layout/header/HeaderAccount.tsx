@@ -2,10 +2,15 @@ import { Avatar, IconButton, Link } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { AvatarIcon } from '../../../assets/icons/AvatarIcon';
 import { userData } from '../../../Mocs/HeaderMoc';
 import { useAppSelector } from '../../../store/store';
-import { logOutAC } from '../../../store/reducers/auth-reducer';
+import { isAuthAC, logOutAC } from '../../../store/reducers/auth-reducer';
+import {
+  getTokenFromStorage,
+  removeTokenFromStorage,
+} from '../../../utils/token';
 
 export const HeaderAccount = () => {
   const isAuth = useAppSelector((state) => state.regis.auth);
@@ -13,8 +18,15 @@ export const HeaderAccount = () => {
   const router = useRouter();
   const { avatar, name } = userData;
 
-  const check = () => {
-    localStorage.removeItem('token');
+  useEffect(() => {
+    const storedData = getTokenFromStorage();
+    if (storedData) {
+      dispatch(isAuthAC());
+    }
+  }, []);
+
+  const onLogOutHandler = () => {
+    removeTokenFromStorage();
     dispatch(logOutAC());
     router.push('/login');
   };
@@ -40,8 +52,8 @@ export const HeaderAccount = () => {
         {name}
       </Link>
       {isAuth && (
-        <IconButton onClick={check} color='inherit'>
-          <LogoutIcon />
+        <IconButton onClick={onLogOutHandler} color='inherit'>
+          <LogoutIcon fontSize='small' />
         </IconButton>
       )}
     </>

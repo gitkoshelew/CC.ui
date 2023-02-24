@@ -60,7 +60,7 @@ export const slice = createSlice({
     loginAC(state, action) {
       state.token = action.payload;
     },
-    checkAuthAC(state) {
+    isAuthAC(state) {
       state.auth = true;
     },
     logOutAC(state) {
@@ -88,4 +88,4 @@ export const slice = createSlice({
 });
 
 export const authReducer = slice.reducer;
-export const { registerAC, checkAuthAC, logOutAC } = slice.actions;
+export const { registerAC, isAuthAC, logOutAC } = slice.actions;
