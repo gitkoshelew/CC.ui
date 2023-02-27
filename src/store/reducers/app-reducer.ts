@@ -7,7 +7,7 @@ export const initializeApp = createAsyncThunk(
   'app/initializeApp',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await authApi.me();
+      const response = await authApi.authMe();
       return response.data;
     } catch (e) {
       const err = e as AxiosError;

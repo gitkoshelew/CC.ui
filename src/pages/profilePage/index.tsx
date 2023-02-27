@@ -6,7 +6,6 @@ import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { ExitIcon } from '../../assets/icons/ExitIcon';
 import { useAppDispatch, useAppSelector } from '../../store/store';
-import { logout } from '../../store/reducers/auth-reducer';
 import { setProfileData } from '../../store/reducers/profile-reducer';
 
 const ProfilePage = () => {
@@ -15,7 +14,7 @@ const ProfilePage = () => {
   const { push } = useRouter();
 
   const logoutHandler = () => {
-    dispatch(logout());
+    localStorage.removeItem('token');
     dispatch(setProfileData({}));
     push('/login');
   };

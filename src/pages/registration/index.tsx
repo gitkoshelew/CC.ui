@@ -12,6 +12,7 @@ import { Layout } from '../../components/layout/Layout';
 import { useAppDispatch, wrapper } from '../../store/store';
 import { registration } from '../../store/reducers/auth-reducer';
 import { RegistrationFormType } from '../../types/AuthTypes';
+import { initializeApp } from '../../store/reducers/app-reducer';
 
 const SignUpPage = () => {
   const { t } = useTranslation('home');
@@ -34,6 +35,7 @@ const SignUpPage = () => {
 
   const onSubmit: SubmitHandler<RegistrationFormType> = async (data) => {
     await dispatch(registration(data));
+    await dispatch(initializeApp());
     router.push('/');
   };
 

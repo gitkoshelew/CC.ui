@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
-import { ProfileDataType } from '../../Types/ProfileTypes';
+import { ProfileDataType } from '../../types/ProfileTypes';
 import { initializeApp } from './app-reducer';
 
 export const slice = createSlice({

@@ -30,18 +30,6 @@ export const logIn = createAsyncThunk(
     }
   }
 );
-export const logout = createAsyncThunk(
-  'auth/logout',
-  // eslint-disable-next-line consistent-return
-  async (_, { rejectWithValue }) => {
-    try {
-      localStorage.removeItem('token');
-    } catch (e) {
-      const err = e as AxiosError;
-      return rejectWithValue(err.message);
-    }
-  }
-);
 
 // export const checkAuth = createAsyncThunk(
 //   'isAuth/register',
