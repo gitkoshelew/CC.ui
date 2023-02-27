@@ -12,6 +12,7 @@ import { Layout } from '../../components/layout/Layout';
 import { useAppDispatch, wrapper } from '../../store/store';
 import { LoginFormType } from '../../types/AuthTypes';
 import { logIn } from '../../store/reducers/auth-reducer';
+import { initializeApp } from '../../store/reducers/app-reducer';
 
 const LoginPage = () => {
   const { t } = useTranslation('login');
@@ -25,8 +26,9 @@ const LoginPage = () => {
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const response = await dispatch(logIn(data));
+    await dispatch(initializeApp());
     if (response.payload) {
-      router.push('/profilePage');
+      router.push('/');
     }
   };
 

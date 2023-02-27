@@ -11,7 +11,8 @@ import { questionsReducer } from './reducers/questions-reducer';
 import { errorHandlerReducer } from './reducers/errorHandler-reducer';
 import { difficultyReducer } from './reducers/difficulty-reducer';
 import { authReducer } from './reducers/auth-reducer';
-
+import { profileReducer } from './reducers/profile-reducer';
+import { appReducer } from './reducers/app-reducer';
 
 const reducers = {
   quizes: quizesReducer,
@@ -19,6 +20,8 @@ const reducers = {
   regis: authReducer,
   error: errorHandlerReducer,
   difficulty: difficultyReducer,
+  profile: profileReducer,
+  app: appReducer,
 };
 
 const reducer = combineReducers(reducers);
