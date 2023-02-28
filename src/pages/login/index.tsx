@@ -13,8 +13,10 @@ import { useAppDispatch, wrapper } from '../../store/store';
 import { LoginFormType } from '../../types/AuthTypes';
 import { logIn } from '../../store/reducers/auth-reducer';
 import { initializeApp } from '../../store/reducers/app-reducer';
+import { getTokenFromStorage } from '../../utils/token';
 
 const LoginPage = () => {
+  const token = getTokenFromStorage();
   const { t } = useTranslation('login');
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -26,11 +28,17 @@ const LoginPage = () => {
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const response = await dispatch(logIn(data));
-    await dispatch(initializeApp());
-    if (response.payload) {
+    // await dispatch(initializeApp());
+    if (response?.meta.requestStatus === 'fulfilled') {
+      await dispatch(initializeApp());
       router.push('/');
     }
   };
+
+  if (token) {
+    router.push('/');
+    return null;
+  }
 
   return (
     <Layout>

@@ -1,10 +1,10 @@
 import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
-import { getTokenFromStorage } from '../../utils/token';
+import { getTokenFromStorage, saveTokenToStorage } from '../../utils/token';
 
 export const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const instance = axios.create({
   baseURL: API_URL,
-  // withCredentials: true,
+  withCredentials: true,
 });
 
 const getToken = (config: AxiosRequestConfig) => {
@@ -37,16 +37,23 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(
-  (response) =>
-    // setToken(response.data.accessToken);
-    response,
+  (config) => config,
   async (err) => {
-    if (err.response.status === 401) {
-      const originalRequest = err.config;
-      const response = await axios.post('/auth/refresh-token');
-      localStorage.setItem('token', response.data.accessToken);
-      return instance.request(originalRequest);
+    const originalRequest = err.config;
+    if (err.response.status === 401 && originalRequest.url === `/auth/login`) {
+      return Promise.reject(err);
     }
-    return Promise.reject(err);
+    if (err.response.status === 401 && err.config && !err.config.isRetry) {
+      originalRequest.isRetry = true;
+      try {
+        const response = await instance.post('/auth/refresh-token');
+
+        saveTokenToStorage(response.data.accessToken);
+        return instance.request(originalRequest);
+      } catch (e) {
+        console.log('error', e);
+      }
+    }
+    return null;
   }
 );

@@ -1,12 +1,14 @@
 import { Avatar, Typography } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/router';
+import { destroyCookie } from 'nookies';
 import { Layout } from '../../components/layout/Layout';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { ExitIcon } from '../../assets/icons/ExitIcon';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { setProfileData } from '../../store/reducers/profile-reducer';
+import { removeTokenFromStorage } from '../../utils/token';
 
 const ProfilePage = () => {
   const profileData = useAppSelector((state) => state.profile.profileData);
@@ -14,8 +16,9 @@ const ProfilePage = () => {
   const { push } = useRouter();
 
   const logoutHandler = () => {
-    localStorage.removeItem('token');
+    removeTokenFromStorage();
     dispatch(setProfileData({}));
+    destroyCookie(null, 'refreshToken');
     push('/login');
   };
 

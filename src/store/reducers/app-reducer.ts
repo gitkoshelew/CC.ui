@@ -34,6 +34,9 @@ export const slice = createSlice({
     [initializeApp.fulfilled.type]: (state) => {
       state.isInitialize = true;
     },
+    [initializeApp.rejected.type]: (state) => {
+      state.isInitialize = true;
+    },
   },
 });
 
