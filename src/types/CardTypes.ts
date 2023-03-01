@@ -3,7 +3,7 @@ export type CardsType = {
   title: string;
   authorId: number;
   author: AuthorType;
-  question: [];
+  question: string[] | [];
 };
 
 export type AuthorType = {

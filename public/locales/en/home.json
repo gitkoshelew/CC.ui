@@ -5,18 +5,15 @@
   "users": "Users",
   "testList": "Test list",
   "createTest": "Create test",
-  "sortNavigation": [
-    "Verify",
-    "Date",
-    "Popularity",
-    "Something else"
-  ],
-  "categories": [
-    "All",
-    "Category 1",
-    "Category 2",
-    "Node.js",
-    "Category 4"
-  ],
+  "sorting": "Sorting",
+  "Verify": "Verify",
+  "Date": "Date",
+  "Popularity": "Popularity",
+  "Something else": "Something else",
+  "All": "All",
+  "Category 1": "Category 1",
+  "Category 2": "Category 2",
+  "Node.js": "Node.js",
+  "Category 4": "Category 4",
   "start": "Start"
 }

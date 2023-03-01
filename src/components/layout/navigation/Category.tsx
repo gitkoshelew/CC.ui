@@ -34,10 +34,8 @@ export const Category = ({ categories }: CategoryType) => {
         scrollButtons='auto'
         aria-label='scrollable auto tabs example'
       >
-        {t<string, string[]>('categories', {
-          returnObjects: true,
-        }).map((categoryName, index) => (
-          <Tab label={categoryName} key={index} />
+        {categories.map((category) => (
+          <Tab label={t(category)} key={category} />
         ))}
       </Tabs>
     </Paper>
