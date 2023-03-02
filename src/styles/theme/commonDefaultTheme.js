@@ -13,6 +13,7 @@ module.exports = {
     background: {
       default: '#F0F0F0',
       defaultAccent1: '#DFDFDF',
+      defaultAccent2: '#D7D7D7',
       paper: '#FFFFFF',
       paperAccent1: '#F0F0F0',
       paperAccent2: '#F0F0F0',

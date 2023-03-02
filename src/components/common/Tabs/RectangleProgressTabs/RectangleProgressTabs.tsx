@@ -1,25 +1,25 @@
 import { Box } from '@mui/material';
 import { useRef, useState } from 'react';
-import { TabsDataType } from '../../../../Mocs/RectangleProgressBarMoc';
 import { RectangleProgressTabsItem } from './styled';
 import { scrollToCenter } from '../../../../utils/scrollToCenter';
 import { Tabs } from '../commonStyles';
+// eslint-disable-next-line import/no-cycle
+import { TabsDataType } from '../../../../pages/result-page';
 
 type RectangleProgressBarPropsType = {
   activeTabId: string;
   tabsData: TabsDataType[];
-  isTabsStatusHidden: boolean;
 };
 export const RectangleProgressTabs = (props: RectangleProgressBarPropsType) => {
   const [activeTabId, setActiveTabId] = useState(
-    props.activeTabId || props.tabsData[0].questionId
+    props.activeTabId || props.tabsData[0].id
   );
 
   const tabsRef = useRef<HTMLDivElement>(null);
 
   const onTabClickHandler = (
     e: React.MouseEvent<HTMLDivElement>,
-    id: string
+    id: number
   ) => {
     setActiveTabId(id);
     scrollToCenter(e, tabsRef);
@@ -30,11 +30,13 @@ export const RectangleProgressTabs = (props: RectangleProgressBarPropsType) => {
       <Tabs ref={tabsRef} sx={{ py: 1.2, px: 2 }}>
         {props.tabsData.map((el) => (
           <RectangleProgressTabsItem
-            key={el.questionId}
-            onClick={(e) => onTabClickHandler(e, el.questionId)}
-            isActive={activeTabId === el.questionId}
-            color={props.isTabsStatusHidden ? 'hidden' : el.color}
-            sx={{ bgcolor: !el.color ? 'background.defaultAccent1' : '' }}
+            key={el.id}
+            onClick={(e) => onTabClickHandler(e, el.id)}
+            isActive={activeTabId === el.id}
+            color={el.color}
+            sx={{
+              bgcolor: !el.color ? 'background.defaultAccent2' : '',
+            }}
           />
         ))}
       </Tabs>

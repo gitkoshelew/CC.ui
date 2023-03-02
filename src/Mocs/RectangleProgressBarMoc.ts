@@ -1,9 +1,9 @@
-import { TabColorType } from '../components/common/Tabs/RectangleProgressTabs/styled';
+import { TabsDataType } from '../pages/result-page';
 
-export type TabsDataType = {
-  questionId: string;
-  color?: TabColorType;
-};
+// export type TabsDataType = {
+//   questionId: string;
+//   color?: TabColorType;
+// };
 
 export const tabsData: TabsDataType[] = [
   {

@@ -1,19 +1,21 @@
 import { styled } from '@mui/material';
 import { DefaultThemeType } from '../../../../styles/theme/types';
 
-export type TabColorType = 'secondary' | 'error' | 'hidden';
+export type TabColorType = 'default' | 'active' | 'right' | 'error' | string;
 const tabColors = (
   theme: DefaultThemeType
 ): { [key in TabColorType]: string } => ({
-  secondary: theme.palette.secondary.main,
+  active: theme.palette.primary.main,
+  right: theme.palette.secondary.main,
   error: theme.palette.error.main,
-  hidden: theme.palette.primary.main,
+  default: theme.palette.text.disabled,
 });
 
 type RectangleProgressBarItemPropsType = {
   color?: TabColorType;
   isActive: boolean;
 };
+
 export const RectangleProgressTabsItem = styled(
   'div'
 )<RectangleProgressBarItemPropsType>(({ theme, ...props }) => ({

@@ -24,15 +24,12 @@ const Template: ComponentStory<typeof Timer> = (args) => {
     setIsRunning(false);
     alert(`${currentTime.minutes}:${currentTime.seconds}`);
   };
-  const toggleIsRunning = () => {
-    setIsRunning((prevIsRunning) => !prevIsRunning);
-  };
   return (
     <div className='flex items-center flex-col gap-2'>
       <Timer
         {...args}
         isRunning={isRunning}
-        toggleIsRunning={toggleIsRunning}
+        setIsRunning={setIsRunning}
         currentTime={currentTime}
         setCurrentTime={setCurrentTime}
       />

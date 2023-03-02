@@ -1,15 +1,13 @@
 import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
-import { getTokenFromStorage } from '../../utils/token';
 
-export const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const instance = axios.create({
-  baseURL: API_URL,
+  baseURL: 'http://localhost:5000/api',
   // withCredentials: true,
 });
 
 const getToken = (config: AxiosRequestConfig) => {
   try {
-    const token = getTokenFromStorage();
+    const token = localStorage.getItem('token');
     if (config.headers) {
       (config.headers as AxiosHeaders).set('Authorization', `Bearer ${token}`);
     }
@@ -18,15 +16,15 @@ const getToken = (config: AxiosRequestConfig) => {
   }
 };
 
-// const setToken = (accessToken: string) => {
-//   try {
-//     if (accessToken) {
-//       localStorage.setItem('token', accessToken);
-//     }
-//   } catch (e) {
-//     console.log('setToken => catch => ', e);
-//   }
-// };
+const setToken = (accessToken: string) => {
+  try {
+    if (accessToken) {
+      localStorage.setItem('token', accessToken);
+    }
+  } catch (e) {
+    console.log('setToken => catch => ', e);
+  }
+};
 
 instance.interceptors.request.use(
   (config) => {
@@ -37,16 +35,9 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(
-  (response) =>
-    // setToken(response.data.accessToken);
-    response,
-  async (err) => {
-    if (err.response.status === 401) {
-      const originalRequest = err.config;
-      const response = await axios.post('/auth/refresh-token');
-      localStorage.setItem('token', response.data.accessToken);
-      return instance.request(originalRequest);
-    }
-    return Promise.reject(err);
-  }
+  (response) => {
+    setToken(response.data.accessToken);
+    return response;
+  },
+  (err) => Promise.reject(err)
 );

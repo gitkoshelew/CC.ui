@@ -6,14 +6,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { FC } from 'react';
 import { ResultTableDataType } from '../../../Mocs/TableResultMoc';
 
-type IncorrectAnswerPropsType = {
-  IncorrectAnswersList: ResultTableDataType[];
-};
-export const BasicTable: FC<IncorrectAnswerPropsType> = ({
+export const BasicTable = ({
   IncorrectAnswersList,
+}: {
+  IncorrectAnswersList: ResultTableDataType[];
 }) => (
   <>
     <TableContainer component={Paper} className='my-10'>
@@ -79,7 +77,7 @@ export const BasicTable: FC<IncorrectAnswerPropsType> = ({
                 borderRadius: 1,
               }}
             >
-              {row.id}
+              {row.id + 1}
             </TableCell>
             <TableCell
               sx={{

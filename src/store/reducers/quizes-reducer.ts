@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { AxiosError } from 'axios';
 import { quizesApi } from '../../api/quizesApi';
-import { CardsType } from '../../types/CardTypes';
+import { CardsType } from '../../Types/CardTypes';
+import { getOneCardTC } from './questions-reducer';
 
 export const fetchQuizes = createAsyncThunk(
   'quizes/getQuizesThunk',
@@ -16,11 +17,24 @@ export const fetchQuizes = createAsyncThunk(
     }
   }
 );
+export const getOneQuizesTC = createAsyncThunk(
+  'quizes/getOneQuizesTC',
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const response = await quizesApi.getOneQuizes(id);
+      return response.data;
+    } catch (e) {
+      const err = e as AxiosError;
+      return rejectWithValue(err.message);
+    }
+  }
+);
 
 export const slice = createSlice({
   name: 'quizes',
   initialState: {
     quizes: [] as CardsType[],
+    oneQuizes: {} as CardsType,
   },
   reducers: {
     fetchQuizesAC(state, action: PayloadAction<CardsType[]>) {
@@ -37,6 +51,9 @@ export const slice = createSlice({
     }),
     [fetchQuizes.fulfilled.type]: (state, action) => {
       state.quizes = action.payload;
+    },
+    [getOneQuizesTC.fulfilled.type]: (state, action) => {
+      state.oneQuizes = action.payload;
     },
   },
 });

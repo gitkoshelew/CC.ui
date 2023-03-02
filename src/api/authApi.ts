@@ -1,14 +1,8 @@
 import { instance } from './Instance/instance';
-import { LoginFormType, RegistrationFormType } from '../types/AuthTypes';
+import { RegistrationType } from '../Types/types';
 
 export const authApi = {
-  registration(data: RegistrationFormType) {
+  registration(data: RegistrationType) {
     return instance.post('/auth/registration', data);
-  },
-  logIn(data: LoginFormType) {
-    return instance.post('/auth/login', data);
-  },
-  authMe() {
-    return instance.get('/auth/me');
   },
 };

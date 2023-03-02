@@ -1,32 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { AlertColor } from '@mui/material/Alert/Alert';
-import { v1 } from 'uuid';
 import { getQuestions } from './questions-reducer';
 import { fetchQuizes } from './quizes-reducer';
-import { logIn, registration } from './auth-reducer';
-import { NotificationType } from '../../types/NotificationType';
+import { registration } from './auth-reducer';
 
-const returnNotice = (message: string, typeOfMessage: AlertColor) => ({
-  id: v1(),
-  noticeText: message,
-  noticeStatus: typeOfMessage,
-});
+type ErrorInitialState = {
+  noticeText: null | string;
+  noticeStatus: AlertColor;
+};
 
+const initialState: ErrorInitialState = {
+  noticeText: null,
+  noticeStatus: 'error',
+};
 export const slice = createSlice({
   name: 'error',
-  initialState: { notices: [] as NotificationType[] },
+  initialState,
   reducers: {
-    removeNotice(state) {
-      state.notices.shift();
-    },
-    addNot(
-      state,
-      action: PayloadAction<{ noticeText: string; noticeStatus: AlertColor }>
-    ) {
-      state.notices.push(
-        returnNotice(action.payload.noticeText, action.payload.noticeStatus)
-      );
+    changeError(state, action: PayloadAction<null | string>) {
+      state.noticeText = action.payload;
     },
   },
 
@@ -36,22 +29,16 @@ export const slice = createSlice({
       ...action.payload.error,
     }),
     [getQuestions.rejected.type]: (state, action) => {
-      state.notices.push(returnNotice(action.payload, 'error'));
+      state.noticeText = action.payload;
     },
     [fetchQuizes.rejected.type]: (state, action) => {
-      state.notices.push(returnNotice(action.payload, 'error'));
+      state.noticeText = action.payload;
     },
     [registration.rejected.type]: (state, action) => {
-      state.notices.push(returnNotice(action.payload, 'error'));
-    },
-    [logIn.rejected.type]: (state, action) => {
-      state.notices.push(returnNotice(action.payload, 'error'));
-    },
-    [logIn.fulfilled.type]: (state) => {
-      state.notices.push(returnNotice('You are authorized', 'success'));
+      state.noticeText = action.payload;
     },
   },
 });
 
 export const errorHandlerReducer = slice.reducer;
-export const { removeNotice, addNot } = slice.actions;
+export const { changeError } = slice.actions;
