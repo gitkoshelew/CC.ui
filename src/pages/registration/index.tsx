@@ -13,8 +13,10 @@ import { useAppDispatch, wrapper } from '../../store/store';
 import { registration } from '../../store/reducers/auth-reducer';
 import { RegistrationFormType } from '../../types/AuthTypes';
 import { initializeApp } from '../../store/reducers/app-reducer';
+import { getTokenFromStorage } from '../../utils/token';
 
 const SignUpPage = () => {
+  const token = getTokenFromStorage();
   const { t } = useTranslation('home');
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -38,6 +40,11 @@ const SignUpPage = () => {
     await dispatch(initializeApp());
     router.push('/');
   };
+
+  if (token) {
+    router.push('/');
+    return null;
+  }
 
   return (
     <Layout>
