@@ -47,9 +47,9 @@ export const slice = createSlice({
     [logIn.rejected.type]: (state, action) => {
       state.notices.push(returnNotice(action.payload, 'error'));
     },
-    [logIn.fulfilled.type]: (state) => {
-      state.notices.push(returnNotice('You are authorized', 'success'));
-    },
+    // [logIn.fulfilled.type]: (state) => {
+    //   state.notices.push(returnNotice('You are authorized', 'success'));
+    // },
   },
 });
 
