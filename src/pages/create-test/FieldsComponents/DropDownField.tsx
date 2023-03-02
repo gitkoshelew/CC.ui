@@ -1,50 +1,46 @@
-import {
-  FormGroup,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Typography,
-} from '@mui/material';
+import { Box, MenuItem, Select, Typography } from '@mui/material';
 import React from 'react';
-import { FieldValues, useForm, UseFormRegister } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 type DropDownFieldType = {
-  register: UseFormRegister<FieldValues>
-  registerName: string
   name: string;
-  value: string;
   items: string[];
-  handleChange: (event: SelectChangeEvent) => void;
+  controlName: string;
+  control: any
 };
 
 export function DropDownField({
-  register,
-  registerName,
   name,
-  value,
   items,
-  handleChange,
+  controlName,
+  control,
 }: DropDownFieldType) {
   return (
-    <FormGroup>
+    <Box>
       <Typography typography='inputTitle'>{name}</Typography>
-      <Select
-        value={value}
-        {...register(registerName)}
-        onChange={handleChange}
-      >
-        {items.map((item, index) => (
-          <MenuItem
-            sx={{
-              typography: 'subtitle1',
-            }}
-            key={index}
-            value={index}
-          >
-            {item}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormGroup>
+      <Controller
+        name={controlName}
+        control={control}
+        // rules = {rules}
+        render={({field:{onChange, value}}) => (
+          <Select
+            value={value}
+            onChange={onChange}
+            >
+            {items.map((item, index) => (
+              <MenuItem
+                sx={{
+                  typography: 'subtitle1',
+                }}
+                key={index}
+                value={item}
+              >
+                {item}
+              </MenuItem>
+            ))}
+          </Select>
+        )}
+      />
+    </Box>
   );
 }

@@ -1,26 +1,25 @@
 import { FormGroup, TextField, Typography } from '@mui/material';
 import React from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 type InputFieldType = {
-  register: UseFormRegister<FieldValues>;
-  name: string;
-  placeholderInput: string;
-  registerName: string;
+  nameTitle: string;
+  nameControl: string;
+  control: any;
 };
 
 export function InputField({
-  name,
-  placeholderInput,
-  register,
-  registerName,
+  nameTitle,
+  nameControl,
+  control,
 }: InputFieldType) {
   return (
     <FormGroup>
-      <Typography typography='inputTitle'>{name}</Typography>
-      <TextField
-        {...register(registerName, { required: true })}
-        placeholder={placeholderInput}
+      <Typography typography='inputTitle'>{nameTitle}</Typography>
+      <Controller
+        render={({ field }) => <TextField {...field} />}
+        name={nameControl}
+        control={control}
       />
     </FormGroup>
   );
