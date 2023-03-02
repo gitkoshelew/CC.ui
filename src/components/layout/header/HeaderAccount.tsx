@@ -1,19 +1,16 @@
-import { Avatar, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import Link from 'next/link';
 import { useAppSelector } from '../../../store/store';
+import { AvatarImage } from './AvatarImage';
 
 export const HeaderAccount = () => {
   const profileData = useAppSelector((state) => state.profile.profileData);
 
-  if (profileData.name) {
+  if (profileData.nickname) {
     return (
       <>
         <Link href='/profilePage'>
-          <Avatar
-            sx={{ width: 38, height: 37 }}
-            src='https://i.imgur.com/XBQQHe9.png'
-            alt='Avatar'
-          />
+          <AvatarImage width={38} height={37} />
         </Link>
         <Box
           maxWidth={240}
@@ -26,5 +23,5 @@ export const HeaderAccount = () => {
     );
   }
 
-  return <Box />;
+  return null;
 };
