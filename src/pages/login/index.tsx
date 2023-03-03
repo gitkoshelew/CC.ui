@@ -28,7 +28,6 @@ const LoginPage = () => {
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const response = await dispatch(logIn(data));
-    // await dispatch(initializeApp());
     if (response?.meta.requestStatus === 'fulfilled') {
       await dispatch(initializeApp());
       router.push('/');
