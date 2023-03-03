@@ -1,7 +1,13 @@
-export const AvatarIcon = () => (
+export const AvatarIcon = ({
+  width,
+  height,
+}: {
+  width: string;
+  height: string;
+}) => (
   <svg
-    width='38'
-    height='37'
+    width={width}
+    height={height}
     viewBox='0 0 38 37'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
