@@ -19,6 +19,9 @@ import { BasketBlackIcon } from '../../assets/icons/BasketBlackIcon';
 export default function ResultPage() {
   const [currentTime, setCurrentTime] = useState(timeDefault);
   const [isRunning, setIsRunning] = useState(false);
+  const toggleIsRunning = () => {
+    setIsRunning((prevIsRunning) => !prevIsRunning);
+  };
 
   return (
     <Layout>
@@ -26,7 +29,7 @@ export default function ResultPage() {
       <Timer
         timeDefault={timeDefault}
         isRunning={isRunning}
-        setIsRunning={setIsRunning}
+        toggleIsRunning={toggleIsRunning}
         currentTime={currentTime}
         setCurrentTime={setCurrentTime}
       />
