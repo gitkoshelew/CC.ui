@@ -1,38 +1,27 @@
-import { Avatar, Link } from '@mui/material';
-import { AvatarIcon } from '../../../assets/icons/AvatarIcon';
+import { Box } from '@mui/material';
+import Link from 'next/link';
 import { useAppSelector } from '../../../store/store';
+import { AvatarImage } from './AvatarImage';
 
 export const HeaderAccount = () => {
   const profileData = useAppSelector((state) => state.profile.profileData);
 
-  return (
-    <>
-      {profileData.name ? (
-        <Avatar
-          sx={{ width: 38, height: 37 }}
-          src='https://i.imgur.com/XBQQHe9.png'
-          alt='Avatar'
-        />
-      ) : (
-        <AvatarIcon />
-      )}
-      {profileData.nickname ? (
-        <Link
-          textOverflow='ellipsis'
-          overflow='hidden'
-          whiteSpace='nowrap'
+  if (profileData.nickname) {
+    return (
+      <>
+        <Link href='/profilePage'>
+          <AvatarImage width={38} height={37} />
+        </Link>
+        <Box
           maxWidth={240}
-          href='/profilePage'
-          underline='hover'
           display={{ xs: 'none', sm: 'initial' }}
           color='primary.contrastText'
-          sx={{ cursor: 'pointer' }}
         >
           {profileData.nickname}
-        </Link>
-      ) : (
-        ''
-      )}
-    </>
-  );
+        </Box>
+      </>
+    );
+  }
+
+  return null;
 };

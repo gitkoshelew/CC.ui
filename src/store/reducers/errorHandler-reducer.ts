@@ -6,6 +6,7 @@ import { getQuestions } from './questions-reducer';
 import { fetchQuizes } from './quizes-reducer';
 import { logIn, registration } from './auth-reducer';
 import { NotificationType } from '../../types/NotificationType';
+import { initializeApp } from './app-reducer';
 
 const returnNotice = (message: string, typeOfMessage: AlertColor) => ({
   id: v1(),
@@ -50,6 +51,9 @@ export const slice = createSlice({
     // [logIn.fulfilled.type]: (state) => {
     //   state.notices.push(returnNotice('You are authorized', 'success'));
     // },
+    [initializeApp.rejected.type]: (state, action) => {
+      state.notices.push(returnNotice(action.payload, 'error'));
+    },
   },
 });
 
