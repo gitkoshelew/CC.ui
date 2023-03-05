@@ -1,8 +1,11 @@
 import { instance } from './Instance/instance';
-import { TestQuestionsType } from '../types/TestQuestionsType';
+import { NewQuestionType } from '../types/TestQuestionsType';
 
 export const questionsApi = {
   getQuestions() {
-    return instance.get<TestQuestionsType[]>(`questions`);
+    return instance.get<NewQuestionType[]>(`questions`);
+  },
+  getOneCard(quizId: number) {
+    return instance.get<NewQuestionType>(`questions/${quizId}`);
   },
 };

@@ -16,17 +16,30 @@ export const fetchQuizes = createAsyncThunk(
     }
   }
 );
+export const getOneQuizes = createAsyncThunk(
+  'quizes/getOneQuizesTC',
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const response = await quizesApi.getOneQuizes(id);
+      return response.data;
+    } catch (e) {
+      const err = e as AxiosError;
+      return rejectWithValue(err.message);
+    }
+  }
+);
 
 export const slice = createSlice({
   name: 'quizes',
   initialState: {
     quizes: [] as CardsType[],
+    oneQuizes: {} as CardsType,
   },
   reducers: {
     fetchQuizesAC(state, action: PayloadAction<CardsType[]>) {
       state.quizes = action.payload;
     },
-    postQuizesAc(state, action: PayloadAction<CardsType[]>) {
+    postQuizes(state, action: PayloadAction<CardsType[]>) {
       state.quizes = action.payload;
     },
   },
@@ -38,8 +51,11 @@ export const slice = createSlice({
     [fetchQuizes.fulfilled.type]: (state, action) => {
       state.quizes = action.payload;
     },
+    [getOneQuizes.fulfilled.type]: (state, action) => {
+      state.oneQuizes = action.payload;
+    },
   },
 });
 
 export const quizesReducer = slice.reducer;
-export const { postQuizesAc } = slice.actions;
+export const { postQuizes } = slice.actions;

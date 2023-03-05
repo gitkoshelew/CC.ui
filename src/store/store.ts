@@ -13,6 +13,7 @@ import { difficultyReducer } from './reducers/difficulty-reducer';
 import { authReducer } from './reducers/auth-reducer';
 import { profileReducer } from './reducers/profile-reducer';
 import { appReducer } from './reducers/app-reducer';
+import { resultReducer } from './reducers/result-reducer';
 
 const reducers = {
   quizes: quizesReducer,
@@ -22,6 +23,7 @@ const reducers = {
   difficulty: difficultyReducer,
   profile: profileReducer,
   app: appReducer,
+  resultData: resultReducer,
 };
 
 const reducer = combineReducers(reducers);
