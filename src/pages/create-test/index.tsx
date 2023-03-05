@@ -1,8 +1,12 @@
-import { SelectChangeEvent } from '@mui/material/Select';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { router } from 'next/client';
+import {
+  FieldValues,
+  SubmitHandler,
+  useFieldArray,
+  useForm,
+  useWatch,
+} from 'react-hook-form';
 import { useSearchParams } from 'next/navigation';
 import { Layout } from '../../components/layout/Layout';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
@@ -13,19 +17,14 @@ import { InputField } from './FieldsComponents/InputFieald';
 import { DropDownField } from './FieldsComponents/DropDownField';
 import { SelectorField } from './FieldsComponents/SelectorField/SelectorField';
 import { quizesApi } from '../../api/quizesApi';
-import { PlusIcon } from '../../assets/icons/PlusIcon';
 import { useAppSelector } from '../../store/store';
-import { CheckBoxField } from './FieldsComponents/CheckBoxField';
 import { TypeSwitchSelect } from '../../Types/SelectorType';
 import { themes, types } from '../../Mocs/NewTestMoc';
+import { CreateAnswer } from './FieldsComponents/CreateAnswer/CreateAnswer';
+import { CreateQuestionPropsType } from '../../Types/CreateQuestionPropsType';
 
-enum Difficulty {
-  Easy = '0',
-  Medium = '1',
-  Hard = '2',
-}
-
-export default function NewTest() {
+export default function NewTest(props: CreateQuestionPropsType) {
+  const { currentQuestion } = props;
   const { handleSubmit, control } = useForm<FieldValues>();
   const [quizId, setQuizId] = useState(false);
   const difficultyItems = useAppSelector((state) => state.difficulty);
@@ -33,12 +32,63 @@ export default function NewTest() {
     console.log(data);
     quizesApi.postQuizes(data);
   };
+  const currentArrayOptions = useWatch({
+    control,
+    name: 'options',
+  });
+  const { fields, append, remove } = useFieldArray({
+    name: 'options',
+    control,
+  });
+
+  const onPressAddNewOption = useCallback(() => {
+    append([{ option: '' }]);
+  }, [append]);
+
+  const arrayOptions = useMemo(
+    () =>
+      currentArrayOptions
+        ? currentArrayOptions
+            .map((el: { option: any }) => el.option)
+            .filter((el: string) => el !== '')
+        : [],
+    [currentArrayOptions]
+  );
+  const isCheckingDuplicate =
+    new Set(arrayOptions).size !== arrayOptions.length;
+
+  const currentType = useWatch({
+    control,
+    name: 'type',
+  });
 
   const searchParams = useSearchParams();
 
   useEffect(() => {
     console.log(searchParams.get('quizId'));
   }, [searchParams]);
+
+  const onPressDeleteOption = useCallback(
+    (index: number) => {
+      remove(index);
+    },
+    [remove]
+  );
+
+  const [correctAnswers, setCorrectAnswers] = useState(
+    currentQuestion.content.correctAnswer
+  );
+
+  const checkedCorrectOption = useCallback(
+    (index: number, checked: boolean, textOption: string) => {
+      if (textOption !== '' && checked) {
+        setCorrectAnswers((state) => [...state, textOption]);
+      } else {
+        setCorrectAnswers((state) => state.filter((el) => el !== textOption));
+      }
+    },
+    []
+  );
 
   return (
     <Layout>
@@ -142,21 +192,16 @@ export default function NewTest() {
                 </Box>
               </Stack>
               <Stack spacing={1}>
-                <Typography typography='inputTitle'>Answer choice</Typography>
-                <Stack direction='row' spacing={3} alignItems='center'>
-                  <Box sx={{ flexGrow: 1 }}>
-                    <InputField
-                      nameTitle=''
-                      nameControl='Answer'
-                      control={control}
-                    />
-                  </Box>
-                  <CheckBoxField />
-                </Stack>
-                <Stack direction='row' alignItems='center' paddingLeft={3}>
-                  <PlusIcon />
-                  <Typography typography='inputTitle'>Add answer</Typography>
-                </Stack>
+                <CreateAnswer
+                  fields={fields}
+                  control={control}
+                  type={currentType}
+                  isCheckingDuplicate={isCheckingDuplicate}
+                  addNewOptionPressed={onPressAddNewOption}
+                  deleteOptionPressed={onPressDeleteOption}
+                  checkedCorrectOption={checkedCorrectOption}
+                  correctAnswer={correctAnswers}
+                />
               </Stack>
             </Stack>
             <Stack alignItems='center'>

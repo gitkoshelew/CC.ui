@@ -13,3 +13,14 @@ export type ContentType = {
   options: string[];
   correctAnswer: string[];
 };
+
+export type CreateQuestionFieldType = {
+  title: string;
+  description: string;
+  minutes: number;
+  seconds: number;
+  options: { option: string }[];
+  topicId: number;
+  difficulty: string;
+  type: string;
+};
