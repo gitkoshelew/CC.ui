@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import dayjs from 'dayjs';
 import { useAppDispatch, useAppSelector, wrapper } from '../../store/store';
 import { Layout } from '../../components/layout/Layout';
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
@@ -18,8 +19,8 @@ import { TabsDataType } from '../result-page';
 import { selectOneQuizes, selectResulData } from '../../store/selectors';
 import { getCheckedAnswers } from '../../utils/getCheckedAnswers';
 import { Timer } from '../../components/Timer/Timer';
-import { timeDefault } from '../../Mocs/TimerMock';
 import { IDataOptions, ResultType } from '../../types/TestQuestionsType';
+import { numberWithZero } from '../../utils/time';
 
 const Id = () => {
   const router = useRouter();
@@ -27,17 +28,13 @@ const Id = () => {
   const { id } = router.query;
   const dispatch = useAppDispatch();
   const [valueRadio, setValueRadio] = useState('');
-  const [currentTime, setCurrentTime] = useState(timeDefault);
-  const [isRunning, setIsRunning] = useState(false);
   const { t } = useTranslation('testPage');
   const [numberOfQuestion, setQuestion] = useState(0);
   const [disabled, setDisabled] = useState(false);
   const cardWithQuestion = useAppSelector(selectOneQuizes);
   const resultData = useAppSelector(selectResulData);
   const [singleAnswer, setSingleAnswer] = useState<string[]>([]);
-  const toggleIsRunning = () => {
-    setIsRunning((prevIsRunning) => !prevIsRunning);
-  };
+
   const currentTest = cardWithQuestion?.question?.filter(
     (e, index) => index === numberOfQuestion
   );
@@ -112,48 +109,6 @@ const Id = () => {
     );
   };
 
-  const nextQuestionHandler = () => {
-    if (
-      numberOfQuestion + 1 === cardWithQuestion.question.length &&
-      resultData.length < cardWithQuestion.question.length
-    ) {
-      setNextResult(progressResult({ type, answer, correctAnswer }));
-      setSingleAnswer([]);
-      push('/result-page');
-      return;
-    }
-    if (
-      numberOfQuestion < cardWithQuestion.question.length &&
-      resultData.length < cardWithQuestion.question.length
-    ) {
-      setNextResult(progressResult({ type, answer, correctAnswer }));
-      setQuestion(numberOfQuestion + 1);
-      setSingleAnswer([]);
-      setValueRadio('');
-    }
-  };
-
-  const skipHandler = () => {
-    if (
-      numberOfQuestion + 1 === cardWithQuestion.question.length &&
-      resultData.length < cardWithQuestion.question.length
-    ) {
-      setSkipResult();
-      setSingleAnswer([]);
-      push('/result-page');
-      return;
-    }
-    if (
-      numberOfQuestion < cardWithQuestion.question.length &&
-      resultData.length < cardWithQuestion.question.length
-    ) {
-      setSkipResult();
-      setQuestion(numberOfQuestion + 1);
-      setSingleAnswer([]);
-      setValueRadio('');
-    }
-  };
-
   const progressData: TabsDataType[] = [
     ...Array(cardWithQuestion?.question?.length),
   ].map((_, index) => ({
@@ -172,19 +127,85 @@ const Id = () => {
           color: '',
         }
   );
-  // const timeDefault =
-  //   cardWithQuestion?.question &&
-  //   cardWithQuestion?.question[numberOfQuestion]?.timer;
+  const timeDefault = currentTest && currentTest[0]?.timer;
+
+  const convertTime = (time: number) => {
+    const duration = dayjs(time);
+    const minutes = duration.minute();
+    const seconds = duration.second();
+    return {
+      seconds: numberWithZero(seconds),
+      minutes: numberWithZero(minutes),
+    };
+  };
+  const time = convertTime(timeDefault);
+  const [currentTime, setCurrentTime] = useState(time);
+  const [isRunning, setIsRunning] = useState(false);
+  const toggleIsRunning = () => {
+    setIsRunning((prevIsRunning) => !prevIsRunning);
+  };
+
+  const nextQuestionHandler = () => {
+    if (
+      numberOfQuestion + 1 === cardWithQuestion.question.length &&
+      resultData.length < cardWithQuestion.question.length
+    ) {
+      setNextResult(progressResult({ type, answer, correctAnswer }));
+      setSingleAnswer([]);
+      push('/result-page');
+      return;
+    }
+    if (
+      numberOfQuestion < cardWithQuestion.question.length &&
+      resultData.length < cardWithQuestion.question.length
+    ) {
+      setIsRunning(true);
+      setCurrentTime(time);
+      setNextResult(progressResult({ type, answer, correctAnswer }));
+      setQuestion(numberOfQuestion + 1);
+      setSingleAnswer([]);
+      setValueRadio('');
+    }
+  };
+
+  const skipHandler = () => {
+    if (
+      numberOfQuestion + 1 === cardWithQuestion?.question?.length &&
+      resultData.length < cardWithQuestion?.question?.length
+    ) {
+      setSkipResult();
+      setSingleAnswer([]);
+      push('/result-page');
+      return;
+    }
+    if (
+      numberOfQuestion < cardWithQuestion.question.length &&
+      resultData.length < cardWithQuestion.question.length
+    ) {
+      setIsRunning(true);
+      setSkipResult();
+      setQuestion(numberOfQuestion + 1);
+      setSingleAnswer([]);
+      setValueRadio('');
+    }
+  };
+
+  useEffect(() => {
+    setStateCheck(dataOptions);
+  }, [dataOptions, dispatch]);
+
+  useEffect(() => {
+    if (currentTime.minutes === '00' && currentTime.seconds === '00') {
+      skipHandler();
+      setCurrentTime(time);
+    }
+  }, [time]);
 
   useEffect(() => {
     if (id) {
       dispatch(getOneQuizes(+id));
     }
   }, [id]);
-
-  useEffect(() => {
-    setStateCheck(dataOptions);
-  }, [dataOptions, dispatch]);
 
   return (
     <Layout>
@@ -196,7 +217,7 @@ const Id = () => {
           sx={{ width: 1, maxWidth: '850px', mx: 'auto' }}
         >
           <Timer
-            timeDefault={timeDefault}
+            timeDefault={time}
             isRunning={isRunning}
             toggleIsRunning={toggleIsRunning}
             currentTime={currentTime}
