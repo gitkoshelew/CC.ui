@@ -129,22 +129,6 @@ const Id = () => {
   );
   const timeDefault = currentTest && currentTest[0]?.timer;
 
-  const convertTime = (time: number) => {
-    const duration = dayjs(time);
-    const minutes = duration.minute();
-    const seconds = duration.second();
-    return {
-      seconds: numberWithZero(seconds),
-      minutes: numberWithZero(minutes),
-    };
-  };
-  const time = convertTime(timeDefault);
-  const [currentTime, setCurrentTime] = useState(time);
-  const [isRunning, setIsRunning] = useState(false);
-  const toggleIsRunning = () => {
-    setIsRunning((prevIsRunning) => !prevIsRunning);
-  };
-
   const nextQuestionHandler = () => {
     if (
       numberOfQuestion + 1 === cardWithQuestion.question.length &&
@@ -159,8 +143,8 @@ const Id = () => {
       numberOfQuestion < cardWithQuestion.question.length &&
       resultData.length < cardWithQuestion.question.length
     ) {
-      setIsRunning(true);
-      setCurrentTime(time);
+      // setIsRunning(true);
+      // setCurrentTime(time);
       setNextResult(progressResult({ type, answer, correctAnswer }));
       setQuestion(numberOfQuestion + 1);
       setSingleAnswer([]);
@@ -182,7 +166,7 @@ const Id = () => {
       numberOfQuestion < cardWithQuestion.question.length &&
       resultData.length < cardWithQuestion.question.length
     ) {
-      setIsRunning(true);
+      // setIsRunning(true);
       setSkipResult();
       setQuestion(numberOfQuestion + 1);
       setSingleAnswer([]);
@@ -194,12 +178,12 @@ const Id = () => {
     setStateCheck(dataOptions);
   }, [dataOptions, dispatch]);
 
-  useEffect(() => {
-    if (currentTime.minutes === '00' && currentTime.seconds === '00') {
-      skipHandler();
-      setCurrentTime(time);
-    }
-  }, [time]);
+  // useEffect(() => {
+  //   if (currentTime.minutes === '00' && currentTime.seconds === '00') {
+  //     skipHandler();
+  //     setCurrentTime(time);
+  //   }
+  // }, [time]);
 
   useEffect(() => {
     if (id) {
@@ -217,11 +201,11 @@ const Id = () => {
           sx={{ width: 1, maxWidth: '850px', mx: 'auto' }}
         >
           <Timer
-            timeDefault={time}
-            isRunning={isRunning}
-            toggleIsRunning={toggleIsRunning}
-            currentTime={currentTime}
-            setCurrentTime={setCurrentTime}
+            timeDefault={timeDefault}
+            // isRunning={isRunning}
+            // toggleIsRunning={toggleIsRunning}
+            // currentTime={currentTime}
+            // setCurrentTime={setCurrentTime}
           />
           <RectangleProgressTabs activeTabId='1' tabsData={data} />
         </Stack>
