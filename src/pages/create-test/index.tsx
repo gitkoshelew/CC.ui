@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import {
   FieldValues,
@@ -8,6 +8,7 @@ import {
   useWatch,
 } from 'react-hook-form';
 import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { Layout } from '../../components/layout/Layout';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
@@ -16,79 +17,36 @@ import { questionsData } from '../../Mocs/QuestionTabsMoc';
 import { InputField } from './FieldsComponents/InputFieald';
 import { DropDownField } from './FieldsComponents/DropDownField';
 import { SelectorField } from './FieldsComponents/SelectorField/SelectorField';
-import { quizesApi } from '../../api/quizesApi';
+import { CreateQuestionFieldType, quizesApi } from '../../api/quizesApi';
 import { useAppSelector } from '../../store/store';
 import { TypeSwitchSelect } from '../../Types/SelectorType';
 import { themes, types } from '../../Mocs/NewTestMoc';
-import { CreateAnswer } from './FieldsComponents/CreateAnswer/CreateAnswer';
 import { CreateQuestionPropsType } from '../../Types/CreateQuestionPropsType';
+import CreateAnswer from './FieldsComponents/CreateAnswer/CreateAnswer';
+
 
 export default function NewTest(props: CreateQuestionPropsType) {
-  const { currentQuestion } = props;
   const { handleSubmit, control } = useForm<FieldValues>();
   const [quizId, setQuizId] = useState(false);
+  const [numberOfQuestions, setNumberOfQuestions] = useState(10);
   const difficultyItems = useAppSelector((state) => state.difficulty);
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
     quizesApi.postQuizes(data);
+    setQuizId(true);
   };
-  const currentArrayOptions = useWatch({
-    control,
-    name: 'options',
-  });
-  const { fields, append, remove } = useFieldArray({
-    name: 'options',
-    control,
-  });
 
-  const onPressAddNewOption = useCallback(() => {
-    append([{ option: '' }]);
-  }, [append]);
-
-  const arrayOptions = useMemo(
-    () =>
-      currentArrayOptions
-        ? currentArrayOptions
-            .map((el: { option: any }) => el.option)
-            .filter((el: string) => el !== '')
-        : [],
-    [currentArrayOptions]
-  );
-  const isCheckingDuplicate =
-    new Set(arrayOptions).size !== arrayOptions.length;
-
-  const currentType = useWatch({
-    control,
-    name: 'type',
-  });
-
+  const onSubmitQuestion: SubmitHandler<FieldValues> = (questionData) => {
+    console.log(questionData);
+    quizesApi.postQuestion(questionData);
+  };
   const searchParams = useSearchParams();
 
   useEffect(() => {
     console.log(searchParams.get('quizId'));
   }, [searchParams]);
 
-  const onPressDeleteOption = useCallback(
-    (index: number) => {
-      remove(index);
-    },
-    [remove]
-  );
-
-  const [correctAnswers, setCorrectAnswers] = useState(
-    currentQuestion.content.correctAnswer
-  );
-
-  const checkedCorrectOption = useCallback(
-    (index: number, checked: boolean, textOption: string) => {
-      if (textOption !== '' && checked) {
-        setCorrectAnswers((state) => [...state, textOption]);
-      } else {
-        setCorrectAnswers((state) => state.filter((el) => el !== textOption));
-      }
-    },
-    []
-  );
+  const router = useRouter();
 
   return (
     <Layout>
@@ -143,22 +101,20 @@ export default function NewTest(props: CreateQuestionPropsType) {
                 </Box>
               </Stack>
               <Stack alignItems='center' marginTop='20px'>
-                <Button onClick={() => setQuizId(true)} type='submit'>
-                  Save quiz
-                </Button>
+                <Button type='submit'>Save quiz</Button>
               </Stack>
             </Stack>
           </form>
         )}
         {quizId ? (
-          <form>
+          <form onSubmit={handleSubmit(onSubmitQuestion)}>
             <QuestionTabs activeQuestionId='' questionsData={questionsData} />
             <Stack spacing={2}>
               <Stack direction='row' flexWrap='wrap' spacing={3}>
                 <Box sx={{ flexGrow: 1 }}>
                   <InputField
                     nameTitle='Question'
-                    nameControl='Question'
+                    nameControl='question'
                     control={control}
                   />
                 </Box>
@@ -184,24 +140,13 @@ export default function NewTest(props: CreateQuestionPropsType) {
                   <Stack>
                     <Typography typography='inputTitle'>Timer</Typography>
                     <Stack direction='row' spacing={1} alignItems='center'>
-                      {/* <TextField {...register('timer')} /> */}
-                      {/* <Typography>:</Typography> */}
-                      {/* <TextField {...register('timer')} /> */}
+                      {/* <QuestionTimer control={control} /> */}
                     </Stack>
                   </Stack>
                 </Box>
               </Stack>
               <Stack spacing={1}>
-                <CreateAnswer
-                  fields={fields}
-                  control={control}
-                  type={currentType}
-                  isCheckingDuplicate={isCheckingDuplicate}
-                  addNewOptionPressed={onPressAddNewOption}
-                  deleteOptionPressed={onPressDeleteOption}
-                  checkedCorrectOption={checkedCorrectOption}
-                  correctAnswer={correctAnswers}
-                />
+                <CreateAnswer control={control} name='options' />
               </Stack>
             </Stack>
             <Stack alignItems='center'>

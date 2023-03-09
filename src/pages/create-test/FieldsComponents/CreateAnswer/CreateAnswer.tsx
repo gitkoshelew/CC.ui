@@ -1,62 +1,118 @@
-import { Control, FieldValues } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-import { Box, Button, Stack, Typography } from '@mui/material';
-import { AddAnswer } from './AddAnswer';
+import {
+  Control,
+  Controller,
+  FieldValues,
+  useFieldArray,
+} from 'react-hook-form';
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
+import React from 'react';
+import { BasketIcon } from '../../../../assets/icons/BasketIcon';
 
-type CreateAnswerPropsType = {
+type Props = {
   control: Control<FieldValues>;
-  fields: any;
-  isCheckingDuplicate: boolean;
-  type: string;
-  correctAnswer: string[];
-  addNewOptionPressed: () => void;
-  deleteOptionPressed: (index: number) => void;
-  checkedCorrectOption: (
-    index: number,
-    checked: boolean,
-    textOption: string
-  ) => void;
+  name: string;
 };
 
-export const CreateAnswer = ({
-  fields,
-  isCheckingDuplicate,
-  correctAnswer,
-  control,
-  type,
-  addNewOptionPressed,
-  deleteOptionPressed,
-  checkedCorrectOption,
-}: CreateAnswerPropsType) => {
-  const isDisabledDeleteBtn = fields.length <= 2;
-  const { t } = useTranslation('validationFields');
+const CreateAnswer: React.FC<Props> = ({ control, name }) => {
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name,
+  });
 
   return (
     <Stack>
-      <Typography>Answer choice</Typography>
-      {fields.map(
-        (item: { id: null | undefined; option: string }, index: number) => (
-          <AddAnswer
-            key={item.id}
-            option={item.option}
-            index={index}
-            type={type}
+      <Typography>Answer choice :</Typography>
+      {fields.map((field, index) => (
+        <Stack
+          sx={{ marginY: '0.7rem' }}
+          direction='row'
+          flexWrap='wrap'
+          key={field.id}
+        >
+          <Box sx={{ flexGrow: 0.1, verticalAlign: 'middle' }}>
+            <Typography>{`${index + 1}.`}</Typography>
+          </Box>
+          <Controller
             control={control}
-            correctAnswer={correctAnswer}
-            isDisabledDeleteBtn={isDisabledDeleteBtn}
-            onPressDelete={deleteOptionPressed}
-            onPressCorrectAnswer={checkedCorrectOption}
-            isCheckingDuplicate={isCheckingDuplicate}
+            name={`${name}.${index}.name`}
+            defaultValue=''
+            rules={{ required: true }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <Box sx={{ flexGrow: 2 }}>
+                <TextField
+                  fullWidth
+                  InputLabelProps={{ color: 'primary' }}
+                  label=''
+                  variant='outlined'
+                  value={value}
+                  onChange={onChange}
+                  error={!!error}
+                  helperText={error ? 'This field is required' : ''}
+                />
+              </Box>
+            )}
           />
-        )
-      )}
-      {isCheckingDuplicate && (
-        <Typography>{t('option.CheckingForDuplication')}</Typography>
-      )}
-      <Box>
-        <Button onClick={addNewOptionPressed} disabled={fields.length > 6} />
-        <Typography>Add answer</Typography>
+
+          <Controller
+            control={control}
+            name={`${name}.${index}.checked`}
+            defaultValue={false}
+            render={({ field: { onChange, value } }) => (
+              <Box
+                sx={{
+                  flexGrow: 0.1,
+                  backgroundColor: 'background.default',
+                  marginX: '1rem',
+                  borderRadius: '2rem',
+                  textAlign: 'center',
+                }}
+              >
+                <FormControlLabel
+                  sx={{marginX:"0"}}
+                  control={
+                    <Checkbox
+                      color='primary'
+                      size='small'
+                      checked={value}
+                      onChange={onChange}
+                    />
+                  }
+                  label=''
+                />
+              </Box>
+            )}
+          />
+
+          <Box sx={{ flexGrow: 0.1 }}>
+            <Button
+              sx={{ backgroundColor: 'background.default' }}
+              onClick={() => remove(index)}
+              size='medium'
+            >
+              <BasketIcon />
+            </Button>
+          </Box>
+        </Stack>
+      ))}
+      <Box sx={{ flexGrow: 0.1, marginY: '0.5rem' }}>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={() => append({ name: '', checked: false })}
+        >
+          Add Answer
+        </Button>
       </Box>
     </Stack>
   );
 };
+
+export default CreateAnswer;
