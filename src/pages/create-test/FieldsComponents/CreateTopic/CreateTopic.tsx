@@ -6,7 +6,9 @@ import {
   InputLabel,
   MenuItem,
   Select,
-} from '@mui/material';
+  Stack, TextField,
+  Typography
+} from "@mui/material";
 import { Controller } from 'react-hook-form';
 import { Box } from '@mui/system';
 
@@ -21,9 +23,10 @@ type Topic = {
 };
 
 const topicOptions: Topic[] = [
-  { id: 1, name: 'NodeJS' },
-  { id: 2, name: 'React' },
-  { id: 3, name: 'Angular' },
+  { id: 1, name: 'Select topic...' },
+  { id: 2, name: 'NodeJS' },
+  { id: 3, name: 'React' },
+  { id: 4, name: 'Angular' },
 ];
 
 export default function TopicSelect({ name, control }: Props) {
@@ -55,13 +58,18 @@ export default function TopicSelect({ name, control }: Props) {
 
   return (
     <Box>
-      <FormControl variant='outlined' sx={{ my: 2 }}>
-        <InputLabel id={`${name}-label`}>Select a topic</InputLabel>
+      <Typography typography='inputTitle'>Choose a topic :</Typography>
+      <Stack spacing={3} marginBottom="1rem">
         <Controller
           name={name}
           control={control}
           render={({ field }) => (
-            <Select labelId={`${name}-label`} label='Topic' {...field}>
+            <Select
+              defaultValue={topicOptions[0].name}
+              labelId={`${name}.label`}
+              label='Topic'
+              {...field}
+            >
               {topics.map((topic) => (
                 <MenuItem key={topic.id} value={topic.name}>
                   {topic.name}
@@ -70,26 +78,28 @@ export default function TopicSelect({ name, control }: Props) {
             </Select>
           )}
         />
-      </FormControl>
-      {!showNewTopicInput && (
-        <Button variant='outlined' onClick={handleNewTopicButtonClick}>
-          Add New Topic
-        </Button>
-      )}
+      </Stack>
+      <Box>
+        {!showNewTopicInput && (
+          <Button variant='outlined' onClick={handleNewTopicButtonClick}>
+            Add New Topic
+          </Button>
+        )}
+      </Box>
       {showNewTopicInput && (
         <>
-          <FormControl variant='outlined' sx={{ my: 2 }}>
-            <InputLabel id='new-topic-label'>New Topic</InputLabel>
-            <Input
+          <Stack spacing={3}>
+            <TextField
               id='new-topic'
               value={newTopicName}
+              placeholder='Type new topic...'
               onChange={handleNewTopicNameChange}
             />
-          </FormControl>
-          <Button variant='outlined' onClick={handleNewTopicSave}>
+          </Stack>
+          <Button sx={{margin:"1rem"}} onClick={handleNewTopicSave}>
             Save
           </Button>
-          <Button variant='outlined' onClick={handleNewTopicCancel}>
+          <Button onClick={handleNewTopicCancel}>
             Cancel
           </Button>
         </>
