@@ -60,7 +60,6 @@ const CreateAnswer: React.FC<Props> = ({ control, name }) => {
               </Box>
             )}
           />
-
           <Controller
             control={control}
             name={`${name}.${index}.checked`}
@@ -76,7 +75,7 @@ const CreateAnswer: React.FC<Props> = ({ control, name }) => {
                 }}
               >
                 <FormControlLabel
-                  sx={{marginX:"0"}}
+                  sx={{ marginX: '0' }}
                   control={
                     <Checkbox
                       color='primary'
@@ -90,7 +89,6 @@ const CreateAnswer: React.FC<Props> = ({ control, name }) => {
               </Box>
             )}
           />
-
           <Box sx={{ flexGrow: 0.1 }}>
             <Button
               sx={{ backgroundColor: 'background.default' }}

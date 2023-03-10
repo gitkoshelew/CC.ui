@@ -1,5 +1,3 @@
-export const themes = ['All', 'Theme 1', 'Theme 2', 'Node.js', 'Theme 4'];
-export const types = ['One correct answer', 'Two correct answers'];
-export const difficulties = ['Easy', 'Medium', 'Hard'];
-export const level = ['Easy', 'Medium', 'Hard'];
+export const types = ['Select type...', 'single', 'multi'];
+export const difficulties = ['Select difficulty...', 'light', 'medium', 'hard'];
 export const numberQuestions = [10, 15, 20, 25, 30];

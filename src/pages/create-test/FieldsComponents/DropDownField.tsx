@@ -1,4 +1,4 @@
-import { Box, MenuItem, Select, Typography } from '@mui/material';
+import { Box, MenuItem, Select, Stack, Typography } from "@mui/material";
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -16,7 +16,7 @@ export function DropDownField({
   control,
 }: DropDownFieldType) {
   return (
-    <Box>
+    <Stack>
       <Typography typography='inputTitle'>{name}</Typography>
       <Controller
         name={controlName}
@@ -24,6 +24,7 @@ export function DropDownField({
         // rules = {rules}
         render={({field:{onChange, value}}) => (
           <Select
+            defaultValue={items[0]}
             value={value}
             onChange={onChange}
             >
@@ -41,6 +42,6 @@ export function DropDownField({
           </Select>
         )}
       />
-    </Box>
+    </Stack>
   );
 }

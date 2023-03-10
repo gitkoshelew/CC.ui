@@ -1,13 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
-import {
-  Controller,
-  FieldValues,
-  SubmitHandler,
-  useFieldArray,
-  useForm,
-  useWatch,
-} from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import { Layout } from '../../components/layout/Layout';
@@ -18,34 +11,62 @@ import { questionsData } from '../../Mocs/QuestionTabsMoc';
 import { InputField } from './FieldsComponents/InputFieald';
 import { DropDownField } from './FieldsComponents/DropDownField';
 import { SelectorField } from './FieldsComponents/SelectorField/SelectorField';
-import { CreateQuestionFieldType, quizesApi } from '../../api/quizesApi';
+import { quizesApi } from '../../api/quizesApi';
 import { useAppSelector } from '../../store/store';
 import { TypeSwitchSelect } from '../../Types/SelectorType';
-import { themes, types } from '../../Mocs/NewTestMoc';
+import { types } from '../../Mocs/NewTestMoc';
 import { CreateQuestionPropsType } from '../../Types/CreateQuestionPropsType';
 import CreateAnswer from './FieldsComponents/CreateAnswer/CreateAnswer';
 import TopicSelect from './FieldsComponents/CreateTopic/CreateTopic';
 
+type correctAnswersType = {
+  name: string;
+};
+
 export default function NewTest(props: CreateQuestionPropsType) {
   const { handleSubmit, control } = useForm<FieldValues>();
   const [quizId, setQuizId] = useState(false);
-  const [numberOfQuestions, setNumberOfQuestions] = useState(10);
   const difficultyItems = useAppSelector((state) => state.difficulty);
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
     quizesApi.postQuizes(data);
     setQuizId(true);
   };
-
-  const [selectedTopic, setSelectedTopic] = useState('');
-
-  const handleTopicSelect = (topic: string) => {
-    setSelectedTopic(topic);
-  };
-
   const onSubmitQuestion: SubmitHandler<FieldValues> = (questionData) => {
-    console.log(questionData);
-    quizesApi.postQuestion(questionData);
+    const { options } = questionData;
+    // const correctAnswers: correctAnswersType[] = [];
+    // // const answersVariants: answersVariantsType[] = questionData.content.options;
+    // type answersVariantsType = {
+    //   name: string;
+    //   checked: boolean;
+    // };
+    // // eslint-disable-next-line consistent-return
+    // async function getData() {
+    //   try {
+    //     const answersVariants = await questionData.content.options;
+    //     answersVariants.map((item: answersVariantsType) => {
+    //       if (item.checked) {
+    //         // @ts-ignore
+    //         correctAnswers.push(item.name);
+    //       }
+    //       return correctAnswers;
+    //     });
+    //   } catch (error) {
+    //     return correctAnswers;
+    //   }
+    // }
+    // getData();
+
+    // console.log(questionData);
+    // const payload = {
+    //   ...questionData,
+    //   content: { options, correctAnswer: correctAnswers },
+    //   timer: 1000,
+    // };
+    // // @ts-ignore
+    // delete payload.options;
+    // console.log(payload);
+    // quizesApi.postQuestion(payload);
   };
   const searchParams = useSearchParams();
 
