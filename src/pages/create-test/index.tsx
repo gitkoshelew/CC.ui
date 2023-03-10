@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import {
+  Controller,
   FieldValues,
   SubmitHandler,
   useFieldArray,
@@ -23,7 +24,7 @@ import { TypeSwitchSelect } from '../../Types/SelectorType';
 import { themes, types } from '../../Mocs/NewTestMoc';
 import { CreateQuestionPropsType } from '../../Types/CreateQuestionPropsType';
 import CreateAnswer from './FieldsComponents/CreateAnswer/CreateAnswer';
-
+import TopicSelect from './FieldsComponents/CreateTopic/CreateTopic';
 
 export default function NewTest(props: CreateQuestionPropsType) {
   const { handleSubmit, control } = useForm<FieldValues>();
@@ -34,6 +35,12 @@ export default function NewTest(props: CreateQuestionPropsType) {
     console.log(data);
     quizesApi.postQuizes(data);
     setQuizId(true);
+  };
+
+  const [selectedTopic, setSelectedTopic] = useState('');
+
+  const handleTopicSelect = (topic: string) => {
+    setSelectedTopic(topic);
   };
 
   const onSubmitQuestion: SubmitHandler<FieldValues> = (questionData) => {
@@ -84,12 +91,7 @@ export default function NewTest(props: CreateQuestionPropsType) {
                 spacing={3}
               >
                 <Box flexGrow={1}>
-                  <DropDownField
-                    name='Theme'
-                    controlName='theme'
-                    items={themes}
-                    control={control}
-                  />
+                  <TopicSelect name='topic' control={control} />
                 </Box>
                 <Box flexGrow={1}>
                   <SelectorField
