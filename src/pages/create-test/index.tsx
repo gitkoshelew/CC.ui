@@ -34,39 +34,22 @@ export default function NewTest(props: CreateQuestionPropsType) {
   };
   const onSubmitQuestion: SubmitHandler<FieldValues> = (questionData) => {
     const { options } = questionData;
-    // const correctAnswers: correctAnswersType[] = [];
-    // // const answersVariants: answersVariantsType[] = questionData.content.options;
-    // type answersVariantsType = {
-    //   name: string;
-    //   checked: boolean;
-    // };
-    // // eslint-disable-next-line consistent-return
-    // async function getData() {
-    //   try {
-    //     const answersVariants = await questionData.content.options;
-    //     answersVariants.map((item: answersVariantsType) => {
-    //       if (item.checked) {
-    //         // @ts-ignore
-    //         correctAnswers.push(item.name);
-    //       }
-    //       return correctAnswers;
-    //     });
-    //   } catch (error) {
-    //     return correctAnswers;
-    //   }
-    // }
-    // getData();
+    const correctAnswers: correctAnswersType[] = [];
+    const answersVariants: answersVariantsType[] = questionData.content.options;
+    type answersVariantsType = {
+      name: string;
+      checked: boolean;
+    };
 
-    // console.log(questionData);
-    // const payload = {
-    //   ...questionData,
-    //   content: { options, correctAnswer: correctAnswers },
-    //   timer: 1000,
-    // };
-    // // @ts-ignore
-    // delete payload.options;
-    // console.log(payload);
-    // quizesApi.postQuestion(payload);
+    console.log(questionData);
+    const payload = {
+      ...questionData,
+      content: { options, correctAnswer: correctAnswers },
+      timer: 1000,
+    };
+    delete payload.options
+    console.log(payload);
+    quizesApi.postQuestion(payload);
   };
   const searchParams = useSearchParams();
 
