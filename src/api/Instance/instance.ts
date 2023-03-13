@@ -1,5 +1,9 @@
 import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
-import { getTokenFromStorage, saveTokenToStorage } from '../../utils/token';
+import {
+  getTokenFromStorage,
+  removeTokenFromStorage,
+  saveTokenToStorage,
+} from '../../utils/token';
 
 export const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const instance = axios.create({
@@ -41,6 +45,14 @@ instance.interceptors.response.use(
   async (err) => {
     const originalRequest = err.config;
     if (err.response.status === 401 && originalRequest.url === `/auth/login`) {
+      return Promise.reject(err);
+    }
+    if (
+      err.response.status === 401 &&
+      originalRequest.url === '/auth/refresh-token'
+    ) {
+      removeTokenFromStorage();
+      window.location.href = '/login';
       return Promise.reject(err);
     }
     if (err.response.status === 401 && err.config && !err.config.isRetry) {
