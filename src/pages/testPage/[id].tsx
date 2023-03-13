@@ -5,7 +5,6 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import dayjs from 'dayjs';
 import { useAppDispatch, useAppSelector, wrapper } from '../../store/store';
 import { Layout } from '../../components/layout/Layout';
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
@@ -15,12 +14,11 @@ import { getOneQuizes } from '../../store/reducers/quizes-reducer';
 import { TestQuestions } from './TestQuestions';
 import { setStateResult } from '../../store/reducers/result-reducer';
 import { progressResult } from '../../utils/progressResult';
-import { TabsDataType } from '../result-page';
 import { selectOneQuizes, selectResulData } from '../../store/selectors';
 import { getCheckedAnswers } from '../../utils/getCheckedAnswers';
 import { Timer } from '../../components/Timer/Timer';
 import { IDataOptions, ResultType } from '../../types/TestQuestionsType';
-import { numberWithZero } from '../../utils/time';
+import { TabsDataType } from '../../types/types';
 
 const Id = () => {
   const router = useRouter();
@@ -108,14 +106,14 @@ const Id = () => {
       })
     );
   };
-
-  const progressData: TabsDataType[] = [
-    ...Array(cardWithQuestion?.question?.length),
-  ].map((_, index) => ({
-    id: index + 1,
-    color: 'default',
-  }));
-
+  const progressData: TabsDataType[] = useMemo(
+    () =>
+      [...Array(cardWithQuestion?.question?.length)].map((_, index) => ({
+        id: index + 1,
+        color: 'default',
+      })),
+    [cardWithQuestion?.question]
+  );
   const data: TabsDataType[] = progressData.map((e) =>
     numberOfQuestion + 1 >= e.id
       ? {
@@ -128,22 +126,6 @@ const Id = () => {
         }
   );
   const timeDefault = currentTest && currentTest[0]?.timer;
-
-  const convertTime = (time: number) => {
-    const duration = dayjs(time);
-    const minutes = duration.minute();
-    const seconds = duration.second();
-    return {
-      seconds: numberWithZero(seconds),
-      minutes: numberWithZero(minutes),
-    };
-  };
-  const time = convertTime(timeDefault);
-  const [currentTime, setCurrentTime] = useState(time);
-  const [isRunning, setIsRunning] = useState(false);
-  const toggleIsRunning = () => {
-    setIsRunning((prevIsRunning) => !prevIsRunning);
-  };
 
   const nextQuestionHandler = () => {
     if (
@@ -159,8 +141,6 @@ const Id = () => {
       numberOfQuestion < cardWithQuestion.question.length &&
       resultData.length < cardWithQuestion.question.length
     ) {
-      setIsRunning(true);
-      setCurrentTime(time);
       setNextResult(progressResult({ type, answer, correctAnswer }));
       setQuestion(numberOfQuestion + 1);
       setSingleAnswer([]);
@@ -179,10 +159,9 @@ const Id = () => {
       return;
     }
     if (
-      numberOfQuestion < cardWithQuestion.question.length &&
-      resultData.length < cardWithQuestion.question.length
+      numberOfQuestion < cardWithQuestion?.question?.length &&
+      resultData.length < cardWithQuestion?.question?.length
     ) {
-      setIsRunning(true);
       setSkipResult();
       setQuestion(numberOfQuestion + 1);
       setSingleAnswer([]);
@@ -193,13 +172,6 @@ const Id = () => {
   useEffect(() => {
     setStateCheck(dataOptions);
   }, [dataOptions, dispatch]);
-
-  useEffect(() => {
-    if (currentTime.minutes === '00' && currentTime.seconds === '00') {
-      skipHandler();
-      setCurrentTime(time);
-    }
-  }, [time]);
 
   useEffect(() => {
     if (id) {
@@ -217,13 +189,17 @@ const Id = () => {
           sx={{ width: 1, maxWidth: '850px', mx: 'auto' }}
         >
           <Timer
-            timeDefault={time}
-            isRunning={isRunning}
-            toggleIsRunning={toggleIsRunning}
-            currentTime={currentTime}
-            setCurrentTime={setCurrentTime}
+            key={timeDefault}
+            timeDefault={timeDefault}
+            skipHandler={skipHandler}
           />
-          <RectangleProgressTabs activeTabId='1' tabsData={data} />
+          <RectangleProgressTabs
+            activeTabId={
+              cardWithQuestion?.question &&
+              cardWithQuestion?.question[numberOfQuestion].id
+            }
+            tabsData={data}
+          />
         </Stack>
         <StylizedPaper title={cardWithQuestion.title}>
           <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>

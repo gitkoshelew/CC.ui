@@ -18,32 +18,19 @@ IPogressResult) => {
       ) {
         return 'right';
       }
-      if (
-        answer.length > 0 &&
-        answer.sort().join('').toLowerCase() !==
-          [...correctAnswer].sort().join('').toLowerCase()
-      ) {
-        return 'error';
-      }
       if (answer.length === 0) {
         return 'default';
       }
-      break;
+      return 'error';
     }
     case 'single': {
       if (answer.join().toLowerCase() === correctAnswer.join().toLowerCase()) {
         return 'right';
       }
-      if (
-        answer.length > 0 &&
-        answer.join().toLowerCase() !== correctAnswer.join().toLowerCase()
-      ) {
-        return 'error';
-      }
       if (answer.length === 0) {
         return 'default';
       }
-      break;
+      return 'error';
     }
     default:
       return 'default';
