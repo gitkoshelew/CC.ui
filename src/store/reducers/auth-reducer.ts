@@ -1,15 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { authApi } from '../../api/authApi';
-import { LoginFormType, RegistrationFormType } from '../../Types/AuthTypes';
-import { API_URL } from '../../api/Instance/instance';
+import { LoginFormType, RegistrationFormType } from '../../types/AuthTypes';
+import { saveTokenToStorage } from '../../utils/token';
 
 export const registration = createAsyncThunk(
   'registration/register',
   async (data: RegistrationFormType, { rejectWithValue }) => {
     try {
       const response = await authApi.registration(data);
+      saveTokenToStorage(response.data.accessToken);
       return response.data.accessToken;
     } catch (e) {
       const err = e as AxiosError;
@@ -22,6 +23,10 @@ export const logIn = createAsyncThunk(
   async (data: LoginFormType, { rejectWithValue }) => {
     try {
       const response = await authApi.logIn(data);
+      if (response.data?.error) {
+        return response.data.error;
+      }
+      saveTokenToStorage(response.data.accessToken);
       return response.data.accessToken;
     } catch (e) {
       const err = e as AxiosError;
@@ -35,7 +40,6 @@ export const logIn = createAsyncThunk(
 //   async (arg, thunkAPI) => {
 //     try {
 //       const response = await axios.post(`${API_URL}/auth/refresh-token`);
-//       console.log(123);
 //       localStorage.setItem('token', response.data.accessToken);
 //       return response.data.accessToken;
 //     } catch (e) {

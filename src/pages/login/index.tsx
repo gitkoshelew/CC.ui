@@ -10,10 +10,13 @@ import { useRouter } from 'next/router';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Layout } from '../../components/layout/Layout';
 import { useAppDispatch, wrapper } from '../../store/store';
-import { LoginFormType } from '../../Types/AuthTypes';
+import { LoginFormType } from '../../types/AuthTypes';
 import { logIn } from '../../store/reducers/auth-reducer';
+import { initializeApp } from '../../store/reducers/app-reducer';
+import { getTokenFromStorage } from '../../utils/token';
 
 const LoginPage = () => {
+  const token = getTokenFromStorage();
   const { t } = useTranslation('login');
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -25,8 +28,16 @@ const LoginPage = () => {
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const response = await dispatch(logIn(data));
-    if (response.payload) await router.push('profilePage');
+    if (response?.meta.requestStatus === 'fulfilled') {
+      await dispatch(initializeApp());
+      router.push('/');
+    }
   };
+
+  if (token) {
+    router.push('/');
+    return null;
+  }
 
   return (
     <Layout>

@@ -4,9 +4,10 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { InputField } from '../FieldsComponents/InputFieald';
 import TopicSelect from '../FieldsComponents/CreateTopic/CreateTopic';
 import { SelectorField } from '../FieldsComponents/SelectorField/SelectorField';
-import { TypeSwitchSelect } from '../../../Types/SelectorType';
-import { quizesApi } from '../../../api/quizesApi';
-import { CreateQuizType } from '../../../Types/CreateQuizType';
+import { CreateQuizType } from "../../../types/CreateQuizType";
+import { quizesApi } from "../../../api/quizesApi";
+import { TypeSwitchSelect } from "../../../types/SelectorType";
+
 
 export const CreateQuiz = () => {
   const { handleSubmit, control } = useForm<CreateQuizType>();

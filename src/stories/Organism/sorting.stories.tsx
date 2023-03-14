@@ -1,9 +1,9 @@
-import { Sorting } from '../../components/layout/navigation/Sorting';
-import { sort } from '../../Mocs/NavigationMoc';
+import { Sorting } from '../../components/layout/navigation/sorting/Sorting';
+import { sorts } from '../../Mocs/NavigationMoc';
 
-export const DefaultSorting = () => <Sorting sort={sort} />;
+export const DefaultSorting = () => <Sorting sorts={sorts} />;
 
 export default {
-  title: 'Organism/Navigation/Sorting',
+  title: 'Organism/Navigation/sorting',
   component: DefaultSorting,
 };

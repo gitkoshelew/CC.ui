@@ -4,17 +4,17 @@ import { GetServerSideProps } from 'next';
 import { Layout } from '../components/layout/Layout';
 import { Navigation } from '../components/layout/navigation/Navigation';
 import { CardsWithQuizes } from '../components/cards/CardsWithQuizes';
-import { categories, sort } from '../Mocs/NavigationMoc';
+import { categories, sorts } from '../Mocs/NavigationMoc';
 import { wrapper } from '../store/store';
-import { fetchQuizes } from '../store/reducers/quizes-reducer';
-import { CardsType } from '../Types/CardTypes';
+import { fetchQuizes } from '../store/reducers/quizzes-reducer';
+import { CardType } from '../types/CardTypes';
 
-export default function Home({ quizes }: { quizes: CardsType[] }) {
+export default function Home({ quizes }: { quizes: CardType[] }) {
   return (
     <Layout headerType='full'>
       <Container>
-        <Navigation sort={sort} categories={categories} />
-        <CardsWithQuizes quizes={quizes} />
+        <Navigation sorts={sorts} categories={categories} />
+        <CardsWithQuizes quizzes={quizes} />
       </Container>
     </Layout>
   );
