@@ -1,63 +1,43 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-import { TimerDefaultType } from '../../Mocs/TimerMock';
-import { numberWithZero } from '../../utils/time';
 
 type TimerProps = {
-  timeDefault: TimerDefaultType;
-  toggleIsRunning: () => void;
-  isRunning: boolean;
-  currentTime: TimerDefaultType;
-  setCurrentTime: (time: TimerDefaultType) => void;
+  timeDefault: number;
+  skipHandler: () => void;
 };
+export const Timer = ({ timeDefault, skipHandler }: TimerProps) => {
+  const [time, setTime] = useState(dayjs(timeDefault));
 
-export const Timer = React.memo(
-  ({
-    timeDefault,
-    toggleIsRunning,
-    isRunning,
-    currentTime,
-    setCurrentTime,
-  }: TimerProps) => {
-    const minutesForEndDate = +timeDefault.minutes;
-    const secondsForEndDate = +timeDefault.seconds;
-
-    let endDate = dayjs().add(minutesForEndDate, 'minute');
-    endDate = endDate.add(secondsForEndDate, 'seconds');
-
-    const calculateTimeLeft = useCallback(() => {
-      const now = dayjs();
-      const seconds = endDate.diff(now, 'seconds') % 60;
-      const minutes = endDate.diff(now, 'minutes') % 60;
-
-      if (seconds <= 0 && minutes <= 0) {
-        toggleIsRunning();
-        setCurrentTime({ seconds: '00', minutes: '00' });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (time.diff(dayjs(0), 'millisecond') <= 0) {
+        clearInterval(interval);
       } else {
-        setCurrentTime({
-          seconds: numberWithZero(seconds),
-          minutes: numberWithZero(minutes),
-        });
+        setTime(time.subtract(1, 'second'));
       }
-    }, [endDate, isRunning]);
+    }, 1000);
 
-    useEffect(() => {
-      if (isRunning) {
-        const intervalId = setInterval(() => {
-          calculateTimeLeft();
-        }, 1000);
-        calculateTimeLeft();
+    return () => clearInterval(interval);
+  }, [time]);
 
-        return () => clearInterval(intervalId);
-      }
+  const minutes = time.format('mm');
+  const seconds = time.format('ss');
 
-      return undefined;
-    }, [isRunning]);
+  useEffect(() => {
+    if (minutes === '00' && seconds === '00') {
+      skipHandler();
+      setTime(time);
+    }
+  }, [time]);
 
-    return (
-      <div className='text-center text-4xl '>
-        <span>{currentTime.minutes}</span>:<span>{currentTime.seconds}</span>
-      </div>
-    );
-  }
-);
+  return (
+    <div className='text-center text-4xl '>
+      {timeDefault && (
+        <>
+          {' '}
+          <span>{minutes}</span>:<span>{seconds}</span>
+        </>
+      )}
+    </div>
+  );
+};

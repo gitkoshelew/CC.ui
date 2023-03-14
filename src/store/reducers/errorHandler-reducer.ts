@@ -3,7 +3,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { AlertColor } from '@mui/material/Alert/Alert';
 import { v1 } from 'uuid';
 import { getQuestions } from './questions-reducer';
-import { fetchQuizes } from './quizes-reducer';
+import { fetchQuizes } from './quizzes-reducer';
 import { logIn, registration } from './auth-reducer';
 import { NotificationType } from '../../types/NotificationType';
 import { initializeApp } from './app-reducer';

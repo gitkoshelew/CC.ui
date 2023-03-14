@@ -6,15 +6,15 @@ import { Navigation } from '../components/layout/navigation/Navigation';
 import { CardsWithQuizes } from '../components/cards/CardsWithQuizes';
 import { categories, sorts } from '../Mocs/NavigationMoc';
 import { wrapper } from '../store/store';
-import { fetchQuizes } from '../store/reducers/quizes-reducer';
-import { CardsType } from '../types/CardTypes';
+import { fetchQuizes } from '../store/reducers/quizzes-reducer';
+import { CardType } from '../types/CardTypes';
 
-export default function Home({ quizes }: { quizes: CardsType[] }) {
+export default function Home({ quizes }: { quizes: CardType[] }) {
   return (
     <Layout headerType='full'>
       <Container>
         <Navigation sorts={sorts} categories={categories} />
-        <CardsWithQuizes quizes={quizes} />
+        <CardsWithQuizes quizzes={quizes} />
       </Container>
     </Layout>
   );

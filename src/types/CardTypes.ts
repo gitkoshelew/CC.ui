@@ -1,9 +1,11 @@
-export type CardsType = {
+import { NewQuestionType } from './TestQuestionsType';
+
+export type CardType = {
   id: number;
   title: string;
   authorId: number;
   author: AuthorType;
-  question: string[] | [];
+  question: NewQuestionType[];
 };
 
 export type AuthorType = {

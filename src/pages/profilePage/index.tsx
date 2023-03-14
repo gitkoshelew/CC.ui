@@ -1,4 +1,4 @@
-import {Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/router';
 import { destroyCookie } from 'nookies';
