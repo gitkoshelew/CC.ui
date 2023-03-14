@@ -5,7 +5,7 @@ export const questionsApi = {
   getQuestions() {
     return instance.get<NewQuestionType[]>(`questions`);
   },
-  getOneCard(quizId: number) {
+  getCard(quizId: number) {
     return instance.get<NewQuestionType>(`questions/${quizId}`);
   },
 };

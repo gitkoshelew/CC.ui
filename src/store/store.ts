@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
-import { quizesReducer } from './reducers/quizes-reducer';
+import { quizzesReducer } from './reducers/quizzes-reducer';
 import { questionsReducer } from './reducers/questions-reducer';
 import { errorHandlerReducer } from './reducers/errorHandler-reducer';
 import { difficultyReducer } from './reducers/difficulty-reducer';
@@ -16,7 +16,7 @@ import { appReducer } from './reducers/app-reducer';
 import { resultReducer } from './reducers/result-reducer';
 
 const reducers = {
-  quizes: quizesReducer,
+  quizes: quizzesReducer,
   questions: questionsReducer,
   regis: authReducer,
   error: errorHandlerReducer,

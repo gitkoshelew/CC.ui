@@ -20,7 +20,7 @@ export const getOneCardTC = createAsyncThunk(
   'questions/getQuestions',
   async (id: number, { rejectWithValue }) => {
     try {
-      const response = await questionsApi.getOneCard(id);
+      const response = await questionsApi.getCard(id);
       return response.data;
     } catch (e) {
       const err = e as AxiosError;

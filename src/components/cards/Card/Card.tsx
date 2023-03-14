@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { AuthorType } from '../../../types/CardTypes';
 import { useAppDispatch } from '../../../store/store';
-import { getOneQuizes } from '../../../store/reducers/quizes-reducer';
+import { getOneQuizes } from '../../../store/reducers/quizzes-reducer';
 
 type PropsCardType = {
   title: string;

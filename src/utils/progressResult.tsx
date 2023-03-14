@@ -8,8 +8,7 @@ export const progressResult = ({
   type,
   answer,
   correctAnswer,
-}: // eslint-disable-next-line consistent-return
-IPogressResult) => {
+}: IPogressResult) => {
   switch (type) {
     case 'multi': {
       if (

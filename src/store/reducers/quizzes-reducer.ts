@@ -2,13 +2,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { AxiosError } from 'axios';
 import { quizesApi } from '../../api/quizesApi';
-import { CardsType } from '../../types/CardTypes';
+import { CardType } from '../../types/CardTypes';
 
 export const fetchQuizes = createAsyncThunk(
   'quizes/getQuizesThunk',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await quizesApi.getQuizes();
+      const response = await quizesApi.getQuizzes();
       return response.data;
     } catch (e) {
       const err = e as AxiosError;
@@ -20,7 +20,7 @@ export const getOneQuizes = createAsyncThunk(
   'quizes/getOneQuizesTC',
   async (id: number, { rejectWithValue }) => {
     try {
-      const response = await quizesApi.getOneQuizes(id);
+      const response = await quizesApi.getQuiz(id);
       return response.data;
     } catch (e) {
       const err = e as AxiosError;
@@ -32,14 +32,14 @@ export const getOneQuizes = createAsyncThunk(
 export const slice = createSlice({
   name: 'quizes',
   initialState: {
-    quizes: [] as CardsType[],
-    oneQuizes: {} as CardsType,
+    quizes: [] as CardType[],
+    oneQuizes: {} as CardType,
   },
   reducers: {
-    fetchQuizesAC(state, action: PayloadAction<CardsType[]>) {
+    fetchQuizesAC(state, action: PayloadAction<CardType[]>) {
       state.quizes = action.payload;
     },
-    postQuizes(state, action: PayloadAction<CardsType[]>) {
+    postQuizes(state, action: PayloadAction<CardType[]>) {
       state.quizes = action.payload;
     },
   },
@@ -57,5 +57,5 @@ export const slice = createSlice({
   },
 });
 
-export const quizesReducer = slice.reducer;
+export const quizzesReducer = slice.reducer;
 export const { postQuizes } = slice.actions;

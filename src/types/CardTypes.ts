@@ -1,6 +1,6 @@
 import { NewQuestionType } from './TestQuestionsType';
 
-export type CardsType = {
+export type CardType = {
   id: number;
   title: string;
   authorId: number;

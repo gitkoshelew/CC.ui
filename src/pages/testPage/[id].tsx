@@ -10,7 +10,7 @@ import { Layout } from '../../components/layout/Layout';
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
-import { getOneQuizes } from '../../store/reducers/quizes-reducer';
+import { getOneQuizes } from '../../store/reducers/quizzes-reducer';
 import { TestQuestions } from './TestQuestions';
 import { setStateResult } from '../../store/reducers/result-reducer';
 import { progressResult } from '../../utils/progressResult';

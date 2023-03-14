@@ -29,6 +29,7 @@ export const Timer = ({ timeDefault, skipHandler }: TimerProps) => {
       setTime(time);
     }
   }, [time]);
+
   return (
     <div className='text-center text-4xl '>
       {timeDefault && (
