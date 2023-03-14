@@ -1,7 +1,9 @@
 import {
   Control,
   Controller,
+  FieldPath,
   FieldValues,
+  Path,
   useFieldArray,
 } from 'react-hook-form';
 import {
@@ -16,12 +18,15 @@ import {
 import React from 'react';
 import { BasketIcon } from '../../../../assets/icons/BasketIcon';
 
-type Props = {
-  control: Control<FieldValues>;
-  name: string;
+type CreateAnswerPropsType<T extends FieldValues> = {
+  control: any;
+  name: any;
 };
 
-const CreateAnswer: React.FC<Props> = ({ control, name }) => {
+const CreateAnswer = <T extends FieldValues>({
+  control,
+  name,
+}: CreateAnswerPropsType<T>) => {
   const { fields, append, remove } = useFieldArray({
     control,
     name,

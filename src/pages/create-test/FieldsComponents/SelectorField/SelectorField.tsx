@@ -5,21 +5,21 @@ import { Typography } from '@mui/material';
 import { TypeSwitchSelect } from '../../../../Types/SelectorType';
 import { SwitchSelectors } from './SwitchSelector';
 
-type SelectorFieldType = {
-  name: FieldPath<FieldValues>;
+type SelectorFieldType<T extends FieldValues> = {
+  name: FieldPath<T>;
   type: TypeSwitchSelect;
   label?: string | null;
   rules?: object;
-  control: Control;
+  control: Control<T>;
 };
 
-export const SelectorField = ({
+export const SelectorField =<T extends FieldValues> ({
   name,
   label,
   type,
-  rules = {},
+  rules,
   control,
-}: SelectorFieldType) => (
+}: SelectorFieldType<T>) => (
   <Box>
     {label && <Typography typography='inputTitle'>{label}</Typography>}
     <Controller
