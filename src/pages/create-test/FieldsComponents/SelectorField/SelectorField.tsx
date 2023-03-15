@@ -2,7 +2,7 @@ import { Control, Controller, FieldPath, FieldValues } from 'react-hook-form';
 import React from 'react';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
-import { TypeSwitchSelect } from '../../../../Types/SelectorType';
+import { TypeSwitchSelect } from '../../../../types/SelectorType';
 import { SwitchSelectors } from './SwitchSelector';
 
 type SelectorFieldType<T extends FieldValues> = {
@@ -13,7 +13,7 @@ type SelectorFieldType<T extends FieldValues> = {
   control: Control<T>;
 };
 
-export const SelectorField =<T extends FieldValues> ({
+export const SelectorField = <T extends FieldValues>({
   name,
   label,
   type,

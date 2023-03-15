@@ -6,9 +6,10 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Stack, TextField,
-  Typography
-} from "@mui/material";
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { Box } from '@mui/system';
 
@@ -59,7 +60,7 @@ export default function TopicSelect({ name, control }: Props) {
   return (
     <Box>
       <Typography typography='inputTitle'>Choose a topic :</Typography>
-      <Stack spacing={3} marginBottom="1rem">
+      <Stack spacing={3} marginBottom='1rem'>
         <Controller
           name={name}
           control={control}
@@ -96,12 +97,10 @@ export default function TopicSelect({ name, control }: Props) {
               onChange={handleNewTopicNameChange}
             />
           </Stack>
-          <Button sx={{margin:"1rem"}} onClick={handleNewTopicSave}>
+          <Button sx={{ margin: '1rem' }} onClick={handleNewTopicSave}>
             Save
           </Button>
-          <Button onClick={handleNewTopicCancel}>
-            Cancel
-          </Button>
+          <Button onClick={handleNewTopicCancel}>Cancel</Button>
         </>
       )}
     </Box>

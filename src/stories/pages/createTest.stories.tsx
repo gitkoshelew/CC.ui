@@ -1,4 +1,4 @@
-import NewTest from '../../pages/create-test';
+import NewTest from '../../pages/create-test/create-quiz';
 
 export const CreateTestPage = () => <NewTest />;
 

@@ -1,8 +1,7 @@
-
 import { useMemo } from 'react';
 import SwitchSelector from 'react-switch-selector';
 import { palette } from '../../../../styles/theme/commonDefaultTheme';
-import { SelectorType } from '../../../../Types/SelectorType';
+import { SelectorType } from '../../../../types/SelectorType';
 
 export const SwitchSelectors = ({ onPress, type, value }: SelectorType) => {
   const SelectorsData = useMemo(

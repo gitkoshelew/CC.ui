@@ -6,10 +6,10 @@ export type CreateQuestionType = {
   description: string;
   topicId: number;
   timer: number;
-  numberOfQuestions: number
-}
+  numberOfQuestions: number;
+};
 
 export type Content = {
   options: string[];
   correctAnswer: string[];
-}
+};

@@ -1,4 +1,10 @@
-import { Button, ButtonGroup, Stack, TextField, Typography } from '@mui/material';
+import {
+  Button,
+  ButtonGroup,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { ArrowSuccessIcon } from '../../assets/icons/ArrowSuccessIcon';
 
 type SuperButtonType = {
@@ -32,7 +38,6 @@ export const SuperButtonGroup = ({ items, title }: SuperButtonType) => (
             typography: 'inputTitle',
           }}
           key={index}
-          
         >
           {item}
         </TextField>

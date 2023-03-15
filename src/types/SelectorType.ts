@@ -1,5 +1,5 @@
 export type SelectorType = {
-  onPress?: <T>(selectedOptionValue: T | unknown) => void
+  onPress?: <T>(selectedOptionValue: T | unknown) => void;
   value?: string | number;
   type: TypeSwitchSelect;
 };
