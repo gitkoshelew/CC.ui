@@ -18,7 +18,7 @@ export default function NewTest() {
     <Layout>
       <ButtonBackHome />
       <StylizedPaper title='Create test'>
-        {quizId ? <CreateQuestion /> : <CreateQuiz/>}
+        {quizId ? <CreateQuestion /> : <CreateQuiz />}
       </StylizedPaper>
     </Layout>
   );

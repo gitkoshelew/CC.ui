@@ -196,7 +196,7 @@ const Id = () => {
           <RectangleProgressTabs
             activeTabId={
               cardWithQuestion?.question &&
-              cardWithQuestion?.question[numberOfQuestion].id
+              cardWithQuestion?.question[numberOfQuestion]?.id
             }
             tabsData={data}
           />

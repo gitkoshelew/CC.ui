@@ -9,7 +9,7 @@ import { types } from '../../../Mocs/NewTestMoc';
 import CreateAnswer from '../FieldsComponents/CreateAnswer/CreateAnswer';
 import { quizesApi } from '../../../api/quizesApi';
 import { useAppSelector } from '../../../store/store';
-import { CreateQuestionType } from '../../../Types/CreateQuestionType';
+import { CreateQuestionType } from '../../../types/CreateQuestionType';
 
 export const CreateQuestion = () => {
   const { handleSubmit, control } = useForm<CreateQuestionType>();

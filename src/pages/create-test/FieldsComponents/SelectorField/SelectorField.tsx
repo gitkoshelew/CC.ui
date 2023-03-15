@@ -13,7 +13,7 @@ type SelectorFieldType<T extends FieldValues> = {
   control: Control<T>;
 };
 
-export const SelectorField =<T extends FieldValues> ({
+export const SelectorField = <T extends FieldValues>({
   name,
   label,
   type,

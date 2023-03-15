@@ -14,6 +14,7 @@ import { authReducer } from './reducers/auth-reducer';
 import { profileReducer } from './reducers/profile-reducer';
 import { appReducer } from './reducers/app-reducer';
 import { resultReducer } from './reducers/result-reducer';
+import { topicReducer } from './reducers/topic-reducer';
 
 const reducers = {
   quizes: quizzesReducer,
@@ -24,6 +25,7 @@ const reducers = {
   profile: profileReducer,
   app: appReducer,
   resultData: resultReducer,
+  topics: topicReducer,
 };
 
 const reducer = combineReducers(reducers);
