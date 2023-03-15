@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import {
   Button,
   FormControl,
@@ -12,6 +12,11 @@ import {
 } from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { Box } from '@mui/system';
+import { InputField } from '../InputFieald';
+import { useAppDispatch, useAppSelector } from '../../../../store/store';
+import { getOneQuizes } from '../../../../store/reducers/quizzes-reducer';
+import { createTopic } from '../../../../store/reducers/topic-reducer';
+import { selectOneQuizes, selectTopic } from '../../../../store/selectors';
 
 type Props = {
   name: string;
@@ -34,6 +39,12 @@ export default function TopicSelect({ name, control }: Props) {
   const [newTopicName, setNewTopicName] = useState('');
   const [showNewTopicInput, setShowNewTopicInput] = useState(false);
   const [topics, setTopics] = useState(topicOptions);
+  const dispatch = useAppDispatch();
+  const topic = useAppSelector(selectTopic);
+
+  const addNewTopicHandler = () => {
+    dispatch(createTopic(newTopicName));
+  };
 
   const handleNewTopicNameChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -61,28 +72,15 @@ export default function TopicSelect({ name, control }: Props) {
     <Box>
       <Typography typography='inputTitle'>Choose a topic :</Typography>
       <Stack spacing={3} marginBottom='1rem'>
-        <Controller
-          name={name}
-          control={control}
-          render={({ field }) => (
-            <Select
-              defaultValue={topicOptions[0].name}
-              labelId={`${name}.label`}
-              label='Topic'
-              {...field}
-            >
-              {topics.map((topic) => (
-                <MenuItem key={topic.id} value={topic.name}>
-                  {topic.name}
-                </MenuItem>
-              ))}
-            </Select>
-          )}
+        <TextField
+          value={newTopicName}
+          placeholder='Type new topic...'
+          onChange={(e) => setNewTopicName(e.currentTarget.value)}
         />
       </Stack>
       <Box>
         {!showNewTopicInput && (
-          <Button variant='outlined' onClick={handleNewTopicButtonClick}>
+          <Button variant='outlined' onClick={addNewTopicHandler}>
             Add New Topic
           </Button>
         )}
@@ -97,10 +95,12 @@ export default function TopicSelect({ name, control }: Props) {
               onChange={handleNewTopicNameChange}
             />
           </Stack>
-          <Button sx={{ margin: '1rem' }} onClick={handleNewTopicSave}>
+          <Button sx={{margin:"1rem"}} onClick={handleNewTopicSave}>
             Save
           </Button>
-          <Button onClick={handleNewTopicCancel}>Cancel</Button>
+          <Button onClick={handleNewTopicCancel}>
+            Cancel
+          </Button>
         </>
       )}
     </Box>

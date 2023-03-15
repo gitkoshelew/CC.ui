@@ -8,15 +8,15 @@ import { getOneQuizes } from '../../../store/reducers/quizzes-reducer';
 type PropsCardType = {
   title: string;
   author: AuthorType;
-  date?: number;
   id: number;
+  creationDate: string;
 };
 
 export const Card = ({
   title,
   author: { name, status },
-  date,
   id,
+  creationDate,
 }: PropsCardType) => {
   const { t } = useTranslation('home');
   const { push } = useRouter();
@@ -43,14 +43,14 @@ export const Card = ({
             {name}
           </p>
         </div>
+        <div>
+          <p className='m-0'>
+            <span className='text-text-primaryAlpha300'>Created: </span>
+            {creationDate && creationDate}
+          </p>
+        </div>
         <div className='flex flex-col text-center items-center gap-4'>
           <Button onClick={onClickHandler}>{t('start')}</Button>
-          {date && (
-            <div>
-              <span className='text-text-primaryAlpha300'>Created: </span>
-              {date}
-            </div>
-          )}
         </div>
       </div>
     </div>

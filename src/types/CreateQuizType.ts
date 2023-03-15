@@ -5,3 +5,7 @@ export type CreateQuizType = {
   topicId: number;
   numberOfQuestions: number;
 };
+export type TopicType = {
+  id?: number;
+  title: string;
+};
