@@ -1,7 +1,10 @@
 export type CreateQuestionType = {
   title: string;
-  options: any;
-  correctAnswer: string[];
+  options: any
+  content: {
+    options: any;
+    correctAnswer: any;
+  };
   type: string;
   difficulty: string;
   description: string;

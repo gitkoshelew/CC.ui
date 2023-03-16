@@ -24,6 +24,7 @@ const CreateQuestion = () => {
     questionData
   ) => {
     const { options, timerquestion } = await questionData;
+    const allOptions = options.map((data: { name: any }) => data.name);
     const questionTimerSeconds =
       Number(timerquestion.minutes) * 60 + Number(timerquestion.seconds);
     const milliseconds = questionTimerSeconds * 1000;
@@ -32,8 +33,11 @@ const CreateQuestion = () => {
       .map((obj: { name: string }) => obj.name);
     const payload = {
       ...questionData,
-      options: options.map((data: { name: any }) => data.name),
-      correctAnswer,
+      content: {
+        options: allOptions,
+        correctAnswer,
+      },
+      options: undefined,
       topicId: Number(topicId),
       timerquestion: undefined,
       timer: milliseconds,
@@ -50,41 +54,37 @@ const CreateQuestion = () => {
             <Stack direction='row' flexWrap='wrap' spacing={3}>
               <Box sx={{ flexGrow: 1 }}>
                 <InputField
-                  nameTitle='Question'
+                  nameTitle='Question :'
                   nameControl='title'
                   control={control}
                 />
                 <InputField
-                  nameTitle='Description of question'
+                  nameTitle='Description of question :'
                   nameControl='description'
                   control={control}
                 />
               </Box>
             </Stack>
-            <Stack direction='row' flexWrap='wrap' spacing={3}>
-              <Box sx={{ flexGrow: 0.5 }}>
+            <Stack direction='row' spacing={3}>
+              <Box sx={{ flexGrow: 1 }}>
                 <DropDownField
                   control={control}
                   controlName='type'
-                  name='Questions type:'
+                  name='Questions type :'
                   items={types}
                 />
               </Box>
-              <Box sx={{ flexGrow: 0.5 }}>
+              <Box sx={{ flexGrow: 1 }}>
                 <DropDownField
                   control={control}
                   controlName='difficulty'
-                  name='Difficulty:'
+                  name='Difficulty :'
                   items={difficultyItems}
                 />
               </Box>
-              <Box sx={{ maxWidth: '114px' }}>
-                <Stack>
-                  <Typography typography='inputTitle'>Timer</Typography>
-                  <Stack direction='row' spacing={1} alignItems='center'>
-                    <QuestionTimer name='timerquestion' control={control} />
-                  </Stack>
-                </Stack>
+              <Box sx={{ flexGrow: 2 }}>
+                <Typography typography='inputTitle'>Timer :</Typography>
+                <QuestionTimer name='timerquestion' control={control} />
               </Box>
             </Stack>
             <Stack spacing={1}>
