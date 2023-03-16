@@ -1,12 +1,16 @@
 export type CreateQuestionType = {
   title: string;
-  content: Content;
+  options: any;
+  correctAnswer: string[];
   type: string;
   difficulty: string;
   description: string;
   topicId: number;
   timer: number;
-  numberOfQuestions: number;
+  timerquestion: {
+    minutes: string;
+    seconds: string;
+  };
 };
 
 export type Content = {

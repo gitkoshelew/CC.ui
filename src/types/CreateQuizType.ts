@@ -2,8 +2,8 @@ export type CreateQuizType = {
   title: string;
   description: string;
   comment: string;
-  topicId: number;
-  numberOfQuestions: number;
+  topicId: any;
+  numberOfQuestions: any;
 };
 export type TopicType = {
   id?: number;
