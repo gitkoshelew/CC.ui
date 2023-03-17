@@ -66,7 +66,7 @@ const CreateQuestion = () => {
     questionData
   ) => {
     const { options, timerquestion } = await questionData;
-    const allOptions = options.map((data: { name: any }) => data.name);
+    const allOptions = options.map((data: { name: string }) => data.name);
     const questionTimerSeconds =
       Number(timerquestion.minutes) * 60 + Number(timerquestion.seconds);
     const milliseconds = questionTimerSeconds * 1000;
