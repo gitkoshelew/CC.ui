@@ -9,6 +9,7 @@ import {
 
 type QuestionTabsType = {
   numberOfQuestions: number;
+  activeTab: any;
 };
 
 const getNewQuestion = () => ({
@@ -25,7 +26,10 @@ const getNewQuestion = () => ({
   topicId: 0,
   moderationId: null,
 });
-export const QuestionTabs = ({ numberOfQuestions }: QuestionTabsType) => {
+export const QuestionTabs = ({
+  numberOfQuestions,
+  activeTab,
+}: QuestionTabsType) => {
   const amountOfQuestionsTabs = Array.from(
     { length: numberOfQuestions },
     (_, i) => i
@@ -61,8 +65,8 @@ export const QuestionTabs = ({ numberOfQuestions }: QuestionTabsType) => {
             key={id}
             onClick={handlerCurrentQuestion}
             questionId={id}
-            isActive={currentQuestionIndex === id}
-            isCompleted={questions.length > id}
+            isActive={activeTab === id}
+            isCompleted={questions.length > numberOfQuestions}
             index={id}
           />
         ))}

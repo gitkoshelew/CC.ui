@@ -14,7 +14,7 @@ export function InputField({
   control,
 }: InputFieldType) {
   return (
-    <FormGroup sx={{marginY: '1rem'}}>
+    <FormGroup sx={{ marginY: '1rem' }}>
       <Typography typography='inputTitle'>{nameTitle}</Typography>
       <Controller
         render={({ field }) => <TextField {...field} />}

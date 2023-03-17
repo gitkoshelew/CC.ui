@@ -95,12 +95,10 @@ export default function TopicSelect({ name, control }: Props) {
               onChange={handleNewTopicNameChange}
             />
           </Stack>
-          <Button sx={{margin:"1rem"}} onClick={handleNewTopicSave}>
+          <Button sx={{ margin: '1rem' }} onClick={handleNewTopicSave}>
             Save
           </Button>
-          <Button onClick={handleNewTopicCancel}>
-            Cancel
-          </Button>
+          <Button onClick={handleNewTopicCancel}>Cancel</Button>
         </>
       )}
     </Box>

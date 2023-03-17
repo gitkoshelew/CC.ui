@@ -37,7 +37,7 @@ const CreateQuiz = () => {
         pathname: '/create-test/create-question',
         query: {
           numberOfQuestions: +numberOfQuestions,
-          topicId: responseTopic
+          topicId: responseTopic,
         },
       });
     } catch (error) {
