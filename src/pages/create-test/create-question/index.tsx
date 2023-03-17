@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
@@ -39,10 +39,14 @@ const CreateQuestion = () => {
   });
 
   const [questions, setQuestions] = useState([{ ...getNewQuestion() }]);
-  const currentQuestion = questions[currentQuestionIndex] || {
-    ...getNewQuestion(),
-  };
-  const { handleSubmit, control } = useForm<CreateQuestionType>({
+  const currentQuestion = useMemo(
+    () =>
+      questions[currentQuestionIndex] || {
+        ...getNewQuestion(),
+      },
+    [currentQuestionIndex]
+  );
+  const { handleSubmit, control, reset } = useForm<CreateQuestionType>({
     defaultValues: {
       title: currentQuestion.title,
       description: currentQuestion.description,
@@ -94,11 +98,32 @@ const CreateQuestion = () => {
         seconds: 0,
       },
     };
-    // const newQuestions = questions.concat().push(newQuestion);
-    // setQuestions(newQuestions);
+    const newQuestions = questions.concat();
+    newQuestions.push(newQuestion);
+    setQuestions(newQuestions);
     quizesApi.postQuestion(payload);
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
+
+  useEffect(() => {
+    reset({
+      title: currentQuestion.title,
+      description: currentQuestion.description,
+      content: {
+        options: [],
+        correctAnswer: [],
+      },
+      difficulty: currentQuestion.difficulty,
+      type: currentQuestion.type,
+    });
+  }, [
+    currentQuestion.content.options,
+    currentQuestion.content.correctAnswer,
+    currentQuestion.description,
+    currentQuestion.difficulty,
+    currentQuestion.title,
+    currentQuestion.type,
+  ]);
   return (
     <Layout>
       <ButtonBackHome />
