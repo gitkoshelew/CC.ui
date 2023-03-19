@@ -1,6 +1,7 @@
 import { Box, MenuItem, Select, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { Controller } from 'react-hook-form';
+import { useTranslation } from "next-i18next";
 
 type DropDownFieldType = {
   name: string;
@@ -15,9 +16,10 @@ export function DropDownField({
   controlName,
   control,
 }: DropDownFieldType) {
+  const { t } = useTranslation('SwitchSelector');
   return (
     <Stack>
-      <Typography typography='inputTitle'>{name}</Typography>
+      <Typography typography='inputTitle'>{t(`${name}`)}</Typography>
       <Controller
         name={controlName}
         control={control}
@@ -32,7 +34,7 @@ export function DropDownField({
                 key={index}
                 value={item}
               >
-                {item}
+                {t(`${item}`)}
               </MenuItem>
             ))}
           </Select>

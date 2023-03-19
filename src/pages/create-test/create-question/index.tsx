@@ -3,6 +3,7 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useTranslation } from "next-i18next";
 import { QuestionTabs } from '../../../components/common/Tabs/QuestionTabs/QuestionTabs';
 import { InputField } from '../FieldsComponents/InputFieald';
 import { DropDownField } from '../FieldsComponents/DropDownField';
@@ -17,6 +18,7 @@ import { StylizedPaper } from '../../../components/common/StylizedPaper/Stylized
 import { QuestionTimer } from '../FieldsComponents/QuestionTimer/QuestionTimer';
 
 const CreateQuestion = () => {
+  const { t } = useTranslation('create-question');
   const router = useRouter();
   const { numberOfQuestions, topicId } = router.query;
 
@@ -79,9 +81,9 @@ const CreateQuestion = () => {
         options: allOptions,
         correctAnswer,
       },
-      options: undefined,
+      options: null,
       topicId: Number(topicId),
-      timerquestion: undefined,
+      timerquestion: null,
       timer: milliseconds,
     };
     const newQuestion = {
@@ -127,7 +129,7 @@ const CreateQuestion = () => {
   return (
     <Layout>
       <ButtonBackHome />
-      <StylizedPaper title='Create Question'>
+      <StylizedPaper title={t('Create Question')}>
         <form onSubmit={handleSubmit(onSubmitQuestion)}>
           <QuestionTabs
             numberOfQuestions={Number(numberOfQuestions)}
@@ -137,12 +139,12 @@ const CreateQuestion = () => {
             <Stack direction='row' flexWrap='wrap' spacing={3}>
               <Box sx={{ flexGrow: 1 }}>
                 <InputField
-                  nameTitle='Question :'
+                  nameTitle={t('Question :')}
                   nameControl='title'
                   control={control}
                 />
                 <InputField
-                  nameTitle='Description of question :'
+                  nameTitle={t('Description of question :')}
                   nameControl='description'
                   control={control}
                 />
@@ -153,7 +155,7 @@ const CreateQuestion = () => {
                 <DropDownField
                   control={control}
                   controlName='type'
-                  name='Questions type :'
+                  name={t('Questions type :')}
                   items={types}
                 />
               </Box>
@@ -161,12 +163,12 @@ const CreateQuestion = () => {
                 <DropDownField
                   control={control}
                   controlName='difficulty'
-                  name='Difficulty :'
+                  name={t('Difficulty :')}
                   items={difficultyItems}
                 />
               </Box>
               <Box sx={{ flexGrow: 2 }}>
-                <Typography typography='inputTitle'>Timer :</Typography>
+                <Typography typography='inputTitle'>{t('Timer :')}</Typography>
                 <QuestionTimer name='timerquestion' control={control} />
               </Box>
             </Stack>
@@ -177,10 +179,10 @@ const CreateQuestion = () => {
           <Stack alignItems='center'>
             {Number(currentQuestionIndex + 1) === Number(numberOfQuestions) ? (
               <Link href='/'>
-                <Button type='submit'>Finish</Button>
+                <Button type='submit'>{t('Finish')}</Button>
               </Link>
             ) : (
-              <Button type='submit'>Save question</Button>
+              <Button type='submit'>{t('Save question')}</Button>
             )}
           </Stack>
         </form>

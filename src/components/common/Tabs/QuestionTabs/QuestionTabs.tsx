@@ -13,7 +13,6 @@ type QuestionTabsType = {
 };
 
 const getNewQuestion = () => ({
-  id: Math.random(), // ?
   title: '',
   description: '',
   content: {

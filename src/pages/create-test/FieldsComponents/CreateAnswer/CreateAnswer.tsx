@@ -16,6 +16,7 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
+import { useTranslation } from "next-i18next";
 import { BasketIcon } from '../../../../assets/icons/BasketIcon';
 
 type CreateAnswerPropsType<T extends FieldValues> = {
@@ -27,14 +28,15 @@ const CreateAnswer = <T extends FieldValues>({
   control,
   name,
 }: CreateAnswerPropsType<T>) => {
+  const { t } = useTranslation('createAnswer');
   const { fields, append, remove } = useFieldArray({
     control,
     name,
   });
-
+  const handleAppendNewAnswer = () => append({ name: '', checked: false })
   return (
     <Stack>
-      <Typography>Answer choice :</Typography>
+      <Typography>{t('Answer choice :')}</Typography>
       {fields.map((field, index) => (
         <Stack
           sx={{ marginY: '0.7rem' }}
@@ -43,7 +45,7 @@ const CreateAnswer = <T extends FieldValues>({
           key={field.id}
         >
           <Box sx={{ flexGrow: 0.1, verticalAlign: 'middle' }}>
-            <Typography>{`${index + 1}.`}</Typography>
+            <Typography>{t(`${index + 1}.`)}</Typography>
           </Box>
           <Controller
             control={control}
@@ -60,7 +62,7 @@ const CreateAnswer = <T extends FieldValues>({
                   value={value}
                   onChange={onChange}
                   error={!!error}
-                  helperText={error ? 'This field is required' : ''}
+                  helperText={error ? t('This field is required') : ''}
                 />
               </Box>
             )}
@@ -109,9 +111,9 @@ const CreateAnswer = <T extends FieldValues>({
         <Button
           variant='contained'
           color='primary'
-          onClick={() => append({ name: '', checked: false })}
+          onClick={handleAppendNewAnswer}
         >
-          Add Answer
+          {t('Add Answer')}
         </Button>
       </Box>
     </Stack>

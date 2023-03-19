@@ -4,6 +4,7 @@ import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import { TypeSwitchSelect } from '../../../../types/SelectorType';
 import { SwitchSelectors } from './SwitchSelector';
+import { useTranslation } from "next-i18next";
 
 type SelectorFieldType<T extends FieldValues> = {
   name: FieldPath<T>;
@@ -19,16 +20,19 @@ export const SelectorField = <T extends FieldValues>({
   type,
   rules,
   control,
-}: SelectorFieldType<T>) => (
-  <Box>
-    {label && <Typography typography='inputTitle'>{label}</Typography>}
-    <Controller
-      control={control}
-      name={name}
-      rules={rules}
-      render={({ field: { onChange, value } }) => (
-        <SwitchSelectors type={type} onPress={onChange} value={value} />
-      )}
-    />
-  </Box>
-);
+}: SelectorFieldType<T>) => {
+  const { t } = useTranslation('selectorField');
+  return (
+    <Box>
+      {label && <Typography typography='inputTitle'>{t(`${ label }`)}</Typography>}
+      <Controller
+        control={control}
+        name={name}
+        rules={rules}
+        render={({ field: { onChange, value } }) => (
+          <SwitchSelectors type={type} onPress={onChange} value={value} />
+        )}
+      />
+    </Box>
+  )
+};

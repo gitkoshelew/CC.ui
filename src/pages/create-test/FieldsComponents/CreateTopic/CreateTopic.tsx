@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { Box } from '@mui/system';
+import { useTranslation } from "next-i18next";
 import { InputField } from '../InputFieald';
 import { useAppDispatch, useAppSelector } from '../../../../store/store';
 import { getOneQuizes } from '../../../../store/reducers/quizzes-reducer';
@@ -37,6 +38,7 @@ const topicOptions: Topic[] = [
 
 export default function TopicSelect({ name, control }: Props) {
   const [newTopicName, setNewTopicName] = useState('');
+  const { t } = useTranslation('createTopic');
   const [showNewTopicInput, setShowNewTopicInput] = useState(false);
   const [topics, setTopics] = useState(topicOptions);
   const dispatch = useAppDispatch();
@@ -70,7 +72,7 @@ export default function TopicSelect({ name, control }: Props) {
 
   return (
     <Box>
-      <Typography typography='inputTitle'>Choose a topic :</Typography>
+      <Typography typography='inputTitle'>{t('Choose a topic :')}</Typography>
       <Stack spacing={3} marginBottom='1rem'>
         <TextField
           value={newTopicName}
@@ -81,7 +83,7 @@ export default function TopicSelect({ name, control }: Props) {
       <Box>
         {!showNewTopicInput && (
           <Button variant='outlined' onClick={addNewTopicHandler}>
-            Add New Topic
+            {t('Add New Topic')}
           </Button>
         )}
       </Box>
@@ -96,9 +98,9 @@ export default function TopicSelect({ name, control }: Props) {
             />
           </Stack>
           <Button sx={{ margin: '1rem' }} onClick={handleNewTopicSave}>
-            Save
+            {t('Save')}
           </Button>
-          <Button onClick={handleNewTopicCancel}>Cancel</Button>
+          <Button onClick={handleNewTopicCancel}>{t('Cancel')}</Button>
         </>
       )}
     </Box>
