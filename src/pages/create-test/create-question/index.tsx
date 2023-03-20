@@ -21,6 +21,7 @@ const CreateQuestion = () => {
   const { t } = useTranslation('create-question');
   const router = useRouter();
   const { numberOfQuestions, topicId, quizId } = router.query;
+  const { push } = useRouter();
 
   const difficultyItems = useAppSelector((state) => state.difficulty);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -104,8 +105,11 @@ const CreateQuestion = () => {
     const newQuestions = questions.concat();
     newQuestions.push(newQuestion);
     setQuestions(newQuestions);
-    quizesApi.postQuestion(payload);
+    await quizesApi.postQuestion(payload);
     setCurrentQuestionIndex(currentQuestionIndex + 1);
+    if (+currentQuestionIndex + 1 === +numberOfQuestions!) {
+      push('/');
+    }
   };
 
   useEffect(() => {
@@ -178,13 +182,13 @@ const CreateQuestion = () => {
             </Stack>
           </Stack>
           <Stack alignItems='center'>
-            {Number(currentQuestionIndex + 1) === Number(numberOfQuestions) ? (
-              <Link href='/'>
-                <Button type='submit'>{t('Finish')}</Button>
-              </Link>
-            ) : (
-              <Button type='submit'>{t('Save question')}</Button>
-            )}
+            {/* {Number(currentQuestionIndex + 1) === Number(numberOfQuestions) ? ( */}
+            {/*   <Link href='/'> */}
+            {/*     <Button type='submit'>{t('Finish')}</Button> */}
+            {/*   </Link> */}
+            {/* ) : ( */}
+            <Button type='submit'>{t('Save question')}</Button>
+            {/* )} */}
           </Stack>
         </form>
       </StylizedPaper>

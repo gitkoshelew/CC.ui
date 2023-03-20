@@ -6,7 +6,6 @@ import { SelectorType } from '../../../../types/SelectorType';
 
 export const SwitchSelectors = ({ onPress, type, value }: SelectorType) => {
   const { t } = useTranslation('SwitchSelector');
-
   const SelectorsData = useMemo(() => {
     if (type === 'level') {
       return [
