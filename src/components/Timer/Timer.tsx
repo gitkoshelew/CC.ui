@@ -30,6 +30,13 @@ export const Timer = ({ timeDefault, skipHandler }: TimerProps) => {
     }
   }, [time]);
 
+  useEffect(() => {
+    setTime(dayjs(timeDefault));
+    return () => {
+      setTime(dayjs(0));
+    };
+  }, [timeDefault]);
+
   return (
     <div className='text-center text-4xl '>
       {timeDefault && (

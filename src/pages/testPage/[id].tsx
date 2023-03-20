@@ -189,7 +189,7 @@ const Id = () => {
           sx={{ width: 1, maxWidth: '850px', mx: 'auto' }}
         >
           <Timer
-            key={timeDefault}
+            key={numberOfQuestion}
             timeDefault={timeDefault}
             skipHandler={skipHandler}
           />
