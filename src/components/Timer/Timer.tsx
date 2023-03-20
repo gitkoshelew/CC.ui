@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 
 type TimerProps = {
-  timeDefault: number;
+  timeDefault: { time: number };
   skipHandler: () => void;
 };
 export const Timer = ({ timeDefault, skipHandler }: TimerProps) => {
-  const [time, setTime] = useState(dayjs(timeDefault));
+  const [time, setTime] = useState(dayjs(timeDefault.time));
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,9 +30,16 @@ export const Timer = ({ timeDefault, skipHandler }: TimerProps) => {
     }
   }, [time]);
 
+  useEffect(() => {
+    setTime(dayjs(timeDefault.time));
+    return () => {
+      setTime(dayjs(0));
+    };
+  }, [timeDefault]);
+
   return (
     <div className='text-center text-4xl '>
-      {timeDefault && (
+      {timeDefault.time && (
         <>
           {' '}
           <span>{minutes}</span>:<span>{seconds}</span>
