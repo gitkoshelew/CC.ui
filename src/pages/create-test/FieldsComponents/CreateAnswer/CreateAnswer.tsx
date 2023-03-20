@@ -16,7 +16,7 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-import { useTranslation } from "next-i18next";
+import { useTranslation } from 'next-i18next';
 import { BasketIcon } from '../../../../assets/icons/BasketIcon';
 
 type CreateAnswerPropsType<T extends FieldValues> = {
@@ -33,7 +33,7 @@ const CreateAnswer = <T extends FieldValues>({
     control,
     name,
   });
-  const handleAppendNewAnswer = () => append({ name: '', checked: false })
+  const handleAppendNewAnswer = () => append({ name: '', checked: false });
   return (
     <Stack>
       <Typography>{t('Answer choice :')}</Typography>

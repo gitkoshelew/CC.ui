@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { Box } from '@mui/system';
-import { useTranslation } from "next-i18next";
+import { useTranslation } from 'next-i18next';
 import { InputField } from '../InputFieald';
 import { useAppDispatch, useAppSelector } from '../../../../store/store';
 import { getOneQuizes } from '../../../../store/reducers/quizzes-reducer';
