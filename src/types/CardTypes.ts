@@ -3,6 +3,8 @@ import { NewQuestionType } from './TestQuestionsType';
 export type CardType = {
   id: number;
   title: string;
+  creationDate: string;
+  description: string;
   authorId: number;
   author: AuthorType;
   question: NewQuestionType[];

@@ -3,6 +3,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { AxiosError } from 'axios';
 import { quizesApi } from '../../api/quizesApi';
 import { CardType } from '../../types/CardTypes';
+import { TopicType } from '../../types/CreateQuizType';
 
 export const fetchQuizes = createAsyncThunk(
   'quizes/getQuizesThunk',

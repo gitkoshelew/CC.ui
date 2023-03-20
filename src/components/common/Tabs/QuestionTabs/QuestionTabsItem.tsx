@@ -2,10 +2,10 @@ import React from 'react';
 import { StyledQuestionTabsItem } from './styled';
 
 type QuestionTabsItemPropsType = {
-  onClick: (e: React.MouseEvent<HTMLDivElement>, id: string) => void;
+  onClick: (e: React.MouseEvent<HTMLDivElement>, id: number) => void;
   isActive: boolean;
   isCompleted: boolean;
-  questionId: string;
+  questionId: number;
   index: number;
 };
 export const QuestionTabsItem = React.memo(
