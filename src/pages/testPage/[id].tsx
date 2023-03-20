@@ -126,7 +126,6 @@ const Id = () => {
         }
   );
   const timeDefault = currentTest && currentTest[0]?.timer;
-  const [timeForTimer, setTimeForTimer] = useState({ time: timeDefault });
 
   const nextQuestionHandler = () => {
     if (
@@ -180,15 +179,6 @@ const Id = () => {
     }
   }, [id]);
 
-  useEffect(() => {
-    if (
-      cardWithQuestion?.question &&
-      cardWithQuestion?.question[numberOfQuestion]?.id
-    ) {
-      setTimeForTimer((prevState) => ({ ...prevState, time: timeDefault }));
-    }
-  }, [cardWithQuestion.question, numberOfQuestion]);
-
   return (
     <Layout>
       <ButtonBackHome />
@@ -199,8 +189,8 @@ const Id = () => {
           sx={{ width: 1, maxWidth: '850px', mx: 'auto' }}
         >
           <Timer
-            // key={timeDefault}
-            timeDefault={timeForTimer}
+            key={numberOfQuestion}
+            timeDefault={timeDefault}
             skipHandler={skipHandler}
           />
           <RectangleProgressTabs
