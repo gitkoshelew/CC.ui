@@ -1,7 +1,7 @@
 import { FormGroup, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { useTranslation } from "next-i18next";
+import { useTranslation } from 'next-i18next';
 
 type InputFieldType = {
   nameTitle: string;

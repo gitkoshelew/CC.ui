@@ -2,9 +2,9 @@ import { Control, Controller, FieldPath, FieldValues } from 'react-hook-form';
 import React from 'react';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
+import { useTranslation } from 'next-i18next';
 import { TypeSwitchSelect } from '../../../../types/SelectorType';
 import { SwitchSelectors } from './SwitchSelector';
-import { useTranslation } from "next-i18next";
 
 type SelectorFieldType<T extends FieldValues> = {
   name: FieldPath<T>;
@@ -24,7 +24,9 @@ export const SelectorField = <T extends FieldValues>({
   const { t } = useTranslation('selectorField');
   return (
     <Box>
-      {label && <Typography typography='inputTitle'>{t(`${ label }`)}</Typography>}
+      {label && (
+        <Typography typography='inputTitle'>{t(`${label}`)}</Typography>
+      )}
       <Controller
         control={control}
         name={name}
@@ -34,5 +36,5 @@ export const SelectorField = <T extends FieldValues>({
         )}
       />
     </Box>
-  )
+  );
 };

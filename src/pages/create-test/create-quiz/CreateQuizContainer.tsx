@@ -1,5 +1,5 @@
 import React from 'react';
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button, Stack } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { ButtonBackHome } from '../../../components/common/ButtonBackHome';

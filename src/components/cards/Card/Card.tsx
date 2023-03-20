@@ -26,7 +26,6 @@ export const Card = ({
     dispatch(getOneQuizes(+id));
     push(`/testPage/${id}`);
   };
-
   return (
     <div className='flex flex-col text-center bg-background-paper shadow border rounded-2xl px-5 pt-11 pb-7 relative text-sm'>
       <div className='absolute -top-2 right-7 py-0.5 px-4 rounded-2xl text-xs font-light bg-secondary-main text-secondary-contrastText'>
