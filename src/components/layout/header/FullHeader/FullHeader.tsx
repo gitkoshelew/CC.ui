@@ -8,9 +8,11 @@ import { FullHeaderWrapper } from './FullHeaderWrapper';
 import { ListIcon } from '../../../../assets/icons/ListIcon';
 import { ButtonNums } from '../ButtonNums';
 import { HeaderStatistic } from '../HeaderStatistic';
+import { getTokenFromStorage } from '../../../../utils/token';
 
 export const FullHeader = () => {
   const { t } = useTranslation('home');
+  const token = getTokenFromStorage();
   return (
     <FullHeaderWrapper>
       <Stack height={1} bgcolor='rgba(0, 0, 0, 0.5)'>
@@ -41,14 +43,16 @@ export const FullHeader = () => {
                   {t('createTest')}
                 </Button>
               </Link>
-              <Button
-                color='info'
-                variant='contained'
-                startIcon={<ListIcon />}
-                endIcon={<ButtonNums value={99} />}
-              >
-                {t('myTests')}
-              </Button>
+              {!!token && (
+                <Button
+                  color='info'
+                  variant='contained'
+                  startIcon={<ListIcon />}
+                  endIcon={<ButtonNums value={99} />}
+                >
+                  {t('myTests')}
+                </Button>
+              )}
             </Stack>
           </Stack>
         </Container>
