@@ -6,8 +6,6 @@ import { wrapper } from '../../store/store';
 import { getQuestions } from '../../store/reducers/questions-reducer';
 
 export default function TestPage() {
-  const { t } = useTranslation('testPage');
-
   return (
     <Layout>
       {/* <ButtonBackHome /> */}

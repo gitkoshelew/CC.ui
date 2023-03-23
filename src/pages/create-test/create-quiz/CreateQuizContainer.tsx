@@ -6,10 +6,10 @@ import { ButtonBackHome } from '../../../components/common/ButtonBackHome';
 import { StylizedPaper } from '../../../components/common/StylizedPaper/StylizedPaper';
 import { InputField } from '../FieldsComponents/InputFieald';
 import TopicSelect from '../FieldsComponents/CreateTopic/CreateTopic';
-import { SelectorField } from '../FieldsComponents/SelectorField/SelectorField';
 import { TypeSwitchSelect } from '../../../types/SelectorType';
 import { Layout } from '../../../components/layout/Layout';
 import { CreateQuizType } from '../../../types/CreateQuizType';
+import { SelectorFieldNOQ } from '../FieldsComponents/SelectorField/SelectorFieldNumOfQuestion/SelectorFieldNOQ';
 
 type CreateQuizContainerType = {
   onSubmit: SubmitHandler<CreateQuizType>;
@@ -56,7 +56,7 @@ export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
                 <TopicSelect name='topic' control={control} />
               </Box>
               <Box flexGrow={1}>
-                <SelectorField
+                <SelectorFieldNOQ
                   label={t('Number of questions')}
                   name='numberOfQuestions'
                   control={control}

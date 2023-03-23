@@ -2,11 +2,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { QuestionTabs } from '../../../components/common/Tabs/QuestionTabs/QuestionTabs';
 import { InputField } from '../FieldsComponents/InputFieald';
-import { DropDownField } from '../FieldsComponents/DropDownField';
 import { types } from '../../../Mocs/NewTestMoc';
 import CreateAnswer from '../FieldsComponents/CreateAnswer/CreateAnswer';
 import { quizesApi } from '../../../api/quizesApi';
@@ -16,6 +14,9 @@ import { ButtonBackHome } from '../../../components/common/ButtonBackHome';
 import { Layout } from '../../../components/layout/Layout';
 import { StylizedPaper } from '../../../components/common/StylizedPaper/StylizedPaper';
 import { QuestionTimer } from '../FieldsComponents/QuestionTimer/QuestionTimer';
+import { TypeSwitchSelect } from '../../../types/SelectorType';
+import { SelectorFieldDifficulty } from '../FieldsComponents/SelectorField/SelectorFieldDifficulty/SelectorFieldDifficulty';
+import { SelectorFieldType } from '../FieldsComponents/SelectorField/SelectorFieldType/SelectorFieldType';
 
 const CreateQuestion = () => {
   const { t } = useTranslation('create-question');
@@ -157,19 +158,31 @@ const CreateQuestion = () => {
             </Stack>
             <Stack direction='row' spacing={3}>
               <Box sx={{ flexGrow: 1 }}>
-                <DropDownField
+                {/* <DropDownField */}
+                {/*   control={control} */}
+                {/*   controlName='type' */}
+                {/*   name={t('Questions type :')} */}
+                {/*   items={types} */}
+                {/* /> */}
+                <SelectorFieldType
+                  label={t('Type of question')}
+                  name='type'
                   control={control}
-                  controlName='type'
-                  name={t('Questions type :')}
-                  items={types}
+                  type={TypeSwitchSelect.TYPE}
                 />
               </Box>
               <Box sx={{ flexGrow: 1 }}>
-                <DropDownField
+                {/* <DropDownField */}
+                {/*   control={control} */}
+                {/*   controlName='difficulty' */}
+                {/*   name={t('Difficulty :')} */}
+                {/*   items={difficultyItems} */}
+                {/* /> */}
+                <SelectorFieldDifficulty
+                  label={t('Difficulty of question')}
+                  name='difficulty'
                   control={control}
-                  controlName='difficulty'
-                  name={t('Difficulty :')}
-                  items={difficultyItems}
+                  type={TypeSwitchSelect.DIFFICULTY}
                 />
               </Box>
               <Box sx={{ flexGrow: 2 }}>
