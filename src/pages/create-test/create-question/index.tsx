@@ -157,7 +157,7 @@ const CreateQuestion = () => {
               </Box>
             </Stack>
             <Stack direction='row' spacing={3}>
-              <Box sx={{ flexGrow: 1 }}>
+              <Box sx={{ flexGrow: 2 }}>
                 {/* <DropDownField */}
                 {/*   control={control} */}
                 {/*   controlName='type' */}
@@ -171,7 +171,7 @@ const CreateQuestion = () => {
                   type={TypeSwitchSelect.TYPE}
                 />
               </Box>
-              <Box sx={{ flexGrow: 1 }}>
+              <Box sx={{ flexGrow: 10 }}>
                 {/* <DropDownField */}
                 {/*   control={control} */}
                 {/*   controlName='difficulty' */}
@@ -185,7 +185,7 @@ const CreateQuestion = () => {
                   type={TypeSwitchSelect.DIFFICULTY}
                 />
               </Box>
-              <Box sx={{ flexGrow: 2 }}>
+              <Box sx={{ flexGrow: 0 }}>
                 <Typography typography='inputTitle'>{t('Timer :')}</Typography>
                 <QuestionTimer name='timerquestion' control={control} />
               </Box>
