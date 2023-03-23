@@ -8,6 +8,7 @@ export const SwitchSelectorType = ({
   onPressType,
   type,
   valueType,
+  name
 }: SelectorTypeOfQuestionType) => {
   const { t } = useTranslation('SwitchSelector');
   const SelectorsDataType = useMemo(() => {
@@ -33,8 +34,9 @@ export const SwitchSelectorType = ({
         )}
         onChange={onPressType}
         selectedBackgroundColor={palette.primary.main}
-        backgroundColor={palette.background.border}
+        backgroundColor={palette.background.paperAccent2}
         fontSize={15}
+        name={name}
       />
     </div>
   );

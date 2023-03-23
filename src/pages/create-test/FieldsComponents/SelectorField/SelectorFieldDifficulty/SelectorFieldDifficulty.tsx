@@ -36,6 +36,7 @@ export const SelectorFieldDifficulty = <T extends FieldValues>({
             type={type}
             onPressDifficulty={onChange}
             valueDifficulty={value}
+            name={name}
           />
         )}
       />

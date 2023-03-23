@@ -8,6 +8,7 @@ export const SwitchSelectorDifficulty = ({
   onPressDifficulty,
   type,
   valueDifficulty,
+  name
 }: SelectorDifficultyType) => {
   const { t } = useTranslation('SwitchSelector');
   const SelectorsDataDifficulty = useMemo(() => {
@@ -34,8 +35,9 @@ export const SwitchSelectorDifficulty = ({
         )}
         onChange={onPressDifficulty}
         selectedBackgroundColor={palette.primary.main}
-        backgroundColor={palette.background.border}
+        backgroundColor={palette.background.paperAccent2}
         fontSize={15}
+        name={name}
       />
     </div>
   );

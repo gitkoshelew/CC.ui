@@ -2,6 +2,7 @@ export type SelectorDifficultyType = {
   onPressDifficulty?: <T>(selectedOptionValue: T | unknown) => void;
   valueDifficulty?: string | number;
   type: TypeSwitchSelect;
+  name: string
 };
 
 export type SelectorNOQType = {
@@ -14,6 +15,7 @@ export type SelectorTypeOfQuestionType = {
   onPressType?: <T>(selectedOptionValue: T | unknown) => void;
   valueType?: string | number;
   type: TypeSwitchSelect;
+  name : string
 };
 
 export enum TypeSwitchSelect {

@@ -1,6 +1,6 @@
 import { FormGroup, TextField, Typography } from '@mui/material';
 import React from 'react';
-import { Controller } from 'react-hook-form';
+import { Control, Controller, FieldValues } from "react-hook-form";
 import { useTranslation } from 'next-i18next';
 
 type InputFieldType = {
@@ -19,9 +19,16 @@ export function InputField({
     <FormGroup sx={{ marginY: '1rem' }}>
       <Typography typography='inputTitle'>{t(`${nameTitle}`)}</Typography>
       <Controller
-        render={({ field }) => <TextField {...field} />}
         name={nameControl}
+        rules={{ required: true }}
         control={control}
+        render={({ field, fieldState: { error } }) => (
+          <TextField
+            {...field}
+            error={!!error}
+            helperText={error ? t('This field is required') : ''}
+          />
+        )}
       />
     </FormGroup>
   );

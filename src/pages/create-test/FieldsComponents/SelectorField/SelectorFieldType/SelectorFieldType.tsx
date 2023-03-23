@@ -36,6 +36,7 @@ export const SelectorFieldType = <T extends FieldValues>({
             type={type}
             onPressType={onChange}
             valueType={value}
+            name={name}
           />
         )}
       />
