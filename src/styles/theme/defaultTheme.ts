@@ -178,8 +178,12 @@ export const defaultTheme = createTheme({
             p: 0,
             color: 'background.border',
           },
+          '& .MuiCheckbox-root': {
+            color: 'primary.main',
+            mr: 2,
+          },
           '& .MuiRadio-root.Mui-checked': {
-            color: 'secondary.main',
+            color: 'primary.main',
           },
           '& .MuiTypography-root': {
             fontSize: 'medium',

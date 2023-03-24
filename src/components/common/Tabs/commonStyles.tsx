@@ -8,6 +8,5 @@ export const Tabs = styled('div')({
   justifyContent: 'space-between',
   gap: 5,
   width: '100%',
-  overflow: 'scroll',
   '::-webkit-scrollbar': { width: 5, height: 5 },
 });

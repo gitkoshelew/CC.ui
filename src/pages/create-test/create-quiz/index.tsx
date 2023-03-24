@@ -25,6 +25,7 @@ const CreateQuiz = () => {
       ...quizData,
       numberOfQuestions: null,
       topicId: responseTopic,
+      creationDate: new Date().toISOString(),
     };
 
     try {

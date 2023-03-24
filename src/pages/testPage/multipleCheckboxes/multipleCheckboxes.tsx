@@ -30,5 +30,4 @@ const MultipleCheckboxes = ({
     </FormGroup>
   );
 };
-
 export default MultipleCheckboxes;

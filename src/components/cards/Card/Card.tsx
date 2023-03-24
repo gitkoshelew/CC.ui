@@ -1,15 +1,19 @@
 import { Button, Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import dayjs from 'dayjs';
+import { useState } from 'react';
 import { AuthorType } from '../../../types/CardTypes';
 import { useAppDispatch } from '../../../store/store';
 import { getOneQuizes } from '../../../store/reducers/quizzes-reducer';
+import { clearStateResult } from '../../../store/reducers/result-reducer';
 
 type PropsCardType = {
   title: string;
   author: AuthorType;
   id: number;
   creationDate: string;
+  comment: string;
 };
 
 export const Card = ({
@@ -17,13 +21,17 @@ export const Card = ({
   author: { name, status },
   id,
   creationDate,
+  comment,
 }: PropsCardType) => {
   const { t } = useTranslation('home');
   const { push } = useRouter();
+  const [disabled, setDisabled] = useState(false);
   const dispatch = useAppDispatch();
-
-  const onClickHandler = () => {
-    dispatch(getOneQuizes(+id));
+  const date = dayjs(creationDate).format('DD.MM.YYYY');
+  const onClickHandler = async () => {
+    dispatch(clearStateResult());
+    setDisabled(true);
+    await dispatch(getOneQuizes(+id));
     push(`/testPage/${id}`);
   };
   return (
@@ -33,23 +41,23 @@ export const Card = ({
       </div>
       <div className='flex flex-col justify-between items-center h-full'>
         <Typography fontWeight={600} mb={3}>
-          NodeJs
+          {title}
         </Typography>
         <div className='flex flex-col gap-1.5 justify-center mb-7'>
-          <p className='m-0'>{title}</p>
+          <p className='m-0'>{comment}</p>
           <p className='m-0'>
             <span className='text-text-primaryAlpha300'>By </span>
             {name}
           </p>
-        </div>
-        <div>
           <p className='m-0'>
             <span className='text-text-primaryAlpha300'>Created: </span>
-            {creationDate && creationDate}
+            {date}
           </p>
         </div>
         <div className='flex flex-col text-center items-center gap-4'>
-          <Button onClick={onClickHandler}>{t('start')}</Button>
+          <Button onClick={onClickHandler} disabled={disabled}>
+            {t('start')}
+          </Button>
         </div>
       </div>
     </div>
