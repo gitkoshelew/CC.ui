@@ -3,7 +3,6 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { AxiosError } from 'axios';
 import { quizesApi } from '../../api/quizesApi';
 import { CardType } from '../../types/CardTypes';
-import { TopicType } from '../../types/CreateQuizType';
 
 export const fetchQuizes = createAsyncThunk(
   'quizes/getQuizesThunk',
@@ -43,6 +42,9 @@ export const slice = createSlice({
     postQuizes(state, action: PayloadAction<CardType[]>) {
       state.quizes = action.payload;
     },
+    clearQuiz(state, action: PayloadAction<CardType>) {
+      state.oneQuizes = action.payload;
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => ({
@@ -59,4 +61,4 @@ export const slice = createSlice({
 });
 
 export const quizzesReducer = slice.reducer;
-export const { postQuizes } = slice.actions;
+export const { postQuizes, clearQuiz } = slice.actions;
