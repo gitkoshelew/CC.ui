@@ -1,23 +1,24 @@
-import { styled } from '@mui/material';
-import { DefaultThemeType } from '../../../../styles/theme/types';
+import { styled, Theme } from '@mui/material';
 
-export type TabColorType = 'secondary' | 'error' | 'hidden';
-const tabColors = (
-  theme: DefaultThemeType
-): { [key in TabColorType]: string } => ({
-  secondary: theme.palette.secondary.main,
-  error: theme.palette.error.main,
-  hidden: theme.palette.primary.main,
-});
+export type TabColorType = 'default' | 'active' | 'right' | 'error' | string;
 
+const tabColors = (theme: Theme, colorKey: TabColorType) => {
+  const colors: { [key: string]: TabColorType } = {
+    active: theme.palette.primary.main,
+    right: theme.palette.secondary.main,
+    error: theme.palette.error.main,
+    default: theme.palette.text.disabled,
+  };
+  return colors[colorKey];
+};
 type RectangleProgressBarItemPropsType = {
-  color?: TabColorType;
+  color: TabColorType;
   isActive: boolean;
 };
 export const RectangleProgressTabsItem = styled(
   'div'
 )<RectangleProgressBarItemPropsType>(({ theme, ...props }) => ({
-  backgroundColor: tabColors(theme)[props.color as TabColorType],
+  backgroundColor: tabColors(theme, props.color as TabColorType),
   height: 6,
   flexGrow: 1,
   borderRadius: 5,

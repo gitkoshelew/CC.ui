@@ -1,14 +1,22 @@
+import { FieldValues } from 'react-hook-form';
 import { instance } from './Instance/instance';
-import { CardsType } from '../types/CardTypes';
+import { CardType } from '../types/CardTypes';
+import { CreateQuizType, TopicType } from '../types/CreateQuizType';
 
 export const quizesApi = {
-  getQuizes() {
-    return instance.get<CardsType[]>(`quiz`);
+  getQuizzes() {
+    return instance.get<CardType[]>(`quiz`);
   },
-  postQuizes() {
-    return instance.post<CardsType[]>('quiz', {
-      title: 'Test about Node.Js',
-      userName: 'Nikita',
-    });
+  getQuiz(cardId: number) {
+    return instance.get<CardType>(`quiz/${cardId}`);
+  },
+  postQuizes(quizData: CreateQuizType) {
+    return instance.post<CreateQuizType>('quiz', quizData);
+  },
+  postQuestion(questionData: FieldValues) {
+    return instance.post<FieldValues>('questions', questionData);
+  },
+  postTopic(title: string) {
+    return instance.post<TopicType>(`/topic`, { title });
   },
 };

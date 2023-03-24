@@ -1,20 +1,31 @@
 import { Button, Typography } from '@mui/material';
-import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import { AuthorType } from '../../../types/CardTypes';
+import { useAppDispatch } from '../../../store/store';
+import { getOneQuizes } from '../../../store/reducers/quizzes-reducer';
 
 type PropsCardType = {
   title: string;
   author: AuthorType;
-  date?: number;
+  id: number;
+  creationDate: string;
 };
 
 export const Card = ({
   title,
   author: { name, status },
-  date,
+  id,
+  creationDate,
 }: PropsCardType) => {
   const { t } = useTranslation('home');
+  const { push } = useRouter();
+  const dispatch = useAppDispatch();
+
+  const onClickHandler = () => {
+    dispatch(getOneQuizes(+id));
+    push(`/testPage/${id}`);
+  };
   return (
     <div className='flex flex-col text-center bg-background-paper shadow border rounded-2xl px-5 pt-11 pb-7 relative text-sm'>
       <div className='absolute -top-2 right-7 py-0.5 px-4 rounded-2xl text-xs font-light bg-secondary-main text-secondary-contrastText'>
@@ -31,16 +42,14 @@ export const Card = ({
             {name}
           </p>
         </div>
+        <div>
+          <p className='m-0'>
+            <span className='text-text-primaryAlpha300'>Created: </span>
+            {creationDate && creationDate}
+          </p>
+        </div>
         <div className='flex flex-col text-center items-center gap-4'>
-          <Link href='/testPage'>
-            <Button>{t('start')}</Button>
-          </Link>
-          {date && (
-            <div>
-              <span className='text-text-primaryAlpha300'>Created: </span>
-              {date}
-            </div>
-          )}
+          <Button onClick={onClickHandler}>{t('start')}</Button>
         </div>
       </div>
     </div>
