@@ -1,7 +1,7 @@
 import { Controller, useForm } from 'react-hook-form';
 import React from 'react';
 import { Box, Stack, TextField, Typography } from '@mui/material';
-import { useTranslation } from "next-i18next";
+import { useTranslation } from 'next-i18next';
 
 type TimerProps = {
   name: string;
@@ -45,5 +45,5 @@ export const QuestionTimer: React.FC<TimerProps> = ({ name, control }) => {
         )}
       />
     </Stack>
-  )
+  );
 };

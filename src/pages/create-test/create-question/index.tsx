@@ -3,7 +3,7 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useTranslation } from "next-i18next";
+import { useTranslation } from 'next-i18next';
 import { QuestionTabs } from '../../../components/common/Tabs/QuestionTabs/QuestionTabs';
 import { InputField } from '../FieldsComponents/InputFieald';
 import { DropDownField } from '../FieldsComponents/DropDownField';
@@ -20,7 +20,8 @@ import { QuestionTimer } from '../FieldsComponents/QuestionTimer/QuestionTimer';
 const CreateQuestion = () => {
   const { t } = useTranslation('create-question');
   const router = useRouter();
-  const { numberOfQuestions, topicId } = router.query;
+  const { numberOfQuestions, topicId, quizId } = router.query;
+  const { push } = useRouter();
 
   const difficultyItems = useAppSelector((state) => state.difficulty);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -85,6 +86,7 @@ const CreateQuestion = () => {
       topicId: Number(topicId),
       timerquestion: null,
       timer: milliseconds,
+      quizId,
     };
     const newQuestion = {
       title: '',
@@ -103,8 +105,11 @@ const CreateQuestion = () => {
     const newQuestions = questions.concat();
     newQuestions.push(newQuestion);
     setQuestions(newQuestions);
-    quizesApi.postQuestion(payload);
+    await quizesApi.postQuestion(payload);
     setCurrentQuestionIndex(currentQuestionIndex + 1);
+    if (+currentQuestionIndex + 1 === +numberOfQuestions!) {
+      push('/');
+    }
   };
 
   useEffect(() => {
@@ -177,13 +182,13 @@ const CreateQuestion = () => {
             </Stack>
           </Stack>
           <Stack alignItems='center'>
-            {Number(currentQuestionIndex + 1) === Number(numberOfQuestions) ? (
-              <Link href='/'>
-                <Button type='submit'>{t('Finish')}</Button>
-              </Link>
-            ) : (
-              <Button type='submit'>{t('Save question')}</Button>
-            )}
+            {/* {Number(currentQuestionIndex + 1) === Number(numberOfQuestions) ? ( */}
+            {/*   <Link href='/'> */}
+            {/*     <Button type='submit'>{t('Finish')}</Button> */}
+            {/*   </Link> */}
+            {/* ) : ( */}
+            <Button type='submit'>{t('Save question')}</Button>
+            {/* )} */}
           </Stack>
         </form>
       </StylizedPaper>

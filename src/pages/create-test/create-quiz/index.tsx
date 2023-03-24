@@ -1,5 +1,4 @@
-import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { CreateQuizType } from '../../../types/CreateQuizType';
@@ -19,10 +18,7 @@ const CreateQuiz = () => {
             id: number;
             title: string;
           };
-        }) => {
-          console.log(response.data.length - 1);
-          return response.data[response.data.length - 1].id;
-        }
+        }) => response.data[response.data.length - 1].id
       )
       .catch((error) => 1);
     const payload = {
@@ -30,13 +26,16 @@ const CreateQuiz = () => {
       numberOfQuestions: null,
       topicId: responseTopic,
     };
+
     try {
       const response = await quizesApi.postQuizes(payload);
+      const quizId = await response.data.id;
       router.push({
         pathname: '/create-test/create-question',
         query: {
           numberOfQuestions: +numberOfQuestions,
           topicId: responseTopic,
+          quizId,
         },
       });
     } catch (error) {
