@@ -38,7 +38,7 @@ export const FullHeader = () => {
               sx={{ '& .MuiButton-contained': { px: { xs: 2, md: 5 } } }}
               role='menubar'
             >
-              <Link href='/create-test/create-quiz'>
+              <Link href={token ? '/create-test/create-quiz' : '/guest'}>
                 <Button color='info' variant='contained'>
                   {t('createTest')}
                 </Button>
