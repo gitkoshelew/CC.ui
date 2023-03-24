@@ -12,7 +12,10 @@ import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPap
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { getOneQuizes } from '../../store/reducers/quizzes-reducer';
 import { TestQuestions } from './TestQuestions';
-import { setStateResult } from '../../store/reducers/result-reducer';
+import {
+  clearStateResult,
+  setStateResult,
+} from '../../store/reducers/result-reducer';
 import { progressResult } from '../../utils/progressResult';
 import { selectOneQuizes, selectResulData } from '../../store/selectors';
 import { getCheckedAnswers } from '../../utils/getCheckedAnswers';
@@ -32,7 +35,6 @@ const Id = () => {
   const cardWithQuestion = useAppSelector(selectOneQuizes);
   const resultData = useAppSelector(selectResulData);
   const [singleAnswer, setSingleAnswer] = useState<string[]>([]);
-
   const currentTest = cardWithQuestion?.question?.filter(
     (e, index) => index === numberOfQuestion
   );
@@ -130,7 +132,7 @@ const Id = () => {
   const nextQuestionHandler = () => {
     if (
       numberOfQuestion + 1 === cardWithQuestion.question.length &&
-      resultData.length < cardWithQuestion.question.length
+      resultData.length <= cardWithQuestion.question.length
     ) {
       setNextResult(progressResult({ type, answer, correctAnswer }));
       setSingleAnswer([]);
@@ -174,6 +176,7 @@ const Id = () => {
   }, [dataOptions, dispatch]);
 
   useEffect(() => {
+    dispatch(clearStateResult());
     if (id) {
       dispatch(getOneQuizes(+id));
     }

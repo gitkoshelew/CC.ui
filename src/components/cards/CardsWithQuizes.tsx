@@ -8,8 +8,15 @@ type PropsCardsType = {
 export const CardsWithQuizes = ({ quizzes }: PropsCardsType) =>
   quizzes ? (
     <div className='grid gap-6 grid-cols-[repeat(auto-fill,minmax(270px,_1fr))]'>
-      {quizzes.map(({ id, title, author }: CardType) => (
-        <Card key={id} title={title} author={author} id={id} />
+      {quizzes.map(({ id, title, author, creationDate, comment }: CardType) => (
+        <Card
+          key={id}
+          title={title}
+          author={author}
+          id={id}
+          creationDate={creationDate}
+          comment={comment}
+        />
       ))}
     </div>
   ) : (

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ResultType } from '../../types/TestQuestionsType';
 
 const slice = createSlice({
   name: 'result',
@@ -18,9 +19,3 @@ const slice = createSlice({
 export const resultReducer = slice.reducer;
 
 export const { setStateResult, clearStateResult } = slice.actions;
-
-export type ResultType = {
-  id: number;
-  questionStatus: 'default' | 'active' | 'right' | 'error';
-  answer: string;
-};

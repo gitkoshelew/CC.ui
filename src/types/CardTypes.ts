@@ -1,12 +1,14 @@
-import { NewQuestionType } from './TestQuestionsType';
+import { NewQuestionType, TopicType } from './TestQuestionsType';
 
 export type CardType = {
   id: number;
   title: string;
+  comment: string;
   creationDate: string;
   description: string;
   authorId: number;
   author: AuthorType;
+  topic: TopicType;
   question: NewQuestionType[];
 };
 
