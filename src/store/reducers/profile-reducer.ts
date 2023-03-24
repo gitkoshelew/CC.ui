@@ -21,6 +21,9 @@ export const slice = createSlice({
     [initializeApp.fulfilled.type]: (state, action) => {
       state.profileData = action.payload;
     },
+    [initializeApp.rejected.type]: (state) => {
+      state.profileData = {} as ProfileDataType;
+    },
   },
 });
 

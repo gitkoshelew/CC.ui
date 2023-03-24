@@ -67,7 +67,7 @@ export default function TestPage({
               isTabsStatusHidden
             />
           </Stack>
-          <StylizedPaper title='”Node.js” question'>
+          <StylizedPaper title='”Node.js” question' i18nName='test'>
             <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>
               {questions[numberOfQuestion].description}
             </span>

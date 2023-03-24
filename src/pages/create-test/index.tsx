@@ -34,7 +34,7 @@ export default function NewTest() {
   return (
     <Layout>
       <ButtonBackHome />
-      <StylizedPaper title='Create test'>
+      <StylizedPaper title='Create test' i18nName='createTest'>
         <SettingsBlock
           value={themeValue}
           handleThemeChange={handleThemeChange}

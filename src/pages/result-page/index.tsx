@@ -38,7 +38,7 @@ export default function ResultPage() {
         tabsData={tabsData}
         isTabsStatusHidden={false}
       />
-      <StylizedPaper title='Your result'>
+      <StylizedPaper title='Your result' i18nName='result'>
         <Stack direction='row' spacing={2} position='absolute' right={40}>
           <Stack>
             <ShieldIcon />

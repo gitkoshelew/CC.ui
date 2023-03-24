@@ -1,4 +1,4 @@
-import {Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/router';
 import { destroyCookie } from 'nookies';
@@ -16,18 +16,18 @@ const ProfilePage = () => {
   const dispatch = useAppDispatch();
   const { push } = useRouter();
 
-  const logoutHandler = () => {
+  const logoutHandler = async () => {
     removeTokenFromStorage();
-    dispatch(setProfileData({}));
     destroyCookie(null, 'refreshToken');
-    push('/login');
+    await push('/login');
+    dispatch(setProfileData({}));
   };
 
   if (profileData.name) {
     return (
       <Layout>
         <ButtonBackHome />
-        <StylizedPaper title='Profile Page'>
+        <StylizedPaper title='Profile Page' i18nName='profile'>
           <Stack alignItems='center' spacing={3}>
             <Stack
               direction='row'

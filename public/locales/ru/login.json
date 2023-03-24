@@ -1,13 +1,19 @@
 {
-  "title": "Вход",
+  "LogIn": "Вход",
   "email": "Электронная почта",
   "password": "Пароль",
+  "name": "Имя",
+  "nickName": "Ник",
   "forgottenPassword": "Забыли пароль?",
-  "buttonLogin": "Войти",
+  "Login": "Войти",
   "dontHaveAcc": "Еще нет аккаунта?",
   "registration": "Создать новый аккаунт",
   "loginRequired": "Поле обязательно",
   "loginMessage": "Некорретный адрес электронной почты",
   "passwordRequired": "Поле обязательно",
-  "passwordMessage": "Минимальная длина 8 символов"
+  "passwordMessage": "Минимум 8 символов",
+  "warningRequired": "Обязательное поле",
+  "warningMessage": "Минимум 2 символа",
+  "Already registered?": "Уже зарегистрирован?",
+  "Sign Up": "Зарегистрироваться"
 }
