@@ -7,12 +7,14 @@ type InputFieldType = {
   nameTitle: string;
   nameControl: string;
   control: any;
+  placeholder: string
 };
 
 export function InputField({
   nameTitle,
   nameControl,
   control,
+  placeholder
 }: InputFieldType) {
   const { t } = useTranslation('SwitchSelector');
   return (
@@ -26,6 +28,7 @@ export function InputField({
           <TextField
             {...field}
             error={!!error}
+            placeholder={placeholder}
             helperText={error ? t('This field is required') : ''}
           />
         )}

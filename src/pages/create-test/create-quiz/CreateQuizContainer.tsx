@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button, Stack } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { ButtonBackHome } from '../../../components/common/ButtonBackHome';
 import { StylizedPaper } from '../../../components/common/StylizedPaper/StylizedPaper';
 import { InputField } from '../FieldsComponents/InputFieald';
-import TopicSelect from '../FieldsComponents/CreateTopic/CreateTopic';
 import { TypeSwitchSelect } from '../../../types/SelectorType';
 import { Layout } from '../../../components/layout/Layout';
 import { CreateQuizType } from '../../../types/CreateQuizType';
 import { SelectorFieldNOQ } from '../FieldsComponents/SelectorField/SelectorFieldNumOfQuestion/SelectorFieldNOQ';
+import AutocompleteComponent from '../FieldsComponents/CreateTopic/CreateTopic';
 
 type CreateQuizContainerType = {
   onSubmit: SubmitHandler<CreateQuizType>;
 };
+
+type Topic = {
+  id: number;
+  title: string;
+}
 
 export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
   const { handleSubmit, control } = useForm<CreateQuizType>();
@@ -37,14 +42,14 @@ export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
                   nameTitle={t('Test title')}
                   nameControl='title'
                   control={control}
-                />
+                 placeholder='Add title for test...'/>
               </Box>
               <Box sx={{ flexGrow: 2 }}>
                 <InputField
                   nameControl='description'
                   nameTitle={t('Test description')}
                   control={control}
-                />
+                 placeholder='Add description for test...'/>
               </Box>
             </Stack>
             <Stack
@@ -53,7 +58,7 @@ export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
               spacing={3}
             >
               <Box flexGrow={1}>
-                <TopicSelect name='topic' control={control} />
+                <AutocompleteComponent  control={control} name='topic'/>
               </Box>
               <Box flexGrow={1}>
                 <SelectorFieldNOQ
@@ -68,7 +73,7 @@ export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
               nameControl='comment'
               nameTitle={t('Comment')}
               control={control}
-            />
+             placeholder='Add comment for test...'/>
             <Stack alignItems='center' marginTop='20px'>
               <Button type='submit'>{t('Save quiz')}</Button>
             </Stack>
