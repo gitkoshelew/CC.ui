@@ -23,7 +23,6 @@ export type NewQuestionType = {
   timer: number;
   topicId: number;
   moderationId: number;
-  topic: TopicType;
   moderation: ModerationType;
   quiz: [];
 };

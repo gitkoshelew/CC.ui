@@ -42,6 +42,9 @@ export const slice = createSlice({
     postQuizes(state, action: PayloadAction<CardType[]>) {
       state.quizes = action.payload;
     },
+    clearQuiz(state, action: PayloadAction<CardType>) {
+      state.oneQuizes = action.payload;
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => ({
@@ -58,4 +61,4 @@ export const slice = createSlice({
 });
 
 export const quizzesReducer = slice.reducer;
-export const { postQuizes } = slice.actions;
+export const { postQuizes, clearQuiz } = slice.actions;
