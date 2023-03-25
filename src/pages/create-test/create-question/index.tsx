@@ -54,8 +54,8 @@ const CreateQuestion = () => {
     defaultValues: {
       title: currentQuestion.title,
       description: currentQuestion.description,
-      difficulty: currentQuestion.difficulty,
-      type: currentQuestion.type,
+      difficulty: currentQuestion.difficulty[0],
+      type: currentQuestion.type[0],
       content: {
         options: [],
         correctAnswer: [],
@@ -148,11 +148,12 @@ const CreateQuestion = () => {
                   nameTitle={t('Question :')}
                   nameControl='title'
                   control={control}
-                />
+                 placeholder='Add question title...'/>
                 <InputField
                   nameTitle={t('Description of question :')}
                   nameControl='description'
                   control={control}
+                  placeholder='Add question description...'
                 />
               </Box>
             </Stack>

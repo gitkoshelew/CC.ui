@@ -57,7 +57,7 @@ export const QuestionTabs = ({
   );
 
   return (
-    <Box className='my-5'>
+    <Box sx={{ padding:'0.5rem', borderRadius: '1rem', backgroundColor: '' }}>
       <Tabs ref={tabsRef}>
         {amountOfQuestionsTabs.map((id) => (
           <QuestionTabsItem

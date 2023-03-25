@@ -2,11 +2,18 @@ import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { useController } from 'react-hook-form';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Stack,
+  Typography,
+} from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
+import CircularProgress from "@mui/material/CircularProgress";
 import { useAppDispatch } from '../../../../store/store';
 import { createTopic } from '../../../../store/reducers/topic-reducer';
+import { PlusIcon } from "../../../../assets/icons/PlusIcon";
 
 type Topic = {
   id: number;
@@ -32,12 +39,13 @@ const CreatableAutocomplete: React.FC<AutocompleteProps> = ({
   const { t } = useTranslation('Topic');
   const [topics, setTopics] = useState<Topic[]>([]);
   const [newTopicName, setNewTopicName] = useState('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    fetch('http://localhost:5000/api/topic')
-      .then((response) => response.json())
-      .then((data) => setTopics(data));
-  }, []);
+  // useEffect(() => {
+  //   getTopics();
+  // }, []);
+
+  console.log(topics);
 
   const addNewTopicHandler = () => {
     dispatch(createTopic(newTopicName));
@@ -50,25 +58,27 @@ const CreatableAutocomplete: React.FC<AutocompleteProps> = ({
       setNewTopicName(event.target.value);
     }
   };
-
-  const handleCreate = (newValue: string) => {
-    console.log(newValue);
-    // make a POST request to create new topic on the server
-    const newTopic = { id: topics.length + 1, title: newValue };
-    // update topics with new topic
-    topics.push(newTopic);
-    onChange(newTopic);
+  const getTopicTitles = () => {
+    const allTopicsTitle = [];
+    for (const topic of topics) {
+      const topicTitles = topic.title;
+      allTopicsTitle.push(topicTitles);
+    }
+    return allTopicsTitle;
   };
+  console.log(getTopicTitles());
   const cher = topics.filter(
     (e) => (e.title && e.title !== '') === newTopicName
   );
   console.log(cher, 'cher');
   return (
-    <Box>
+    <Box sx={{width: '19rem'}}>
       <Typography typography='inputTitle'>{t('Test topic')}</Typography>
       <Autocomplete
         value={value}
+        loading={isLoading}
         filterOptions={(options, params) => {
+          setIsLoading(true)
           const filtered = options.filter((option) =>
             option.title.toLowerCase().includes(params.inputValue.toLowerCase())
           );
@@ -78,7 +88,11 @@ const CreatableAutocomplete: React.FC<AutocompleteProps> = ({
           //     title: params.inputValue,
           //   });
           // }
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 500);
           return filtered;
+
         }}
         selectOnFocus
         handleHomeEndKeys
@@ -86,17 +100,31 @@ const CreatableAutocomplete: React.FC<AutocompleteProps> = ({
         getOptionLabel={(option) => option.title}
         renderOption={(props, option) => <li {...props}>{option.title}</li>}
         renderInput={(params) => (
-          <Stack>
+          <Stack >
             <TextField
               {...params}
               placeholder='Choose topic or add your own...'
               size='small'
               value={newTopicName}
               onChange={handleNewTopicNameChange}
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <>
+                    {isLoading ? (
+                      <CircularProgress color='inherit' size={20} />
+                    ) : null}
+                    {params.InputProps.endAdornment}
+                  </>
+                ),
+              }}
             />
-            {cher && (
-              <Button variant='outlined' onClick={addNewTopicHandler}>
+            {!getTopicTitles().includes(newTopicName) && (
+              <Button sx={{ marginTop: '1rem', width:'15rem'}} variant='outlined' onClick={addNewTopicHandler}>
                 {t('Add New Topic')}
+                <Stack sx={{ marginLeft: '1rem' }}>
+                <PlusIcon/>
+                </Stack>
               </Button>
             )}
           </Stack>

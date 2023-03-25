@@ -59,10 +59,10 @@ export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
               flexWrap='wrap'
               spacing={3}
             >
-              <Box flexGrow={1}>
+              <Box flexGrow={2}>
                 <AutocompleteComponent control={control} name='topic' />
               </Box>
-              <Box flexGrow={1}>
+              <Box flexGrow={10}>
                 <SelectorFieldNOQ
                   label={t('Number of questions')}
                   name='numberOfQuestions'
