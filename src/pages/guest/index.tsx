@@ -1,6 +1,6 @@
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
-import { TextField, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { Layout } from '../../components/layout/Layout';
 
