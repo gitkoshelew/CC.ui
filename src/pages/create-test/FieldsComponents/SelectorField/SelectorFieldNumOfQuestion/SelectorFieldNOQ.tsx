@@ -32,7 +32,11 @@ export const SelectorFieldNOQ = <T extends FieldValues>({
         name={name}
         rules={rules}
         render={({ field: { onChange, value } }) => (
-          <SwitchSelectorNOQ type={type} onPressNOQ={onChange} valueNOQ={value} />
+          <SwitchSelectorNOQ
+            type={type}
+            onPressNOQ={onChange}
+            valueNOQ={value}
+          />
         )}
       />
     </Box>

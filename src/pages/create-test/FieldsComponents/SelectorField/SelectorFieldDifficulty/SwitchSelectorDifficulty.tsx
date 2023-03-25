@@ -8,7 +8,7 @@ export const SwitchSelectorDifficulty = ({
   onPressDifficulty,
   type,
   valueDifficulty,
-  name
+  name,
 }: SelectorDifficultyType) => {
   const { t } = useTranslation('SwitchSelector');
   const SelectorsDataDifficulty = useMemo(() => {

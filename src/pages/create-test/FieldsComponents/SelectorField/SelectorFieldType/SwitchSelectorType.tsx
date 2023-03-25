@@ -8,7 +8,7 @@ export const SwitchSelectorType = ({
   onPressType,
   type,
   valueType,
-  name
+  name,
 }: SelectorTypeOfQuestionType) => {
   const { t } = useTranslation('SwitchSelector');
   const SelectorsDataType = useMemo(() => {

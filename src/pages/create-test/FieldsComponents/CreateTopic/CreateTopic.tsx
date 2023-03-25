@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { useController } from 'react-hook-form';
@@ -43,8 +43,12 @@ const CreatableAutocomplete: React.FC<AutocompleteProps> = ({
     dispatch(createTopic(newTopicName));
   };
 
-  const handleNewTopicNameChange = (event: React.SyntheticEvent) => {
-    // setNewTopicName(event.target.value);
+  const handleNewTopicNameChange = (
+    event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    if (event.target.value !== '') {
+      setNewTopicName(event.target.value);
+    }
   };
 
   const handleCreate = (newValue: string) => {
@@ -55,27 +59,28 @@ const CreatableAutocomplete: React.FC<AutocompleteProps> = ({
     topics.push(newTopic);
     onChange(newTopic);
   };
-
+  const cher = topics.filter(
+    (e) => (e.title && e.title !== '') === newTopicName
+  );
+  console.log(cher, 'cher');
   return (
     <Box>
       <Typography typography='inputTitle'>{t('Test topic')}</Typography>
       <Autocomplete
         value={value}
-        onChange={(e) => setNewTopicName(e.currentTarget.value)}
         filterOptions={(options, params) => {
           const filtered = options.filter((option) =>
             option.title.toLowerCase().includes(params.inputValue.toLowerCase())
           );
-          if (params.inputValue !== '') {
-            filtered.push({
-              id: topics.length + 1,
-              title: params.inputValue,
-            });
-          }
+          // if (params.inputValue !== '') {
+          //   filtered.push({
+          //     id: topics.length + 1,
+          //     title: params.inputValue,
+          //   });
+          // }
           return filtered;
         }}
         selectOnFocus
-        clearOnBlur
         handleHomeEndKeys
         options={topics}
         getOptionLabel={(option) => option.title}
@@ -87,21 +92,16 @@ const CreatableAutocomplete: React.FC<AutocompleteProps> = ({
               placeholder='Choose topic or add your own...'
               size='small'
               value={newTopicName}
+              onChange={handleNewTopicNameChange}
             />
-            <Button variant='outlined' onClick={addNewTopicHandler}>
-              {t('Add New Topic')}
-            </Button>
+            {cher && (
+              <Button variant='outlined' onClick={addNewTopicHandler}>
+                {t('Add New Topic')}
+              </Button>
+            )}
           </Stack>
         )}
         freeSolo
-        onInputChange={(event, newInputValue) => {
-          if (newInputValue !== '') {
-            onChange({
-              id: topics.length + 1,
-              title: newInputValue,
-            });
-          }
-        }}
         multiple={false}
         limitTags={1}
         fullWidth

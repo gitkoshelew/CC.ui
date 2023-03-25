@@ -1,20 +1,20 @@
 import { FormGroup, TextField, Typography } from '@mui/material';
 import React from 'react';
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { Control, Controller, FieldValues } from 'react-hook-form';
 import { useTranslation } from 'next-i18next';
 
 type InputFieldType = {
   nameTitle: string;
   nameControl: string;
   control: any;
-  placeholder: string
+  placeholder: string;
 };
 
 export function InputField({
   nameTitle,
   nameControl,
   control,
-  placeholder
+  placeholder,
 }: InputFieldType) {
   const { t } = useTranslation('SwitchSelector');
   return (
