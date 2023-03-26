@@ -21,7 +21,7 @@ type Topic = {
 };
 
 export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
-  const { handleSubmit, control } = useForm<CreateQuizType>();
+  const { handleSubmit, control } = useForm<CreateQuizType>({defaultValues: {numberOfQuestions: 5}});
   const { t } = useTranslation('create-quiz');
   return (
     <Layout>
