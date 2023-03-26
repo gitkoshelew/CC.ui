@@ -33,80 +33,92 @@ const CreateAnswer = <T extends FieldValues>({
     control,
     name,
   });
-  const handleAppendNewAnswer = () => append({ name: '', checked: false });
+  const handleAppendNewAnswer = () => {
+    if (fields.length < 4) {
+      append({ name: '', checked: false });
+    }
+  };
   return (
     <Stack>
       <Typography>{t('Answer choice :')}</Typography>
-      {fields.map((field, index) => (
-        <Stack
-          sx={{ marginY: '0.7rem' }}
-          direction='row'
-          flexWrap='wrap'
-          key={field.id}
-        >
-          <Box sx={{ flexGrow: 0.1, verticalAlign: 'middle' }}>
-            <Typography>{t(`${index + 1}.`)}</Typography>
-          </Box>
-          <Controller
-            control={control}
-            name={`${name}.${index}.name`}
-            defaultValue=''
-            rules={{ required: true }}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <Box sx={{ flexGrow: 2 }}>
-                <TextField
-                  fullWidth
-                  InputLabelProps={{ color: 'primary' }}
-                  label=''
-                  variant='outlined'
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  helperText={error ? t('This field is required') : ''}
-                />
-              </Box>
-            )}
-          />
-          <Controller
-            control={control}
-            name={`${name}.${index}.checked`}
-            defaultValue={false}
-            render={({ field: { onChange, value } }) => (
-              <Box
-                sx={{
-                  flexGrow: 0.1,
-                  backgroundColor: 'background.default',
-                  marginX: '1rem',
-                  borderRadius: '2rem',
-                  textAlign: 'center',
-                }}
-              >
-                <FormControlLabel
-                  sx={{ marginX: '0' }}
-                  control={
-                    <Checkbox
-                      color='primary'
-                      size='small'
-                      checked={value}
-                      onChange={onChange}
-                    />
-                  }
-                  label=''
-                />
-              </Box>
-            )}
-          />
-          <Box sx={{ flexGrow: 0.1 }}>
-            <Button
-              sx={{ backgroundColor: 'background.default' }}
-              onClick={() => remove(index)}
-              size='medium'
+      {fields.map((field, index) => {
+        if (index < 4) {
+          return (
+            <Stack
+              sx={{ marginY: '0.7rem' }}
+              direction='row'
+              flexWrap='wrap'
+              key={field.id}
             >
-              <BasketIcon />
-            </Button>
-          </Box>
-        </Stack>
-      ))}
+              <Box sx={{ flexGrow: 0.1, verticalAlign: 'middle' }}>
+                <Typography>{t(`${index + 1}.`)}</Typography>
+              </Box>
+              <Controller
+                control={control}
+                name={`${name}.${index}.name`}
+                defaultValue=''
+                rules={{ required: true }}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <Box sx={{ flexGrow: 2 }}>
+                    <TextField
+                      fullWidth
+                      InputLabelProps={{ color: 'primary' }}
+                      label=''
+                      variant='outlined'
+                      value={value}
+                      onChange={onChange}
+                      error={!!error}
+                      helperText={error ? t('This field is required') : ''}
+                    />
+                  </Box>
+                )}
+              />
+              <Controller
+                control={control}
+                name={`${name}.${index}.checked`}
+                defaultValue={false}
+                render={({ field: { onChange, value } }) => (
+                  <Box
+                    sx={{
+                      flexGrow: 0.1,
+                      backgroundColor: 'background.default',
+                      marginX: '1rem',
+                      borderRadius: '2rem',
+                      textAlign: 'center',
+                    }}
+                  >
+                    <FormControlLabel
+                      sx={{ marginX: '0' }}
+                      control={
+                        <Checkbox
+                          color='primary'
+                          size='small'
+                          checked={value}
+                          onChange={onChange}
+                        />
+                      }
+                      label=''
+                    />
+                  </Box>
+                )}
+              />
+              <Box sx={{ flexGrow: 0.1 }}>
+                <Button
+                  sx={{ backgroundColor: 'background.default' }}
+                  onClick={() => remove(index)}
+                  size='medium'
+                >
+                  <BasketIcon />
+                </Button>
+              </Box>
+            </Stack>
+          );
+        }
+        return null;
+      })}
       <Box sx={{ flexGrow: 0.1, marginY: '0.5rem' }}>
         <Button
           variant='contained'
