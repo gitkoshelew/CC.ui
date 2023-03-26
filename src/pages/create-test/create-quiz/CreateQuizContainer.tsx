@@ -9,7 +9,7 @@ import { TypeSwitchSelect } from '../../../types/SelectorType';
 import { Layout } from '../../../components/layout/Layout';
 import { CreateQuizType } from '../../../types/CreateQuizType';
 import { SelectorFieldNOQ } from '../FieldsComponents/SelectorField/SelectorFieldNumOfQuestion/SelectorFieldNOQ';
-import AutocompleteComponent from '../FieldsComponents/CreateTopic/CreateTopic';
+import CreateTopicComponent from "../FieldsComponents/CreateTopic/CreateTopic";
 
 type CreateQuizContainerType = {
   onSubmit: SubmitHandler<CreateQuizType>;
@@ -60,7 +60,7 @@ export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
               spacing={3}
             >
               <Box flexGrow={2}>
-                <AutocompleteComponent control={control} name='topic' />
+                <CreateTopicComponent control={control} name='topic' />
               </Box>
               <Box flexGrow={10}>
                 <SelectorFieldNOQ

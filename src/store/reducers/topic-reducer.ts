@@ -18,7 +18,7 @@ export const createTopic = createAsyncThunk(
   }
 );
 
-export const getTopics = createAsyncThunk(
+export const getAllTopics = createAsyncThunk(
   'topic/getTopics',
   async (_, { rejectWithValue }) => {
     try {
@@ -30,18 +30,6 @@ export const getTopics = createAsyncThunk(
     }
   }
 );
-
-// const getOptions = async () => {
-//   setIsLoading(true);
-//   try {
-//     const response = await fetch('http://localhost:5000/api/topic');
-//     const getTopics = await response.json();
-//     setTopics(getTopics);
-//   } catch (error) {
-//     console.error(error);
-//   }
-//   setIsLoading(false);
-// };
 
 export const slice = createSlice({
   name: 'topic',
@@ -57,11 +45,15 @@ export const slice = createSlice({
   extraReducers: {
     [HYDRATE]: (state, action) => ({
       ...state,
-      ...action.payload.topic,
+      ...action.payload.topicData,
+
     }),
     [createTopic.fulfilled.type]: (state, action) => {
       state.topic = action.payload;
     },
+    [getAllTopics.fulfilled.type]: (state, action) => {
+      state.topicData = action.payload;
+    }
   },
 });
 
