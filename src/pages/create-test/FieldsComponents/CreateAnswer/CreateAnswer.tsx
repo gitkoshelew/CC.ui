@@ -119,15 +119,19 @@ const CreateAnswer = <T extends FieldValues>({
         }
         return null;
       })}
-      <Box sx={{ flexGrow: 0.1, marginY: '0.5rem' }}>
-        <Button
-          variant='contained'
-          color='primary'
-          onClick={handleAppendNewAnswer}
-        >
-          {t('Add Answer')}
-        </Button>
-      </Box>
+      {fields.length < 4 ? (
+        <Box sx={{ flexGrow: 0.1, marginY: '0.5rem' }}>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={handleAppendNewAnswer}
+          >
+            {t('Add Answer')}
+          </Button>
+        </Box>
+      ) : <Box sx={{margin: '1rem'}}>
+        <Typography>Maximum 4 answers !</Typography>
+      </Box>}
     </Stack>
   );
 };
