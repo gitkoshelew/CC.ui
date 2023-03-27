@@ -2,11 +2,13 @@ import { Typography } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/router';
 import { destroyCookie } from 'nookies';
+import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Layout } from '../../components/layout/Layout';
 import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 import { StylizedPaper } from '../../components/common/StylizedPaper/StylizedPaper';
 import { ExitIcon } from '../../assets/icons/ExitIcon';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { useAppDispatch, useAppSelector, wrapper } from '../../store/store';
 import { setProfileData } from '../../store/reducers/profile-reducer';
 import { removeTokenFromStorage } from '../../utils/token';
 import { AvatarImage } from '../../components/layout/header/AvatarImage';
@@ -50,4 +52,12 @@ const ProfilePage = () => {
 
   return null;
 };
+
 export default ProfilePage;
+
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(() => async ({ locale }) => ({
+    props: {
+      ...(await serverSideTranslations(locale as string, ['home', 'profile'])),
+    },
+  }));

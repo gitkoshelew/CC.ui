@@ -20,4 +20,3 @@ const startApp = () => {
   app.listen(PORT, () => console.log(`Server started on ${PORT} port`));
 };
 startApp();
-

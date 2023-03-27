@@ -4,22 +4,15 @@ import axios from 'axios';
 import { CreateQuizType } from '../../../types/CreateQuizType';
 import { quizesApi } from '../../../api/quizesApi';
 import { CreateQuizContainer } from './CreateQuizContainer';
+import { TopicType } from '../../../types/TestQuestionsType';
 
 const CreateQuiz = () => {
   const router = useRouter();
   const onSubmitQuiz: SubmitHandler<CreateQuizType> = async (quizData) => {
     const { numberOfQuestions } = quizData;
     const responseTopic = await axios
-      .get('http://localhost:5000/api/topic')
-      .then(
-        (response: {
-          data: {
-            length: number;
-            id: number;
-            title: string;
-          };
-        }) => response.data[response.data.length - 1].id
-      )
+      .get<TopicType[]>('http://localhost:5000/api/topic')
+      .then((response) => response.data[response.data.length - 1].id)
       .catch((error) => 1);
     const payload = {
       ...quizData,

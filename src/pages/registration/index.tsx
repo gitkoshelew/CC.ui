@@ -44,25 +44,25 @@ const SignUpPage = () => {
           <FormGroup className='text-sm'>
             <AuthTextField
               register={register}
-              errors={errors}
+              error={errors.name}
               name='name'
               required='warningRequired'
             />
             <AuthTextField
               register={register}
-              errors={errors}
+              error={errors.nickname}
               name='nickName'
               required='warningRequired'
             />
             <AuthTextField
               register={register}
-              errors={errors}
+              error={errors.email}
               name='email'
               required='loginRequired'
             />
             <AuthTextField
               register={register}
-              errors={errors}
+              error={errors.password}
               name='password'
               required='passwordRequired'
             />
@@ -82,10 +82,6 @@ export default SignUpPage;
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(() => async ({ locale }) => ({
     props: {
-      ...(await serverSideTranslations(locale as string, [
-        'home',
-        'testPage',
-        'login',
-      ])),
+      ...(await serverSideTranslations(locale as string, ['login'])),
     },
   }));

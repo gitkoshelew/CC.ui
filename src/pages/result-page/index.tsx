@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import Link from 'next/link';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 import { useMemo } from 'react';
 import { RectangleProgressTabs } from '../../components/common/Tabs/RectangleProgressTabs/RectangleProgressTabs';
 import { Layout } from '../../components/layout/Layout';
@@ -26,7 +25,6 @@ export default function ResultPage() {
   const resultData = useAppSelector((state) => state.resultData.result);
   const incorrectData = resultData.filter((e) => e.questionStatus === 'error');
   const correctData = resultData.filter((e) => e.questionStatus === 'right');
-  const { t } = useTranslation('home');
 
   const progressData: ResultTableDataType[] = useMemo(
     () =>

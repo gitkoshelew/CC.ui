@@ -13,6 +13,7 @@ import { initializeApp } from '../../store/reducers/app-reducer';
 import { getTokenFromStorage } from '../../utils/token';
 import { AuthTextField } from '../../components/common/auth/AuthTextField';
 import { AuthButtonsGroup } from '../../components/common/auth/AuthButtonsGroup';
+import { ButtonBackHome } from '../../components/common/ButtonBackHome';
 
 const LoginPage = () => {
   const token = getTokenFromStorage();
@@ -23,7 +24,6 @@ const LoginPage = () => {
     formState: { errors, isValid },
     handleSubmit,
   } = useForm<LoginFormType>({ mode: 'onBlur' });
-
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     const response = await dispatch(logIn(data));
     if (response?.meta.requestStatus === 'fulfilled') {
@@ -39,18 +39,19 @@ const LoginPage = () => {
 
   return (
     <Layout>
+      <ButtonBackHome />
       <StylizedPaper title='LogIn' i18nName='login' maxWidth='450px'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormGroup className='text-sm'>
             <AuthTextField
               register={register}
-              errors={errors}
+              error={errors.email}
               name='email'
               required='loginMessage'
             />
             <AuthTextField
               register={register}
-              errors={errors}
+              error={errors.password}
               name='password'
               required='passwordRequired'
             />
@@ -83,10 +84,6 @@ export default LoginPage;
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(() => async ({ locale }) => ({
     props: {
-      ...(await serverSideTranslations(locale as string, [
-        'home',
-        'testPage',
-        'login',
-      ])),
+      ...(await serverSideTranslations(locale as string, ['home', 'login'])),
     },
   }));

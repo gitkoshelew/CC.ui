@@ -1,17 +1,18 @@
 import React from 'react';
 import { TextField } from '@mui/material';
 import { useTranslation } from 'next-i18next';
+import { FieldError } from 'react-hook-form';
 
 type AuthTextFieldType = {
   register: any;
-  errors: any;
+  error: FieldError | undefined;
   name: string;
   required: string;
 };
 
 export const AuthTextField = ({
   register,
-  errors,
+  error,
   name,
   required,
 }: AuthTextFieldType) => {
@@ -41,10 +42,8 @@ export const AuthTextField = ({
       <div className='mb-6 relative'>
         <TextField type={name} className='w-full' {...validation} />
         <div className='absolute left-2.5'>
-          {errors?.[name] && (
-            <span className='text-error-main'>
-              {errors?.[name]?.message || 'Error'}
-            </span>
+          {error && (
+            <span className='text-error-main'>{error.message || 'Error'}</span>
           )}
         </div>
       </div>

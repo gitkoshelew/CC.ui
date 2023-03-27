@@ -1,7 +1,7 @@
 import { DBModel } from '../types/types';
 
 export const db: DBModel = {
-  quizes: [
+  quizzes: [
     {
       id: 1,
       title: 'General question about Node.js1',

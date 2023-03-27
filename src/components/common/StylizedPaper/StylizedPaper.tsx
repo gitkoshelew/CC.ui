@@ -1,20 +1,20 @@
 import { Paper, Stack, Typography } from '@mui/material';
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { useTranslation } from 'next-i18next';
 
-type WrapperNewTestType = {
+type StylizedPaperType = {
   children: ReactNode;
   title: string;
   i18nName: string;
   maxWidth?: string;
 };
 
-export const StylizedPaper: FC<WrapperNewTestType> = ({
+export const StylizedPaper = ({
   children,
   title,
   i18nName,
   maxWidth = '850px',
-}) => {
+}: StylizedPaperType) => {
   const { t } = useTranslation(i18nName);
 
   return (

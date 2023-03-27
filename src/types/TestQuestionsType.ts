@@ -8,11 +8,9 @@ export type TestQuestionsType = {
   correctAnswer: string;
   topic: string;
 };
-
 export type AnswerOptions = {
   options: string[];
 };
-
 export type NewQuestionType = {
   id: number;
   title: string;
@@ -24,7 +22,7 @@ export type NewQuestionType = {
   topicId: number;
   moderationId: number;
   moderation: ModerationType;
-  quiz: [];
+  quiz?: [];
 };
 export type ContentType = {
   options: string[];
