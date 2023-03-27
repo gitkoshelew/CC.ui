@@ -20,7 +20,7 @@ const ProfilePage = () => {
     removeTokenFromStorage();
     dispatch(setProfileData({}));
     destroyCookie(null, 'refreshToken');
-    push('/login');
+    push('/');
   };
 
   if (profileData.name) {

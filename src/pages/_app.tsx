@@ -24,7 +24,7 @@ function App({ Component, pageProps }: AppProps) {
       dispatch(initializeApp());
     } else {
       dispatch(setIsInitialize(true));
-      router.push('/login');
+      // router.push('/login');
     }
   }, []);
 
