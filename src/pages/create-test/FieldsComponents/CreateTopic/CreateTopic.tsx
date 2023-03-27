@@ -1,108 +1,148 @@
-import React, { ChangeEvent, useState } from 'react';
-import {
-  Button,
-  FormControl,
-  Input,
-  InputLabel,
-  MenuItem,
-  Select,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { Controller } from 'react-hook-form';
-import { Box } from '@mui/system';
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import { Controller, useController } from 'react-hook-form';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
-import { InputField } from '../InputFieald';
+import CircularProgress from '@mui/material/CircularProgress';
 import { useAppDispatch, useAppSelector } from '../../../../store/store';
-import { getOneQuizes } from '../../../../store/reducers/quizzes-reducer';
-import { createTopic } from '../../../../store/reducers/topic-reducer';
-import { selectOneQuizes, selectTopic } from '../../../../store/selectors';
+import {
+  createTopic,
+  getAllTopics,
+} from '../../../../store/reducers/topic-reducer';
+import { PlusIcon } from '../../../../assets/icons/PlusIcon';
 
-type Props = {
+type Topic = {
+  id: number;
+  title: string;
+};
+
+type AutocompleteProps = {
   name: string;
   control: any;
 };
 
-type Topic = {
-  id: number;
-  name: string;
-};
-
-const topicOptions: Topic[] = [
-  { id: 1, name: 'Select topic...' },
-  { id: 2, name: 'NodeJS' },
-  { id: 3, name: 'React' },
-  { id: 4, name: 'Angular' },
-];
-
-export default function TopicSelect({ name, control }: Props) {
-  const [newTopicName, setNewTopicName] = useState('');
-  const { t } = useTranslation('createTopic');
-  const [showNewTopicInput, setShowNewTopicInput] = useState(false);
-  const [topics, setTopics] = useState(topicOptions);
+const CreateTopicComponent: React.FC<AutocompleteProps> = ({
+  name,
+  control,
+}) => {
+  const {
+    field: { value, onChange },
+  } = useController({
+    name,
+    control,
+  });
   const dispatch = useAppDispatch();
-  const topic = useAppSelector(selectTopic);
+  const { t } = useTranslation('Topic');
+  const topics = useAppSelector((state) => state.topics.topicData);
+  // const [topics, setTopics] = useState<Topic[]>([]);
+  const [newTopicName, setNewTopicName] = useState('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    dispatch(getAllTopics());
+  }, []);
+
+  console.log(topics);
 
   const addNewTopicHandler = () => {
     dispatch(createTopic(newTopicName));
   };
 
   const handleNewTopicNameChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
-    setNewTopicName(event.target.value);
+    if (event.target.value !== '') {
+      setNewTopicName(event.target.value);
+    }
   };
-
-  const handleNewTopicButtonClick = () => {
-    setShowNewTopicInput(true);
+  const getTopicTitles = () => {
+    const allTopicsTitle = [];
+    for (const topic of topics) {
+      const topicTitles = topic.title;
+      allTopicsTitle.push(topicTitles);
+    }
+    return allTopicsTitle;
   };
-
-  const handleNewTopicCancel = () => {
-    setShowNewTopicInput(false);
-    setNewTopicName('');
-  };
-
-  const handleNewTopicSave = () => {
-    const newId = topics.length + 1;
-    const newTopic = { id: newId, name: newTopicName };
-    setTopics([...topics, newTopic]);
-    handleNewTopicCancel();
-  };
-
+  console.log(getTopicTitles());
+  const cher = topics.filter(
+    (e) => (e.title && e.title !== '') === newTopicName
+  );
+  console.log(cher, 'cher');
   return (
-    <Box>
-      <Typography typography='inputTitle'>{t('Choose a topic :')}</Typography>
-      <Stack spacing={3} marginBottom='1rem'>
-        <TextField
-          value={newTopicName}
-          placeholder='Type new topic...'
-          onChange={(e) => setNewTopicName(e.currentTarget.value)}
-        />
-      </Stack>
-      <Box>
-        {!showNewTopicInput && (
-          <Button variant='outlined' onClick={addNewTopicHandler}>
-            {t('Add New Topic')}
-          </Button>
+    <Box sx={{ width: '19rem' }}>
+      <Typography typography='inputTitle'>{t('Test topic')}</Typography>
+      <Autocomplete
+        value={value}
+        loading={isLoading}
+        filterOptions={(options, params) => {
+          setIsLoading(true);
+          const filtered = options.filter((option) =>
+            option.title.toLowerCase().includes(params.inputValue.toLowerCase())
+          );
+          // if (params.inputValue !== '') {
+          //   filtered.push({
+          //     id: topics.length + 1,
+          //     title: params.inputValue,
+          //   });
+          // }
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 500);
+          return filtered;
+        }}
+        selectOnFocus
+        handleHomeEndKeys
+        options={topics}
+        getOptionLabel={(option) => option.title}
+        renderOption={(props, option) => <li {...props}>{option.title}</li>}
+        renderInput={(params) => (
+          <Controller
+            name={name}
+            control={control}
+            render={() => (
+              <Stack>
+                <TextField
+                  {...params}
+                  placeholder='Choose topic or add your own...'
+                  size='small'
+                  value={newTopicName}
+                  onChange={handleNewTopicNameChange}
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <>
+                        {isLoading ? (
+                          <CircularProgress color='inherit' size={20} />
+                        ) : null}
+                        {params.InputProps.endAdornment}
+                      </>
+                    ),
+                  }}
+                />
+                {!getTopicTitles().includes(newTopicName) && (
+                  <Button
+                    sx={{ marginTop: '1rem', width: '15rem' }}
+                    variant='outlined'
+                    onClick={addNewTopicHandler}
+                  >
+                    {t('Add New Topic')}
+                    <Stack sx={{ marginLeft: '1rem' }}>
+                      <PlusIcon />
+                    </Stack>
+                  </Button>
+                )}
+              </Stack>
+            )}
+          />
         )}
-      </Box>
-      {showNewTopicInput && (
-        <>
-          <Stack spacing={3}>
-            <TextField
-              id='new-topic'
-              value={newTopicName}
-              placeholder='Type new topic...'
-              onChange={handleNewTopicNameChange}
-            />
-          </Stack>
-          <Button sx={{ margin: '1rem' }} onClick={handleNewTopicSave}>
-            {t('Save')}
-          </Button>
-          <Button onClick={handleNewTopicCancel}>{t('Cancel')}</Button>
-        </>
-      )}
+        freeSolo
+        multiple={false}
+        limitTags={1}
+        fullWidth
+      />
     </Box>
   );
-}
+};
+
+export default CreateTopicComponent;

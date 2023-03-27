@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button, Stack } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { ButtonBackHome } from '../../../components/common/ButtonBackHome';
 import { StylizedPaper } from '../../../components/common/StylizedPaper/StylizedPaper';
 import { InputField } from '../FieldsComponents/InputFieald';
-import TopicSelect from '../FieldsComponents/CreateTopic/CreateTopic';
-import { SelectorField } from '../FieldsComponents/SelectorField/SelectorField';
 import { TypeSwitchSelect } from '../../../types/SelectorType';
 import { Layout } from '../../../components/layout/Layout';
 import { CreateQuizType } from '../../../types/CreateQuizType';
+import { SelectorFieldNOQ } from '../FieldsComponents/SelectorField/SelectorFieldNumOfQuestion/SelectorFieldNOQ';
+import CreateTopicComponent from "../FieldsComponents/CreateTopic/CreateTopic";
 
 type CreateQuizContainerType = {
   onSubmit: SubmitHandler<CreateQuizType>;
 };
 
+type Topic = {
+  id: number;
+  title: string;
+};
+
 export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
-  const { handleSubmit, control } = useForm<CreateQuizType>();
+  const { handleSubmit, control } = useForm<CreateQuizType>({defaultValues: {numberOfQuestions: 5}});
   const { t } = useTranslation('create-quiz');
   return (
     <Layout>
@@ -37,6 +42,7 @@ export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
                   nameTitle={t('Test title')}
                   nameControl='title'
                   control={control}
+                  placeholder='Add title for test...'
                 />
               </Box>
               <Box sx={{ flexGrow: 2 }}>
@@ -44,6 +50,7 @@ export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
                   nameControl='description'
                   nameTitle={t('Test description')}
                   control={control}
+                  placeholder='Add description for test...'
                 />
               </Box>
             </Stack>
@@ -52,11 +59,11 @@ export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
               flexWrap='wrap'
               spacing={3}
             >
-              <Box flexGrow={1}>
-                <TopicSelect name='topic' control={control} />
+              <Box flexGrow={2}>
+                <CreateTopicComponent control={control} name='topic' />
               </Box>
-              <Box flexGrow={1}>
-                <SelectorField
+              <Box flexGrow={10}>
+                <SelectorFieldNOQ
                   label={t('Number of questions')}
                   name='numberOfQuestions'
                   control={control}
@@ -68,6 +75,7 @@ export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
               nameControl='comment'
               nameTitle={t('Comment')}
               control={control}
+              placeholder='Add comment for test...'
             />
             <Stack alignItems='center' marginTop='20px'>
               <Button type='submit'>{t('Save quiz')}</Button>

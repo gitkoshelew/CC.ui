@@ -24,7 +24,7 @@ export const QuestionTimer: React.FC<TimerProps> = ({ name, control }) => {
               InputProps={{ inputProps: { min: 0 } }}
               fullWidth
             />
-            <Typography>{t('Minutes')}</Typography>
+            <Typography>{t('Min')}</Typography>
           </Box>
         )}
       />
@@ -40,7 +40,7 @@ export const QuestionTimer: React.FC<TimerProps> = ({ name, control }) => {
               InputProps={{ inputProps: { min: 0, max: 59 } }}
               fullWidth
             />
-            <Typography>{t('Seconds')}</Typography>
+            <Typography>{t('Sec')}</Typography>
           </Box>
         )}
       />

@@ -3,8 +3,8 @@ import React from 'react';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
-import { TypeSwitchSelect } from '../../../../types/SelectorType';
-import { SwitchSelectors } from './SwitchSelector';
+import { TypeSwitchSelect } from '../../../../../types/SelectorType';
+import { SwitchSelectorNOQ } from './SwitchSelectorNOQ';
 
 type SelectorFieldType<T extends FieldValues> = {
   name: FieldPath<T>;
@@ -14,7 +14,7 @@ type SelectorFieldType<T extends FieldValues> = {
   control: Control<T>;
 };
 
-export const SelectorField = <T extends FieldValues>({
+export const SelectorFieldNOQ = <T extends FieldValues>({
   name,
   label,
   type,
@@ -32,7 +32,11 @@ export const SelectorField = <T extends FieldValues>({
         name={name}
         rules={rules}
         render={({ field: { onChange, value } }) => (
-          <SwitchSelectors type={type} onPress={onChange} value={value} />
+          <SwitchSelectorNOQ
+            type={type}
+            onPressNOQ={onChange}
+            valueNOQ={value}
+          />
         )}
       />
     </Box>
