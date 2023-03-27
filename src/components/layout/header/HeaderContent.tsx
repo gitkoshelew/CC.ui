@@ -2,12 +2,20 @@ import { IconButton, Stack } from '@mui/material';
 import Container from '@mui/material/Container';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import LoginIcon from '@mui/icons-material/Login';
 import { MoonIcon } from '../../../assets/icons/MoonIcon';
 import { HeaderNavigation } from './HeaderNavigation';
 import { HeaderAccount } from './HeaderAccount';
+import { getTokenFromStorage } from '../../../utils/token';
 
 export const HeaderContent = () => {
   const { locale } = useRouter();
+  const router = useRouter();
+  const token = getTokenFromStorage();
+
+  const onLoginHandler = () => {
+    router.push('login');
+  };
   return (
     <Container>
       <Stack
@@ -22,6 +30,12 @@ export const HeaderContent = () => {
       >
         <Stack direction='row' alignItems='center' spacing={2}>
           <HeaderAccount />
+          {!token && (
+            <IconButton color='inherit' onClick={onLoginHandler}>
+              <LoginIcon />
+            </IconButton>
+          )}
+
           <IconButton>
             <MoonIcon />
           </IconButton>
