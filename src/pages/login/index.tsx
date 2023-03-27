@@ -47,7 +47,7 @@ const LoginPage = () => {
               register={register}
               error={errors.email}
               name='email'
-              required='loginMessage'
+              required='emailRequired'
             />
             <AuthTextField
               register={register}

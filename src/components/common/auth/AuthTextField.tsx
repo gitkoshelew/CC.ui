@@ -24,7 +24,7 @@ export const AuthTextField = ({
       required: `${t(required)}`,
       pattern: {
         value: name === 'email' ? emailValidation : null,
-        message: `${t(required)}`,
+        message: `${t('emailMessage')}`,
       },
       minLength: {
         value: name === 'email' ? null : isPassword(),

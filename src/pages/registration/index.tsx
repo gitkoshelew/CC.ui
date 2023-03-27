@@ -58,7 +58,7 @@ const SignUpPage = () => {
               register={register}
               error={errors.email}
               name='email'
-              required='loginRequired'
+              required='emailRequired'
             />
             <AuthTextField
               register={register}
