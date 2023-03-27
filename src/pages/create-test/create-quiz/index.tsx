@@ -1,10 +1,13 @@
 import { SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { CreateQuizType } from '../../../types/CreateQuizType';
 import { quizesApi } from '../../../api/quizesApi';
 import { CreateQuizContainer } from './CreateQuizContainer';
 import { TopicType } from '../../../types/TestQuestionsType';
+import { wrapper } from '../../../store/store';
 
 const CreateQuiz = () => {
   const router = useRouter();
@@ -40,3 +43,13 @@ const CreateQuiz = () => {
 };
 
 export default CreateQuiz;
+
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(() => async ({ locale }) => ({
+    props: {
+      ...(await serverSideTranslations(locale as string, [
+        'home',
+        'createQuiz',
+      ])),
+    },
+  }));
