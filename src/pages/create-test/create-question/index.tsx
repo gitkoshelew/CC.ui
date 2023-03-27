@@ -43,6 +43,10 @@ const CreateQuestion = () => {
   });
 
   const [questions, setQuestions] = useState([{ ...getNewQuestion() }]);
+  // const [selectedTypeOfQuestion, setTypeOfQuestion] = useState(''); // for single && multi
+  // const onChangeSelectType = (e: any) => {
+  //   setTypeOfQuestion(e.currentTarget.value);
+  // };
   const currentQuestion = useMemo(
     () =>
       questions[currentQuestionIndex] || {
@@ -148,7 +152,8 @@ const CreateQuestion = () => {
                   nameTitle={t('Question :')}
                   nameControl='title'
                   control={control}
-                 placeholder='Add question title...'/>
+                  placeholder='Add question title...'
+                />
                 <InputField
                   nameTitle={t('Description of question :')}
                   nameControl='description'
@@ -192,7 +197,11 @@ const CreateQuestion = () => {
               </Box>
             </Stack>
             <Stack spacing={1}>
-              <CreateAnswer control={control} name='topic' />
+              <CreateAnswer
+                control={control}
+                name='options'
+                // typeOfQuestion={selectedTypeOfQuestion}
+              />
             </Stack>
           </Stack>
           <Stack alignItems='center'>

@@ -15,29 +15,52 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { BasketIcon } from '../../../../assets/icons/BasketIcon';
 
 type CreateAnswerPropsType<T extends FieldValues> = {
   control: any;
-  name: any;
+  name: string;
+  // typeOfQuestion: string; // for single multi
 };
 
 const CreateAnswer = <T extends FieldValues>({
   control,
   name,
+  // typeOfQuestion // for single multi
 }: CreateAnswerPropsType<T>) => {
   const { t } = useTranslation('createAnswer');
+  // const [correctAnswers, setCorrectAnswers] = useState<string[]>([]); // for single multi
   const { fields, append, remove } = useFieldArray({
     control,
     name,
   });
+
   const handleAppendNewAnswer = () => {
     if (fields.length < 4) {
       append({ name: '', checked: false });
     }
   };
+  // const handleCheckboxChange = (index: number) => {  // for single multi
+  //   const questionAnswer = fields[index].id;
+  //   if (correctAnswers.includes(questionAnswer)) {
+  //     setCorrectAnswers((prevAnswers) =>
+  //       prevAnswers.filter((answer) => answer !== questionAnswer)
+  //     );
+  //   } else {
+  //     setCorrectAnswers((prevAnswers) => [...prevAnswers, questionAnswer]);
+  //   }
+  // };
+  // const checkCorrect = () => {
+  //   if (typeOfQuestion === 'single' && correctAnswers.length === 1) {  // for single multi
+  //     return true
+  //   }
+  //   if (typeOfQuestion === 'multi' && correctAnswers.length === 2) {
+  //     return true
+  //   }
+  //   return false;
+  // };
   return (
     <Stack>
       <Typography>{t('Answer choice :')}</Typography>
@@ -96,6 +119,9 @@ const CreateAnswer = <T extends FieldValues>({
                         <Checkbox
                           color='primary'
                           size='small'
+                          // disabled={checkCorrect()}                    // for single multi
+                          // checked={correctAnswers.includes(field.id)}
+                          // onChange={() => handleCheckboxChange(index)}
                           checked={value}
                           onChange={onChange}
                         />
@@ -129,9 +155,11 @@ const CreateAnswer = <T extends FieldValues>({
             {t('Add Answer')}
           </Button>
         </Box>
-      ) : <Box sx={{margin: '1rem'}}>
-        <Typography>Maximum 4 answers !</Typography>
-      </Box>}
+      ) : (
+        <Box sx={{ margin: '1rem' }}>
+          <Typography>Maximum 4 answers !</Typography>
+        </Box>
+      )}
     </Stack>
   );
 };

@@ -31,7 +31,7 @@ export const SelectorFieldType = <T extends FieldValues>({
         control={control}
         name={name}
         rules={rules}
-        render={({ field: { onChange, value } }) => (
+        render={({ field: { value, onChange } }) => (
           <SwitchSelectorType
             type={type}
             onPressType={onChange}
