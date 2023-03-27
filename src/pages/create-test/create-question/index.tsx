@@ -192,7 +192,7 @@ const CreateQuestion = () => {
               </Box>
             </Stack>
             <Stack spacing={1}>
-              <CreateAnswer control={control} name='options' />
+              <CreateAnswer control={control} name='topic' />
             </Stack>
           </Stack>
           <Stack alignItems='center'>

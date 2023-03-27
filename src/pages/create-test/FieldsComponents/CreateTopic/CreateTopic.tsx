@@ -99,15 +99,11 @@ const CreateTopicComponent: React.FC<AutocompleteProps> = ({
         renderInput={(params) => (
           <Controller
             name={name}
-            rules={{ required: true }}
             control={control}
-            render={({ field, fieldState: { error } }) => (
+            render={() => (
               <Stack>
                 <TextField
                   {...params}
-                  {...field}
-                  error={!!error}
-                  helperText={error ? t('This field is required') : ''}
                   placeholder='Choose topic or add your own...'
                   size='small'
                   value={newTopicName}
