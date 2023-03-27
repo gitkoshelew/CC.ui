@@ -20,7 +20,7 @@ const CreateQuiz = () => {
           };
         }) => response.data[response.data.length - 1].id
       )
-      .catch((error) => 1);
+      .catch((error) => console.log(error));
     const payload = {
       ...quizData,
       numberOfQuestions: null,
