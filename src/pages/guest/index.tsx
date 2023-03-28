@@ -16,7 +16,7 @@ const GuestPage = () => (
         my: 'auto',
       }}
     >
-      <StylizedPaper title='You are not authorized'>
+      <StylizedPaper title='You are not authorized' i18nName=''>
         <Stack
           direction='row'
           justifyContent='center'

@@ -1,7 +1,10 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button, Stack } from '@mui/material';
+import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import { wrapper } from '../../../store/store';
 import { ButtonBackHome } from '../../../components/common/ButtonBackHome';
 import { StylizedPaper } from '../../../components/common/StylizedPaper/StylizedPaper';
 import { InputField } from '../FieldsComponents/InputFieald';
@@ -17,11 +20,11 @@ type CreateQuizContainerType = {
 
 export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
   const { handleSubmit, control } = useForm<CreateQuizType>();
-  const { t } = useTranslation('create-quiz');
+  const { t } = useTranslation('createQuiz');
   return (
     <Layout>
       <ButtonBackHome />
-      <StylizedPaper title={t('Create Quiz')}>
+      <StylizedPaper title='Create Quiz' i18nName='createQuiz'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack
             bgcolor='background.paperAccent2'
@@ -78,3 +81,13 @@ export const CreateQuizContainer = ({ onSubmit }: CreateQuizContainerType) => {
     </Layout>
   );
 };
+
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(() => async ({ locale }) => ({
+    props: {
+      ...(await serverSideTranslations(locale as string, [
+        'home',
+        'createQuiz',
+      ])),
+    },
+  }));

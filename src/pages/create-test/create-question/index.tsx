@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { QuestionTabs } from '../../../components/common/Tabs/QuestionTabs/QuestionTabs';
 import { InputField } from '../FieldsComponents/InputFieald';
@@ -10,7 +11,7 @@ import { DropDownField } from '../FieldsComponents/DropDownField';
 import { types } from '../../../Mocs/NewTestMoc';
 import CreateAnswer from '../FieldsComponents/CreateAnswer/CreateAnswer';
 import { quizesApi } from '../../../api/quizesApi';
-import { useAppSelector } from '../../../store/store';
+import { useAppSelector, wrapper } from '../../../store/store';
 import { CreateQuestionType } from '../../../types/CreateQuestionType';
 import { ButtonBackHome } from '../../../components/common/ButtonBackHome';
 import { Layout } from '../../../components/layout/Layout';
@@ -18,7 +19,7 @@ import { StylizedPaper } from '../../../components/common/StylizedPaper/Stylized
 import { QuestionTimer } from '../FieldsComponents/QuestionTimer/QuestionTimer';
 
 const CreateQuestion = () => {
-  const { t } = useTranslation('create-question');
+  const { t } = useTranslation('createQuestion');
   const router = useRouter();
   const { numberOfQuestions, topicId, quizId } = router.query;
   const { push } = useRouter();
@@ -134,7 +135,7 @@ const CreateQuestion = () => {
   return (
     <Layout>
       <ButtonBackHome />
-      <StylizedPaper title={t('Create Question')}>
+      <StylizedPaper title='Create Question' i18nName='createQuestion'>
         <form onSubmit={handleSubmit(onSubmitQuestion)}>
           <QuestionTabs
             numberOfQuestions={Number(numberOfQuestions)}
@@ -144,12 +145,12 @@ const CreateQuestion = () => {
             <Stack direction='row' flexWrap='wrap' spacing={3}>
               <Box sx={{ flexGrow: 1 }}>
                 <InputField
-                  nameTitle={t('Question :')}
+                  nameTitle={t('Question: ')}
                   nameControl='title'
                   control={control}
                 />
                 <InputField
-                  nameTitle={t('Description of question :')}
+                  nameTitle={t('Description of question: ')}
                   nameControl='description'
                   control={control}
                 />
@@ -160,7 +161,7 @@ const CreateQuestion = () => {
                 <DropDownField
                   control={control}
                   controlName='type'
-                  name={t('Questions type :')}
+                  name={t('Questions type: ')}
                   items={types}
                 />
               </Box>
@@ -168,12 +169,12 @@ const CreateQuestion = () => {
                 <DropDownField
                   control={control}
                   controlName='difficulty'
-                  name={t('Difficulty :')}
+                  name={t('Difficulty: ')}
                   items={difficultyItems}
                 />
               </Box>
               <Box sx={{ flexGrow: 2 }}>
-                <Typography typography='inputTitle'>{t('Timer :')}</Typography>
+                <Typography typography='inputTitle'>{t('Timer: ')}</Typography>
                 <QuestionTimer name='timerquestion' control={control} />
               </Box>
             </Stack>
@@ -197,3 +198,13 @@ const CreateQuestion = () => {
 };
 
 export default CreateQuestion;
+
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(() => async ({ locale }) => ({
+    props: {
+      ...(await serverSideTranslations(locale as string, [
+        'home',
+        'createQuestion',
+      ])),
+    },
+  }));

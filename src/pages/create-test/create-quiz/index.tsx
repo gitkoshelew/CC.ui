@@ -1,25 +1,21 @@
 import { SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { CreateQuizType } from '../../../types/CreateQuizType';
 import { quizesApi } from '../../../api/quizesApi';
 import { CreateQuizContainer } from './CreateQuizContainer';
+import { TopicType } from '../../../types/TestQuestionsType';
+import { wrapper } from '../../../store/store';
 
 const CreateQuiz = () => {
   const router = useRouter();
   const onSubmitQuiz: SubmitHandler<CreateQuizType> = async (quizData) => {
     const { numberOfQuestions } = quizData;
     const responseTopic = await axios
-      .get('http://localhost:5000/api/topic')
-      .then(
-        (response: {
-          data: {
-            length: number;
-            id: number;
-            title: string;
-          };
-        }) => response.data[response.data.length - 1].id
-      )
+      .get<TopicType[]>('http://localhost:5000/api/topic')
+      .then((response) => response.data[response.data.length - 1].id)
       .catch((error) => 1);
     const payload = {
       ...quizData,
@@ -47,3 +43,13 @@ const CreateQuiz = () => {
 };
 
 export default CreateQuiz;
+
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(() => async ({ locale }) => ({
+    props: {
+      ...(await serverSideTranslations(locale as string, [
+        'home',
+        'createQuiz',
+      ])),
+    },
+  }));

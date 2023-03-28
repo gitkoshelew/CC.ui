@@ -1,14 +1,19 @@
 {
-  "title": "Log in",
+  "LogIn": "LogIn",
   "email": "Email",
   "password": "Password",
+  "name": "Name",
+  "nickName": "Nick name",
   "forgottenPassword": "Forgotten password?",
-  "buttonLogin": "Login",
+  "Login": "Login",
   "dontHaveAcc": "Dont you have an account?",
   "registration": "Create a new account",
-  "loginRequired": "Login is required",
-  "loginMessage": "Invalid email",
+  "emailRequired": "Login is required",
+  "emailMessage": "Invalid email",
   "passwordRequired": "Password is required",
-  "passwordMessage": "Minimum 8 characters"
-
+  "passwordMessage": "Minimum 8 characters",
+  "warningRequired": "Field is required",
+  "warningMessage": "Minimum 2 characters",
+  "Already registered?": "Already registered?",
+  "Sign Up": "Sign Up"
 }

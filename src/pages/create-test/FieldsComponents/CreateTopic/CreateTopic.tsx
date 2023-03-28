@@ -38,7 +38,7 @@ const topicOptions: Topic[] = [
 
 export default function TopicSelect({ name, control }: Props) {
   const [newTopicName, setNewTopicName] = useState('');
-  const { t } = useTranslation('createTopic');
+  const { t } = useTranslation('createQuiz');
   const [showNewTopicInput, setShowNewTopicInput] = useState(false);
   const [topics, setTopics] = useState(topicOptions);
   const dispatch = useAppDispatch();
@@ -72,11 +72,11 @@ export default function TopicSelect({ name, control }: Props) {
 
   return (
     <Box>
-      <Typography typography='inputTitle'>{t('Choose a topic :')}</Typography>
+      <Typography typography='inputTitle'>{t('Choose a topic: ')}</Typography>
       <Stack spacing={3} marginBottom='1rem'>
         <TextField
           value={newTopicName}
-          placeholder='Type new topic...'
+          placeholder={t('Type new topic...')}
           onChange={(e) => setNewTopicName(e.currentTarget.value)}
         />
       </Stack>
@@ -93,7 +93,7 @@ export default function TopicSelect({ name, control }: Props) {
             <TextField
               id='new-topic'
               value={newTopicName}
-              placeholder='Type new topic...'
+              placeholder={t('Type new topic...')}
               onChange={handleNewTopicNameChange}
             />
           </Stack>

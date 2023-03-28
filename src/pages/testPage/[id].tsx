@@ -204,7 +204,7 @@ const Id = () => {
             tabsData={data}
           />
         </Stack>
-        <StylizedPaper title={cardWithQuestion.title}>
+        <StylizedPaper title={cardWithQuestion.title} i18nName='testPage'>
           <span className='mx-auto text-base mb-2.5 font-semibold text-xl text-center'>
             {cardWithQuestion?.question &&
               cardWithQuestion?.question[numberOfQuestion]?.description}
