@@ -6,6 +6,8 @@ import {
 } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import { createWrapper } from 'next-redux-wrapper';
+import createSagaMiddleware from '@redux-saga/core';
+import { takeEvery } from '@redux-saga/core/effects';
 import { quizzesReducer } from './reducers/quizzes-reducer';
 import { questionsReducer } from './reducers/questions-reducer';
 import { errorHandlerReducer } from './reducers/errorHandler-reducer';
@@ -15,6 +17,8 @@ import { profileReducer } from './reducers/profile-reducer';
 import { appReducer } from './reducers/app-reducer';
 import { resultReducer } from './reducers/result-reducer';
 import { topicReducer } from './reducers/topic-reducer';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const reducers = {
   quizes: quizzesReducer,
@@ -30,10 +34,19 @@ const reducers = {
 
 const reducer = combineReducers(reducers);
 
-export const makeStore = () =>
-  configureStore({
+function* sagas() {
+  // yield takeEvery('CHECK_SAGA', handleIncrement);
+}
+
+export const makeStore = () => {
+  const store = configureStore({
     reducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(sagaMiddleware),
   });
+  sagaMiddleware.run(sagas);
+  return store;
+};
 
 export type AppState = ReturnType<AppStore['getState']>;
 export type AppStore = ReturnType<typeof makeStore>;
