@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from '@mui/material';
 import { Suspense, useEffect } from 'react';
 import { appWithTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import { GlobalThemes } from '../styles/theme/types';
@@ -12,20 +11,24 @@ import { ErrorSnackbar } from '../components/ErrorHandler/ErrorHandler';
 import { Preloader } from '../components/common/Preloader/Preloader';
 import { initializeApp, setIsInitialize } from '../store/reducers/app-reducer';
 import { getTokenFromStorage } from '../utils/token';
+import { createConnection } from '../store/sagas/createConnectionSaga';
+import { closeConnection } from '../store/sagas/closeConnectionSaga';
 
 function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
   const dispatch = useAppDispatch();
   const isInitialize = useAppSelector((state) => state.app.isInitialize);
 
   useEffect(() => {
+    dispatch(createConnection());
     const token = getTokenFromStorage();
     if (token) {
       dispatch(initializeApp());
     } else {
       dispatch(setIsInitialize(true));
-      // router.push('/login');
     }
+    return () => {
+      dispatch(closeConnection());
+    };
   }, []);
 
   if (!isInitialize) {

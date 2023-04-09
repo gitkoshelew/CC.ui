@@ -17,6 +17,8 @@ import { profileReducer } from './reducers/profile-reducer';
 import { appReducer } from './reducers/app-reducer';
 import { resultReducer } from './reducers/result-reducer';
 import { topicReducer } from './reducers/topic-reducer';
+import { createConnectionSaga } from './sagas/createConnectionSaga';
+import { closeConnectionSaga } from './sagas/closeConnectionSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -35,7 +37,8 @@ const reducers = {
 const reducer = combineReducers(reducers);
 
 function* sagas() {
-  // yield takeEvery('CHECK_SAGA', handleIncrement);
+  yield takeEvery('CREATE-CONNECTION', createConnectionSaga);
+  yield takeEvery('CLOSE-CONNECTION', closeConnectionSaga);
 }
 
 export const makeStore = () => {
