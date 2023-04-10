@@ -43,6 +43,11 @@ export const FullHeader = () => {
                   {t('createTest')}
                 </Button>
               </Link>
+              <Link href='/live-codding'>
+                <Button color='info' variant='contained'>
+                  {t('liveCodding')}
+                </Button>
+              </Link>
               {!!token && (
                 <Button
                   color='info'
