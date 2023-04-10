@@ -51,7 +51,7 @@ const SignUpPage = () => {
             <AuthTextField
               register={register}
               error={errors.nickname}
-              name='nickName'
+              name='nickname'
               required='warningRequired'
             />
             <AuthTextField
